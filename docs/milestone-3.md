@@ -6,9 +6,64 @@ Milestone 3 delivers the reusable physical flow engine for digital standard-cell
 
 All project-specific names, fixed pad positions, and absolute paths are eliminated from the shared engine. The reference chip S8 builds cleanly through the generic engine without hard-coded design assumptions.
 
+![S8 Top Level Die Layout](images/layout-die.png)
+*Figure 1: Top-level assembled die layout (OS0000.gds) in the SCL C1D 2×2 mm pad frame.*
+
 ---
 
-## 2. Capabilities Delivered
+## 2. Reusable Physical Flow Architecture
+
+The Milestone 3 engine coordinates seven decoupled stages, using strict stage envelopes and immutable input/output contracts:
+
+```mermaid
+flowchart TD
+    subgraph Stage1 ["Stage 1: Technology Preparation"]
+        TECH_IN["toolchain.toml + PDK"] --> TECH_VERIFY["Verify 15 PDK File Fingerprints"]
+        TECH_VERIFY --> TECH_LIB["Parse Core & IO Liberty Models"]
+        TECH_LIB --> TECH_CELLS["Enforce 24-Cell Allowlist & Pin Maps"]
+    end
+
+    subgraph Stage2 ["Stage 2: Wrapper & Synthesis"]
+        TECH_CELLS --> WRAP_GEN["Generate Core Wrapper<br/>(Pad-to-core mapping & INVR04 drivers)"]
+        WRAP_GEN --> SDC_GEN["Generate Timing Constraints (impl.sdc, abc.constr)"]
+        SDC_GEN --> YOSYS_MAP["Yosys 0.33 Logic Synthesis"]
+        YOSYS_MAP --> SCK_CHECK["Clock Gate Single-Gate Cone Analysis"]
+    end
+
+    subgraph Stage3 ["Stage 3: Floorplan Generation"]
+        SCK_CHECK --> FP_GRID["Calculate Standard Cell Rows & Channels"]
+        FP_GRID --> FP_IO["Derive Pad Pin Coordinates (M1/M2)"]
+        FP_IO --> FP_DRV["Lock Pad Drivers Adjacent to Terminals"]
+        FP_DRV --> FP_OUT["Emit floorplan.json & floorplan.tcl"]
+    end
+
+    subgraph Stage4 ["Stage 4: Place and Route (OpenROAD)"]
+        FP_OUT --> PNR_PLACE["Global & Detailed Cell Placement"]
+        PNR_PLACE --> CTS_HOOK["CTS Clock Gate Isolation Hook"]
+        CTS_HOOK --> CTS_RUN["TritonCTS Buffer Tree Insertion (DELBUF)"]
+        CTS_RUN --> CTS_RESTORE["Reconnect Gated Clock Pins"]
+        CTS_RESTORE --> ROUTE_RETRY["TritonRoute Detailed Route with Layer Margin Retries"]
+        ROUTE_RETRY --> WIRE_CHECK["Wire Overlap & Router DRC Verification"]
+    end
+
+    subgraph Stage5 ["Stage 5: Top Assembly & Power Probe"]
+        WIRE_CHECK --> ASM_GDS["Assemble Top GDS in 2×2 mm SCL Frame"]
+        ASM_GDS --> ASM_PADS["Substitute Active Pad Cells (OPAD, IPAD, PVDD, PVSS)"]
+        ASM_PADS --> CDL_BUILD["Generate Hierarchical CDL Netlist"]
+        CDL_BUILD --> KLAYOUT_PWR["KLayout 92-Point Metal-Only Power Connectivity Probe"]
+    end
+
+    subgraph Stage6 ["Stage 6: Artifact Emission"]
+        KLAYOUT_PWR --> OUT_GDS["artifacts/chip.gds"]
+        KLAYOUT_PWR --> OUT_CDL["artifacts/chip.cdl"]
+        KLAYOUT_PWR --> OUT_MAP["artifacts/mapped.v"]
+        KLAYOUT_PWR --> OUT_ROUT["artifacts/routed.v"]
+    end
+```
+
+---
+
+## 3. Capabilities Delivered
 
 ### Technology Preparation (`stages/technology.py`, `resources/tech_prep.py`)
 - Stages 15 required PDK files and verifies their SHA-256 fingerprints against `toolchain.toml`.
@@ -28,17 +83,32 @@ All project-specific names, fixed pad positions, and absolute paths are eliminat
 - Determines pad pin locations (M2 for top/bottom, M1 in channels for left/right) and places pad drivers locked adjacent to corresponding pad terminals.
 - Outputs `floorplan.json` metadata and OpenROAD `floorplan.tcl`.
 
+| Floorplan & Core Rows | Pad Frame & Peripheral Terminals |
+|:---:|:---:|
+| ![Floorplan](images/floorplan-light.png) | ![Pad Frame](images/frame-light.png) |
+| *Standard cell placement rows and horizontal channels* | *Peripheral frame boundary with 16 pad slots* |
+
 ### Place and Route (`stages/pnr.py`, `stages/wire_overlap.py`)
 - Executes OpenROAD placement and CTS with density targets, slew/cap margins, and input buffering (`DELBUF`).
 - Implements `cts_clock_gate_isolation` hook to disconnect non-DFF clock pins during CTS and reconnect them afterward, preventing TritonCTS divergence on gated clock trees.
 - Executes detailed routing (`TritonRoute`) with retry loop adjusting global routing layer adjustments (`0.04 * TRY`).
 - Checks routed DEF wires and vias against standard cell layout (`core.gds`), ensuring 0 router DRC violations and 0 unexpected wire-to-cell overlaps.
 
+| Clock Tree Synthesis (CTS) | Routing Congestion & Density |
+|:---:|:---:|
+| ![Clock Tree](images/clock-tree-light.png) | ![Routing Density](images/routing-density-light.png) |
+| *Balanced clock tree with buffer insertion* | *Track routing density and metal utilization* |
+
 ### Assembly, CDL & Power Connectivity (`stages/assembly.py`)
 - Assembles top-level GDS (`<TOP>.gds`, e.g. `OS0000.gds`) by instantiating the 2×2 mm frame, core block, power rings (M1/M2), and pad routing wires.
 - Substitutes active pad cells (`OPAD04`, `IPAD3D`, etc.) into the frame instance array.
 - Generates a hierarchical CDL netlist (`<TOP>.cdl`, e.g. `OS0000.cdl`) linking core gate instances, pad subcircuits, and power pads.
 - Uses KLayout `LayoutToNetlist` to run a 92-point metal-only connectivity probe, confirming all row power rails connect to pad metal without shorts between VDD and VSS.
+
+| Assembled Core Zoom | Physical Layer Breakdown |
+|:---:|:---:|
+| ![Core Zoom](images/layout-zoom.png) | ![Layer Breakdown](images/layout-layers.png) |
+| *Dual-layer routing (M1/M2) connecting standard cell rows* | *Layer stack: Contact, Metal 1, Via 1, Metal 2* |
 
 ### CLI Integration (`cli.py`)
 - `chipflow build` runs preflight validation (`toolchain` -> `elaboration` -> `configuration`), then executes physical stages (`technology` -> `synthesis` -> `pnr` -> `assembly`).
@@ -51,7 +121,7 @@ All project-specific names, fixed pad positions, and absolute paths are eliminat
 
 ---
 
-## 3. Verification & Acceptance Evidence
+## 4. Verification & Acceptance Evidence
 
 ### Full Test Suite (WSL2 Ubuntu 24.04)
 - **114 / 114 tests passing** with `CHIPFLOW_TEST_TOOLCHAIN` active.

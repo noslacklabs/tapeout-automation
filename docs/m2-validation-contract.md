@@ -13,6 +13,17 @@ Milestone 1 said full validation always exits nonzero. That no longer holds. `ch
 | `validate --structure-only` | Unchanged: 0 after structural checks; claims nothing more |
 | `build --toolchain …` | Runs the same gates, then an `implementation` stage. If a gate fails, implementation is BLOCKED with `failed_ancestors`. Otherwise it is FAILED/infrastructure, "physical adapters not implemented (milestone 3)". Every milestone 2 build exits 2. |
 
+```mermaid
+flowchart TD
+    START(["chipflow validate"]) --> G1["Gate 1: Toolchain Validation<br/>Verify pinned Nix tools, binaries & PDK hashes"]
+    G1 -- PASS --> G2["Gate 2: Bounded Elaboration (Yosys 0.33)<br/>Synthesize AST, verify single clock, no latches/blackboxes"]
+    G1 -- FAIL --> BLK1["Exit 2 (BLOCKED)"]
+    G2 -- PASS --> G3["Gate 3: Configuration & Pad Qualification Gate<br/>10 pad checks, IO coverage & clock cone checks"]
+    G2 -- FAIL --> BLK2["Exit 2 (BLOCKED)"]
+    G3 -- "All Checks PASS" --> PLAN["Emit <run>/pad-plan.json (12 signal + 4 power)<br/><b>Validation Result: PASS (Exit 0)</b>"]
+    G3 -- "Any Check FAIL / NOT RUN" --> REJ["Stage FAILED / configuration<br/><b>Validation Result: FAIL (Exit 2)</b>"]
+```
+
 `validate` writes a `result.json` with `kind = "validation"` and `required_checks = ["toolchain", "elaboration", "configuration"]`. `build` writes a full `BuildResult`. In it, every other required check, including each `derived_outputs` check, appears exactly once as NOT RUN in the implementation stage. The console prints every check recorded by each stage, not a recomputed value, so a BLOCKED stage reads NOT RUN. Beneath a FAIL it prints the message, then the first failing or open configuration row.
 
 ## 2. Failure kinds

@@ -54,6 +54,17 @@ project exception, not permission for generic internal clock gating.
 
 Every stage receives an immutable resolved configuration and an input manifest:
 
+```mermaid
+flowchart TD
+    CONFIG["Resolved Configuration &<br/>Input Manifest (SHA-256)"] --> PREPARE["Stage prepare()<br/>Verify input hashes, stage relative paths & generate tool scripts"]
+    PREPARE --> STAGE_INPUT["Emit stage-input.json &<br/>path-map.json"]
+    STAGE_INPUT --> EXEC["Bounded Tool Execution<br/>Isolated directory, explicit argv, stdout/stderr capture, timeout"]
+    EXEC --> ASSESS["Stage assess()<br/>Validate non-empty outputs, run output validators & compute SHA-256"]
+    ASSESS --> VERIFY_OUT{"All declared outputs<br/>valid & non-empty?"}
+    VERIFY_OUT -- "Yes" --> STAGE_PASS["Record StageResult: SUCCEEDED<br/>Hash output artifacts into result.json"]
+    VERIFY_OUT -- "No" --> STAGE_FAIL["Record StageResult: FAILED<br/>(infrastructure / configuration / design)"]
+```
+
 ```json
 {
   "schema_version": 1,

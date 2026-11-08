@@ -10,6 +10,32 @@ runtime reconstruction rather than reuse of the local setup below, follow
 [the milestone 1 recipe](../toolchains/milestone1/README.md). A clean WSL release
 installation remains a separate gate.
 
+---
+
+## Toolchain and project workflow
+
+The engine exposes three primary CLI commands matching the progressive verification gates:
+
+```mermaid
+flowchart TD
+    DOCTOR["<b>1. chipflow doctor</b><br/><code>--toolchain toolchains/local.wsl.toml --probe</code>"]
+    VALIDATE["<b>2. chipflow validate</b><br/><code>projects/s8/chip.toml --toolchain ...</code>"]
+    BUILD["<b>3. chipflow build</b><br/><code>projects/s8/chip.toml --toolchain ...</code>"]
+
+    DOCTOR -->|Verifies OS, Nix binaries, SHA-256 fingerprints & geometry probe| ENV_OK["Environment Qualified"]
+    ENV_OK --> VALIDATE
+    VALIDATE -->|Runs schema-1 loader, Yosys elaboration & 10 pad qualification rules| VAL_OK["Preflight Qualified (Exit 0)"]
+    VAL_OK --> BUILD
+    BUILD -->|Executes synthesis, OpenROAD PnR, top assembly & power probe| ARTIFACTS["Emits 4 Canonical Artifacts:<br/>• artifacts/chip.gds<br/>• artifacts/chip.cdl<br/>• artifacts/mapped.v<br/>• artifacts/routed.v"]
+```
+
+![SCL C1D Layout Layers](images/layout-layers.png)
+*Figure: Standard cell rows, contact, via, M1 and M2 layers produced during physical implementation.*
+
+---
+
+## Doctor and environment probe
+
 From this project directory in WSL, the existing reference Python can run the source package:
 
 ```bash
@@ -30,6 +56,10 @@ the unused-pad policy. `SBY --version` in the reference installation prints
 `unknown SBY version`; that exact banner is recorded, with the executable hash
 and Nix-store identity retained separately.
 
+---
+
+## Package installation and offline verification
+
 The source package is installable with `python -m pip install ./tools/chipflow`.
 For offline installation of the built wheel, use:
 
@@ -48,7 +78,11 @@ synthetic tests and exercises the environment gate:
 /home/sushant/.venvs/presubmit-check/bin/python scripts/verify_wheel.py --workspace "$PWD" --wheel work/m2-dist-dev4/chipflow-0.1.0.dev4-py3-none-any.whl
 ```
 
-Project commands currently have these boundaries:
+---
+
+## Project commands and execution boundaries
+
+Project commands have the following execution boundaries:
 
 ```bash
 # Fast structural and syntax validation
@@ -57,17 +91,34 @@ chipflow validate path/to/chip.toml --structure-only
 # Full semantic preflight validation (toolchain, elaboration, configuration)
 chipflow validate path/to/chip.toml --toolchain toolchains/local.wsl.toml
 
-# Build preflight (validates configuration; physical implementation is deferred to milestone 3)
+# Full build: preflight + physical implementation (synthesis, PnR, assembly)
 chipflow build path/to/chip.toml --toolchain toolchains/local.wsl.toml
 ```
 
 Full validation returns 0 when toolchain, elaboration, and configuration checks pass,
-and returns 2 on check failure. `build` executes preflight validation; if preflight passes,
-it reports the implementation stage as FAILED with an infrastructure notice (physical adapters
-deferred to milestone 3), records all physical checks as NOT RUN, and exits 2.
-`init` and the chip reporting adapters arrive in milestones 3 and 4 respectively.
+and returns 2 on check failure.
 
-Unit tests require no kit and run on Windows or Linux (111 tests; the 10 real-tool integration tests skip unless `CHIPFLOW_TEST_TOOLCHAIN` names a toolchain file). Run them from `tools/chipflow`:
+`chipflow build` runs preflight validation, technology staging, synthesis, floorplanning,
+OpenROAD placement, CTS with clock-gate isolation, detailed routing with retry tuning, top GDS
+assembly in SCL's 2×2 mm frame, hierarchical CDL netlist generation, and KLayout metal-only power
+connectivity checking. It copies all 4 release artifacts to `artifacts/`:
+
+```text
+artifacts/chip.gds
+artifacts/chip.cdl
+artifacts/mapped.v
+artifacts/routed.v
+```
+
+The current build **exits 2 even when physical implementation succeeds**, because required
+downstream verification checks (DRC, LVS, STA, simulation) remain `NOT RUN` pending Milestones 4 and 5.
+See [result-contract.md](result-contract.md) for full exit-code and evidence rules.
+
+---
+
+## Unit and integration tests
+
+Unit tests require no kit and run on Windows or Linux (114 tests; real-tool integration tests skip unless `CHIPFLOW_TEST_TOOLCHAIN` names a toolchain file). Run them from `tools/chipflow`:
 
 ```bash
 # Windows
