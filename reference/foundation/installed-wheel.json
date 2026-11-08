@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-11-07T18:38:36.580531+00:00",
+  "wheel": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/dist/chipflow-0.1.0.dev1-py3-none-any.whl",
+  "wheel_sha256": "10bb95eb5bea429054e3f2e8df13f4526f4749a3fe85efc99394dc6119b2b9eb",
+  "records": [
+    {
+      "name": "create-venv",
+      "argv": [
+        "/home/sushant/.venvs/presubmit-check/bin/python",
+        "-m",
+        "venv",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/work/installed-wheel-0bbfc81a1b/venv"
+      ],
+      "returncode": 0,
+      "log": "create-venv.log"
+    },
+    {
+      "name": "install",
+      "argv": [
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/work/installed-wheel-0bbfc81a1b/venv/bin/python",
+        "-m",
+        "pip",
+        "install",
+        "--no-index",
+        "--no-deps",
+        "--disable-pip-version-check",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/dist/chipflow-0.1.0.dev1-py3-none-any.whl"
+      ],
+      "returncode": 0,
+      "log": "install.log"
+    },
+    {
+      "name": "import-location",
+      "argv": [
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/work/installed-wheel-0bbfc81a1b/venv/bin/python",
+        "-I",
+        "-c",
+        "import chipflow; from pathlib import Path; p=Path(chipflow.__file__).resolve(); print(p); assert p.is_relative_to(Path('/mnt/m/Desktop Folders/My Projects/Tapeout Automation/work/installed-wheel-0bbfc81a1b/venv'))"
+      ],
+      "returncode": 0,
+      "log": "import-location.log"
+    },
+    {
+      "name": "tests",
+      "argv": [
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/work/installed-wheel-0bbfc81a1b/venv/bin/python",
+        "-I",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/tools/chipflow/tests",
+        "-v"
+      ],
+      "returncode": 0,
+      "log": "tests.log"
+    },
+    {
+      "name": "doctor-probe",
+      "argv": [
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/work/installed-wheel-0bbfc81a1b/venv/bin/chipflow",
+        "doctor",
+        "--toolchain",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/local.wsl.toml",
+        "--run-root",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/work/installed-wheel-0bbfc81a1b/probe path µ",
+        "--probe"
+      ],
+      "returncode": 0,
+      "log": "doctor-probe.log"
+    }
+  ],
+  "exit_code": 0,
+  "installed_package_verification": "PASS",
+  "dependency_environment": "existing EDA packages reused via explicit .pth after venv packages",
+  "clean_eda_installation": "NOT RUN",
+  "full_chip_build": "NOT RUN",
+  "signoff_ready": false
+}

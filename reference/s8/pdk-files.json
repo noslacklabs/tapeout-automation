@@ -1,0 +1,1276 @@
+{
+  "schema_version": 1,
+  "root": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026",
+  "files": [
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Installation_guide_c1d.txt",
+      "bytes": 7560,
+      "sha256": "5cdc6289eadf38fdd6a2c1e3a792d1f4550186ff6c95ea0021ae26df4a672412"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/cshrc_pdk_env_setting",
+      "bytes": 2788,
+      "sha256": "0a8c31d7cb882c3d1440d3248880d8da59c36466c136b89d85910a8853359baa"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/.run.sh.swp",
+      "bytes": 12288,
+      "sha256": "c227466dc147bb1faa05f183a01351801ad07e5703ffd358a5342dd5340d7eb3"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/Installer.mp4",
+      "bytes": 3588142,
+      "sha256": "d370f2abb743e724a023b17ed88560241b6643a9cffa21baa6bf9015adb8f596"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/Readme.txt",
+      "bytes": 1659,
+      "sha256": "1368039a6effc6ef56435ce0a6fe79eefe9615fb95e60cb18794a1d0c9f167d4"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/SCL_LOGO.png",
+      "bytes": 53977,
+      "sha256": "a64198d769c939d0d1f0cb12177da32bcd69d8121c3ddda35fa0d0c45a1472ee"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/cert.pem",
+      "bytes": 1115,
+      "sha256": "84d67c0d8270a5edb2b2998bcf279a6789cfd9baf8ab6da0f7ac4f73ae40da1d"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/key.pem",
+      "bytes": 1704,
+      "sha256": "548ee61c3eebfe91fbe544c87ae7d31f9030a5f84f3c2714745117a937cf24c8"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/klayout.webm",
+      "bytes": 4726564,
+      "sha256": "684635cb08614f088e0754777e479ad411c0e71620e9b0a84d280aba3fbc3c61"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/localhost-key.pem",
+      "bytes": 1700,
+      "sha256": "443e26c3276eac131a24c72b12e41e4e1f6aaa8d58c5d7114ae30d53d286a5d5"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/localhost.pem",
+      "bytes": 1440,
+      "sha256": "75ddca2ecc8742d77a94dfa7b2dc515811f36c64b4ae33a6eeec57209c329abb"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/magic1.webm",
+      "bytes": 4273669,
+      "sha256": "1555868d551b565872754e4ade674169ac37c33b287dfb10bb35000bf9b4a276"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/open_tool_installer.sh",
+      "bytes": 6468,
+      "sha256": "5c5cd442334ca981278d564e79736fe7f8f80d085e16e2dee6b8fef68958df37"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/run_installer_With_Speech_Chatbot.sh",
+      "bytes": 980,
+      "sha256": "698d354a99732f977e3cbb7e0105efd55e15aec203a4648138a5d52f266d4926"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/run_installer_With_Text_Chatbot.sh",
+      "bytes": 1105,
+      "sha256": "f488f2f775134a9d746e5200991f0d922d603caec5faf457b80a271d56dd6a56"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/config/SCL_C1D.tech",
+      "bytes": 15009,
+      "sha256": "7bbc05b3e0c799af315ec47468c83f1c8237be6af313fdb91bd95b1558c71bff"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/config/klayoutrc",
+      "bytes": 50842,
+      "sha256": "eee0385273e7134b370dcf35e07386f8c9b51129d92bb9cafaaff5c455de157a"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/config/magicrc",
+      "bytes": 218,
+      "sha256": "e77adb2ffe1055d082b06c39971ac3848a2483d587621ba50ca674f8d2718e1b"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/config/xschemrc",
+      "bytes": 2585,
+      "sha256": "50fb30e420e24318a13fe08690aac5900a9684a4f902a383ac448fea12270167"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/PadFrame_C1D/doc/Standard_Pad_Frame_C1D.docx",
+      "bytes": 1003709,
+      "sha256": "f2cd58d754fa323dedfe76b1a194b379a3d14cfb712f6ad835b511a8ef7f595a"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/PadFrame_C1D/doc/Standard_Pad_Frame_C1D.pdf",
+      "bytes": 873954,
+      "sha256": "440cd4723a82064cc8999b63bb7f2bf9b3e67ff6e4f67ed931c6a2f6cb00e6c7"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/PadFrame_C1D/klayout/gds/io_pad_c1d.gds",
+      "bytes": 934320,
+      "sha256": "0e861a9775d0faa71f773860528ca9322c02c0a646b0b41a7321c6c823ea53ee"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/PadFrame_C1D/klayout/lvs_cdl/io_pad_c1d.cdl",
+      "bytes": 36234,
+      "sha256": "950cc236971e1bc8c1eb52f5a9840da6365a219fffd0090e32748eb081beecc4"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/PadFrame_C1D/klayout/lvs_cdl/io_pad_list.txt",
+      "bytes": 141,
+      "sha256": "bdd1c8aaef9c0518530c1adb31a6efda05f887ac9a1752809ac46d6037c99329"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/PadFrame_C1D/pad_frame_cdl/frame1mmx1mm.cdl",
+      "bytes": 353,
+      "sha256": "96468887bf1a1162a6d881658c3c7ac130d613f6f965e13b43533ab4ea72849e"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/PadFrame_C1D/pad_frame_cdl/frame2mmx2mm.cdl",
+      "bytes": 721,
+      "sha256": "6aee1fe0bc67ec204b31160884b7b5762ee7b1784e11afb38b58b5bb25d4c2ee"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/PadFrame_C1D/pad_frame_cdl/frame3mmx3mm.cdl",
+      "bytes": 1235,
+      "sha256": "5e8b5409ed75ece7de0e1c9e392ed7f83e4ba7c701696988e4c3d9f7c4ae650f"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/PadFrame_C1D/pad_frame_cdl/frame4mmx4mm.cdl",
+      "bytes": 1660,
+      "sha256": "cc6f3c43fdff59b9a74798ddcad3a60b765d47bc849856c08e204cd7694a144f"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/PadFrame_C1D/pad_frame_cdl/frame5mmx5mm.cdl",
+      "bytes": 2176,
+      "sha256": "2abc310e1f2175f35351d5485cd14161b2c270c079982e0b45e19fd49dddee10"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/PadFrame_C1D/pad_frame_gds/frame1mmx1mm.gds",
+      "bytes": 71364,
+      "sha256": "53589ea039c241b6fb07607edad8bbd7a2771dcf14728db2cac33883bce92df3"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/PadFrame_C1D/pad_frame_gds/frame2mmx2mm.gds",
+      "bytes": 72464,
+      "sha256": "b3432453d806dc4a6df1e2be21782e29ed486cbb9a38eb5e1ba2929e8ba4ca17"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/PadFrame_C1D/pad_frame_gds/frame3mmx3mm.gds",
+      "bytes": 73858,
+      "sha256": "1a7ddb8042ee2bdb93afac9785d1d2171ca7da2c1873ce00b3aee6e4a771f485"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/PadFrame_C1D/pad_frame_gds/frame4mmx4mm.gds",
+      "bytes": 75084,
+      "sha256": "f64d06a04ae30e31a7863bfe4ddacc2bff8b0fe78d44d07eff95542147738fd9"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/PadFrame_C1D/pad_frame_gds/frame5mmx5mm.gds",
+      "bytes": 76330,
+      "sha256": "c170e289669621d4ca8800741c6a0d7da27d719c70be45783e1a86390a3b5ee3"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_io_lib/cdl/io_pad_c1d.cdl",
+      "bytes": 3293,
+      "sha256": "a8e96d7781de8a4dfc4f51b9ef8da67ae02fb425ca0c736f6943faa28c0b7c86"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_io_lib/gds/io_c1d.gds",
+      "bytes": 143410,
+      "sha256": "1e129ad450c26cb500ea893f1b3873da76bb999bdb339ce0cc7ca38b5f9dd96f"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_io_lib/spice/AIPAD00.pex.netlist",
+      "bytes": 564,
+      "sha256": "633b1c01e7c56c45e1aae8971926e585a91866ee24b33c25624d62593013d5a6"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_io_lib/spice/AIPAD00.pex.netlist.AIPAD00.pxi",
+      "bytes": 852,
+      "sha256": "bd677cc2a788432ccf1b68098f5bb4d1097c9b00b48a915b97d747e9c6570c30"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_io_lib/spice/AIPAD00.pex.netlist.pex",
+      "bytes": 4615,
+      "sha256": "6a4b23d2b39e50e1063f7e44e84c52fd2a2b90a15eba583b53fb39be1da8d9f8"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_io_lib/spice/IPAD00.pex.netlist",
+      "bytes": 540,
+      "sha256": "301363954ca10b576f9f99b3a6dd818f5c7afa3e962b6c706800876185403e69"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_io_lib/spice/IPAD00.pex.netlist.IPAD00.pxi",
+      "bytes": 870,
+      "sha256": "1d98961ed0cb449ca4da124390fe657c1513c074b7220a0fcb6508de87b0ce64"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_io_lib/spice/IPAD00.pex.netlist.pex",
+      "bytes": 4671,
+      "sha256": "651edd987721b2fdb6a4a69c32b718b7284a310955236727e10250ab6a89eb26"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_io_lib/spice/IPAD2D.pex.netlist",
+      "bytes": 1417,
+      "sha256": "56adfbcbf51855a349b8d460abb387827f62ea9908f91001a6a7f0b45492bd8a"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_io_lib/spice/IPAD2D.pex.netlist.IPAD2D.pxi",
+      "bytes": 2545,
+      "sha256": "e5767070f04665792f59f26a5724de3dfb9c3c8a4cc0c7acdbaac5a324a46026"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_io_lib/spice/IPAD2D.pex.netlist.pex",
+      "bytes": 9651,
+      "sha256": "0f6a0eb7b7ff7d015392bad6dfa2858623a8f6c39b7428d7d70976937e3c1c8c"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_io_lib/spice/OPAD04.pex.netlist",
+      "bytes": 1384,
+      "sha256": "7a26ad29f289e1b2fe22b79de5c74a430f9bacf3c4edf37e1246b121c69c7e54"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_io_lib/spice/OPAD04.pex.netlist.OPAD04.pxi",
+      "bytes": 2525,
+      "sha256": "ba14d1997678f6efd0a1751302bfc5e752365a8ea5304d01b60514ed1fe1b280"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_io_lib/spice/OPAD04.pex.netlist.pex",
+      "bytes": 10501,
+      "sha256": "a96570dbe181c0b24ae52e8985ea94969da951edce4c82e70dfc137c15142efb"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_io_lib/spice/PVDD01.pex.netlist",
+      "bytes": 303,
+      "sha256": "aea2ddaf8efbee1ceede0c6b3270631d99a808d7d09228429017a2300d3757db"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_io_lib/spice/PVDD01.pex.netlist.PVDD01.pxi",
+      "bytes": 171,
+      "sha256": "30da88fc850953fe07d21f11fecc6b622bbfa5c4c1227b60dad2be20439f723d"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_io_lib/spice/PVDD01.pex.netlist.pex",
+      "bytes": 1167,
+      "sha256": "f15147a5d57853e4880b552a1feba07010fc2a74b35b485f2fe1e879c906292e"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_io_lib/spice/PVSS01.pex.netlist",
+      "bytes": 295,
+      "sha256": "6de2234ae555407435801226bf0be0352cc53ea1236a9f9b8ab4c7482c401d71"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_io_lib/spice/PVSS01.pex.netlist.PVSS01.pxi",
+      "bytes": 137,
+      "sha256": "a7b8d9ab03a628b76fe877781ed34625f5e3402007ae34696f4dc4296850f5c3"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_io_lib/spice/PVSS01.pex.netlist.pex",
+      "bytes": 850,
+      "sha256": "a7083666d8676f8fc7d12170c39e5228797baffa166a0fa03133830a5a9b8e9f"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_tests/RING_OSCILLATOR/RING_OSCILLATOR.cdl",
+      "bytes": 8307,
+      "sha256": "68e247f89ee4cb0b172a55c17262be86dddc79aa55eb83424853385ee59293d5"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_tests/RING_OSCILLATOR/RING_OSCILLATOR.gds",
+      "bytes": 30732,
+      "sha256": "fe1b6ff94012b16c26f55bce0ec09fc9988cfe06262d13177f63ccba9eefc37f"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_tests/RING_OSCILLATOR/RING_OSCILLATOR.lvsdb",
+      "bytes": 445150,
+      "sha256": "70092fd5157329ca617a3a1c0889a0f796b36b6fb41de5cafb61ff8686b0003e"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_tests/RING_OSCILLATOR/RING_OSCILLATOR_extracted.cir",
+      "bytes": 43148,
+      "sha256": "f21692ba6a14ad9e728bce52aedd75b7b54a2a72959bb1160c316e5f968a023c"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_tests/inv1_c1d/extfiles/inv1_c1d.ext",
+      "bytes": 860,
+      "sha256": "ddfad7e57808c7c1add483c3be7e421f4146a1344d0641b798f96d3f650eb46c"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_tests/inv1_c1d/extfiles/inv1_c1d.pex.spice",
+      "bytes": 562,
+      "sha256": "34d9a911011053b88a293a44f7d5305be18da07948af6126748224d76a5a5460"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_tests/inv1_c1d/extfiles/inv1_c1d.res.ext",
+      "bytes": 818,
+      "sha256": "3793170d6a89bdb3450eadf7f6af5c70988481b7521c5f74d9bff9f02a1b9eff"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_tests/inv1_c1d/inv1_c1d.cdl",
+      "bytes": 414,
+      "sha256": "98523d700b5dbaeb95a537d40cb97d808fc78d7b2b8aaaffa98bd924800b0686"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_tests/inv1_c1d/inv1_c1d.gds",
+      "bytes": 2912,
+      "sha256": "eda21e22072a0c0c23c8103832bcb74b8f1fc9bcad797afd4720c6642cdccfc2"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_tests/inv1_c1d/inv1_c1d.lvsdb",
+      "bytes": 3965,
+      "sha256": "f1d99a12115790a4a90b67f68412ac48173f52db6b9d3099d8ce9a56d9c83b29"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_tests/inv1_c1d/inv1_c1d_extracted.cir",
+      "bytes": 344,
+      "sha256": "2c5f3d347ba843f2fc79af913b19f1f303d424b216e4ceb0b3cb89a67367de06"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/scl_tests/inv1_c1d/sh_pex_script_r_c_cc",
+      "bytes": 436,
+      "sha256": "40e79990a2d79adcc2e68d484da8cf34cd728e2f35e507968c973698bb3ae191"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/klayout/klayoutrc",
+      "bytes": 50842,
+      "sha256": "eee0385273e7134b370dcf35e07386f8c9b51129d92bb9cafaaff5c455de157a"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/klayout/tech/cdl/io_c1d.cdl",
+      "bytes": 142777,
+      "sha256": "0804d6f231b50d30798afc5c8381a29ce07de79afdcdf9b998a612be587dd37d"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/klayout/tech/cdl/res_model.subckt",
+      "bytes": 384,
+      "sha256": "9a03cfea466afa65ea29e8b74fd7b775dbd114adefda1bc955e1184aedbdb4b1"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/klayout/tech/drc/c1d_drc.drc",
+      "bytes": 24553,
+      "sha256": "12ac6299b6464d798fabd8038797e686a28aee1db2f91e9c74fdf22ff46b8633"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/klayout/tech/drc/drc.lydrc",
+      "bytes": 25129,
+      "sha256": "72678ea0934926102201a38c7f6c509fb3c71f1bc78172d4402ed34a243358d3"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/klayout/tech/libraries/io_c1d.gds",
+      "bytes": 143410,
+      "sha256": "4b15d4231d939a3b4e92bdd774f4d2e989675bd198bc6179e72841ea93b2ed2a"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/klayout/tech/lvs/lvs.lylvs",
+      "bytes": 16249,
+      "sha256": "be906106af1ac1ecf9bc243b1e95de9c9e7684ec506297b674794cd4c34061a1"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/klayout/tech/lvs/lvs_os_scl_c1d.lvs",
+      "bytes": 15405,
+      "sha256": "2590471634771968ae53237c7e15d9482d23bb43a9d743c3a729a118e596f9cd"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/klayout/tech/scl_c1d.lyp",
+      "bytes": 12226,
+      "sha256": "f792e58f25bbd361cc526cff22b5d3293ed5195efde8fa7369105454204e6a93"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/klayout/tech/scl_c1d.lyt",
+      "bytes": 6084,
+      "sha256": "f411501d16ec09fdf2f30d4143db6ed708427fcfdb383d182a52194907a96b96"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/magic/SCL_C1D.tech",
+      "bytes": 15009,
+      "sha256": "7bbc05b3e0c799af315ec47468c83f1c8237be6af313fdb91bd95b1558c71bff"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/diode/Readme",
+      "bytes": 705,
+      "sha256": "6c6f211b6c33bf639ae987df84f328e32198a1073a301b015e5bc31e9aac9357"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/diode/diodes",
+      "bytes": 945,
+      "sha256": "827bdd39d69135819077ed0ba0424fa0edde569a46ecb56a6b3c67f9a7e2fab7"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/header.lib",
+      "bytes": 2865,
+      "sha256": "a57a948ae8431e42d350ec7d6db7b34c79d544c97346ef364ee3901964f3f3dd"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/mos/Readme",
+      "bytes": 925,
+      "sha256": "25e3b5702e39144afacccca9d0b5cee20661c82c9b564072aac96f025f1fce80"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/mos/bnbp49_5v",
+      "bytes": 4703,
+      "sha256": "dd3026e9d8462052d1fd327b1bcc1935ed0e4d20e26e9d66ddbb772977c16ac5"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/mos/bnwp49_5v",
+      "bytes": 4602,
+      "sha256": "5b888ba2aab4c5716dccf37a6d6e12dc608d56b9d70100904b7734ab72060d45"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/mos/tntp49_5v",
+      "bytes": 4737,
+      "sha256": "7c3c003a495c7839dfd15cd667bb6e9e919ecf0ff8998ccf63cf3043a7d9e00a"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/mos/wnbp49_5v",
+      "bytes": 4599,
+      "sha256": "8fa09b55c665395900938b1e2ca94719f8cde8d705edbfa3b14e17d961b527d6"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/mos/wnwp49_5v",
+      "bytes": 4699,
+      "sha256": "13c6db74da471c297e930d9a33660a91a4e6b7023d95d8d8a61a6b308e6e9971"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/Readme",
+      "bytes": 913,
+      "sha256": "65547fef83c0ec46508882151ed7d3256ccd3d5f7bdb7256f1a5306cadfbb9df"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/best/ndiffr",
+      "bytes": 828,
+      "sha256": "fb3015b329b5c641e4dddf4477182a489b5b534d16724d00d28324a80220d0c4"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/best/npr",
+      "bytes": 811,
+      "sha256": "da61f5208bf5714e71f1882c76971e897f66f90d6a467c41f98ff19e6f8b8087"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/best/nwr",
+      "bytes": 828,
+      "sha256": "c12c5d03cd968412520b585bfccebc16c05fab442996994558879369fbbdecf2"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/best/pdiffr",
+      "bytes": 824,
+      "sha256": "b49e7b0a648c16baf7af6868a4c2447d8f11d008520285226c9f69dc24a737d1"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/best/ppr",
+      "bytes": 812,
+      "sha256": "decf4027e40bea396bf89ee88f357cc376d86282b64859e025a2d860368a3981"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/typ/ndiffr",
+      "bytes": 833,
+      "sha256": "cf2a87b320d2cc794653d8487688a6ee80a385844c1bf0d05b2bf0b662876ec6"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/typ/npr",
+      "bytes": 672,
+      "sha256": "f36c7efc3bc2595635167bc27975217a0171749b4846854413e186c8ff461b38"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/typ/nwr",
+      "bytes": 834,
+      "sha256": "d15e8528e0c4afaf6cbd26846e7a13bd34c476a8fbbf329792a5ef82973cc2be"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/typ/pdiffr",
+      "bytes": 824,
+      "sha256": "0483876d1698a6064e577dabbd1d83b3a8002311850f0e36158151263ded74fc"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/typ/ppr",
+      "bytes": 815,
+      "sha256": "9712d78754376bd2655a6db1ebc8f4f082335782b6f8d16d7afe28c6b34ac62d"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/worst/ndiffr",
+      "bytes": 831,
+      "sha256": "4ee632e107447cefdece70a47d14a89a2c5d633b072b547ba94583888eff10d7"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/worst/npr",
+      "bytes": 816,
+      "sha256": "af8d99ba803e3c199be67a4696d55cda03fb2eb53b146c371672ed517bb2ab6e"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/worst/nwr",
+      "bytes": 825,
+      "sha256": "d9f5dbc2d5f2a32d9b0eceb6c74f7fedc9898fa879ec1ff0ba7165dbfac0f54d"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/worst/pdiffr",
+      "bytes": 832,
+      "sha256": "a8a3c7b23b112eada26b690327b4b0f43f790383124e2c3c12ec476876d228e6"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/worst/ppr",
+      "bytes": 811,
+      "sha256": "6d862d83c6f164b5769af892bee05b8ca7b2666c772433c0f64720343f90f077"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/.xschem/simulations/AIPAD00.spice",
+      "bytes": 331,
+      "sha256": "e4ffddc576ac2ea8b0a2555700177f144ea218fa2eb09ffa9e914e3b27058a7a"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/.xschem/simulations/IPAD00.spice",
+      "bytes": 346,
+      "sha256": "a12fc18ed5fed625997466847a33e0b3a693946de672dd36c7aa3d6e4687f135"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/.xschem/simulations/IPAD2D.spice",
+      "bytes": 1151,
+      "sha256": "9f49bfc435959f17f432f8820d6e1b7ca12dd30f4e66057cd06d4de74ab8dc3d"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/.xschem/simulations/OPAD04.spice",
+      "bytes": 1184,
+      "sha256": "ac2f9f8594ae4bd47b2fcd7d6be88fbf9ff1b3ff0642371adc11240d2c410cdb"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/.xschem/simulations/PVDD01.spice",
+      "bytes": 169,
+      "sha256": "ef2dfbfa8ddd5c4143155f87c71c9806d4695e02ac029020aea71dbaf4b527dd"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/.xschem/simulations/PVSS01.spice",
+      "bytes": 152,
+      "sha256": "286a1590c918371f29b26490e0edbea74743bf814fea8b4e8197051080da2d60"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/.xschem/simulations/diode_sim.spice",
+      "bytes": 1136,
+      "sha256": "9ec88cb3f9e0817984ffb36aa26d5408f32433c1b783f934d4e953144684f7db"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/.xschem/simulations/inv1_c1d_pex_sim.spice",
+      "bytes": 656,
+      "sha256": "ff6c729853dc031aa7d7f4caee7e1635c100e0fadc3461b1117faac80f506bdf"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/.xschem/simulations/inv1_c1d_sim.spice",
+      "bytes": 1219,
+      "sha256": "f051db75a7c5326f0db2284c188538a36618176f8667b49ff14388e106b9c7fa"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/.xschem/simulations/res_sim.spice",
+      "bytes": 1179,
+      "sha256": "4efde9257b3f8e859a9c5cc105612a75f344ba7ab33a589be0dbaf90eb557e97"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/.xschem/simulations/ring_oscillator_tran_pex_sim.spice",
+      "bytes": 853,
+      "sha256": "4c76e2b501eb58e13e7cdaca6e196f50b82c6d7b29371755da286f8c98f136e2"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/.xschem/simulations/ring_oscillator_tran_sim.spice",
+      "bytes": 9094,
+      "sha256": "f0ad2a798c27184c494beaa21cf9ea704799e10fb66d37891f9568e59a105e79"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_io_lib/AIPAD00.sch",
+      "bytes": 1226,
+      "sha256": "80664e1ebfcdd79f43d4bc6463999ed8f870613f33d27593da85b54b29c9c3f8"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_io_lib/AIPAD00.sym",
+      "bytes": 538,
+      "sha256": "d4a2c83032381baea9c44da959016691c0cc38f43495aaa1c2e578f81151ddc6"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_io_lib/IPAD00.sch",
+      "bytes": 1381,
+      "sha256": "4cdd51933a7ab92755bc5acc3a53e2c326ba58dc033addc850394ea622c64b9f"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_io_lib/IPAD00.sym",
+      "bytes": 639,
+      "sha256": "1d3b6b3b37118c7dd8280655087d67712b89145b27f6ab7b4989825aa10a6f21"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_io_lib/IPAD2D.sch",
+      "bytes": 5040,
+      "sha256": "2df9117a22a4c9be0421d3810111e252e8fdea91b7166c0cd088b74c58f6245a"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_io_lib/IPAD2D.sym",
+      "bytes": 664,
+      "sha256": "cec65d83ccb69793634077292840a88d63a34aca8f3cd56fc1e563d30cae76e8"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_io_lib/OPAD04.sch",
+      "bytes": 5365,
+      "sha256": "d3898b2e0213e482bf4c508ec71c30554972864877c46cf763951a8d35ed1164"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_io_lib/OPAD04.sym",
+      "bytes": 662,
+      "sha256": "1b858a1c28dbea7aa63169467ceaeab8c3c395703d8b13470b2bb0ac0dc1ba84"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_io_lib/PVDD01.sch",
+      "bytes": 453,
+      "sha256": "4ccd79edd8fcb05ff0215e1d1fb7dfd9b127e3c61f5b5b7fc5aeb74f68107035"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_io_lib/PVDD01.sym",
+      "bytes": 461,
+      "sha256": "0fb361315c5ad5a82b546d2dd86a6760f9e982531dc760bbcd981f0bf5c1acda"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_io_lib/PVSS01.sch",
+      "bytes": 447,
+      "sha256": "d72bad14e17e72ef3de835db8c75c54e7afa465c343b520046a00d41f9922a3b"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_io_lib/PVSS01.sym",
+      "bytes": 481,
+      "sha256": "67550d7b689b91fbb1bf601a430b7c6422042d4693e77e94a14b8d65904f05e7"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_pcell/diode_dndiffpsub_c1d.sym",
+      "bytes": 1874,
+      "sha256": "5296d825107760468fec5cf930446f1c1e93ccfcdef7648fb55412f8982dad41"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_pcell/diode_dnwellpsub_c1d.sym",
+      "bytes": 1874,
+      "sha256": "49d91d99be6353368946ee0720e019572881b67857ce013d22fca49fef0d90c4"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_pcell/diode_dpdiffnwell_c1d.sym",
+      "bytes": 1875,
+      "sha256": "ac3645e0a626371d8c950d8b99b8d5aa013cad4e826f353c2f0f86d296d20ac2"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_pcell/nmos4_n_c1d.sym",
+      "bytes": 3164,
+      "sha256": "6e3554e5ccdf8a49dcfd555a31f2f27462b82c085363c898e7d3a6e4355870fc"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_pcell/pmos4_p_c1d.sym",
+      "bytes": 3200,
+      "sha256": "578111f238dc873da2c69871ce9421b1415899759467abe6568a12a8f0c6a65c"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_pcell/res2_rndiff_c1d.sym",
+      "bytes": 2088,
+      "sha256": "43b57159445c321c46b43c4955c7f657730f1580b1c9f5ad2f0d39a2df4b5e43"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_pcell/res2_rnp_c1d.sym",
+      "bytes": 2086,
+      "sha256": "d71da7e34e7d3525d3b8c410079b1d82791d8a6adfad304ee73e5cbeae3d24ff"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_pcell/res2_rnw_c1d.sym",
+      "bytes": 2088,
+      "sha256": "d94bdbb0c1e32cc21a7d6aff43e3c593da5b371a093a4c7f489c9c061814415a"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_pcell/res2_rpdiff_c1d.sym",
+      "bytes": 2094,
+      "sha256": "548d720bab80c9ebfc7ee8d8d4f1498ea3736649ad5ee9fb586a009469d34e08"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_pcell/res2_rpp_c1d.sym",
+      "bytes": 2086,
+      "sha256": "0a37d74a753813ab6425dc6443f5bf8cd3bf56f49bbf136c292b46056eec7cee"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_std_lib/spice/io_pad_c1d.spice",
+      "bytes": 3015,
+      "sha256": "a77a15c26804e6308664bacff463b9c5e1063884eb791d71928a31dd5838d500"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_tests/RING_OSCILLATOR.pex.spice",
+      "bytes": 53720,
+      "sha256": "e2907a3a0722196732e81a8011956af5bd4f92d5eef1bdeba273dc9623456ca7"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_tests/and201_c1d.sch",
+      "bytes": 4045,
+      "sha256": "dedfd33404bacc6f704e9b4b3184162ddfcf070031b5ea3889cdf95fc76f0343"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_tests/and201_c1d.sym",
+      "bytes": 746,
+      "sha256": "341176be3a79772e4dd8552dfbd24b4658ee2f4e7963a9a58407a852e7c5a245"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_tests/diode_sim.sch",
+      "bytes": 5653,
+      "sha256": "f39ff45650c0246a9da74fcbfb56d8f78a141cd85e595a684bc76f2a73609990"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_tests/inv1_c1d.pex.spice",
+      "bytes": 270,
+      "sha256": "54b51f0f359d70bc054f6263fa45a9f3249cc0b050dbf9ee40d74b795245ffbc"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_tests/inv1_c1d.sch",
+      "bytes": 1422,
+      "sha256": "08f4c28d97213e8737e234e82a2e6a6abf46b7bfd4d191f44117f61650c3556b"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_tests/inv1_c1d.sym",
+      "bytes": 637,
+      "sha256": "c441265e5e4a23de86c6cd0c98290a19ebc3c171a6a33be9bbba7a6c6da7e888"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_tests/inv1_c1d_pex_sim.sch",
+      "bytes": 934,
+      "sha256": "d12efbe9ade2b719baf405c62a43b5c15d767b3d716b3768084f675a0cd458bc"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_tests/inv1_c1d_sim.sch",
+      "bytes": 1702,
+      "sha256": "75ba72e86ba27a88cb6e9e3056654554fe8e71a8be2d7a93a3e8f5c332f722b6"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_tests/inv1_c1d_sim.sym",
+      "bytes": 259,
+      "sha256": "216da95d9f96c1f075267339bcb0b531b1bbe338cd87655d22b1f36e1aa66249"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_tests/res_sim.sch",
+      "bytes": 5912,
+      "sha256": "c44df332473cd26550628f0a80bcaf2717c4eed21c28ce749713e7708892623b"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_tests/res_sim.sym",
+      "bytes": 261,
+      "sha256": "77dbd4b21ad13439458901b7da61de894c98f4cff2e9d84a3f528368fa48f7b7"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_tests/ring_oscillator.sch",
+      "bytes": 67853,
+      "sha256": "594fa60c1ac5855ae7cb9401731a9b32b91eefbfbd15dee0925c952b205e1865"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_tests/ring_oscillator.sym",
+      "bytes": 645,
+      "sha256": "62cc6d6e5f1b93b627ed421f352acce69ef81a3751bcb7f16798527a74ae343b"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_tests/ring_oscillator_tran_pex_sim.sch",
+      "bytes": 1302,
+      "sha256": "1d84d041dd1ed368ff61dc4ec9816ec09cd05334eb6c48035a5a21a86d6ab505"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_tests/ring_oscillator_tran_sim.sch",
+      "bytes": 1959,
+      "sha256": "2be7d130df7c1aa159b9470ac77c990816438cc6a72887cbb7d768ae16883225"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_tests/ring_oscillator_tran_sim.sym",
+      "bytes": 259,
+      "sha256": "c408b86e1d41934dca92b57fa55e70a235da4a15f9324bbd29dcd1daa913e765"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/scl_tests/top.sch",
+      "bytes": 3488,
+      "sha256": "991854c5dc24e3dd7aaa4646ec95a5e1045b0f73be9eede717a83172347055b1"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/xschem/xschemrc",
+      "bytes": 33448,
+      "sha256": "9ef3ffebe0086b36a9a7e615b7f0c3378cfab62021c5d1f87c06b1586ffb0dbb"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/readme/script_for_magic_pex/magic_pex_script_explanation",
+      "bytes": 2339,
+      "sha256": "7d768399f0d8ec5af58a85924f7961dc3597612061ff70168ca9b86d2deb8b3f"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/readme/script_for_magic_pex/magic_pex_script_r_c_cc",
+      "bytes": 550,
+      "sha256": "5cc042c10c1d775e6e130e2f1653feaebd78785f28fe5848a574b6e4bb14724f"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/readme/script_for_magic_pex/sh_pex_script_r_c_cc",
+      "bytes": 449,
+      "sha256": "70bfdb1b57db283ea853b74b03911a34516925515a9ab1e644673b8070df1fcb"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_pdk_gui1.html",
+      "bytes": 7599,
+      "sha256": "2c4cfa8ca2f64a7090a80c1e48cc059ef9dae4f2d3d0ae3b5a0742b82c4a342d"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_pdk_gui3.html",
+      "bytes": 5646,
+      "sha256": "60602d813989a2a795c1f0d757d31e2f5b785de4d88160578c1e04e73f516471"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/server.py",
+      "bytes": 294,
+      "sha256": "fb91615e0c6192d8ab2cfc9a2ce43d61cd22f491e7cc45ef4b6879d25ce41c41"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/wafer_back.png",
+      "bytes": 373192,
+      "sha256": "38d4400d2fbb493d4948adac0e377d332b976e32c753aefe9059a720ceb59c8d"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/xschem.mp4",
+      "bytes": 4505808,
+      "sha256": "2114096e69a7e0aa8b464b29e0651af934c714003f21265800b87521715243ce"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/xschem_projects_c1d/xschemrc",
+      "bytes": 135,
+      "sha256": "136238dd306e557d609c1f641ec87555575ef714fb6c04c1e7c5d8e01d501b2b"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/readme_first_c1d_automatic_mode.txt",
+      "bytes": 10719,
+      "sha256": "76e5c4cf664670b71b3fd5eb357fe57a71dac31b36d78de7cc3aed2130a7574c"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/readme_first_c1d_manual_mode.txt",
+      "bytes": 11299,
+      "sha256": "a783ea963978f19473cf85bf9073ac11644c0fae5dc583c191535cff532cd68d"
+    },
+    {
+      "path": "Analog_C1D/Open_Source_SCL_1.2micron_PDK.zip",
+      "bytes": 18819744,
+      "sha256": "a670579d59b1edba28dd2d1c8d0ce95bbd095f6073f4d4388b786e150d62a733"
+    },
+    {
+      "path": "Analog_C1D/Reference Document for SCLs Analog Open Souce PDK (1_2um CMOS Process).pdf",
+      "bytes": 1337885,
+      "sha256": "9469edc59fd4897260abbd9977e880b744de9ecd18658b52e526ac66fecd41b0"
+    },
+    {
+      "path": "Digital_C1D/Reference Document for SCLs Digital Open Souce PDK_1_2um.pdf",
+      "bytes": 3118340,
+      "sha256": "bc2ae9738326d961b1368fc22cec40e2d3f5c05236208e6a15b7ac8f0b5b0ec6"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/cshrc_pdk_env_setting",
+      "bytes": 418,
+      "sha256": "081ce6e30d729f30b8b512bc0c46f588bc1dc696618346053b215b3b8bf74c47"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/config.tcl",
+      "bytes": 774,
+      "sha256": "f677a106824c02d466e07255f0498bf5d5a8cf15c3dfe0faa4def1b11e2c41c8"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/config/config.tcl",
+      "bytes": 11714,
+      "sha256": "62bc0754863fc3d5c027f609535c741b4fc568a49998c5493f674530eb1967e4"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/config/klayoutrc",
+      "bytes": 50842,
+      "sha256": "eee0385273e7134b370dcf35e07386f8c9b51129d92bb9cafaaff5c455de157a"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/cdl/core_iolib_c1d.cdl",
+      "bytes": 143590,
+      "sha256": "58d3100035f5164a7f0e4ccc658078ade28eb8f8e02c4791284d06bb3d004685"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/gds/core_c1d.gds",
+      "bytes": 501146,
+      "sha256": "aeae8d4d6a09837c06f3d59d73c87f0cb4796ed3154ccf21c033b9b9f0a95ace"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/gds/io_c1d.gds",
+      "bytes": 934384,
+      "sha256": "f4ba08d2316c17ca44d8aaa618b2d966a7bba138dc59b736f02f8104ed15fd99"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lef/core_c1d.lef",
+      "bytes": 294518,
+      "sha256": "7561610745cc6dff139b638d63238bbe4f331002376a94c9c76683af32b89128"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lef/corner_c1d.lef",
+      "bytes": 991,
+      "sha256": "f07a6fe2f0d15b58149b91b1c8399c33bd093b8cc390450ec6f2762ac4b10dd9"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lef/io_c1d.lef",
+      "bytes": 203154,
+      "sha256": "1fd933c11b84f710f7801525edaa83aac9ab202392c30dc404e9af9bdd7be8a7"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lef/tech_c1d.lef",
+      "bytes": 2186,
+      "sha256": "eb5e5687ca36407478512375582b4e2fd9b5847aeaaa5b9b9b436709eb52c220"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lib/c1d_core_max.lib",
+      "bytes": 930199,
+      "sha256": "df62cded71a8c7ef56681d180f8ac1b5aba80c96a0fa6ca199cb6205cd5144fd"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lib/c1d_core_min.lib",
+      "bytes": 934286,
+      "sha256": "137888a5ea9cebe8a3b67bca5e03995381269373ca76d75c22940426bd275cfb"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lib/c1d_core_typ.lib",
+      "bytes": 930936,
+      "sha256": "8a6101dabe703cb9c73feb411cc21e1d7cd331eeb30d3d0ed2ac2884f52544c8"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lib/scl1u_pads_max.lib",
+      "bytes": 156657,
+      "sha256": "356824f2f973ece094d81952ddfdfe67da21d5c12e8b7941c68aa4abe038b48d"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lib/scl1u_pads_min.lib",
+      "bytes": 156555,
+      "sha256": "00d6109fd8bf6a1f13edcd01e4b46063fadc49e09ff7a95ff63ee765372542d9"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lib/scl1u_pads_typ.lib",
+      "bytes": 156267,
+      "sha256": "4c1bbe64441f4811f8644443935051b4de318c56d2508b0e1efdd2f7947ee249"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/verilog/c1d.v",
+      "bytes": 69582,
+      "sha256": "308a84fb471631c96a82113b80c6d45cb985d1326eaed59eeeb1d28a2648f3eb"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.ref/digital_c1d/cdl/core_iolib_c1d.cdl",
+      "bytes": 143590,
+      "sha256": "58d3100035f5164a7f0e4ccc658078ade28eb8f8e02c4791284d06bb3d004685"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.ref/digital_c1d/gds/core_c1d.gds",
+      "bytes": 501146,
+      "sha256": "aeae8d4d6a09837c06f3d59d73c87f0cb4796ed3154ccf21c033b9b9f0a95ace"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.ref/digital_c1d/gds/io_c1d.gds",
+      "bytes": 934384,
+      "sha256": "f4ba08d2316c17ca44d8aaa618b2d966a7bba138dc59b736f02f8104ed15fd99"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.ref/digital_c1d/lef/core_c1d.lef",
+      "bytes": 294518,
+      "sha256": "7561610745cc6dff139b638d63238bbe4f331002376a94c9c76683af32b89128"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.ref/digital_c1d/lef/corner_c1d.lef",
+      "bytes": 991,
+      "sha256": "f07a6fe2f0d15b58149b91b1c8399c33bd093b8cc390450ec6f2762ac4b10dd9"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.ref/digital_c1d/lef/io_c1d.lef",
+      "bytes": 203154,
+      "sha256": "1fd933c11b84f710f7801525edaa83aac9ab202392c30dc404e9af9bdd7be8a7"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.ref/digital_c1d/lef/tech_c1d.lef",
+      "bytes": 2186,
+      "sha256": "eb5e5687ca36407478512375582b4e2fd9b5847aeaaa5b9b9b436709eb52c220"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.ref/digital_c1d/lib/c1d_core_max.lib",
+      "bytes": 930199,
+      "sha256": "df62cded71a8c7ef56681d180f8ac1b5aba80c96a0fa6ca199cb6205cd5144fd"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.ref/digital_c1d/lib/c1d_core_min.lib",
+      "bytes": 934286,
+      "sha256": "137888a5ea9cebe8a3b67bca5e03995381269373ca76d75c22940426bd275cfb"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.ref/digital_c1d/lib/c1d_core_typ.lib",
+      "bytes": 930936,
+      "sha256": "8a6101dabe703cb9c73feb411cc21e1d7cd331eeb30d3d0ed2ac2884f52544c8"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.ref/digital_c1d/lib/scl1u_pads_max.lib",
+      "bytes": 156657,
+      "sha256": "356824f2f973ece094d81952ddfdfe67da21d5c12e8b7941c68aa4abe038b48d"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.ref/digital_c1d/lib/scl1u_pads_min.lib",
+      "bytes": 156555,
+      "sha256": "00d6109fd8bf6a1f13edcd01e4b46063fadc49e09ff7a95ff63ee765372542d9"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.ref/digital_c1d/lib/scl1u_pads_typ.lib",
+      "bytes": 156267,
+      "sha256": "4c1bbe64441f4811f8644443935051b4de318c56d2508b0e1efdd2f7947ee249"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.ref/digital_c1d/verilog/c1d.v",
+      "bytes": 69582,
+      "sha256": "308a84fb471631c96a82113b80c6d45cb985d1326eaed59eeeb1d28a2648f3eb"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.tech/config.tcl",
+      "bytes": 774,
+      "sha256": "f677a106824c02d466e07255f0498bf5d5a8cf15c3dfe0faa4def1b11e2c41c8"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.tech/klayout/klayoutrc",
+      "bytes": 50842,
+      "sha256": "eee0385273e7134b370dcf35e07386f8c9b51129d92bb9cafaaff5c455de157a"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.tech/klayout/sh_py_script",
+      "bytes": 147,
+      "sha256": "36770ad9cb9cfa5a053d7276308d05998125318beb16cbde20edd41dccc4fa61"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.tech/klayout/source_klayout",
+      "bytes": 101,
+      "sha256": "436680c3b4a11d76549197a1fb5de212419296b80cbb0eb7d3dbc3558fbf19ec"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.tech/klayout/tech/drc/c1d_drc.drc",
+      "bytes": 24553,
+      "sha256": "12ac6299b6464d798fabd8038797e686a28aee1db2f91e9c74fdf22ff46b8633"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.tech/klayout/tech/drc/drc.lydrc",
+      "bytes": 25129,
+      "sha256": "72678ea0934926102201a38c7f6c509fb3c71f1bc78172d4402ed34a243358d3"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.tech/klayout/tech/libraries/core_c1d.gds",
+      "bytes": 501146,
+      "sha256": "aeae8d4d6a09837c06f3d59d73c87f0cb4796ed3154ccf21c033b9b9f0a95ace"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.tech/klayout/tech/libraries/io_c1d.gds",
+      "bytes": 934384,
+      "sha256": "f4ba08d2316c17ca44d8aaa618b2d966a7bba138dc59b736f02f8104ed15fd99"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.tech/klayout/tech/lvs/lvs.lylvs",
+      "bytes": 16249,
+      "sha256": "be906106af1ac1ecf9bc243b1e95de9c9e7684ec506297b674794cd4c34061a1"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.tech/klayout/tech/lvs/lvs_os_scl_c1d.lvs",
+      "bytes": 15405,
+      "sha256": "2590471634771968ae53237c7e15d9482d23bb43a9d743c3a729a118e596f9cd"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.tech/klayout/tech/scl_c1d.lyp",
+      "bytes": 12226,
+      "sha256": "f792e58f25bbd361cc526cff22b5d3293ed5195efde8fa7369105454204e6a93"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.tech/klayout/tech/scl_c1d.lyt",
+      "bytes": 6084,
+      "sha256": "f411501d16ec09fdf2f30d4143db6ed708427fcfdb383d182a52194907a96b96"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.tech/klayout/tech/scl_c1d.map",
+      "bytes": 408,
+      "sha256": "8fe4a45ae082434180fef00ca72024b3082bd710e972df8eac658cecc4785865"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.tech/klayout/verilog2spice.py",
+      "bytes": 7637,
+      "sha256": "bd06166617f603ee103c90dc194230e1f0e4b54d56954388073cf56e2d430135"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.tech/openlane/config.tcl",
+      "bytes": 774,
+      "sha256": "f677a106824c02d466e07255f0498bf5d5a8cf15c3dfe0faa4def1b11e2c41c8"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.tech/openlane/digital_c1d/config.tcl",
+      "bytes": 774,
+      "sha256": "f677a106824c02d466e07255f0498bf5d5a8cf15c3dfe0faa4def1b11e2c41c8"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.tech/openlane/tracks.info",
+      "bytes": 56,
+      "sha256": "fa09a07905d6ebf8feff04d74ad257b7db8895302c4e197a87bc8cafda9ff31b"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.tech/openrcx/scl_c1d.rcx.lib",
+      "bytes": 3166,
+      "sha256": "3f0fe1c65e3b2664f686430d8e8cb4e6c1a14359fdf70d8fea290d0c503fc98e"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/scripts_template/cts_c1d.tcl",
+      "bytes": 1929,
+      "sha256": "230a8486d5b06201db10668ced32c437ab20e9fc020af95eb12368d4618b383d"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/scripts_template/floorplan_c1d.tcl",
+      "bytes": 2174,
+      "sha256": "c7d26686a02ad23152b29ee0d6e090bdca7cc18fa460cbc1bd90128c4cc5655b"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/scripts_template/pdn_c1d.tcl",
+      "bytes": 2835,
+      "sha256": "b3256dccfea01a37a8c7cda86f18defda0f99f3b8e5e5067356a1f45bca7f162"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/scripts_template/pdn_order.tcl",
+      "bytes": 2543,
+      "sha256": "61e5e1c80668cdd586bcf3fc67f2be53f04e4b0cec6c1b2d84313a0a04cd74f1"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/scripts_template/placement_c1d.tcl",
+      "bytes": 1702,
+      "sha256": "49375966a07117246eafee7c98ed9750dc86d20d30b09c52cc013b865d320577"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/scripts_template/routing_c1d.tcl",
+      "bytes": 3267,
+      "sha256": "4d1b657859f41d83eb134e317207f39203a084b6059c69a0a89048669ea3f984"
+    },
+    {
+      "path": "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/scripts_template/run_sta.tcl",
+      "bytes": 1289,
+      "sha256": "1fd68395b3b6d8059d0faab3aa303519f3530c7f2f26dee8c75390c60e9679f0"
+    },
+    {
+      "path": "Digital_C1D/my_dtech.zip",
+      "bytes": 2301968,
+      "sha256": "28c622ff084f1cdb9aa863898471ec678a2b1713a30915f36e3f31b1a45ce7ef"
+    },
+    {
+      "path": "Digital_C1D/readme_for_digital",
+      "bytes": 13694,
+      "sha256": "ae3f45ee08828f7bacee7566c2573f94d8c5e0d7cef7700469d4e744eda353a7"
+    },
+    {
+      "path": "PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/klayout/gds/io_pad_c1d.gds",
+      "bytes": 934476,
+      "sha256": "50f53792cfe1b49e42d51cfb6a99de49ba8f2c0ae96ef764d469178be80a8ecf"
+    },
+    {
+      "path": "PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/klayout/lvs_cdl/io_pad_c1d.cdl",
+      "bytes": 36582,
+      "sha256": "0e48625fe4789f4cb409c7c12de501bf5d03dc0c3d82ed64b0dc5114ea5292ef"
+    },
+    {
+      "path": "PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/klayout/lvs_cdl/io_pad_list.txt",
+      "bytes": 141,
+      "sha256": "bdd1c8aaef9c0518530c1adb31a6efda05f887ac9a1752809ac46d6037c99329"
+    },
+    {
+      "path": "PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/pad_frame_cdl/frame1mmx1mm.cdl",
+      "bytes": 295,
+      "sha256": "c76773a6d0691dbab8358d52d083ae7f6d621266187a1ba4bf030c5736c81134"
+    },
+    {
+      "path": "PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/pad_frame_cdl/frame2mmx2mm.cdl",
+      "bytes": 661,
+      "sha256": "9adfd16aaa4e1a1b562bb174bc00ae83c47f709f6c1e879707de93e44644f5b1"
+    },
+    {
+      "path": "PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/pad_frame_cdl/frame3mmx3mm.cdl",
+      "bytes": 1175,
+      "sha256": "0dbdbb4d91116dc8ff7651b1b6f1dff088158b58d532d618f86d4f58fd44a081"
+    },
+    {
+      "path": "PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/pad_frame_cdl/frame4mmx4mm.cdl",
+      "bytes": 1600,
+      "sha256": "3f7a310d46c277f5029c0778af1192255b5877feade3bd61a6edaf26ff2737c3"
+    },
+    {
+      "path": "PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/pad_frame_cdl/frame5mmx5mm.cdl",
+      "bytes": 2120,
+      "sha256": "0a1cceece07ca5edc46095012ca92a999ea10153796f1469d58e31632137eddd"
+    },
+    {
+      "path": "PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/pad_frame_gds/frame1mmx1mm.gds",
+      "bytes": 70886,
+      "sha256": "ad3919b71277e00a62fa9e62bb4116ff67068738625bae664ddec96692416df9"
+    },
+    {
+      "path": "PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/pad_frame_gds/frame2mmx2mm.gds",
+      "bytes": 71892,
+      "sha256": "69db3e51d03ef5831d1a82257298088379974ee48c6e21d4e034d690a32cfee6"
+    },
+    {
+      "path": "PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/pad_frame_gds/frame3mmx3mm.gds",
+      "bytes": 73294,
+      "sha256": "811d3147a1aa57d562168df73816b17568a227e55c8a0136defde1590516d93b"
+    },
+    {
+      "path": "PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/pad_frame_gds/frame4mmx4mm.gds",
+      "bytes": 74364,
+      "sha256": "0104e055d66cae8e0c3c76b10dae148c8e1595cc57dcf15c049c7f467b3eb115"
+    },
+    {
+      "path": "PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/pad_frame_gds/frame5mmx5mm.gds",
+      "bytes": 75750,
+      "sha256": "ac6b9673c0f23e66c4ca7ce0fcaf9f2340a29b7dd2fffec9b3fdbf040d9c7b7f"
+    },
+    {
+      "path": "PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/report/drc_report/drc_c1d_1mmx1mm.png",
+      "bytes": 305128,
+      "sha256": "6ab006b4c491723cbc1fd509511977cc80a9ec63bfa8d616debbec2655277cb5"
+    },
+    {
+      "path": "PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/report/drc_report/drc_c1d_2mmx2mm.png",
+      "bytes": 305221,
+      "sha256": "adf37282d7233f36cc0c57ed4c128cd58c4fa0fbe0e17819f0aed1ee40f8a116"
+    },
+    {
+      "path": "PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/report/drc_report/drc_c1d_3mmx3mm.png",
+      "bytes": 305241,
+      "sha256": "7bcd26a475af4bff2f0df3db8664b1b113fab626a1d2d92b7f674ad885307309"
+    },
+    {
+      "path": "PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/report/drc_report/drc_c1d_4mmx4mm.png",
+      "bytes": 305192,
+      "sha256": "9bb220ee7330eee7e441b88bf942417b0629ff23488d6d1ac3da1139fa10cf29"
+    },
+    {
+      "path": "PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/report/drc_report/drc_c1d_5mmx5mm.png",
+      "bytes": 305194,
+      "sha256": "363f3ba50ee7303059fe8b134d8f764d813ff5f8b82a31d2e2922669811e5b1a"
+    },
+    {
+      "path": "PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/report/lvs_report/lvs_c1d_1mmx1mm.png",
+      "bytes": 82554,
+      "sha256": "4993d2c552936a3c1512164c9016888a7aff8cd63eb9e7eb6c81b1906a7f2ea0"
+    },
+    {
+      "path": "PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/report/lvs_report/lvs_c1d_2mmx2mm.png",
+      "bytes": 83309,
+      "sha256": "570857687c504f91775530fe82444a886c84983fb592c618021e3c86f75bc7d1"
+    },
+    {
+      "path": "PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/report/lvs_report/lvs_c1d_3mmx3mm.png",
+      "bytes": 85296,
+      "sha256": "54f39d431e96a9f5e7af7a18914015eb40dc087ad1fd70629eeadd8ee955777f"
+    },
+    {
+      "path": "PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/report/lvs_report/lvs_c1d_4mmx4mm.png",
+      "bytes": 83308,
+      "sha256": "839392f494f06d9780d2bfdc790e4dcc3969d62f9edb2991708d1dd027d0882f"
+    },
+    {
+      "path": "PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/report/lvs_report/lvs_c1d_5mmx5mm.png",
+      "bytes": 85850,
+      "sha256": "b9830b3dd61d76527457b4f59219325b41addc95cc2bf03585e68b44968fcf9d"
+    },
+    {
+      "path": "PadFrame_C1D/PadFrame_C1D.zip",
+      "bytes": 2033474,
+      "sha256": "13dfee81898863c6922a51afd935088d7f52fdd62ddf65baa9f13ed0504be573"
+    },
+    {
+      "path": "PadFrame_C1D/Standard_Pad_Frame_C1D.pdf",
+      "bytes": 15703170,
+      "sha256": "20f4d11d7b6893f05d43842dc172ee31cfa637645a35932b22e572c412178fc6"
+    }
+  ]
+}

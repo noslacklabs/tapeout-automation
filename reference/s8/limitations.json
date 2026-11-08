@@ -1,0 +1,468 @@
+{
+  "schema_version": 1,
+  "manifest_version": "0.1.0-reference",
+  "private": true,
+  "captured_at": "2026-11-07T18:10:18.512716+00:00",
+  "scope_binding": {
+    "technology": "scl_c1d",
+    "pdk_version": "SCL_C1D_PDK_17092026",
+    "pdk_fingerprint_manifest": "dependencies.json#/pdk_assets",
+    "historical_build": "/home/sushant/silicon/builds/chip-flow-resume-20261107",
+    "historical_source_md5": "ced63f7ea8bcad407a151f427743815f",
+    "current_source_sha256": "fa52f0fb87289df5dd2f1f5e6004538fb513956fc834ad78556c39021a86ca46",
+    "historical_build_matches_current_rtl": false
+  },
+  "policy": {
+    "purpose": "explain exact historical process/model/manual outcomes; not a waiver or qualification pass",
+    "only_automated_expected_failure_id": "SCL-C1D-RCX-001",
+    "require_exact_scope_and_positive_defect_evidence": true,
+    "unexpected_new_failure": "reject software qualification",
+    "infrastructure_crash_or_missing_output": "not an expected design failure; exit 2",
+    "known_extraction_fail_build_exit": 1,
+    "signoff_complete": false,
+    "new_release_qualification": "NOT RUN"
+  },
+  "limitations": [
+    {
+      "id": "SCL-C1D-RCX-001",
+      "check_id": "parasitic_validation",
+      "expected_state": "FAIL",
+      "scope": {
+        "technology": "scl_c1d",
+        "pdk_version": "SCL_C1D_PDK_17092026",
+        "frame": "frame2mmx2mm",
+        "reference": "historical S8 unfrozen trial"
+      },
+      "detail": "Raw OpenRCX total 0.13 pF versus 24.3 pF routed-length/LEF estimate in recorded run. Scaled SPEF is diagnostic estimated timing only.",
+      "evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/flow-continuation.md",
+          "sha256": "0bc0be08bbe75bc7adcdcdff28c49e8df99645ea7b524beaf187fc69094c2833"
+        }
+      ],
+      "required_resolution": "Explain units/model and independently validate extraction; preserve FAIL and full-build exit 1 until resolved.",
+      "waives_design_failure": false,
+      "signoff_complete": false
+    },
+    {
+      "id": "SCL-C1D-C04.2",
+      "check_id": "C04.2",
+      "expected_state": "WARN",
+      "scope": {
+        "technology": "scl_c1d",
+        "pdk_version": "SCL_C1D_PDK_17092026",
+        "frame": "frame2mmx2mm",
+        "reference": "historical S8 unfrozen trial"
+      },
+      "detail": "657 off-grid pad coordinates in unchanged SCL cells",
+      "evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/signoff-checklist.md",
+          "sha256": "a6c986d2a064cfa339ebb89007223ef6966547c184dc5739ccc52a9ef6148647"
+        }
+      ],
+      "required_resolution": "SCL acceptance of supplied geometry",
+      "waives_design_failure": false,
+      "signoff_complete": false
+    },
+    {
+      "id": "SCL-C1D-C04.3",
+      "check_id": "C04.3",
+      "expected_state": "WARN",
+      "scope": {
+        "technology": "scl_c1d",
+        "pdk_version": "SCL_C1D_PDK_17092026",
+        "frame": "frame2mmx2mm",
+        "reference": "historical S8 unfrozen trial"
+      },
+      "detail": "44 off-grid standard-cell coordinates in supplied geometry",
+      "evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/signoff-checklist.md",
+          "sha256": "a6c986d2a064cfa339ebb89007223ef6966547c184dc5739ccc52a9ef6148647"
+        }
+      ],
+      "required_resolution": "SCL acceptance of supplied geometry",
+      "waives_design_failure": false,
+      "signoff_complete": false
+    },
+    {
+      "id": "SCL-C1D-C04.4",
+      "check_id": "C04.4",
+      "expected_state": "WARN",
+      "scope": {
+        "technology": "scl_c1d",
+        "pdk_version": "SCL_C1D_PDK_17092026",
+        "frame": "frame2mmx2mm",
+        "reference": "historical S8 unfrozen trial"
+      },
+      "detail": "22 off-grid reference-frame coordinates",
+      "evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/signoff-checklist.md",
+          "sha256": "a6c986d2a064cfa339ebb89007223ef6966547c184dc5739ccc52a9ef6148647"
+        }
+      ],
+      "required_resolution": "SCL acceptance of supplied geometry",
+      "waives_design_failure": false,
+      "signoff_complete": false
+    },
+    {
+      "id": "SCL-C1D-C09.3",
+      "check_id": "C09.3",
+      "expected_state": "WARN",
+      "scope": {
+        "technology": "scl_c1d",
+        "pdk_version": "SCL_C1D_PDK_17092026",
+        "frame": "frame2mmx2mm",
+        "reference": "historical S8 unfrozen trial"
+      },
+      "detail": "Top-level padframe set is used; duplicate naming aliases reconciled",
+      "evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/signoff-checklist.md",
+          "sha256": "a6c986d2a064cfa339ebb89007223ef6966547c184dc5739ccc52a9ef6148647"
+        }
+      ],
+      "required_resolution": "SCL confirmation of selected frame distribution",
+      "waives_design_failure": false,
+      "signoff_complete": false
+    },
+    {
+      "id": "SCL-C1D-C10.2",
+      "check_id": "C10.2",
+      "expected_state": "WARN",
+      "scope": {
+        "technology": "scl_c1d",
+        "pdk_version": "SCL_C1D_PDK_17092026",
+        "frame": "frame2mmx2mm",
+        "reference": "historical S8 unfrozen trial"
+      },
+      "detail": "12 signal pads changed per pads.tsv; historical DRC/LVS/DC evidence available",
+      "evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/signoff-checklist.md",
+          "sha256": "a6c986d2a064cfa339ebb89007223ef6966547c184dc5739ccc52a9ef6148647"
+        }
+      ],
+      "required_resolution": "SCL permission for signal-pad changes",
+      "waives_design_failure": false,
+      "signoff_complete": false
+    },
+    {
+      "id": "SCL-C1D-C16.2",
+      "check_id": "C16.2",
+      "expected_state": "WARN",
+      "scope": {
+        "technology": "scl_c1d",
+        "pdk_version": "SCL_C1D_PDK_17092026",
+        "frame": "frame2mmx2mm",
+        "reference": "historical S8 unfrozen trial"
+      },
+      "detail": "Supplied pad metal exceeds 25 x 25 um width screen",
+      "evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/signoff-checklist.md",
+          "sha256": "a6c986d2a064cfa339ebb89007223ef6966547c184dc5739ccc52a9ef6148647"
+        }
+      ],
+      "required_resolution": "SCL supplied-pad exemption/interpretation",
+      "waives_design_failure": false,
+      "signoff_complete": false
+    },
+    {
+      "id": "SCL-C1D-C16.3",
+      "check_id": "C16.3",
+      "expected_state": "WARN",
+      "scope": {
+        "technology": "scl_c1d",
+        "pdk_version": "SCL_C1D_PDK_17092026",
+        "frame": "frame2mmx2mm",
+        "reference": "historical S8 unfrozen trial"
+      },
+      "detail": "Other supplied library/frame metal exceeds width screen; added metal passes",
+      "evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/signoff-checklist.md",
+          "sha256": "a6c986d2a064cfa339ebb89007223ef6966547c184dc5739ccc52a9ef6148647"
+        }
+      ],
+      "required_resolution": "SCL supplied-geometry interpretation",
+      "waives_design_failure": false,
+      "signoff_complete": false
+    },
+    {
+      "id": "SCL-C1D-C17.2",
+      "check_id": "C17.2",
+      "expected_state": "WARN",
+      "scope": {
+        "technology": "scl_c1d",
+        "pdk_version": "SCL_C1D_PDK_17092026",
+        "frame": "frame2mmx2mm",
+        "reference": "historical S8 unfrozen trial"
+      },
+      "detail": "Vias flagged in supplied geometry; no routed via over poly/contact in trial",
+      "evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/signoff-checklist.md",
+          "sha256": "a6c986d2a064cfa339ebb89007223ef6966547c184dc5739ccc52a9ef6148647"
+        }
+      ],
+      "required_resolution": "SCL acceptance/interpretation of library vias",
+      "waives_design_failure": false,
+      "signoff_complete": false
+    },
+    {
+      "id": "SCL-C1D-C07.2",
+      "check_id": "C07.2",
+      "expected_state": "MANUAL",
+      "scope": {
+        "technology": "scl_c1d",
+        "pdk_version": "SCL_C1D_PDK_17092026",
+        "frame": "frame2mmx2mm",
+        "reference": "historical S8 unfrozen trial"
+      },
+      "detail": "Trial MD5 checked, raw checker not rerun with checksum as input; final upload format unknown",
+      "evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/signoff-checklist.md",
+          "sha256": "a6c986d2a064cfa339ebb89007223ef6966547c184dc5739ccc52a9ef6148647"
+        }
+      ],
+      "required_resolution": "Regenerate and verify checksum on exact final GDS and confirm upload naming/format",
+      "waives_design_failure": false,
+      "signoff_complete": false
+    },
+    {
+      "id": "SCL-C1D-C15.1",
+      "check_id": "C15.1",
+      "expected_state": "MANUAL",
+      "scope": {
+        "technology": "scl_c1d",
+        "pdk_version": "SCL_C1D_PDK_17092026",
+        "frame": "frame2mmx2mm",
+        "reference": "historical S8 unfrozen trial"
+      },
+      "detail": "OS0000 is a placeholder; issued silicon number/block absent",
+      "evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/signoff-checklist.md",
+          "sha256": "a6c986d2a064cfa339ebb89007223ef6966547c184dc5739ccc52a9ef6148647"
+        }
+      ],
+      "required_resolution": "User obtains issued block; integrate unchanged and rerun final checks",
+      "waives_design_failure": false,
+      "signoff_complete": false
+    },
+    {
+      "id": "SCL-C1D-C18.1",
+      "check_id": "C18.1",
+      "expected_state": "MANUAL",
+      "scope": {
+        "technology": "scl_c1d",
+        "pdk_version": "SCL_C1D_PDK_17092026",
+        "frame": "frame2mmx2mm",
+        "reference": "historical S8 unfrozen trial"
+      },
+      "detail": "56 geometric necking candidates reviewed in first pass, not established violations",
+      "evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/signoff-checklist.md",
+          "sha256": "a6c986d2a064cfa339ebb89007223ef6966547c184dc5739ccc52a9ef6148647"
+        }
+      ],
+      "required_resolution": "Complete per-contact connected-metal and neck-length manual review",
+      "waives_design_failure": false,
+      "signoff_complete": false
+    },
+    {
+      "id": "SCL-C1D-C18.2",
+      "check_id": "C18.2",
+      "expected_state": "MANUAL",
+      "scope": {
+        "technology": "scl_c1d",
+        "pdk_version": "SCL_C1D_PDK_17092026",
+        "frame": "frame2mmx2mm",
+        "reference": "historical S8 unfrozen trial"
+      },
+      "detail": "Zero added-M1 single-contact candidates in first screen; irregular/supplied geometry not closed",
+      "evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/signoff-checklist.md",
+          "sha256": "a6c986d2a064cfa339ebb89007223ef6966547c184dc5739ccc52a9ef6148647"
+        }
+      ],
+      "required_resolution": "Complete topology-specific manual contact review",
+      "waives_design_failure": false,
+      "signoff_complete": false
+    },
+    {
+      "id": "SCL-C1D-C18.3",
+      "check_id": "C18.3",
+      "expected_state": "MANUAL",
+      "scope": {
+        "technology": "scl_c1d",
+        "pdk_version": "SCL_C1D_PDK_17092026",
+        "frame": "frame2mmx2mm",
+        "reference": "historical S8 unfrozen trial"
+      },
+      "detail": "Table 11A first-pass findings include logo candidates, pad pull-downs and six resistors",
+      "evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/signoff-checklist.md",
+          "sha256": "a6c986d2a064cfa339ebb89007223ef6966547c184dc5739ccc52a9ef6148647"
+        }
+      ],
+      "required_resolution": "Complete ERC, resistor contacts and soft-tap inspection",
+      "waives_design_failure": false,
+      "signoff_complete": false
+    },
+    {
+      "id": "SCL-C1D-C18.4",
+      "check_id": "C18.4",
+      "expected_state": "MANUAL",
+      "scope": {
+        "technology": "scl_c1d",
+        "pdk_version": "SCL_C1D_PDK_17092026",
+        "frame": "frame2mmx2mm",
+        "reference": "historical S8 unfrozen trial"
+      },
+      "detail": "Capacitive current scenarios exist; peak/RMS/internal current/sharing/IR-drop incomplete",
+      "evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/signoff-checklist.md",
+          "sha256": "a6c986d2a064cfa339ebb89007223ef6966547c184dc5739ccc52a9ef6148647"
+        }
+      ],
+      "required_resolution": "Complete electrical checks with validated parasitics and supply/current evidence",
+      "waives_design_failure": false,
+      "signoff_complete": false
+    },
+    {
+      "id": "SCL-C1D-C20.1",
+      "check_id": "C20.1",
+      "expected_state": "MANUAL",
+      "scope": {
+        "technology": "scl_c1d",
+        "pdk_version": "SCL_C1D_PDK_17092026",
+        "frame": "frame2mmx2mm",
+        "reference": "historical S8 unfrozen trial"
+      },
+      "detail": "Separate SCL DRC/LVS done for trial only; checker leaves manual",
+      "evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/signoff-checklist.md",
+          "sha256": "a6c986d2a064cfa339ebb89007223ef6966547c184dc5739ccc52a9ef6148647"
+        }
+      ],
+      "required_resolution": "Repeat matching DRC/LVS with expected category/circuit coverage on exact final GDS",
+      "waives_design_failure": false,
+      "signoff_complete": false
+    },
+    {
+      "id": "SCL-C1D-PAD-001",
+      "check_id": "pad.output_limits",
+      "expected_state": "MANUAL",
+      "scope": {
+        "technology": "scl_c1d",
+        "pdk_version": "SCL_C1D_PDK_17092026",
+        "frame": "frame2mmx2mm",
+        "reference": "historical S8 unfrozen trial"
+      },
+      "detail": "OPAD04 at assumed 30 pF: 11.7 ns slow edge versus Liberty 2.5 ns entry; RAM limit 20 ns is a different requirement. INVR04 selected because INVR02 limit is below pad input cap.",
+      "evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/signoff-checklist.md",
+          "sha256": "a6c986d2a064cfa339ebb89007223ef6966547c184dc5739ccc52a9ef6148647"
+        }
+      ],
+      "required_resolution": "SCL clarification/validation of output slew, driver, load and DC current limits.",
+      "waives_design_failure": false,
+      "signoff_complete": false
+    },
+    {
+      "id": "SCL-C1D-CLK-001",
+      "check_id": "clock.buffer_limits",
+      "expected_state": "MANUAL",
+      "scope": {
+        "technology": "scl_c1d",
+        "pdk_version": "SCL_C1D_PDK_17092026",
+        "frame": "frame2mmx2mm",
+        "reference": "historical S8 unfrozen trial"
+      },
+      "detail": "Confirm CDRI01 choice/load/current limits; a buffer driving four buffers exceeds 0.806 pF on input caps alone.",
+      "evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/signoff-checklist.md",
+          "sha256": "a6c986d2a064cfa339ebb89007223ef6966547c184dc5739ccc52a9ef6148647"
+        }
+      ],
+      "required_resolution": "Validate actual tree loads and SCL interpretation; complete timing electrical-limit coverage.",
+      "waives_design_failure": false,
+      "signoff_complete": false
+    },
+    {
+      "id": "SCL-C1D-MODEL-001",
+      "check_id": "simulation.pad_models",
+      "expected_state": "WARN",
+      "scope": {
+        "technology": "scl_c1d",
+        "pdk_version": "SCL_C1D_PDK_17092026",
+        "frame": "frame2mmx2mm",
+        "reference": "historical S8 unfrozen trial"
+      },
+      "detail": "IPAD30 has no supplied digital model; buffer stand-in does not model hysteresis.",
+      "evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/pad-polarity.md",
+          "sha256": "af706c39c870108cf09f76ac8e96b18f5784d8138c417ae458585b0cf58516a7"
+        }
+      ],
+      "required_resolution": "Obtain/validate model and record stand-in on every affected simulation.",
+      "waives_design_failure": false,
+      "signoff_complete": false
+    },
+    {
+      "id": "SCL-C1D-SIM-001",
+      "check_id": "simulation.timing_checks",
+      "expected_state": "WARN",
+      "scope": {
+        "technology": "scl_c1d",
+        "pdk_version": "SCL_C1D_PDK_17092026",
+        "frame": "frame2mmx2mm",
+        "reference": "historical S8 unfrozen trial"
+      },
+      "detail": "Icarus applies SDF delays but does not enforce DFF setup/hold timing checks.",
+      "evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/flow-continuation.md",
+          "sha256": "0bc0be08bbe75bc7adcdcdff28c49e8df99645ea7b524beaf187fc69094c2833"
+        }
+      ],
+      "required_resolution": "Keep full STA setup/hold coverage and separate nonzero-delay annotation proof; validate another simulator before claiming timing-check simulation.",
+      "waives_design_failure": false,
+      "signoff_complete": false
+    },
+    {
+      "id": "S8-FREEZE-001",
+      "check_id": "signoff.final_review",
+      "expected_state": "MANUAL",
+      "scope": {
+        "technology": "scl_c1d",
+        "pdk_version": "SCL_C1D_PDK_17092026",
+        "frame": "frame2mmx2mm",
+        "reference": "historical S8 unfrozen trial"
+      },
+      "detail": "Current RTL differs from historical build, source is unfrozen and human/frozen-source AI review incomplete.",
+      "evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/signoff-checklist.md",
+          "sha256": "a6c986d2a064cfa339ebb89007223ef6966547c184dc5739ccc52a9ef6148647"
+        }
+      ],
+      "required_resolution": "Complete user walkthrough/change, freeze, rebuild all regressions, independent and experienced human review before submission.",
+      "waives_design_failure": false,
+      "signoff_complete": false
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+read_liberty -lib core.lib
+read_verilog probe.v
+hierarchy -check -top chipflow_probe
+synth -top chipflow_probe
+dfflibmap -liberty core.lib
+abc -liberty core.lib
+hilomap -hicell VDDCON TIEHI -locell VSSCON TIELO
+clean
+check -assert
+stat
+write_json mapped.json

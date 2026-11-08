@@ -1,0 +1,102 @@
+[
+  {
+    "original": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lef/tech_c1d.lef",
+    "staged": "/external/pdk/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lef/tech_c1d.lef",
+    "sha256": "eb5e5687ca36407478512375582b4e2fd9b5847aeaaa5b9b9b436709eb52c220"
+  },
+  {
+    "original": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lef/core_c1d.lef",
+    "staged": "/external/pdk/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lef/core_c1d.lef",
+    "sha256": "7561610745cc6dff139b638d63238bbe4f331002376a94c9c76683af32b89128"
+  },
+  {
+    "original": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lef/io_c1d.lef",
+    "staged": "/external/pdk/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lef/io_c1d.lef",
+    "sha256": "1fd933c11b84f710f7801525edaa83aac9ab202392c30dc404e9af9bdd7be8a7"
+  },
+  {
+    "original": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/gds/core_c1d.gds",
+    "staged": "/external/pdk/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/gds/core_c1d.gds",
+    "sha256": "aeae8d4d6a09837c06f3d59d73c87f0cb4796ed3154ccf21c033b9b9f0a95ace"
+  },
+  {
+    "original": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/klayout/gds/io_pad_c1d.gds",
+    "staged": "/external/pdk/PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/klayout/gds/io_pad_c1d.gds",
+    "sha256": "50f53792cfe1b49e42d51cfb6a99de49ba8f2c0ae96ef764d469178be80a8ecf"
+  },
+  {
+    "original": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/cdl/core_iolib_c1d.cdl",
+    "staged": "/external/pdk/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/cdl/core_iolib_c1d.cdl",
+    "sha256": "58d3100035f5164a7f0e4ccc658078ade28eb8f8e02c4791284d06bb3d004685"
+  },
+  {
+    "original": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/klayout/lvs_cdl/io_pad_c1d.cdl",
+    "staged": "/external/pdk/PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/klayout/lvs_cdl/io_pad_c1d.cdl",
+    "sha256": "0e48625fe4789f4cb409c7c12de501bf5d03dc0c3d82ed64b0dc5114ea5292ef"
+  },
+  {
+    "original": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/klayout/lvs_cdl/io_pad_c1d.cdl",
+    "staged": "/external/pdk/PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/klayout/lvs_cdl/io_pad_c1d.cdl",
+    "sha256": "0e48625fe4789f4cb409c7c12de501bf5d03dc0c3d82ed64b0dc5114ea5292ef"
+  },
+  {
+    "original": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/verilog/c1d.v",
+    "staged": "/external/pdk/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/verilog/c1d.v",
+    "sha256": "308a84fb471631c96a82113b80c6d45cb985d1326eaed59eeeb1d28a2648f3eb"
+  },
+  {
+    "original": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/pad_frame_gds/frame2mmx2mm.gds",
+    "staged": "/external/pdk/PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/pad_frame_gds/frame2mmx2mm.gds",
+    "sha256": "69db3e51d03ef5831d1a82257298088379974ee48c6e21d4e034d690a32cfee6"
+  },
+  {
+    "original": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/pad_frame_cdl/frame2mmx2mm.cdl",
+    "staged": "/external/pdk/PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/pad_frame_cdl/frame2mmx2mm.cdl",
+    "sha256": "9adfd16aaa4e1a1b562bb174bc00ae83c47f709f6c1e879707de93e44644f5b1"
+  },
+  {
+    "original": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.tech/klayout/tech/drc/c1d_drc.drc",
+    "staged": "/external/pdk/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.tech/klayout/tech/drc/c1d_drc.drc",
+    "sha256": "12ac6299b6464d798fabd8038797e686a28aee1db2f91e9c74fdf22ff46b8633"
+  },
+  {
+    "original": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.tech/klayout/tech/lvs/lvs_os_scl_c1d.lvs",
+    "staged": "/external/pdk/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.tech/klayout/tech/lvs/lvs_os_scl_c1d.lvs",
+    "sha256": "2590471634771968ae53237c7e15d9482d23bb43a9d743c3a729a118e596f9cd"
+  },
+  {
+    "original": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.tech/openrcx/scl_c1d.rcx.lib",
+    "staged": "/external/pdk/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.tech/openrcx/scl_c1d.rcx.lib",
+    "sha256": "3f0fe1c65e3b2664f686430d8e8cb4e6c1a14359fdf70d8fea290d0c503fc98e"
+  },
+  {
+    "original": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lib/c1d_core_min.lib",
+    "staged": "/external/pdk/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lib/c1d_core_min.lib",
+    "sha256": "137888a5ea9cebe8a3b67bca5e03995381269373ca76d75c22940426bd275cfb"
+  },
+  {
+    "original": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lib/scl1u_pads_min.lib",
+    "staged": "/external/pdk/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lib/scl1u_pads_min.lib",
+    "sha256": "00d6109fd8bf6a1f13edcd01e4b46063fadc49e09ff7a95ff63ee765372542d9"
+  },
+  {
+    "original": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lib/c1d_core_typ.lib",
+    "staged": "/external/pdk/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lib/c1d_core_typ.lib",
+    "sha256": "8a6101dabe703cb9c73feb411cc21e1d7cd331eeb30d3d0ed2ac2884f52544c8"
+  },
+  {
+    "original": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lib/scl1u_pads_typ.lib",
+    "staged": "/external/pdk/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lib/scl1u_pads_typ.lib",
+    "sha256": "4c1bbe64441f4811f8644443935051b4de318c56d2508b0e1efdd2f7947ee249"
+  },
+  {
+    "original": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lib/c1d_core_max.lib",
+    "staged": "/external/pdk/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lib/c1d_core_max.lib",
+    "sha256": "df62cded71a8c7ef56681d180f8ac1b5aba80c96a0fa6ca199cb6205cd5144fd"
+  },
+  {
+    "original": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lib/scl1u_pads_max.lib",
+    "staged": "/external/pdk/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lib/scl1u_pads_max.lib",
+    "sha256": "356824f2f973ece094d81952ddfdfe67da21d5c12e8b7941c68aa4abe038b48d"
+  }
+]

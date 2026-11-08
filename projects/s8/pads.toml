@@ -1,0 +1,75 @@
+schema_version = 1
+frame = "scl-c1d-2mm"
+profile_version = "0.1.0"
+
+[[slot]]
+slot = 1
+port = "cs_n"
+pad_cell = "OPAD04"
+driver = "INVR04"
+
+[[slot]]
+slot = 2
+port = "miso"
+pad_cell = "IPAD2D"
+driver = "none"
+
+[[slot]]
+slot = 3
+port = "mosi"
+pad_cell = "OPAD04"
+driver = "INVR04"
+
+[[slot]]
+slot = 4
+port = "clk"
+pad_cell = "IPAD30"
+driver = "none"
+
+[[slot]]
+slot = 5
+port = "sck"
+pad_cell = "OPAD04"
+driver = "INVR04"
+
+[[slot]]
+slot = 6
+port = "rst"
+pad_cell = "IPAD3D"
+driver = "none"
+
+[[slot]]
+slot = 7
+port = "gpo[0]"
+pad_cell = "OPAD04"
+driver = "INVR04"
+
+[[slot]]
+slot = 8
+port = "gpi[0]"
+pad_cell = "IPAD2D"
+driver = "none"
+
+[[slot]]
+slot = 9
+port = "gpo[1]"
+pad_cell = "OPAD04"
+driver = "INVR04"
+
+[[slot]]
+slot = 10
+port = "gpi[1]"
+pad_cell = "IPAD2D"
+driver = "none"
+
+[[slot]]
+slot = 11
+port = "gpo[2]"
+pad_cell = "OPAD04"
+driver = "INVR04"
+
+[[slot]]
+slot = 12
+port = "gpi[2]"
+pad_cell = "IPAD2D"
+driver = "none"

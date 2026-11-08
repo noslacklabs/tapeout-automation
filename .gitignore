@@ -1,0 +1,25 @@
+# Private local tools, environments, evidence runs and package build intermediates.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+tools/chipflow/build/
+work/
+dist/
+.venv/
+# Keep this local location configuration out of any future repository by default.
+toolchains/local*.toml
+# Private captured binary runtime and checker source; manifests remain reviewable.
+toolchains/milestone1/artifacts/
+# Confidential kit is an external installation, never package or publish it.
+scl-pdk-1.2um/
+# Generated project runs and transfer bundles can contain local or PDK data.
+projects/*/builds/
+transfer/
+# Startup probes stage copies of confidential PDK library and geometry files.
+toolchains/milestone1/fresh-startup-*/run-evidence/
+# Local assistant settings and credentials.
+.claude/settings.local.json
+.env
+.env.*
+!.env.example

@@ -1,0 +1,64 @@
+schema_version = 1
+
+[project]
+name = "s8"
+top = "s8"
+sources = ["rtl/s8.v"]
+
+[technology]
+id = "scl_c1d"
+frame = "scl-c1d-2mm"
+profile_version = "0.1.0"
+top_cell = "OS0000"
+mode = "development"
+development_identifiers = true
+
+[clock]
+port = "clk"
+period_ns = 100.0
+waveform_ns = [0.0, 50.0]
+transition_ns = 2.5
+uncertainty_ns = 0.0
+derived_outputs = [{ port = "sck", check = "s8.sck_gate" }]
+
+[reset]
+port = "rst"
+kind = "synchronous"
+active = "high"
+
+# Timing constraints note:
+# The clock period (100 ns), input transition (2.5 ns), I/O delays (0.0 ns) and
+# output loads (30.0 pF) are legacy flow assumptions from flow/run_sta.sh:26-27,
+# flow/sta/sta.tcl:17-25, and environment_variables in reference/s8/dependencies.json.
+[io]
+corners = ["min", "typ", "max"]
+inputs = [
+    { port = "rst", min_ns = 0.0, max_ns = 0.0 },
+    { port = "miso", min_ns = 0.0, max_ns = 0.0 },
+    { port = "gpi[0]", min_ns = 0.0, max_ns = 0.0 },
+    { port = "gpi[1]", min_ns = 0.0, max_ns = 0.0 },
+    { port = "gpi[2]", min_ns = 0.0, max_ns = 0.0 }
+]
+outputs = [
+    { port = "cs_n", min_ns = 0.0, max_ns = 0.0, load_pf = 30.0 },
+    { port = "mosi", min_ns = 0.0, max_ns = 0.0, load_pf = 30.0 },
+    { port = "sck", min_ns = 0.0, max_ns = 0.0, load_pf = 30.0 },
+    { port = "gpo[0]", min_ns = 0.0, max_ns = 0.0, load_pf = 30.0 },
+    { port = "gpo[1]", min_ns = 0.0, max_ns = 0.0, load_pf = 30.0 },
+    { port = "gpo[2]", min_ns = 0.0, max_ns = 0.0, load_pf = 30.0 }
+]
+
+[pads]
+mapping = "pads.toml"
+
+[build]
+root = "builds"
+seed = 42
+threads = 4
+timeout_seconds = 120
+
+[verification]
+required_checks = ["s8.behavior"]
+manual_items = [
+    "Clock period 100 ns, input transition 2.5 ns, I/O delays 0 ns, and output load 30 pF reflect unreviewed legacy flow assumptions from flow/run_sta.sh:26-27 and reference/s8/dependencies.json."
+]

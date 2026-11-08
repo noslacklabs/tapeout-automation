@@ -1,0 +1,895 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-11-07T18:39:14.257858+00:00",
+  "scope": "Installed reference environment; no fresh installation or full chip build performed.",
+  "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "machine": "x86_64",
+  "os_release": {
+    "NAME": "Ubuntu",
+    "ID": "ubuntu",
+    "PRETTY_NAME": "Ubuntu 24.04.1 LTS",
+    "VERSION_ID": "24.04",
+    "VERSION": "24.04.1 LTS (Noble Numbat)",
+    "VERSION_CODENAME": "noble",
+    "ID_LIKE": "debian",
+    "HOME_URL": "https://www.ubuntu.com/",
+    "SUPPORT_URL": "https://help.ubuntu.com/",
+    "BUG_REPORT_URL": "https://bugs.launchpad.net/ubuntu/",
+    "PRIVACY_POLICY_URL": "https://www.ubuntu.com/legal/terms-and-policies/privacy-policy",
+    "UBUNTU_CODENAME": "noble",
+    "LOGO": "ubuntu-logo"
+  },
+  "python": {
+    "executable": "/home/sushant/tool-eval/venv/bin/python",
+    "version": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "packages": {
+      "pip": "26.3",
+      "setuptools": null,
+      "wheel": null,
+      "build": null,
+      "pytest": "9.2.0",
+      "klayout": "0.30.12",
+      "gdstk": "1.0.2",
+      "numpy": "2.5.4",
+      "cocotb": "2.1.0",
+      "find_libpython": "0.5.1",
+      "presubmit-check": null
+    }
+  },
+  "installed_distributions": [
+    {
+      "name": "aenum",
+      "version": "3.1.17"
+    },
+    {
+      "name": "alembic",
+      "version": "1.20.1"
+    },
+    {
+      "name": "annotated-doc",
+      "version": "0.0.5"
+    },
+    {
+      "name": "annotated-types",
+      "version": "0.8.0"
+    },
+    {
+      "name": "arrow",
+      "version": "1.4.0"
+    },
+    {
+      "name": "asg",
+      "version": "1.1.0"
+    },
+    {
+      "name": "asttokens",
+      "version": "3.0.2"
+    },
+    {
+      "name": "attrs",
+      "version": "26.1.0"
+    },
+    {
+      "name": "bentley-ottmann",
+      "version": "6.0.0"
+    },
+    {
+      "name": "cachetools",
+      "version": "7.1.8"
+    },
+    {
+      "name": "certifi",
+      "version": "2026.10.23"
+    },
+    {
+      "name": "cffi",
+      "version": "2.1.1"
+    },
+    {
+      "name": "cfractions",
+      "version": "1.5.0"
+    },
+    {
+      "name": "charset-normalizer",
+      "version": "3.5.2"
+    },
+    {
+      "name": "clipin",
+      "version": "1.0.0"
+    },
+    {
+      "name": "cocotb",
+      "version": "2.1.0"
+    },
+    {
+      "name": "cocotb-test",
+      "version": "0.3.0"
+    },
+    {
+      "name": "colorama",
+      "version": "0.4.6"
+    },
+    {
+      "name": "colorlog",
+      "version": "6.12.0"
+    },
+    {
+      "name": "comm",
+      "version": "0.2.3"
+    },
+    {
+      "name": "contextlib2",
+      "version": "21.6.0"
+    },
+    {
+      "name": "contourpy",
+      "version": "1.4.0"
+    },
+    {
+      "name": "cryptography",
+      "version": "50.0.2"
+    },
+    {
+      "name": "cycler",
+      "version": "0.12.1"
+    },
+    {
+      "name": "debugpy",
+      "version": "1.8.22"
+    },
+    {
+      "name": "decorator",
+      "version": "5.3.1"
+    },
+    {
+      "name": "dendroid",
+      "version": "1.6.1"
+    },
+    {
+      "name": "docopt",
+      "version": "0.6.2"
+    },
+    {
+      "name": "docxtpl",
+      "version": "0.20.2"
+    },
+    {
+      "name": "executing",
+      "version": "2.3.0"
+    },
+    {
+      "name": "find_libpython",
+      "version": "0.5.1"
+    },
+    {
+      "name": "flexcache",
+      "version": "0.3"
+    },
+    {
+      "name": "flexparser",
+      "version": "0.4"
+    },
+    {
+      "name": "fonttools",
+      "version": "4.68.0"
+    },
+    {
+      "name": "freetype-py",
+      "version": "2.5.1"
+    },
+    {
+      "name": "gdsfactory",
+      "version": "9.51.0"
+    },
+    {
+      "name": "gdstk",
+      "version": "1.0.2"
+    },
+    {
+      "name": "google-auth",
+      "version": "2.62.1"
+    },
+    {
+      "name": "graphviz",
+      "version": "0.21"
+    },
+    {
+      "name": "ground",
+      "version": "7.1.1"
+    },
+    {
+      "name": "idna",
+      "version": "3.20"
+    },
+    {
+      "name": "ImageIO",
+      "version": "2.38.1"
+    },
+    {
+      "name": "inflection",
+      "version": "0.5.1"
+    },
+    {
+      "name": "inform",
+      "version": "1.37"
+    },
+    {
+      "name": "iniconfig",
+      "version": "2.3.1"
+    },
+    {
+      "name": "ipyevents",
+      "version": "2.0.4"
+    },
+    {
+      "name": "ipykernel",
+      "version": "7.4.0"
+    },
+    {
+      "name": "ipython",
+      "version": "9.15.0"
+    },
+    {
+      "name": "ipython_pygments_lexers",
+      "version": "1.1.1"
+    },
+    {
+      "name": "ipytree",
+      "version": "0.2.2"
+    },
+    {
+      "name": "ipywidgets",
+      "version": "8.1.9"
+    },
+    {
+      "name": "jedi",
+      "version": "0.20.1"
+    },
+    {
+      "name": "Jinja2",
+      "version": "3.1.6"
+    },
+    {
+      "name": "jupyter_client",
+      "version": "8.10.0"
+    },
+    {
+      "name": "jupyter_core",
+      "version": "5.9.1"
+    },
+    {
+      "name": "jupyterlab_widgets",
+      "version": "3.0.17"
+    },
+    {
+      "name": "kfactory",
+      "version": "3.0.4"
+    },
+    {
+      "name": "kfnetlist",
+      "version": "0.3.0"
+    },
+    {
+      "name": "kiwisolver",
+      "version": "1.5.1"
+    },
+    {
+      "name": "klayout",
+      "version": "0.30.12"
+    },
+    {
+      "name": "lark",
+      "version": "1.3.1"
+    },
+    {
+      "name": "lazy-loader",
+      "version": "0.6"
+    },
+    {
+      "name": "loguru",
+      "version": "0.7.3"
+    },
+    {
+      "name": "lxml",
+      "version": "6.1.3"
+    },
+    {
+      "name": "Mako",
+      "version": "1.4.3"
+    },
+    {
+      "name": "mapbox_earcut",
+      "version": "2.1.0"
+    },
+    {
+      "name": "markdown-it-py",
+      "version": "4.2.0"
+    },
+    {
+      "name": "MarkupSafe",
+      "version": "3.0.4"
+    },
+    {
+      "name": "matplotlib",
+      "version": "3.11.2"
+    },
+    {
+      "name": "matplotlib-inline",
+      "version": "0.2.2"
+    },
+    {
+      "name": "mdurl",
+      "version": "0.1.2"
+    },
+    {
+      "name": "mutablerecords",
+      "version": "0.4.1"
+    },
+    {
+      "name": "natsort",
+      "version": "8.4.0"
+    },
+    {
+      "name": "nest-asyncio2",
+      "version": "1.7.4"
+    },
+    {
+      "name": "networkx",
+      "version": "3.7"
+    },
+    {
+      "name": "numpy",
+      "version": "2.5.4"
+    },
+    {
+      "name": "openhtf",
+      "version": "1.6.3"
+    },
+    {
+      "name": "optuna",
+      "version": "5.0.0"
+    },
+    {
+      "name": "orjson",
+      "version": "3.13.0"
+    },
+    {
+      "name": "packaging",
+      "version": "26.3"
+    },
+    {
+      "name": "pandas",
+      "version": "3.1.1"
+    },
+    {
+      "name": "parso",
+      "version": "0.8.7"
+    },
+    {
+      "name": "pexpect",
+      "version": "4.9.0"
+    },
+    {
+      "name": "pillow",
+      "version": "13.0.0"
+    },
+    {
+      "name": "Pint",
+      "version": "0.26.2"
+    },
+    {
+      "name": "pip",
+      "version": "26.3"
+    },
+    {
+      "name": "platformdirs",
+      "version": "4.14.5"
+    },
+    {
+      "name": "pluggy",
+      "version": "1.7.0"
+    },
+    {
+      "name": "ply",
+      "version": "3.10"
+    },
+    {
+      "name": "prioq",
+      "version": "0.7.0"
+    },
+    {
+      "name": "prompt_toolkit",
+      "version": "3.0.53"
+    },
+    {
+      "name": "protobuf",
+      "version": "7.36.2"
+    },
+    {
+      "name": "psf_utils",
+      "version": "1.11"
+    },
+    {
+      "name": "psutil",
+      "version": "7.2.2"
+    },
+    {
+      "name": "ptyprocess",
+      "version": "0.7.0"
+    },
+    {
+      "name": "pure_eval",
+      "version": "0.2.4"
+    },
+    {
+      "name": "pyasn1",
+      "version": "0.6.5"
+    },
+    {
+      "name": "pyasn1_modules",
+      "version": "0.4.2"
+    },
+    {
+      "name": "pycparser",
+      "version": "3.12"
+    },
+    {
+      "name": "pydantic",
+      "version": "2.13.5"
+    },
+    {
+      "name": "pydantic-extra-types",
+      "version": "2.11.1"
+    },
+    {
+      "name": "pydantic-settings",
+      "version": "2.16.2"
+    },
+    {
+      "name": "pydantic_core",
+      "version": "2.46.5"
+    },
+    {
+      "name": "pygit2",
+      "version": "1.21.0"
+    },
+    {
+      "name": "pyglet",
+      "version": "2.1.19"
+    },
+    {
+      "name": "Pygments",
+      "version": "2.21.0"
+    },
+    {
+      "name": "pygmid",
+      "version": "1.2.12"
+    },
+    {
+      "name": "PyMeasure",
+      "version": "0.16.0"
+    },
+    {
+      "name": "pyOpenSSL",
+      "version": "26.4.0"
+    },
+    {
+      "name": "pyparsing",
+      "version": "3.3.3"
+    },
+    {
+      "name": "pyqtgraph",
+      "version": "0.14.0"
+    },
+    {
+      "name": "pyserial",
+      "version": "3.5"
+    },
+    {
+      "name": "pytest",
+      "version": "9.2.0"
+    },
+    {
+      "name": "python-dateutil",
+      "version": "4.0.0"
+    },
+    {
+      "name": "python-docx",
+      "version": "1.2.0"
+    },
+    {
+      "name": "python-dotenv",
+      "version": "1.2.4"
+    },
+    {
+      "name": "PyVISA",
+      "version": "1.16.2"
+    },
+    {
+      "name": "PyVISA-py",
+      "version": "0.8.1"
+    },
+    {
+      "name": "PyVISA-sim",
+      "version": "0.7.1"
+    },
+    {
+      "name": "PyYAML",
+      "version": "6.0.3"
+    },
+    {
+      "name": "pyzmq",
+      "version": "27.3.0"
+    },
+    {
+      "name": "qrcode",
+      "version": "8.2"
+    },
+    {
+      "name": "QtPy",
+      "version": "2.4.3"
+    },
+    {
+      "name": "quantiphy",
+      "version": "2.23"
+    },
+    {
+      "name": "RapidFuzz",
+      "version": "3.14.6"
+    },
+    {
+      "name": "rectangle-packer",
+      "version": "2.1.1"
+    },
+    {
+      "name": "rectpack",
+      "version": "0.2.2"
+    },
+    {
+      "name": "reprit",
+      "version": "0.9.0"
+    },
+    {
+      "name": "requests",
+      "version": "2.34.2"
+    },
+    {
+      "name": "rich",
+      "version": "15.0.0"
+    },
+    {
+      "name": "ruamel.yaml",
+      "version": "0.19.1"
+    },
+    {
+      "name": "ruamel.yaml.string",
+      "version": "0.1.1"
+    },
+    {
+      "name": "scikit-image",
+      "version": "0.26.0"
+    },
+    {
+      "name": "scipy",
+      "version": "1.18.1"
+    },
+    {
+      "name": "semver",
+      "version": "3.1.0"
+    },
+    {
+      "name": "shapely",
+      "version": "2.2.0"
+    },
+    {
+      "name": "shellingham",
+      "version": "1.5.4"
+    },
+    {
+      "name": "shewchuk",
+      "version": "4.0.0"
+    },
+    {
+      "name": "six",
+      "version": "1.17.0"
+    },
+    {
+      "name": "sockjs-tornado",
+      "version": "1.0.7"
+    },
+    {
+      "name": "spicelib",
+      "version": "1.6.4"
+    },
+    {
+      "name": "SQLAlchemy",
+      "version": "2.1.8"
+    },
+    {
+      "name": "stack-data",
+      "version": "0.6.3"
+    },
+    {
+      "name": "stringparser",
+      "version": "0.7"
+    },
+    {
+      "name": "symba",
+      "version": "0.7.2"
+    },
+    {
+      "name": "tifffile",
+      "version": "2026.10.15"
+    },
+    {
+      "name": "toolz",
+      "version": "1.2.0"
+    },
+    {
+      "name": "tornado",
+      "version": "6.5.8"
+    },
+    {
+      "name": "tqdm",
+      "version": "4.70.1"
+    },
+    {
+      "name": "traitlets",
+      "version": "5.16.1"
+    },
+    {
+      "name": "trimesh",
+      "version": "5.2.0"
+    },
+    {
+      "name": "typer",
+      "version": "0.27.3"
+    },
+    {
+      "name": "types-PyYAML",
+      "version": "6.0.12.20261103"
+    },
+    {
+      "name": "typing-inspection",
+      "version": "0.4.5"
+    },
+    {
+      "name": "typing_extensions",
+      "version": "4.16.0"
+    },
+    {
+      "name": "tzdata",
+      "version": "2026.6"
+    },
+    {
+      "name": "udocker",
+      "version": "1.3.17"
+    },
+    {
+      "name": "urllib3",
+      "version": "2.8.0"
+    },
+    {
+      "name": "watchdog",
+      "version": "6.0.0"
+    },
+    {
+      "name": "wcwidth",
+      "version": "0.9.4"
+    },
+    {
+      "name": "widgetsnbextension",
+      "version": "4.0.16"
+    }
+  ],
+  "tools": {
+    "yosys": {
+      "path": "/usr/bin/yosys",
+      "exists": true,
+      "version": {
+        "argv": [
+          "/usr/bin/yosys",
+          "-V"
+        ],
+        "returncode": 0,
+        "stdout": "Yosys 0.33 (git sha1 2584903a060)\n",
+        "stderr": ""
+      },
+      "sha256": "88c0a12bb814a1a8716b1ae10b482e35d3005ed558e1f5f626b3dc983ea3abd0",
+      "resolved_path": "/usr/bin/yosys"
+    },
+    "openroad": {
+      "path": "/nix/store/6qbn5zjnnnyna6md4rsmiqw4y26y8556-openroad-26Q3/bin/openroad",
+      "exists": true,
+      "version": {
+        "argv": [
+          "/nix/store/6qbn5zjnnnyna6md4rsmiqw4y26y8556-openroad-26Q3/bin/openroad",
+          "-version"
+        ],
+        "returncode": 0,
+        "stdout": "26Q3 \n",
+        "stderr": ""
+      },
+      "sha256": "3b2a6e9f448e1e6ac55b27a7d173e61e8bcf2475d3023caa7caa8e0a979a8dc5",
+      "resolved_path": "/nix/store/6qbn5zjnnnyna6md4rsmiqw4y26y8556-openroad-26Q3/bin/openroad"
+    },
+    "klayout": {
+      "path": "/nix/store/c8mymw0gckkiw7lqwnm2l6mqnd99xmzy-klayout-0.30.7/bin/klayout",
+      "exists": true,
+      "version": {
+        "argv": [
+          "/nix/store/c8mymw0gckkiw7lqwnm2l6mqnd99xmzy-klayout-0.30.7/bin/klayout",
+          "-v"
+        ],
+        "returncode": 0,
+        "stdout": "KLayout 0.30.7\n",
+        "stderr": ""
+      },
+      "sha256": "9871282c43f561b7e3094f15f71fbd825bb0bf4f376f4651999cad15e115d67a",
+      "resolved_path": "/nix/store/c8mymw0gckkiw7lqwnm2l6mqnd99xmzy-klayout-0.30.7/bin/klayout"
+    },
+    "iverilog": {
+      "path": "/usr/bin/iverilog",
+      "exists": true,
+      "version": {
+        "argv": [
+          "/usr/bin/iverilog",
+          "-V"
+        ],
+        "returncode": 0,
+        "stdout": "Icarus Verilog version 12.0 (stable) ()\n\nCopyright (c) 2000-2021 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 12.0 (stable) ()\n\nCopyright (c) 1999-2021 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 12.0 (stable) ()\n\nCopyright (c) 1998-2021 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 12.0 (stable) ()\n\nCopyright (c) 2001-2021 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n",
+        "stderr": ""
+      },
+      "sha256": "a6071e4b4a68feafca0c8ee0e6aa275eee9a43a108c62801cfd1eca6eab6d8a3",
+      "resolved_path": "/usr/bin/iverilog"
+    },
+    "vvp": {
+      "path": "/usr/bin/vvp",
+      "exists": true,
+      "version": {
+        "argv": [
+          "/usr/bin/vvp",
+          "-V"
+        ],
+        "returncode": 0,
+        "stdout": "",
+        "stderr": "Icarus Verilog runtime version 12.0 (stable) ()\n\nCopyright (c) 2001-2021 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n"
+      },
+      "sha256": "a10bd7d4a0850308ac8c2c98115b6a3084f9be978307610f2a521190c28f4023",
+      "resolved_path": "/usr/bin/vvp"
+    },
+    "formal_yosys": {
+      "path": "/nix/store/cfry5mn7l5qk6cy730gspaa51fahc108-yosys-0.70/bin/yosys",
+      "exists": true,
+      "version": {
+        "argv": [
+          "/nix/store/cfry5mn7l5qk6cy730gspaa51fahc108-yosys-0.70/bin/yosys",
+          "-V"
+        ],
+        "returncode": 0,
+        "stdout": "Yosys 0.70+post (git sha1 v0.70, Release, GNU /nix/store/r5ri78axx1qggkjq3vawywlzglg70b5w-gcc-wrapper-16.2.0/bin/g++ 16.2.0)\n",
+        "stderr": ""
+      },
+      "sha256": "f6ddbbc9579497d60f2799df28e11cacf93d93f1cdb399f049d30cb85e537838",
+      "resolved_path": "/nix/store/cfry5mn7l5qk6cy730gspaa51fahc108-yosys-0.70/bin/yosys"
+    },
+    "sby": {
+      "path": "/nix/store/hmrimr3nwb4d2di2jm9s5r9g70cc6zix-sby-0.70/bin/sby",
+      "exists": true,
+      "version": {
+        "argv": [
+          "/nix/store/hmrimr3nwb4d2di2jm9s5r9g70cc6zix-sby-0.70/bin/sby",
+          "--version"
+        ],
+        "returncode": 0,
+        "stdout": "unknown SBY version\n",
+        "stderr": ""
+      },
+      "sha256": "c61af1a9034a0c68b64964c6aba2de8c001f90dd6c2ba8dc3e1a02e3c7b6261a",
+      "resolved_path": "/nix/store/hmrimr3nwb4d2di2jm9s5r9g70cc6zix-sby-0.70/bin/sby"
+    },
+    "z3": {
+      "path": "/nix/store/g91d3ysw40238p0wlkw7789kx9k8hxbq-z3-5.3.2/bin/z3",
+      "exists": true,
+      "version": {
+        "argv": [
+          "/nix/store/g91d3ysw40238p0wlkw7789kx9k8hxbq-z3-5.3.2/bin/z3",
+          "--version"
+        ],
+        "returncode": 0,
+        "stdout": "Z3 version 5.3.2 - 64 bit\n",
+        "stderr": ""
+      },
+      "sha256": "c5fea3e78d24c74dac334efe6d4f7c9966b25b682432a296f5e263f520126c77",
+      "resolved_path": "/nix/store/g91d3ysw40238p0wlkw7789kx9k8hxbq-z3-5.3.2/bin/z3"
+    }
+  },
+  "apt_packages": {
+    "argv": [
+      "dpkg-query",
+      "-W",
+      "yosys",
+      "iverilog",
+      "python3.12"
+    ],
+    "returncode": 0,
+    "stdout": "iverilog\t12.0-2build2\npython3.12\t3.12.3-1ubuntu0.17\nyosys\t0.33-5build2\n",
+    "stderr": ""
+  },
+  "nix": {
+    "argv": [
+      "/nix/var/nix/profiles/default/bin/nix",
+      "--version"
+    ],
+    "returncode": 0,
+    "stdout": "nix (Nix) 2.35.4\n",
+    "stderr": ""
+  },
+  "recipe_candidates": [
+    {
+      "path": "/home/sushant/silicon/designs/tt-template-build/test/requirements.txt",
+      "sha256": "c1ba8e1b931e68c3ff600bb849f20975435fedbb7e5f83932095a05d2dca1372"
+    },
+    {
+      "path": "/home/sushant/silicon/designs/tt-template-build/tt/pyproject.toml",
+      "sha256": "62cae422d61e89c12b02dadf3de0cc1dbcff5dc108178c0c8411131924c143fc"
+    },
+    {
+      "path": "/home/sushant/silicon/designs/tt-template-build/tt/requirements.txt",
+      "sha256": "bbda6f05fe1090589bb1977619802935e1e0e22457a1dd8147e08c44c742992b"
+    },
+    {
+      "path": "/home/sushant/silicon/upstream/OpenROAD-flow-scripts/flake.lock",
+      "sha256": "3f8b50d36e571f71938b472b8334a2ac5c94658319f5988a57e54271d3cf1276"
+    },
+    {
+      "path": "/home/sushant/silicon/upstream/OpenROAD-flow-scripts/flake.nix",
+      "sha256": "7360bd7c508ba0744f8c1f4694fbd1f32dec9f5d540139099ff9e0c271b556e4"
+    },
+    {
+      "path": "/home/sushant/silicon/upstream/librelane/docs/requirements.txt",
+      "sha256": "5314cfe6eef636b72b72abc850066517e9b4d9f875e0d8c2a8e7969db4be4ed1"
+    },
+    {
+      "path": "/home/sushant/silicon/upstream/librelane/flake.lock",
+      "sha256": "a805d3278c3d6da9661f39219b389b8fe595351cc4b728b9114ae2e7c246537e"
+    },
+    {
+      "path": "/home/sushant/silicon/upstream/librelane/flake.nix",
+      "sha256": "73f597c635d11a6fa64213dfffc8581aa93d4ca502159eb3a1d1e1ab59d7fa7e"
+    },
+    {
+      "path": "/home/sushant/silicon/upstream/librelane/pyproject.toml",
+      "sha256": "c42fc5fd4204fd49da1cde0d1d622823212459509b3d7ea93135c5ca7ec51fd4"
+    },
+    {
+      "path": "/home/sushant/silicon/upstream/librelane/shell.nix",
+      "sha256": "ff5b4ea8959db61ebf5bfe3edfb2a9426981b3c1e3cdef8c9b394e371cf65738"
+    },
+    {
+      "path": "/home/sushant/silicon/upstream/tt-template/test/requirements.txt",
+      "sha256": "c1ba8e1b931e68c3ff600bb849f20975435fedbb7e5f83932095a05d2dca1372"
+    }
+  ],
+  "reference_directories": {
+    "/home/sushant/tool-eval": [
+      "data",
+      "logs",
+      "pdkroot",
+      "scripts",
+      "udocker",
+      "venv",
+      "venv-align",
+      "venv-glayout",
+      "venv-glayout311",
+      "work"
+    ],
+    "/home/sushant/silicon": [
+      "builds",
+      "designs",
+      "notes",
+      "scripts",
+      "upstream"
+    ]
+  }
+}

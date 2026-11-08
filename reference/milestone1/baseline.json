@@ -1,0 +1,1905 @@
+{
+  "schema_version": 1,
+  "kind": "milestone1-reference-reproduction",
+  "captured_at": "2026-11-08T05:09:56.455841+00:00",
+  "source_rtl_sha256": "fa52f0fb87289df5dd2f1f5e6004538fb513956fc834ad78556c39021a86ca46",
+  "run": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/work/milestone1/reference-20261107T202316Z-f546a6c1",
+  "errors": [],
+  "evidence": {
+    "legacy_report": [
+      {
+        "check": "Synthesis",
+        "result": "PASS",
+        "detail": "Yosys 0.33 netlist written"
+      },
+      {
+        "check": "Router (OpenROAD detailed route)",
+        "result": "PASS",
+        "detail": "0 violations after 4 iterations: 156 35 22 0"
+      },
+      {
+        "check": "Routed wires overlapping another net or cell metal",
+        "result": "PASS",
+        "detail": "0 overlaps across 393 nets. Routing attempt used: 0, counting from 0"
+      },
+      {
+        "check": "Top-level GDS in SCL's 2x2 frame",
+        "result": "PASS",
+        "detail": "345 cells, 1386 fillers. Written, one top cell checked below"
+      },
+      {
+        "check": "Row fill with power and pads",
+        "result": "PASS",
+        "detail": "65.8% (10928 of 16598 um). The plan's limit is about 80%"
+      },
+      {
+        "check": "SCL DRC deck (v1.1, KLayout 0.30.7)",
+        "result": "PASS",
+        "detail": "0 markers"
+      },
+      {
+        "check": "SCL LVS deck (KLayout 0.30.7)",
+        "result": "PASS",
+        "detail": "circuits matched 22, not matched 0. Layout and schematic netlists compared"
+      },
+      {
+        "check": "Decks fail on deliberately broken copies",
+        "result": "PASS",
+        "detail": "11 of 11 tests behaved as expected"
+      },
+      {
+        "check": "DRC cross-check, deck in flat mode",
+        "result": "PASS",
+        "detail": "0 markers"
+      },
+      {
+        "check": "presubmit-check",
+        "result": "PASS",
+        "detail": "PASS 38 WARN 8 MANUAL 7"
+      },
+      {
+        "check": "VDD and VSS through metal alone, pads to every row (LVS can't see this)",
+        "result": "PASS",
+        "detail": "92 points checked, 0 problems"
+      },
+      {
+        "check": "Metal wider than 25 um in what we drew",
+        "result": "PASS",
+        "detail": "M1 0, M2 0"
+      },
+      {
+        "check": "Metal space including notches (the deck skips notches)",
+        "result": "PASS",
+        "detail": "M1 0, M2 0"
+      },
+      {
+        "check": "Routed vias over poly (document rule, deck doesn't flag)",
+        "result": "PASS",
+        "detail": "0 of 1773: 0 at pin centres, 0 elsewhere"
+      },
+      {
+        "check": "Routed vias over contact",
+        "result": "PASS",
+        "detail": "0"
+      },
+      {
+        "check": "One top cell, extent exactly the die",
+        "result": "PASS",
+        "detail": "['OS0000'], (0,0;2000,2000)"
+      },
+      {
+        "check": "Timing at three corners, 10 MHz, flip-flop to flip-flop",
+        "result": "PASS",
+        "detail": "Setup and hold met at 100 ns, flip-flop to flip-flop. Wire caps from routed length and LEF values, 30 pF assumed per output"
+      },
+      {
+        "check": "Core slew under SCL's 2.5 ns limit",
+        "result": "PASS",
+        "detail": "min 0 pins, worst 0.00 ns; typ 0 pins, worst 0.00 ns; max 0 pins, worst 0.00 ns"
+      },
+      {
+        "check": "Max capacitance on core nets",
+        "result": "PASS",
+        "detail": "min 0; typ 0; max 0"
+      },
+      {
+        "check": "Wire capacitance from OpenRCX with SCL's rules",
+        "result": "FAIL",
+        "detail": "0.14 pF, against 26.9 pF from 107544 um of routed wire and LEF values. Not used for timing: see flow-status.md"
+      },
+      {
+        "check": "Pad timing to the RAM at 10 MHz",
+        "result": "PASS",
+        "detail": "Smallest margin 7.3 ns. 30 pF per output assumed, no board delay"
+      },
+      {
+        "check": "SCK gate structure in the routed netlist",
+        "result": "PASS",
+        "detail": "One multi-input cell, OR2101, fed by the clock and one flip-flop. Truth table right. Cone: DELBUF -> DELBUF -> OR2101 -> INVR01 -> INVR04. On its clock input: nothing. On its idle input: DELBUF wire36, DELBUF fanout35"
+      },
+      {
+        "check": "SCK gate margins at the gate, three corners (hard stop at the freeze)",
+        "result": "PASS",
+        "detail": "Smallest: setup 40.11 ns, hold 4.61 ns"
+      },
+      {
+        "check": "Output edge at the pad, against the RAM's 20 ns limit",
+        "result": "PASS",
+        "detail": "Worst 11.7 ns, with 30 pF assumed. min 5.7; typ 8.1; max 11.7"
+      },
+      {
+        "check": "Post-route simulation, routed netlist, smoke test",
+        "result": "PASS",
+        "detail": "Printed values, halt and gpo checked against each program's expected list. RTL: Fibonacci ok, ALU ok. Routed: Fibonacci ok, ALU ok. No delays, random flip-flop start"
+      },
+      {
+        "check": "Antenna rules",
+        "result": "NOT RUN",
+        "detail": "Not in SCL's deck or documents, so nothing to check against"
+      },
+      {
+        "check": "Metal necking, 12 um bus on one contact, ERC guidelines",
+        "result": "NOT RUN",
+        "detail": "Manual review, due at G4"
+      },
+      {
+        "check": "Current density",
+        "result": "NOT RUN",
+        "detail": "No real activity figures yet"
+      },
+      {
+        "check": "Silicon number block",
+        "result": "NOT RUN",
+        "detail": "Not issued yet. Top cell name is a placeholder, OS0000"
+      }
+    ],
+    "drc": {
+      "categories": 72,
+      "markers": 0
+    },
+    "flat_drc": {
+      "categories": 72,
+      "markers": 0
+    },
+    "lvs": {
+      "circuits": 22,
+      "top": "OS0000",
+      "matched": {
+        "nets": 562,
+        "pins": 127,
+        "devices": 162,
+        "subcircuits": 361
+      }
+    },
+    "routing_overlap": {
+      "nets": 393,
+      "cells": 345,
+      "problems": []
+    },
+    "power": {
+      "checked": 92,
+      "problems": [],
+      "ok": true
+    },
+    "sck_structure": {
+      "gated": true,
+      "cone": [
+        {
+          "cell": "INVR04",
+          "name": "paddrv_sck",
+          "inputs": {
+            "IN1": "\\u_cpu.sck"
+          }
+        },
+        {
+          "cell": "INVR01",
+          "name": "_262_",
+          "inputs": {
+            "IN1": "_147_"
+          }
+        },
+        {
+          "cell": "OR2101",
+          "name": "_261_",
+          "inputs": {
+            "IN1": "net36",
+            "IN2": "clk"
+          }
+        },
+        {
+          "cell": "DELBUF",
+          "name": "wire36",
+          "inputs": {
+            "IN1": "net35"
+          }
+        },
+        {
+          "cell": "DELBUF",
+          "name": "fanout35",
+          "inputs": {
+            "IN1": "\\u_cpu.idle"
+          }
+        }
+      ],
+      "ports": [
+        "clk"
+      ],
+      "flipflop_outputs": [
+        "\\u_cpu.idle"
+      ],
+      "problems": [],
+      "cells_on_idle_input": [
+        "DELBUF wire36",
+        "DELBUF fanout35"
+      ],
+      "cells_on_clk_input": [],
+      "gate": {
+        "cell": "OR2101",
+        "name": "_261_",
+        "clk_pin": "IN2",
+        "idle_pin": "IN1"
+      },
+      "truth_table_of_sck_b": {
+        "clk=0 idle=0": 0,
+        "clk=0 idle=1": 1,
+        "clk=1 idle=0": 1,
+        "clk=1 idle=1": 1
+      },
+      "ok": true
+    },
+    "geometry": {
+      "top_cells": [
+        "OS0000"
+      ],
+      "bbox": "(0,0;2000,2000)",
+      "routed_vias": 1773,
+      "wire_vias": 1228,
+      "routed_vias_over_poly": 0,
+      "routed_vias_over_contact": 0,
+      "over_poly_at_pins": 0,
+      "over_poly_elsewhere": 0,
+      "over_poly_elsewhere_at": [],
+      "over_poly_by_pin": {},
+      "routed_vias_within_1p2_of_poly_edge": 0,
+      "routed_vias_within_1p5_of_contact": 0,
+      "ring_vias_over_poly": 0,
+      "M1_wider_than_25um": 0,
+      "M2_wider_than_25um": 0,
+      "M1_space_with_notches": 0,
+      "M1_space_between_polygons": 0,
+      "M1_notch_examples": [],
+      "M2_space_with_notches": 0,
+      "M2_space_between_polygons": 0,
+      "M2_notch_examples": [],
+      "drawn_shapes_off_grid": 0,
+      "layer_999_polygons_in_chip": 1,
+      "core_masters": {
+        "NND201": 42,
+        "NND601": 1,
+        "NND300": 18,
+        "OR2101": 35,
+        "MX201B": 18,
+        "AND201": 23,
+        "INVR02": 4,
+        "INVR01": 34,
+        "AOI401": 5,
+        "DFFL11": 45,
+        "CDRI01": 15,
+        "DELBUF": 82,
+        "FILLER2": 1368,
+        "FILLER4": 18,
+        "NOR301": 15,
+        "INVR04": 6,
+        "NND401": 2
+      }
+    },
+    "presubmit": {
+      "summary": {
+        "PASS": 38,
+        "WARN": 8,
+        "MANUAL": 7
+      },
+      "results": [
+        {
+          "id": "C01.1",
+          "status": "PASS",
+          "title": "File is a valid GDSII stream",
+          "evidence": [
+            "886590 bytes, GDSII version 600, library 'LIB', 28 cells, ended cleanly at byte 886590"
+          ],
+          "evidence_total": 1,
+          "source": "GDSII stream format; [Procedure] requires a GDSII database",
+          "assumption": ""
+        },
+        {
+          "id": "C01.2",
+          "status": "PASS",
+          "title": "Database unit is 1 nm",
+          "evidence": [
+            "database unit 1e-09 m"
+          ],
+          "evidence_total": 1,
+          "source": "GDSII stream format; [Procedure] requires a GDSII database",
+          "assumption": ""
+        },
+        {
+          "id": "C02.1",
+          "status": "PASS",
+          "title": "Silicon number has the expected format",
+          "evidence": [
+            "--silicon 'OS0000' matches OS followed by 4 digits"
+          ],
+          "evidence_total": 1,
+          "source": "[Procedure] Design Verification Guidelines (top cell name); PDK_GUIDE.md section 14",
+          "assumption": ""
+        },
+        {
+          "id": "C02.2",
+          "status": "PASS",
+          "title": "Exactly one top cell",
+          "evidence": [
+            "top cell 'OS0000'"
+          ],
+          "evidence_total": 1,
+          "source": "[Procedure] Design Verification Guidelines (top cell name); PDK_GUIDE.md section 14",
+          "assumption": ""
+        },
+        {
+          "id": "C02.3",
+          "status": "PASS",
+          "title": "Top cell is named exactly as the silicon number",
+          "evidence": [
+            "'OS0000'"
+          ],
+          "evidence_total": 1,
+          "source": "[Procedure] Design Verification Guidelines (top cell name); PDK_GUIDE.md section 14",
+          "assumption": ""
+        },
+        {
+          "id": "C02.4",
+          "status": "PASS",
+          "title": "No $$$CONTEXT_INFO$$$ cell",
+          "evidence": [
+            "searched the raw stream records"
+          ],
+          "evidence_total": 1,
+          "source": "[Procedure] Design Verification Guidelines (top cell name); PDK_GUIDE.md section 14",
+          "assumption": ""
+        },
+        {
+          "id": "C03.1",
+          "status": "PASS",
+          "title": "Layout extent matches the die",
+          "evidence": [
+            "top cell 'OS0000': geometry extent (0.000, 0.000) to (2000.000, 2000.000)",
+            "--die 2 expects (0.000, 0.000) to (2000.000, 2000.000)"
+          ],
+          "evidence_total": 2,
+          "source": "[Procedure] Layout Grid (window at (0,0)); [Pad doc] pp.3-11 (die sizes)",
+          "assumption": ""
+        },
+        {
+          "id": "C03.2",
+          "status": "PASS",
+          "title": "All labels lie inside the die",
+          "evidence": [
+            "label origins span (17.122, 23.099) to (1976.900, 1976.901)"
+          ],
+          "evidence_total": 1,
+          "source": "[Procedure] Layout Grid (window at (0,0)); [Pad doc] pp.3-11 (die sizes)",
+          "assumption": "A label outside the die fails because KLayout includes labels in a cell's extent, so the window SCL sees could differ. SCL doesn't state how it measures the window."
+        },
+        {
+          "id": "C04.1",
+          "status": "PASS",
+          "title": "User cells are on the 0.005 um grid",
+          "evidence": [
+            "4 cells outside the SCL libraries checked, 0 off-grid coordinates of the designer's"
+          ],
+          "evidence_total": 1,
+          "source": "[Procedure] Basic Design Guidelines, Layout Grid",
+          "assumption": ""
+        },
+        {
+          "id": "C04.2",
+          "status": "WARN",
+          "title": "657 off-grid coordinates in unmodified SCL pad cells",
+          "evidence": [
+            "SCL ships these off-grid and they can't be edited. Open question for the helpdesk: are they accepted as they are?",
+            "IPAD3D: 165 vertices, 1 label; first at (1.352, 95.850) in cell coordinates",
+            "IPAD30: 171 vertices, 1 label; first at (1.272, 95.850) in cell coordinates",
+            "IPAD2D: 151 vertices, 2 labels; first at (186.750, 255.344) in cell coordinates",
+            "OPAD04: 94 vertices, 1 label; first at (146.452, 256.200) in cell coordinates",
+            "PVDD01: 42 vertices, 2 labels; first at (10.149, 90.700) in cell coordinates",
+            "PVSS01: 26 vertices, 1 label; first at (113.000, 190.218) in cell coordinates"
+          ],
+          "evidence_total": 7,
+          "source": "[Procedure] Layout Grid; PDK_GUIDE.md section 14, open helpdesk question on off-grid library cells",
+          "assumption": ""
+        },
+        {
+          "id": "C04.3",
+          "status": "WARN",
+          "title": "44 off-grid coordinates in unmodified SCL standard cells",
+          "evidence": [
+            "SCL ships these off-grid and they can't be edited. Open question for the helpdesk: are they accepted as they are?",
+            "INVR04: 2 labels; first at (0.001, 0.001) in cell coordinates",
+            "DELBUF: 2 labels; first at (0.001, 0.001) in cell coordinates",
+            "CDRI01: 2 labels; first at (0.001, 0.001) in cell coordinates",
+            "DFFL11: 2 labels; first at (0.001, 0.001) in cell coordinates",
+            "INVR02: 2 labels; first at (0.001, 0.001) in cell coordinates",
+            "NND401: 4 labels; first at (0.001, 0.001) in cell coordinates",
+            "NOR301: 3 labels; first at (0.001, 0.001) in cell coordinates",
+            "NND601: 8 labels; first at (0.001, 0.001) in cell coordinates",
+            "AOI401: 2 labels; first at (0.001, 0.001) in cell coordinates",
+            "NND201: 2 labels; first at (0.001, 0.001) in cell coordinates",
+            "NND300: 3 labels; first at (0.001, 0.001) in cell coordinates",
+            "AND201: 4 labels; first at (0.001, 0.001) in cell coordinates",
+            "MX201B: 2 labels; first at (0.001, 0.001) in cell coordinates",
+            "INVR01: 2 labels; first at (0.001, 0.001) in cell coordinates",
+            "OR2101: 2 vertices, 2 labels; first at (12.104, 28.700) in cell coordinates"
+          ],
+          "evidence_total": 16,
+          "source": "[Procedure] Layout Grid; PDK_GUIDE.md section 14, open helpdesk question on off-grid library cells",
+          "assumption": ""
+        },
+        {
+          "id": "C04.4",
+          "status": "WARN",
+          "title": "22 off-grid coordinates from SCL's reference frame",
+          "evidence": [
+            "SCL ships these off-grid and they can't be edited. Open question for the helpdesk: are they accepted as they are?",
+            "frame2mmx2mm (matches the reference frame): 20 labels; first at (870.634, 284.374) in cell coordinates",
+            "OS0000 (matches the reference frame): 2 labels; first at (235.034, 1323.041) in cell coordinates"
+          ],
+          "evidence_total": 3,
+          "source": "[Procedure] Layout Grid; PDK_GUIDE.md section 14, open helpdesk question on off-grid library cells",
+          "assumption": "Elements identical to the reference frame are treated as SCL's rather than the designer's."
+        },
+        {
+          "id": "C04.5",
+          "status": "PASS",
+          "title": "Instance transforms keep the grid",
+          "evidence": [
+            "all instances in user cells use right-angle rotation and magnification 1"
+          ],
+          "evidence_total": 1,
+          "source": "[Procedure] Basic Design Guidelines, Layout Grid",
+          "assumption": ""
+        },
+        {
+          "id": "C05.1",
+          "status": "PASS",
+          "title": "File name follows the naming rule",
+          "evidence": [
+            "silicon 'OS0000', design 'S8', date '07112026', version 'v0'"
+          ],
+          "evidence_total": 1,
+          "source": "[Procedure] Design Verification Guidelines (naming convention)",
+          "assumption": ""
+        },
+        {
+          "id": "C05.2",
+          "status": "PASS",
+          "title": "Date is a real calendar date",
+          "evidence": [
+            "07112026 is 2026-11-07"
+          ],
+          "evidence_total": 1,
+          "source": "[Procedure] Design Verification Guidelines (naming convention)",
+          "assumption": ""
+        },
+        {
+          "id": "C05.3",
+          "status": "PASS",
+          "title": "File name agrees with --silicon",
+          "evidence": [
+            "OS0000"
+          ],
+          "evidence_total": 1,
+          "source": "[Procedure] Design Verification Guidelines (naming convention)",
+          "assumption": ""
+        },
+        {
+          "id": "C05.4",
+          "status": "PASS",
+          "title": "Version looks like v0",
+          "evidence": [
+            "v0"
+          ],
+          "evidence_total": 1,
+          "source": "[Procedure] Design Verification Guidelines (naming convention)",
+          "assumption": "SCL doesn't define the version format. The only example in [Procedure] is v0."
+        },
+        {
+          "id": "C06.1",
+          "status": "PASS",
+          "title": "DRC report name matches the layout",
+          "evidence": [
+            "OS0000_S8_07112026_v0_drc.txt"
+          ],
+          "evidence_total": 1,
+          "source": "[Procedure] Design Verification Guidelines (DRC report naming)",
+          "assumption": ""
+        },
+        {
+          "id": "C07.1",
+          "status": "PASS",
+          "title": "MD5 computed",
+          "evidence": [
+            "e21f3187c51a71b15412594780287bac  OS0000_S8_07112026_v0.gds",
+            "same format as md5sum; run md5sum on the final file after any rename"
+          ],
+          "evidence_total": 2,
+          "source": "[Procedure] Design Verification Guidelines (MD5 checksum)",
+          "assumption": ""
+        },
+        {
+          "id": "C07.2",
+          "status": "MANUAL",
+          "title": "MD5 report not compared",
+          "evidence": [
+            "no --md5-report given"
+          ],
+          "evidence_total": 1,
+          "source": "[Procedure] Design Verification Guidelines (MD5 checksum)",
+          "assumption": ""
+        },
+        {
+          "id": "C08.1",
+          "status": "PASS",
+          "title": "Pad count: 16, expected 16",
+          "evidence": [
+            "16 listed pad instances, flattened under the top cell; the 2 mm die needs 16",
+            "by type: IPAD2D 4, IPAD30 1, IPAD3D 1, OPAD04 6, PVDD01 2, PVSS01 2"
+          ],
+          "evidence_total": 2,
+          "source": "[Pad doc] pp.3-11; PDK_GUIDE.md section 6",
+          "assumption": ""
+        },
+        {
+          "id": "C08.2",
+          "status": "PASS",
+          "title": "PVDD01 (VDD) count: 2, expected 2",
+          "evidence": [
+            "2 PVDD01 instances; the 2 mm die needs 2"
+          ],
+          "evidence_total": 1,
+          "source": "[Pad doc] pp.3-11; PDK_GUIDE.md section 6",
+          "assumption": ""
+        },
+        {
+          "id": "C08.3",
+          "status": "PASS",
+          "title": "PVSS01 (VSS) count: 2, expected 2",
+          "evidence": [
+            "2 PVSS01 instances; the 2 mm die needs 2"
+          ],
+          "evidence_total": 1,
+          "source": "[Pad doc] pp.3-11; PDK_GUIDE.md section 6",
+          "assumption": ""
+        },
+        {
+          "id": "C09.1",
+          "status": "PASS",
+          "title": "PVDD01 positions and orientations match the reference frame",
+          "evidence": [
+            "PVDD01 at (304.900, 851.200) R270 mirrored",
+            "PVDD01 at (1695.100, 1201.200) R270"
+          ],
+          "evidence_total": 2,
+          "source": "[Pad doc] p.3 onward: position and type of power pads \"should not be altered\"",
+          "assumption": ""
+        },
+        {
+          "id": "C09.2",
+          "status": "PASS",
+          "title": "PVSS01 positions and orientations match the reference frame",
+          "evidence": [
+            "PVSS01 at (304.900, 1201.200) R270 mirrored",
+            "PVSS01 at (1695.100, 851.200) R270"
+          ],
+          "evidence_total": 2,
+          "source": "[Pad doc] p.3 onward: position and type of power pads \"should not be altered\"",
+          "assumption": ""
+        },
+        {
+          "id": "C09.3",
+          "status": "WARN",
+          "title": "SCL hasn't confirmed which pad frame set is correct",
+          "evidence": [
+            "used set 'padframe': PDK/PadFrame_C1D (top-level kit folder)",
+            "reference file: /mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/pad_frame_gds/frame2mmx2mm.gds",
+            "other set 'analog': power pad positions are identical for this die",
+            "cell frame2mmx2mm in this file matches set: neither",
+            "cell OS_SCL_logo in this file matches: pad library of set padframe"
+          ],
+          "evidence_total": 5,
+          "source": "PDK_GUIDE.md section 6 (two frame sets) and section 14 (open helpdesk question)",
+          "assumption": ""
+        },
+        {
+          "id": "C10.1",
+          "status": "PASS",
+          "title": "All pads come from io_pad_list.txt",
+          "evidence": [
+            "types used: IPAD2D, IPAD30, IPAD3D, OPAD04, PVDD01, PVSS01"
+          ],
+          "evidence_total": 1,
+          "source": "PF/klayout/lvs_cdl/io_pad_list.txt; [Pad doc] pp.13-14 (changing signal pads)",
+          "assumption": ""
+        },
+        {
+          "id": "C10.2",
+          "status": "WARN",
+          "title": "12 signal pad changes from the reference frame",
+          "evidence": [
+            "0 of 12 reference signal positions unchanged",
+            "type changed: IPAD00 replaced by IPAD2D at (304.900, 350.950) R90. Update the .cdl to match",
+            "type changed: AIPAD00 replaced by OPAD04 at (304.900, 1605.800) R270 mirrored. Update the .cdl to match",
+            "type changed: AIPAD00 replaced by OPAD04 at (350.950, 304.900) R0 mirrored. Update the .cdl to match",
+            "type changed: IPAD00 replaced by IPAD2D at (350.950, 1695.100) R0. Update the .cdl to match",
+            "type changed: IPAD00 replaced by IPAD2D at (700.950, 304.900) R0 mirrored. Update the .cdl to match",
+            "type changed: AIPAD00 replaced by OPAD04 at (700.950, 1695.100) R0. Update the .cdl to match",
+            "type changed: AIPAD00 replaced by OPAD04 at (1050.950, 304.900) R0 mirrored. Update the .cdl to match",
+            "type changed: IPAD00 replaced by IPAD2D at (1050.950, 1695.100) R0. Update the .cdl to match",
+            "type changed: IPAD00 replaced by IPAD30 at (1400.950, 304.900) R0 mirrored. Update the .cdl to match",
+            "type changed: AIPAD00 replaced by OPAD04 at (1400.950, 1695.100) R0. Update the .cdl to match",
+            "type changed: AIPAD00 replaced by OPAD04 at (1695.100, 350.950) R90 mirrored. Update the .cdl to match",
+            "type changed: IPAD00 replaced by IPAD3D at (1695.100, 1605.800) R270. Update the .cdl to match"
+          ],
+          "evidence_total": 13,
+          "source": "PF/klayout/lvs_cdl/io_pad_list.txt; [Pad doc] pp.13-14 (changing signal pads)",
+          "assumption": "Type swaps are reported, not failed, because [Pad doc] step 4 permits them."
+        },
+        {
+          "id": "C10.3",
+          "status": "PASS",
+          "title": "Every pad has a 90.000 x 90.000 window",
+          "evidence": [
+            "IPAD2D: window (84.350, 369.750) to (174.350, 459.750)",
+            "IPAD2D: window (369.750, 1825.650) to (459.750, 1915.650)",
+            "IPAD2D: window (719.750, 84.350) to (809.750, 174.350)",
+            "IPAD2D: window (1069.750, 1825.650) to (1159.750, 1915.650)",
+            "IPAD30: window (1419.750, 84.350) to (1509.750, 174.350)",
+            "IPAD3D: window (1825.650, 1497.000) to (1915.650, 1587.000)",
+            "OPAD04: window (84.350, 1497.000) to (174.350, 1587.000)",
+            "OPAD04: window (369.750, 84.350) to (459.750, 174.350)",
+            "OPAD04: window (719.750, 1825.650) to (809.750, 1915.650)",
+            "OPAD04: window (1069.750, 84.350) to (1159.750, 174.350)",
+            "OPAD04: window (1419.750, 1825.650) to (1509.750, 1915.650)",
+            "OPAD04: window (1825.650, 369.750) to (1915.650, 459.750)",
+            "PVDD01: window (84.350, 743.300) to (174.350, 833.300)",
+            "PVDD01: window (1825.650, 1093.300) to (1915.650, 1183.300)",
+            "PVSS01: window (84.350, 1093.300) to (174.350, 1183.300)",
+            "PVSS01: window (1825.650, 743.300) to (1915.650, 833.300)"
+          ],
+          "evidence_total": 16,
+          "source": "[Analog doc] rule 11.1.1; [DRC deck] line 530",
+          "assumption": ""
+        },
+        {
+          "id": "C10.4",
+          "status": "PASS",
+          "title": "No stray shapes on the pad layer",
+          "evidence": [
+            "checked flat, excluding listed pads, the logo and a declared block"
+          ],
+          "evidence_total": 1,
+          "source": "[Analog doc] rule 11.1.1; [DRC deck] line 530",
+          "assumption": ""
+        },
+        {
+          "id": "C11.1",
+          "status": "PASS",
+          "title": "Library-named cells match the reference geometry",
+          "evidence": [
+            "reference names: 68 standard cells from core_c1d.lef, 20 pads from io_pad_list.txt",
+            "23 library-named cells in this file, all identical to the reference"
+          ],
+          "evidence_total": 2,
+          "source": "[Procedure] Design Kit (do not edit or rename library cells)",
+          "assumption": "Compared on merged polygons per layer, so how an area is split into shapes doesn't count as an edit."
+        },
+        {
+          "id": "C11.2",
+          "status": "PASS",
+          "title": "Library cell labels match a reference copy",
+          "evidence": [
+            "23 cells compared with the pad library, the standard cell library and the chosen frame"
+          ],
+          "evidence_total": 1,
+          "source": "[Procedure] Design Kit (do not edit or rename library cells)",
+          "assumption": ""
+        },
+        {
+          "id": "C12.1",
+          "status": "PASS",
+          "title": "No renamed copies of library cells",
+          "evidence": [
+            "0 cells with a library cell's outline compared; no matches"
+          ],
+          "evidence_total": 1,
+          "source": "[Procedure] Design Kit (do not edit or rename library cells)",
+          "assumption": "Matches translated copies only. A rotated, mirrored or edited copy under another name isn't detected."
+        },
+        {
+          "id": "C13.1",
+          "status": "PASS",
+          "title": "All layers are in the layer table",
+          "evidence": [
+            "used: 1/0, 2/0, 3/0, 4/0, 5/0, 6/0, 7/0, 8/0, 8/7, 9/0, 10/0, 10/7, 11/0, 28/0, 35/0, 36/0, 37/0, 38/0, 39/0, 40/0, 999/0"
+          ],
+          "evidence_total": 1,
+          "source": "PDK_GUIDE.md section 5, Layers table",
+          "assumption": "Marker layers the table lists without a datatype are taken as datatype 0, as the deck reads them."
+        },
+        {
+          "id": "C14.1",
+          "status": "PASS",
+          "title": "Layer 999:0 is within the deck's limit",
+          "evidence": [
+            "1 polygon on layer 999:0 flattened under 'OS0000', 0 drawn directly in it; the deck's limit is 2"
+          ],
+          "evidence_total": 1,
+          "source": "[DRC deck] lines 93, 120-121; PDK_GUIDE.md section 5",
+          "assumption": "The deck's message says 'top cell', but its count comes from a flattened region, so instances count (my reading of the deck; the deck hasn't been run)."
+        },
+        {
+          "id": "C14.2",
+          "status": "PASS",
+          "title": "No layer 999 polygons outside the logo or a declared block",
+          "evidence": [
+            "1 polygon in recognised SCL cells"
+          ],
+          "evidence_total": 1,
+          "source": "[DRC deck] lines 93, 120-121; PDK_GUIDE.md section 5",
+          "assumption": ""
+        },
+        {
+          "id": "C14.3",
+          "status": "PASS",
+          "title": "No user shapes under SCL's layer 999 cover",
+          "evidence": [],
+          "evidence_total": 0,
+          "source": "[DRC deck] lines 93, 120-121; PDK_GUIDE.md section 5",
+          "assumption": ""
+        },
+        {
+          "id": "C15.1",
+          "status": "MANUAL",
+          "title": "Silicon number block not checked",
+          "evidence": [
+            "its format isn't known until it is issued; re-run with --silicon-block <gds>, or confirm by eye that it is inserted unmodified and unscaled"
+          ],
+          "evidence_total": 1,
+          "source": "[Procedure] Integrate GDS Block into Design (no modification or scaling)",
+          "assumption": ""
+        },
+        {
+          "id": "C16.1",
+          "status": "PASS",
+          "title": "No user metal contains a 25.000 x 25.000 um square",
+          "evidence": [
+            "metal 1 and metal 2, flattened and merged"
+          ],
+          "evidence_total": 1,
+          "source": "[Analog doc] Level 8 and Level 10 mandatory rules (PDF pp.29, 31)",
+          "assumption": "Read as: no merged metal shape may contain a 25.000 x 25.000 um square. A long narrow bus is allowed. Exact for right-angled shapes; for angled edges it can over-report, never under-report."
+        },
+        {
+          "id": "C16.2",
+          "status": "WARN",
+          "title": "Pad metal is over 25.000 x 25.000 um; the PDK doesn't say if pads are exempt",
+          "evidence": [
+            "metal 1: shape within (0.000, 1395.800) to (209.050, 1605.800); a 25.000 x 25.000 um square fits with its centre in (12.500, 1408.300) to (36.200, 1593.300)",
+            "metal 1: shape within (0.000, 350.950) to (209.050, 590.350); a 25.000 x 25.000 um square fits with its centre in (12.500, 363.450) to (36.200, 577.850)",
+            "metal 1: shape within (0.000, 1050.000) to (211.200, 1201.200); a 25.000 x 25.000 um square fits with its centre in (12.500, 1062.500) to (198.700, 1188.700)",
+            "metal 1: shape within (1788.800, 700.000) to (2000.000, 851.200); a 25.000 x 25.000 um square fits with its centre in (1801.300, 712.500) to (1987.500, 838.700)",
+            "metal 1: shape within (0.000, 700.000) to (48.700, 851.200); a 25.000 x 25.000 um square fits with its centre in (12.500, 712.500) to (36.200, 838.700)",
+            "metal 1: shape within (57.750, 700.000) to (304.900, 851.200); a 25.000 x 25.000 um square fits with its centre in (70.250, 712.500) to (292.400, 838.700)",
+            "metal 1: shape within (1805.900, 352.700) to (1942.650, 478.350); a 25.000 x 25.000 um square fits with its centre in (1818.400, 365.200) to (1908.150, 465.750)",
+            "metal 1: shape within (1695.100, 1050.000) to (1942.250, 1201.200); a 25.000 x 25.000 um square fits with its centre in (1707.600, 1062.500) to (1929.750, 1188.700)",
+            "metal 1: shape within (1695.100, 350.950) to (1880.500, 560.950); a 25.000 x 25.000 um square fits with its centre in (1707.600, 363.450) to (1773.300, 548.450)",
+            "metal 1: shape within (1790.950, 1366.400) to (2000.000, 1605.800); a 25.000 x 25.000 um square fits with its centre in (1963.800, 1378.900) to (1987.500, 1593.300)",
+            "metal 1: shape within (70.650, 350.950) to (304.900, 590.350); a 25.000 x 25.000 um square fits with its centre in (223.902, 363.450) to (292.400, 577.850)",
+            "metal 1: shape within (350.950, 1790.950) to (590.350, 2000.000); a 25.000 x 25.000 um square fits with its centre in (363.450, 1963.800) to (577.850, 1987.500)",
+            "metal 1: shape within (350.950, 1695.100) to (590.350, 1929.350); a 25.000 x 25.000 um square fits with its centre in (363.450, 1707.600) to (577.850, 1776.098)",
+            "metal 1: shape within (1400.950, 1790.950) to (1610.950, 2000.000); a 25.000 x 25.000 um square fits with its centre in (1413.450, 1963.800) to (1598.450, 1987.500)",
+            "metal 1: shape within (1400.950, 70.650) to (1640.350, 304.900); a 25.000 x 25.000 um square fits with its centre in (1413.450, 222.500) to (1627.850, 292.400)",
+            "metal 1: shape within (700.950, 1695.100) to (910.950, 1880.500); a 25.000 x 25.000 um square fits with its centre in (713.450, 1707.600) to (898.450, 1773.300)",
+            "metal 1: shape within (214.200, 1050.000) to (304.900, 1201.200); a 25.000 x 25.000 um square fits with its centre in (226.700, 1062.500) to (292.400, 1188.700)",
+            "metal 1: shape within (1050.950, 0.000) to (1260.950, 209.050); a 25.000 x 25.000 um square fits with its centre in (1063.450, 12.500) to (1248.450, 36.200)",
+            "metal 1: shape within (1050.950, 1695.100) to (1290.350, 1929.350); a 25.000 x 25.000 um square fits with its centre in (1063.450, 1707.600) to (1277.850, 1776.098)",
+            "metal 1: shape within (1805.900, 1478.400) to (1942.650, 1604.050); a 25.000 x 25.000 um square fits with its centre in (1818.400, 1491.000) to (1908.150, 1591.550)",
+            "metal 1: shape within (119.500, 1395.800) to (304.900, 1605.800); a 25.000 x 25.000 um square fits with its centre in (226.700, 1408.300) to (292.400, 1593.300)",
+            "metal 1: shape within (700.950, 1790.950) to (910.950, 2000.000); a 25.000 x 25.000 um square fits with its centre in (713.450, 1963.800) to (898.450, 1987.500)",
+            "metal 1: shape within (1050.950, 1790.950) to (1290.350, 2000.000); a 25.000 x 25.000 um square fits with its centre in (1063.450, 1963.800) to (1277.850, 1987.500)",
+            "metal 1: shape within (700.950, 70.650) to (940.350, 304.900); a 25.000 x 25.000 um square fits with its centre in (713.450, 223.902) to (927.850, 292.400)",
+            "metal 1: shape within (1790.950, 350.950) to (2000.000, 560.950); a 25.000 x 25.000 um square fits with its centre in (1963.800, 363.450) to (1987.500, 548.450)",
+            "metal 1: shape within (57.350, 1478.400) to (194.100, 1604.050); a 25.000 x 25.000 um square fits with its centre in (91.850, 1491.000) to (181.600, 1591.550)",
+            "metal 1: shape within (350.950, 119.500) to (560.950, 304.900); a 25.000 x 25.000 um square fits with its centre in (363.450, 226.700) to (548.450, 292.400)",
+            "metal 1: shape within (1052.700, 57.350) to (1178.350, 194.100); a 25.000 x 25.000 um square fits with its centre in (1065.200, 91.850) to (1165.750, 181.600)",
+            "metal 1: shape within (1050.950, 119.500) to (1260.950, 304.900); a 25.000 x 25.000 um square fits with its centre in (1063.450, 226.700) to (1248.450, 292.400)",
+            "metal 1: shape within (700.950, 0.000) to (940.350, 209.050); a 25.000 x 25.000 um square fits with its centre in (713.450, 12.500) to (927.850, 36.200)",
+            "metal 1: shape within (57.350, 352.700) to (194.100, 478.350); a 25.000 x 25.000 um square fits with its centre in (91.850, 365.200) to (181.600, 465.750)",
+            "metal 1: shape within (1695.100, 1366.400) to (1929.350, 1605.800); a 25.000 x 25.000 um square fits with its centre in (1707.600, 1378.900) to (1777.500, 1593.300)",
+            "metal 1: shape within (702.700, 57.350) to (828.350, 194.100); a 25.000 x 25.000 um square fits with its centre in (715.200, 91.850) to (815.750, 181.600)",
+            "metal 1: shape within (352.700, 57.350) to (478.350, 194.100); a 25.000 x 25.000 um square fits with its centre in (365.200, 91.850) to (465.750, 181.600)",
+            "metal 1: shape within (1951.300, 1050.000) to (2000.000, 1201.200); a 25.000 x 25.000 um square fits with its centre in (1963.800, 1062.500) to (1987.500, 1188.700)",
+            "metal 1: shape within (1402.700, 57.350) to (1528.350, 194.100); a 25.000 x 25.000 um square fits with its centre in (1415.200, 91.850) to (1515.750, 181.600)",
+            "metal 1: shape within (350.950, 0.000) to (560.950, 209.050); a 25.000 x 25.000 um square fits with its centre in (363.450, 12.500) to (548.450, 36.200)",
+            "metal 1: shape within (1400.950, 0.000) to (1640.350, 209.050); a 25.000 x 25.000 um square fits with its centre in (1413.450, 12.500) to (1627.850, 36.200)",
+            "metal 1: shape within (702.700, 1805.900) to (828.350, 1942.650); a 25.000 x 25.000 um square fits with its centre in (715.200, 1818.400) to (815.750, 1908.150)",
+            "metal 1: shape within (352.700, 1805.900) to (478.350, 1942.650); a 25.000 x 25.000 um square fits with its centre in (365.200, 1818.400) to (465.750, 1908.150)",
+            "metal 1: shape within (1052.700, 1805.900) to (1178.350, 1942.650); a 25.000 x 25.000 um square fits with its centre in (1065.200, 1818.400) to (1165.750, 1908.150)",
+            "metal 1: shape within (1695.100, 700.000) to (1785.800, 851.200); a 25.000 x 25.000 um square fits with its centre in (1707.600, 712.500) to (1773.300, 838.700)",
+            "metal 1: shape within (1400.950, 1695.100) to (1610.950, 1880.500); a 25.000 x 25.000 um square fits with its centre in (1413.450, 1707.600) to (1598.450, 1773.300)",
+            "metal 1: shape within (1402.700, 1805.900) to (1528.350, 1942.650); a 25.000 x 25.000 um square fits with its centre in (1415.200, 1818.400) to (1515.750, 1908.150)",
+            "metal 2: shape within (1050.950, 1951.300) to (1290.350, 2000.000); a 25.000 x 25.000 um square fits with its centre in (1063.450, 1963.800) to (1277.850, 1987.500)",
+            "metal 2: shape within (700.950, 0.000) to (940.350, 48.700); a 25.000 x 25.000 um square fits with its centre in (713.450, 12.500) to (927.850, 36.200)",
+            "metal 2: shape within (1951.300, 1050.000) to (2000.000, 1201.200); a 25.000 x 25.000 um square fits with its centre in (1963.800, 1062.500) to (1987.500, 1188.700)",
+            "metal 2: shape within (1695.100, 700.000) to (2000.000, 851.200); a 25.000 x 25.000 um square fits with its centre in (1707.600, 712.500) to (1987.500, 838.700)",
+            "metal 2: shape within (1400.950, 1899.500) to (1610.950, 2000.000); a 25.000 x 25.000 um square fits with its centre in (1413.450, 1963.800) to (1598.450, 1987.500)",
+            "metal 2: shape within (714.750, 55.750) to (900.350, 179.350); a 25.000 x 25.000 um square fits with its centre in (727.250, 68.250) to (843.620, 166.850)",
+            "metal 2: shape within (1787.300, 364.750) to (1948.050, 542.950); a 25.000 x 25.000 um square fits with its centre in (1833.150, 377.250) to (1908.150, 500.447)",
+            "metal 2: shape within (1695.450, 1088.200) to (1927.350, 1188.300); a 25.000 x 25.000 um square fits with its centre in (1707.950, 1100.700) to (1914.850, 1175.800)",
+            "metal 2: shape within (1400.950, 0.000) to (1640.350, 189.600); a 25.000 x 25.000 um square fits with its centre in (1413.450, 12.500) to (1627.850, 36.200)",
+            "metal 2: shape within (364.750, 1820.650) to (550.350, 1944.250); a 25.000 x 25.000 um square fits with its centre in (377.250, 1833.150) to (493.620, 1931.750)",
+            "metal 2: shape within (1064.750, 1820.650) to (1250.350, 1944.250); a 25.000 x 25.000 um square fits with its centre in (1077.250, 1833.150) to (1193.620, 1931.750)",
+            "metal 2: shape within (350.950, 1951.300) to (590.350, 2000.000); a 25.000 x 25.000 um square fits with its centre in (363.450, 1963.800) to (577.850, 1987.500)",
+            "metal 2: shape within (700.950, 1899.500) to (910.950, 2000.000); a 25.000 x 25.000 um square fits with its centre in (713.450, 1963.800) to (898.450, 1987.500)",
+            "metal 2: shape within (1899.500, 350.950) to (2000.000, 560.950); a 25.000 x 25.000 um square fits with its centre in (1963.800, 363.450) to (1987.500, 548.450)",
+            "metal 2: shape within (714.750, 1787.300) to (892.950, 1948.050); a 25.000 x 25.000 um square fits with its centre in (727.250, 1833.150) to (850.447, 1908.150)",
+            "metal 2: shape within (0.000, 350.950) to (48.700, 590.350); a 25.000 x 25.000 um square fits with its centre in (12.500, 363.450) to (36.200, 577.850)",
+            "metal 2: shape within (1414.750, 55.750) to (1581.150, 179.350); a 25.000 x 25.000 um square fits with its centre in (1427.250, 68.250) to (1543.620, 166.850)",
+            "metal 2: shape within (0.000, 1395.800) to (100.500, 1605.800); a 25.000 x 25.000 um square fits with its centre in (12.500, 1408.300) to (36.200, 1593.300)",
+            "metal 2: shape within (1064.750, 51.950) to (1242.950, 212.700); a 25.000 x 25.000 um square fits with its centre in (1077.250, 91.850) to (1200.447, 166.850)",
+            "metal 2: shape within (1810.400, 1366.400) to (2000.000, 1605.800); a 25.000 x 25.000 um square fits with its centre in (1963.800, 1378.900) to (1987.500, 1593.300)",
+            "metal 2: shape within (72.650, 738.200) to (304.550, 838.300); a 25.000 x 25.000 um square fits with its centre in (85.150, 750.700) to (292.050, 825.800)",
+            "metal 2: shape within (55.750, 364.750) to (179.350, 550.350); a 25.000 x 25.000 um square fits with its centre in (68.250, 377.250) to (166.850, 493.620)",
+            "metal 2: shape within (350.950, 0.000) to (560.950, 100.500); a 25.000 x 25.000 um square fits with its centre in (363.450, 12.500) to (548.450, 36.200)",
+            "metal 2: shape within (0.000, 700.000) to (48.700, 851.200); a 25.000 x 25.000 um square fits with its centre in (12.500, 712.500) to (36.200, 838.700)",
+            "metal 2: shape within (1820.650, 1421.150) to (1944.250, 1592.000); a 25.000 x 25.000 um square fits with its centre in (1833.150, 1463.130) to (1931.750, 1579.500)",
+            "metal 2: shape within (364.750, 51.950) to (542.950, 212.700); a 25.000 x 25.000 um square fits with its centre in (377.250, 91.850) to (500.447, 166.850)",
+            "metal 2: shape within (0.000, 1050.000) to (304.900, 1201.200); a 25.000 x 25.000 um square fits with its centre in (12.500, 1062.500) to (292.400, 1188.700)",
+            "metal 2: shape within (1050.950, 0.000) to (1260.950, 100.500); a 25.000 x 25.000 um square fits with its centre in (1063.450, 12.500) to (1248.450, 36.200)",
+            "metal 2: shape within (1414.750, 1787.300) to (1592.950, 1948.050); a 25.000 x 25.000 um square fits with its centre in (1427.250, 1833.150) to (1550.447, 1908.150)",
+            "metal 2: shape within (51.950, 1413.800) to (212.700, 1592.000); a 25.000 x 25.000 um square fits with its centre in (91.850, 1456.303) to (166.850, 1579.500)"
+          ],
+          "evidence_total": 74,
+          "source": "[Analog doc] Level 8 and Level 10 mandatory rules (PDF pp.29, 31)",
+          "assumption": "The PDK doesn't say whether pads are exempt, so pad metal is reported separately instead of failing."
+        },
+        {
+          "id": "C16.3",
+          "status": "WARN",
+          "title": "Frame, logo, block or standard cell metal is over 25.000 x 25.000 um",
+          "evidence": [
+            "metal 1: shape within (0.000, 0.000) to (2000.000, 2000.000); a 25.000 x 25.000 um square fits with its centre in (12.500, 12.500) to (1987.500, 1987.500)",
+            "metal 1: shape within (214.200, 214.200) to (1785.800, 1785.800); a 25.000 x 25.000 um square fits with its centre in (226.700, 226.700) to (1773.300, 1773.300)"
+          ],
+          "evidence_total": 2,
+          "source": "[Analog doc] Level 8 and Level 10 mandatory rules (PDF pp.29, 31)",
+          "assumption": "The PDK doesn't say whether pads are exempt, so pad metal is reported separately instead of failing."
+        },
+        {
+          "id": "C16.4",
+          "status": "PASS",
+          "title": "No wide metal formed by joining user and SCL metal",
+          "evidence": [],
+          "evidence_total": 0,
+          "source": "[Analog doc] Level 8 and Level 10 mandatory rules (PDF pp.29, 31)",
+          "assumption": ""
+        },
+        {
+          "id": "C17.1",
+          "status": "PASS",
+          "title": "No via over contact or poly in user geometry",
+          "evidence": [
+            "flattened; overlaps between SCL's own cells are reported in C17.2",
+            "[DRC deck] rule 9.3.1 also flags via over contact, although [Analog doc] Level 9 says no check is defined. This check doesn't rely on the deck."
+          ],
+          "evidence_total": 2,
+          "source": "[Analog doc] Level 9 mandatory rule (PDF p.30)",
+          "assumption": ""
+        },
+        {
+          "id": "C17.2",
+          "status": "WARN",
+          "title": "SCL's own cells have via over contact or poly. Ask SCL whether they are accepted",
+          "evidence": [
+            "OS_SCL_logo: 2 overlaps of via over contact, first at (5.750, 5.350) to (44.415, 44.015) in cell coordinates",
+            "OS_SCL_logo: 2 overlaps of via over poly, first at (5.750, 5.350) to (44.415, 44.015) in cell coordinates"
+          ],
+          "evidence_total": 2,
+          "source": "[Analog doc] Level 9 mandatory rule (PDF p.30)",
+          "assumption": "Unmodified SCL cells warn, because the designer can't edit them."
+        },
+        {
+          "id": "C18.1",
+          "status": "MANUAL",
+          "title": "Metal necking at single diffusion contacts",
+          "evidence": [
+            "review by hand: this rule has no DRC check and no check here"
+          ],
+          "evidence_total": 1,
+          "source": "[Analog doc] Level 8 mandatory rules, Fig.9A (PDF p.29), states no DRC check",
+          "assumption": ""
+        },
+        {
+          "id": "C18.2",
+          "status": "MANUAL",
+          "title": "Metal 1 bus width on a single diffusion contact",
+          "evidence": [
+            "review by hand against the 12 um limit: no DRC check and no check here"
+          ],
+          "evidence_total": 1,
+          "source": "[Analog doc] Level 8 mandatory rules, Fig.9A (PDF p.29), states no DRC check",
+          "assumption": ""
+        },
+        {
+          "id": "C18.3",
+          "status": "MANUAL",
+          "title": "ERC guidelines",
+          "evidence": [
+            "review each item in Table 11A; the deck reports only some of them, as @GUIDELINE"
+          ],
+          "evidence_total": 1,
+          "source": "[Analog doc] Table 11A",
+          "assumption": ""
+        },
+        {
+          "id": "C18.4",
+          "status": "MANUAL",
+          "title": "All electrical checks",
+          "evidence": [
+            "current density, operating limits, connectivity and device use are outside this tool"
+          ],
+          "evidence_total": 1,
+          "source": "[Analog doc] sections 2 and 5, Tables 3 and 4; [Digital doc] Tables 6 and 7",
+          "assumption": ""
+        },
+        {
+          "id": "C19.1",
+          "status": "PASS",
+          "title": "DRC report is a valid KLayout marker database",
+          "evidence": [
+            "72 categories, 0 markers",
+            "generator: drc: script='decks/c1d_drc.drc'",
+            "top cell: OS0000",
+            "original file: (none)"
+          ],
+          "evidence_total": 4,
+          "source": "[Procedure] Design Verification Guidelines; PDK_GUIDE.md section 4; [DRC deck] @GUIDELINE outputs",
+          "assumption": ""
+        },
+        {
+          "id": "C19.2",
+          "status": "PASS",
+          "title": "No markers in rule categories",
+          "evidence": [
+            "65 rule categories with 0 markers in this report. This doesn't show the report is current or from this file"
+          ],
+          "evidence_total": 1,
+          "source": "[Procedure] Design Verification Guidelines; PDK_GUIDE.md section 4; [DRC deck] @GUIDELINE outputs",
+          "assumption": ""
+        },
+        {
+          "id": "C19.3",
+          "status": "PASS",
+          "title": "No @GUIDELINE markers",
+          "evidence": [],
+          "evidence_total": 0,
+          "source": "[Procedure] Design Verification Guidelines; PDK_GUIDE.md section 4; [DRC deck] @GUIDELINE outputs",
+          "assumption": ""
+        },
+        {
+          "id": "C19.4",
+          "status": "PASS",
+          "title": "DRC report names this layout",
+          "evidence": [],
+          "evidence_total": 0,
+          "source": "[Procedure] Design Verification Guidelines; PDK_GUIDE.md section 4; [DRC deck] @GUIDELINE outputs",
+          "assumption": "Names only: the report holds no checksum of the GDS, so it can't prove it was run on these bytes."
+        },
+        {
+          "id": "C20.1",
+          "status": "MANUAL",
+          "title": "DRC and LVS must still be run separately",
+          "evidence": [
+            "This tool does not replace DRC or LVS. Both must still be run separately with SCL's current deck, and no result here, including a run with no FAILs, means the design is ready to submit."
+          ],
+          "evidence_total": 1,
+          "source": "[Procedure] Design Verification Guidelines; PDK_GUIDE.md sections 4 and 13",
+          "assumption": ""
+        }
+      ]
+    },
+    "layout_negatives": [
+      {
+        "test": "control: unchanged copy",
+        "deck": "DRC",
+        "expected": "pass",
+        "failed": false,
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "test": "control: unchanged copy",
+        "deck": "LVS",
+        "expected": "pass",
+        "failed": false,
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "test": "M1 0.5 um above a row rail, core cell",
+        "deck": "DRC",
+        "expected": "fail",
+        "failed": true,
+        "ok": true,
+        "detail": {
+          "8.1.1 : Minimum Metal1 spacing violation": 2
+        }
+      },
+      {
+        "test": "M2 1.0 wide on the VSS ring, top cell",
+        "deck": "DRC",
+        "expected": "pass",
+        "failed": false,
+        "ok": true,
+        "detail": "no error expected: it merges with the ring"
+      },
+      {
+        "test": "M2 too close to the VSS ring, wires cell",
+        "deck": "DRC",
+        "expected": "fail",
+        "failed": true,
+        "ok": true,
+        "detail": {
+          "10.2.1 : Minimum Metal2 width violations": 1
+        }
+      },
+      {
+        "test": "one flip-flop moved 1 um",
+        "deck": "DRC",
+        "expected": "fail",
+        "failed": true,
+        "ok": true,
+        "detail": {
+          "5.7.1 : Minimum Boron spacing violations": 1,
+          "8.1.1 : Minimum Metal1 spacing violation": 1,
+          "9.4.1 : Minimum via to Poly spacing viol": 1,
+          "10.1.1 : Minimum Metal2 to Metal2 spacin": 2,
+          "10.2.1 : Minimum Metal2 width violations": 2
+        }
+      },
+      {
+        "test": "one routed via removed",
+        "deck": "LVS",
+        "expected": "fail",
+        "failed": true,
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "test": "signal shorted to VSS ring",
+        "deck": "LVS",
+        "expected": "fail",
+        "failed": true,
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "test": "schematic: one inverter's pins swapped",
+        "deck": "LVS",
+        "expected": "fail",
+        "failed": true,
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "test": "VSS pad wires removed",
+        "deck": "metal check",
+        "expected": "fail",
+        "failed": true,
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "test": "VSS pad wires removed",
+        "deck": "LVS, for information",
+        "expected": "either",
+        "failed": false,
+        "ok": true,
+        "detail": "whether SCL's LVS notices"
+      }
+    ],
+    "raw_extraction": {
+      "check_id": "parasitic_validation",
+      "status": "FAIL",
+      "limitation_id": "SCL-C1D-RCX-001",
+      "openrcx_total_pf": 0.1374,
+      "diagnostic_estimate_pf": 26.915,
+      "estimate_to_raw_ratio": 195.88791848617177,
+      "matched_nets": 361,
+      "unmatched_nets": 0,
+      "raw_artifact_structure": "PASS",
+      "estimate_electrical_validation": "NOT RUN",
+      "full_reference_result": 1
+    },
+    "clock_trace": "flip-flops 45, reaching clk through clock buffers 45, buffer levels {4: 45}\nother loads on the clock nets: ['OR2101 _261_.IN2 on clk', 'INVR02 clkload0.IN1 on clknet_3_3_0_clk', 'INVR02 clkload1.IN1 on clknet_3_5_0_clk', 'INVR02 clkload2.IN1 on clknet_3_7_0_clk']\n",
+    "routed_equivalence": {
+      "status": "PASS",
+      "status_record": "PASS 0 21",
+      "liberty_sha256": "a82de2677dd6c6a79514e6779187edbeac3dd378630d76473e2787ce87cb1f6c",
+      "gold_sha256": "fa52f0fb87289df5dd2f1f5e6004538fb513956fc834ad78556c39021a86ca46",
+      "gate_sha256": "e0d318fd3fb5193b4b5ab443fd906e861c499e0172e6a98a675a33eb12c6bd72"
+    },
+    "rtl_tests": {
+      "tests": 20,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "routed_min": {
+      "tests": 20,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "routed_typ": {
+      "tests": 20,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "routed_max": {
+      "tests": 20,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "seeded_sdf": {
+      "runs": 15,
+      "tests": 300,
+      "initialized_flops": 45,
+      "distinct_seeds": true,
+      "same_seed_across_corners": true
+    },
+    "sdf_annotation": [
+      {
+        "corner": "min",
+        "expected_ns": 1.308,
+        "measured_ns": 1.308,
+        "ok": true
+      },
+      {
+        "corner": "typ",
+        "expected_ns": 2.539,
+        "measured_ns": 2.539,
+        "ok": true
+      },
+      {
+        "corner": "max",
+        "expected_ns": 3.027,
+        "measured_ns": 3.027,
+        "ok": true
+      }
+    ],
+    "ram_positive": {
+      "cases": 36,
+      "passed": 36,
+      "intended_timing_failures": 0
+    },
+    "ram_negative": {
+      "cases": 4,
+      "passed": 0,
+      "intended_timing_failures": 4
+    },
+    "ram_process_exits": {
+      "processes": 42,
+      "compilers": 2,
+      "simulations": 40,
+      "failed": 0,
+      "note": "Negative test failure is an explicit bench timing result; simulator processes themselves succeeded."
+    },
+    "pad_polarity": {
+      "check": "rail-level DC pad polarity",
+      "source_sha256": {
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/klayout/lvs_cdl/io_pad_c1d.cdl": "0e48625fe4789f4cb409c7c12de501bf5d03dc0c3d82ed64b0dc5114ea5292ef",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/cdl/core_iolib_c1d.cdl": "58d3100035f5164a7f0e4ccc658078ade28eb8f8e02c4791284d06bb3d004685",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/mos/bnbp49_5v": "dd3026e9d8462052d1fd327b1bcc1935ed0e4d20e26e9d66ddbb772977c16ac5",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/diode/diodes": "827bdd39d69135819077ed0ba0424fa0edde569a46ecb56a6b3c67f9a7e2fab7",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/best/nwr": "c12c5d03cd968412520b585bfccebc16c05fab442996994558879369fbbdecf2",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/mos/tntp49_5v": "7c3c003a495c7839dfd15cd667bb6e9e919ecf0ff8998ccf63cf3043a7d9e00a",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/typ/nwr": "d15e8528e0c4afaf6cbd26846e7a13bd34c476a8fbbf329792a5ef82973cc2be",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/mos/wnwp49_5v": "13c6db74da471c297e930d9a33660a91a4e6b7023d95d8d8a61a6b308e6e9971",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/worst/nwr": "d9f5dbc2d5f2a32d9b0eceb6c74f7fedc9898fa879ec1ff0ba7165dbfac0f54d"
+      },
+      "cases": [
+        {
+          "corner": "min",
+          "cell": "INVR04",
+          "direction": "up",
+          "vin": 0.0,
+          "vout": 5.49993926,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "min",
+          "cell": "INVR04",
+          "direction": "up",
+          "vin": 5.5,
+          "vout": 5.74707652e-07,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "min",
+          "cell": "INVR04",
+          "direction": "down",
+          "vin": 5.5,
+          "vout": 1.8208311e-09,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "min",
+          "cell": "INVR04",
+          "direction": "down",
+          "vin": 0.0,
+          "vout": 5.49993927,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "min",
+          "cell": "OPAD04",
+          "direction": "up",
+          "vin": 0.0,
+          "vout": 5.4999996,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "min",
+          "cell": "OPAD04",
+          "direction": "up",
+          "vin": 5.5,
+          "vout": 2.97289728e-07,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "min",
+          "cell": "OPAD04",
+          "direction": "down",
+          "vin": 5.5,
+          "vout": 2.74407802e-10,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "min",
+          "cell": "OPAD04",
+          "direction": "down",
+          "vin": 0.0,
+          "vout": 5.50036608,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "min",
+          "cell": "driver_plus_pad",
+          "direction": "up",
+          "vin": 0.0,
+          "vout": 2.74469392e-10,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "min",
+          "cell": "driver_plus_pad",
+          "direction": "up",
+          "vin": 5.5,
+          "vout": 5.50029952,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "min",
+          "cell": "driver_plus_pad",
+          "direction": "down",
+          "vin": 5.5,
+          "vout": 5.4999996,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "min",
+          "cell": "driver_plus_pad",
+          "direction": "down",
+          "vin": 0.0,
+          "vout": 2.95709032e-07,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "min",
+          "cell": "IPAD30",
+          "direction": "up",
+          "vin": 0.0,
+          "vout": 1.74061722e-09,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "min",
+          "cell": "IPAD30",
+          "direction": "up",
+          "vin": 5.5,
+          "vout": 5.49993285,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "min",
+          "cell": "IPAD30",
+          "direction": "down",
+          "vin": 5.5,
+          "vout": 5.49993285,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "min",
+          "cell": "IPAD30",
+          "direction": "down",
+          "vin": 0.0,
+          "vout": 1.74061722e-09,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "min",
+          "cell": "IPAD3D",
+          "direction": "up",
+          "vin": 0.0,
+          "vout": 1.74061722e-09,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "min",
+          "cell": "IPAD3D",
+          "direction": "up",
+          "vin": 5.5,
+          "vout": 5.49993285,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "min",
+          "cell": "IPAD3D",
+          "direction": "down",
+          "vin": 5.5,
+          "vout": 5.49993285,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "min",
+          "cell": "IPAD3D",
+          "direction": "down",
+          "vin": 0.0,
+          "vout": 1.74061722e-09,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "min",
+          "cell": "IPAD2D",
+          "direction": "up",
+          "vin": 0.0,
+          "vout": 8.24045951e-10,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "min",
+          "cell": "IPAD2D",
+          "direction": "up",
+          "vin": 5.5,
+          "vout": 5.49987337,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "min",
+          "cell": "IPAD2D",
+          "direction": "down",
+          "vin": 5.5,
+          "vout": 5.4998676,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "min",
+          "cell": "IPAD2D",
+          "direction": "down",
+          "vin": 0.0,
+          "vout": 5.79909013e-07,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "typ",
+          "cell": "INVR04",
+          "direction": "up",
+          "vin": 0.0,
+          "vout": 4.99999839,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "typ",
+          "cell": "INVR04",
+          "direction": "up",
+          "vin": 5.0,
+          "vout": 8.32552033e-09,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "typ",
+          "cell": "INVR04",
+          "direction": "down",
+          "vin": 5.0,
+          "vout": 3.11143137e-09,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "typ",
+          "cell": "INVR04",
+          "direction": "down",
+          "vin": 0.0,
+          "vout": 5.00001913,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "typ",
+          "cell": "OPAD04",
+          "direction": "up",
+          "vin": 0.0,
+          "vout": 4.99999963,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "typ",
+          "cell": "OPAD04",
+          "direction": "up",
+          "vin": 5.0,
+          "vout": 1.11742436e-09,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "typ",
+          "cell": "OPAD04",
+          "direction": "down",
+          "vin": 5.0,
+          "vout": 4.72420426e-10,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "typ",
+          "cell": "OPAD04",
+          "direction": "down",
+          "vin": 0.0,
+          "vout": 5.00000561,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "typ",
+          "cell": "driver_plus_pad",
+          "direction": "up",
+          "vin": 0.0,
+          "vout": 4.72420331e-10,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "typ",
+          "cell": "driver_plus_pad",
+          "direction": "up",
+          "vin": 5.0,
+          "vout": 5.00000362,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "typ",
+          "cell": "driver_plus_pad",
+          "direction": "down",
+          "vin": 5.0,
+          "vout": 4.99999963,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "typ",
+          "cell": "driver_plus_pad",
+          "direction": "down",
+          "vin": 0.0,
+          "vout": 1.10411731e-09,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "typ",
+          "cell": "IPAD30",
+          "direction": "up",
+          "vin": 0.0,
+          "vout": 2.96416513e-09,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "typ",
+          "cell": "IPAD30",
+          "direction": "up",
+          "vin": 5.0,
+          "vout": 4.99999865,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "typ",
+          "cell": "IPAD30",
+          "direction": "down",
+          "vin": 5.0,
+          "vout": 4.99999865,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "typ",
+          "cell": "IPAD30",
+          "direction": "down",
+          "vin": 0.0,
+          "vout": 2.96416513e-09,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "typ",
+          "cell": "IPAD3D",
+          "direction": "up",
+          "vin": 0.0,
+          "vout": 2.96416513e-09,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "typ",
+          "cell": "IPAD3D",
+          "direction": "up",
+          "vin": 5.0,
+          "vout": 4.99999865,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "typ",
+          "cell": "IPAD3D",
+          "direction": "down",
+          "vin": 5.0,
+          "vout": 4.99999865,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "typ",
+          "cell": "IPAD3D",
+          "direction": "down",
+          "vin": 0.0,
+          "vout": 2.96416513e-09,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "typ",
+          "cell": "IPAD2D",
+          "direction": "up",
+          "vin": 0.0,
+          "vout": 1.40897151e-09,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "typ",
+          "cell": "IPAD2D",
+          "direction": "up",
+          "vin": 5.0,
+          "vout": 5.00001614,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "typ",
+          "cell": "IPAD2D",
+          "direction": "down",
+          "vin": 5.0,
+          "vout": 4.99999891,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "typ",
+          "cell": "IPAD2D",
+          "direction": "down",
+          "vin": 0.0,
+          "vout": 7.28649148e-09,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "max",
+          "cell": "INVR04",
+          "direction": "up",
+          "vin": 0.0,
+          "vout": 4.49999809,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "max",
+          "cell": "INVR04",
+          "direction": "up",
+          "vin": 4.5,
+          "vout": 3.78877229e-08,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "max",
+          "cell": "INVR04",
+          "direction": "down",
+          "vin": 4.5,
+          "vout": 3.31585015e-08,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "max",
+          "cell": "INVR04",
+          "direction": "down",
+          "vin": 0.0,
+          "vout": 4.50000206,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "max",
+          "cell": "OPAD04",
+          "direction": "up",
+          "vin": 0.0,
+          "vout": 4.49999917,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "max",
+          "cell": "OPAD04",
+          "direction": "up",
+          "vin": 4.5,
+          "vout": 2.87462911e-08,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "max",
+          "cell": "OPAD04",
+          "direction": "down",
+          "vin": 4.5,
+          "vout": 2.87272045e-08,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "max",
+          "cell": "OPAD04",
+          "direction": "down",
+          "vin": 0.0,
+          "vout": 4.50001029,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "max",
+          "cell": "driver_plus_pad",
+          "direction": "up",
+          "vin": 0.0,
+          "vout": 2.87272045e-08,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "max",
+          "cell": "driver_plus_pad",
+          "direction": "up",
+          "vin": 4.5,
+          "vout": 4.50000823,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "max",
+          "cell": "driver_plus_pad",
+          "direction": "down",
+          "vin": 4.5,
+          "vout": 4.49999917,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "max",
+          "cell": "driver_plus_pad",
+          "direction": "down",
+          "vin": 0.0,
+          "vout": 2.87432878e-08,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "max",
+          "cell": "IPAD30",
+          "direction": "up",
+          "vin": 0.0,
+          "vout": 2.80827499e-08,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "max",
+          "cell": "IPAD30",
+          "direction": "up",
+          "vin": 4.5,
+          "vout": 4.49999837,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "max",
+          "cell": "IPAD30",
+          "direction": "down",
+          "vin": 4.5,
+          "vout": 4.49999837,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "max",
+          "cell": "IPAD30",
+          "direction": "down",
+          "vin": 0.0,
+          "vout": 2.80827501e-08,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "max",
+          "cell": "IPAD3D",
+          "direction": "up",
+          "vin": 0.0,
+          "vout": 2.80827501e-08,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "max",
+          "cell": "IPAD3D",
+          "direction": "up",
+          "vin": 4.5,
+          "vout": 4.49999837,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "max",
+          "cell": "IPAD3D",
+          "direction": "down",
+          "vin": 4.5,
+          "vout": 4.49999837,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "max",
+          "cell": "IPAD3D",
+          "direction": "down",
+          "vin": 0.0,
+          "vout": 2.80827499e-08,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "max",
+          "cell": "IPAD2D",
+          "direction": "up",
+          "vin": 0.0,
+          "vout": 2.26204723e-08,
+          "expect_high": false,
+          "ok": true
+        },
+        {
+          "corner": "max",
+          "cell": "IPAD2D",
+          "direction": "up",
+          "vin": 4.5,
+          "vout": 4.50000599,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "max",
+          "cell": "IPAD2D",
+          "direction": "down",
+          "vin": 4.5,
+          "vout": 4.49999866,
+          "expect_high": true,
+          "ok": true
+        },
+        {
+          "corner": "max",
+          "cell": "IPAD2D",
+          "direction": "down",
+          "vin": 0.0,
+          "vout": 2.66412858e-08,
+          "expect_high": false,
+          "ok": true
+        }
+      ],
+      "passed": true,
+      "limits": "Rail-level DC only; no timing, current rating or threshold validation."
+    },
+    "command_outcomes": {
+      "physical": 0,
+      "gate_model": 0,
+      "clock-trace": 0,
+      "routed-equivalence": 0,
+      "rtl-tests": 0,
+      "seeded-sdf": 0,
+      "sdf-probe": 0,
+      "ram-positive": 0,
+      "ram-negative": 1,
+      "routed-min": 0,
+      "routed-typ": 0,
+      "routed-max": 0,
+      "pad-polarity": 0,
+      "ram-positive-audited": 0,
+      "ram-negative-audited": 1
+    },
+    "inputs_unchanged": {
+      "live_inputs": 177,
+      "pdk_files": 254,
+      "unchanged": true
+    }
+  },
+  "qualification": "PASS",
+  "qualification_exit": 0,
+  "reference_design_result": "FAIL",
+  "reference_design_exit": 1,
+  "raw_extraction": "FAIL",
+  "signoff_ready": false,
+  "chipflow_physical_adapter_qualification": "NOT RUN",
+  "final_silicon_source_freeze": "NOT RUN"
+}

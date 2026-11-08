@@ -1,0 +1,32 @@
+test_invalid_inputs_fail_early (test_contracts.ProjectTests.test_invalid_inputs_fail_early) ... ok
+test_paths_dependencies_and_minimum_resolve (test_contracts.ProjectTests.test_paths_dependencies_and_minimum_resolve) ... ok
+test_snapshot_captures_declared_dependencies (test_contracts.ProjectTests.test_snapshot_captures_declared_dependencies) ... ok
+test_infrastructure_precedes_design_and_cancel_precedes_both (test_contracts.ResultTests.test_infrastructure_precedes_design_and_cancel_precedes_both) ... ok
+test_invalid_or_unattributed_results_rejected (test_contracts.ResultTests.test_invalid_or_unattributed_results_rejected) ... ok
+test_known_extraction_failure_is_exit_one (test_contracts.ResultTests.test_known_extraction_failure_is_exit_one) ... ok
+test_missing_or_infrastructure_evidence_is_exit_two (test_contracts.ResultTests.test_missing_or_infrastructure_evidence_is_exit_two) ... ok
+test_optional_executed_fail_is_still_failure (test_contracts.ResultTests.test_optional_executed_fail_is_still_failure) ... ok
+test_positive_full_evidence_exits_zero_without_signoff (test_contracts.ResultTests.test_positive_full_evidence_exits_zero_without_signoff) ... ok
+test_project_cannot_remove_profile_minimum (test_contracts.ResultTests.test_project_cannot_remove_profile_minimum) ... ok
+test_arguments_logs_and_nonzero_exit (test_execution.ExecutionTests.test_arguments_logs_and_nonzero_exit) ... ok
+test_cancellation_preserves_evidence_and_stops_descendants (test_execution.ExecutionTests.test_cancellation_preserves_evidence_and_stops_descendants) ... ok
+test_concurrent_runs_are_disjoint_and_prior_evidence_retained (test_execution.ExecutionTests.test_concurrent_runs_are_disjoint_and_prior_evidence_retained) ... ok
+test_failed_dependency_blocks_but_independent_stage_runs (test_execution.ExecutionTests.test_failed_dependency_blocks_but_independent_stage_runs) ... ok
+test_invalid_later_stage_rejected_before_any_commands_run (test_execution.ExecutionTests.test_invalid_later_stage_rejected_before_any_commands_run) ... ok
+test_missing_tool_recorded (test_execution.ExecutionTests.test_missing_tool_recorded) ... ok
+test_old_output_cannot_satisfy_new_stage (test_execution.ExecutionTests.test_old_output_cannot_satisfy_new_stage) ... ok
+test_timeout_terminates_process_tree (test_execution.ExecutionTests.test_timeout_terminates_process_tree) ... ok
+test_truncated_report_is_execution_failure (test_execution.ExecutionTests.test_truncated_report_is_execution_failure) ... ok
+test_unsafe_roots_cycles_and_reuse_rejected (test_execution.ExecutionTests.test_unsafe_roots_cycles_and_reuse_rejected) ... ok
+test_build_preflight_never_passes_unimplemented_flow (test_toolchain_cli.ToolchainTests.test_build_preflight_never_passes_unimplemented_flow) ... ok
+test_build_preserves_doctor_cancellation_status (test_toolchain_cli.ToolchainTests.test_build_preserves_doctor_cancellation_status) ... ok
+test_cancelled_run_gets_final_result (test_toolchain_cli.ToolchainTests.test_cancelled_run_gets_final_result) ... ok
+test_doctor_reports_missing_packages_and_records_tools (test_toolchain_cli.ToolchainTests.test_doctor_reports_missing_packages_and_records_tools) ... ok
+test_fingerprint_drift_detected_before_tool_use (test_toolchain_cli.ToolchainTests.test_fingerprint_drift_detected_before_tool_use) ... ok
+test_malformed_toolchain_does_not_reach_subprocess (test_toolchain_cli.ToolchainTests.test_malformed_toolchain_does_not_reach_subprocess) ... ok
+test_structure_only_does_not_claim_full_validation (test_toolchain_cli.ToolchainTests.test_structure_only_does_not_claim_full_validation) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 2.988s
+
+OK

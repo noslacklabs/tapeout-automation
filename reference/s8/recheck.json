@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-11-07T18:34:31.206720+00:00",
+  "verified_inventory_files": 147,
+  "inventory_issues": [],
+  "historical_artifacts": [
+    {
+      "name": "run_all.log",
+      "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/run_all.log",
+      "recorded_sha256": "85e35663ec3b745990599ee7483a24593180a06566a7826b7b0db27ca0664ce9",
+      "observed_sha256": "85e35663ec3b745990599ee7483a24593180a06566a7826b7b0db27ca0664ce9",
+      "matches_record": true
+    },
+    {
+      "name": "synth/s8.v",
+      "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/synth/s8.v",
+      "recorded_sha256": "935ee01e7318595d0363fcbdbdf37bdd60aa3f245d3885c53900ff9893985616",
+      "observed_sha256": "935ee01e7318595d0363fcbdbdf37bdd60aa3f245d3885c53900ff9893985616",
+      "matches_record": true
+    },
+    {
+      "name": "pnr/routed.v",
+      "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/pnr/routed.v",
+      "recorded_sha256": "f6b750b15dac3b169c5d0ca3db745ab4abdb457d056989b9f92d9123f7cd85e1",
+      "observed_sha256": "f6b750b15dac3b169c5d0ca3db745ab4abdb457d056989b9f92d9123f7cd85e1",
+      "matches_record": true
+    },
+    {
+      "name": "chip/OS0000.gds",
+      "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/chip/OS0000.gds",
+      "recorded_sha256": "6c30a314d74514e2837c01003967fb45ba0a2b378a454500f07421d0ec7a8885",
+      "observed_sha256": "6c30a314d74514e2837c01003967fb45ba0a2b378a454500f07421d0ec7a8885",
+      "matches_record": true
+    },
+    {
+      "name": "chip/OS0000.cdl",
+      "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/chip/OS0000.cdl",
+      "recorded_sha256": "2cbf24b74229065eacbaa163b8c73c2c0763a30c639998bda8e19bcc415f28ca",
+      "observed_sha256": "2cbf24b74229065eacbaa163b8c73c2c0763a30c639998bda8e19bcc415f28ca",
+      "matches_record": true
+    },
+    {
+      "name": "chip/OS0000_drc.txt",
+      "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/chip/OS0000_drc.txt",
+      "recorded_sha256": "e49eca7f38a1b03a21b9e82ba6761b49173cecd82c850ad2a055a758587b543b",
+      "observed_sha256": "e49eca7f38a1b03a21b9e82ba6761b49173cecd82c850ad2a055a758587b543b",
+      "matches_record": true
+    },
+    {
+      "name": "chip/OS0000.lvsdb",
+      "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/chip/OS0000.lvsdb",
+      "recorded_sha256": "5041861c8389a40849c306681b9e4525350efd5b8de930c36391590f61d47023",
+      "observed_sha256": "5041861c8389a40849c306681b9e4525350efd5b8de930c36391590f61d47023",
+      "matches_record": true
+    },
+    {
+      "name": "chip/negative.json",
+      "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/chip/negative.json",
+      "recorded_sha256": "a75a8f305d8baddda7adbb56db80b30c3f3d0bfaa1e43a421041e753632262d7",
+      "observed_sha256": "a75a8f305d8baddda7adbb56db80b30c3f3d0bfaa1e43a421041e753632262d7",
+      "matches_record": true
+    },
+    {
+      "name": "chip/flat/flat_drc.txt",
+      "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/chip/flat/flat_drc.txt",
+      "recorded_sha256": "9b609067c3bb51a5e0dd609b87ec52b6aab2cfa3c36ee4084b12508728d6adec",
+      "observed_sha256": "9b609067c3bb51a5e0dd609b87ec52b6aab2cfa3c36ee4084b12508728d6adec",
+      "matches_record": true
+    },
+    {
+      "name": "chip/presubmit.json",
+      "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/chip/presubmit.json",
+      "recorded_sha256": "d2be29e8bfa3836901ce624c3ea7357a2518d20124995e2242346fc45416c319",
+      "observed_sha256": "d2be29e8bfa3836901ce624c3ea7357a2518d20124995e2242346fc45416c319",
+      "matches_record": true
+    },
+    {
+      "name": "chip/power_connect.json",
+      "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/chip/power_connect.json",
+      "recorded_sha256": "99cf90f9eec0cadc163b49001b72788ae46bad5e3279579176c299fd49371c52",
+      "observed_sha256": "99cf90f9eec0cadc163b49001b72788ae46bad5e3279579176c299fd49371c52",
+      "matches_record": true
+    },
+    {
+      "name": "chip/own_checks.json",
+      "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/chip/own_checks.json",
+      "recorded_sha256": "edc19f8acdb20ca3d12b88eb2e72ff2ecd0e715c0971a06634a23019a67d9de7",
+      "observed_sha256": "edc19f8acdb20ca3d12b88eb2e72ff2ecd0e715c0971a06634a23019a67d9de7",
+      "matches_record": true
+    },
+    {
+      "name": "pnr/overlaps.json",
+      "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/pnr/overlaps.json",
+      "recorded_sha256": "3aa82753898db2fb7589cf5eec7d96cf24eafebc0f7783c4f32399533357e4a0",
+      "observed_sha256": "3aa82753898db2fb7589cf5eec7d96cf24eafebc0f7783c4f32399533357e4a0",
+      "matches_record": true
+    },
+    {
+      "name": "sta/wire_cap.json",
+      "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/sta/wire_cap.json",
+      "recorded_sha256": "2ec008b23eabc0c75f06cf5ac9b26e8495c95e75966029e4932f0e985408728b",
+      "observed_sha256": "2ec008b23eabc0c75f06cf5ac9b26e8495c95e75966029e4932f0e985408728b",
+      "matches_record": true
+    },
+    {
+      "name": "sta/sck_gate.json",
+      "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/sta/sck_gate.json",
+      "recorded_sha256": "49d61c08e06b90bcb41c0d83477e58042b0fd6dd3f8bd174d6028594c1e61a82",
+      "observed_sha256": "49d61c08e06b90bcb41c0d83477e58042b0fd6dd3f8bd174d6028594c1e61a82",
+      "matches_record": true
+    },
+    {
+      "name": "sta/chip_min.sdf",
+      "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/sta/chip_min.sdf",
+      "recorded_sha256": "ce7509110a4bd74af3d0e7a2899987288bb85938fe1053ae52007aac958865a4",
+      "observed_sha256": "ce7509110a4bd74af3d0e7a2899987288bb85938fe1053ae52007aac958865a4",
+      "matches_record": true
+    },
+    {
+      "name": "sta/chip_typ.sdf",
+      "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/sta/chip_typ.sdf",
+      "recorded_sha256": "9343a5f0012067b53cd05b7ce129e8620c37cf14ff26dca0db997f11635e16c2",
+      "observed_sha256": "9343a5f0012067b53cd05b7ce129e8620c37cf14ff26dca0db997f11635e16c2",
+      "matches_record": true
+    },
+    {
+      "name": "sta/chip_max.sdf",
+      "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/sta/chip_max.sdf",
+      "recorded_sha256": "9685c7aaf13e9646ebe303bc037f1d4e9a7938e474f4fb166dc1ead281caeeee",
+      "observed_sha256": "9685c7aaf13e9646ebe303bc037f1d4e9a7938e474f4fb166dc1ead281caeeee",
+      "matches_record": true
+    },
+    {
+      "name": "lec/lec/status",
+      "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/lec/lec/status",
+      "recorded_sha256": "6067ce7f74cc21718481c286007c8a76559dc5de8af3c62d6be185013573fcba",
+      "observed_sha256": "6067ce7f74cc21718481c286007c8a76559dc5de8af3c62d6be185013573fcba",
+      "matches_record": true
+    },
+    {
+      "name": "routed-clocks.txt",
+      "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/routed-clocks.txt",
+      "recorded_sha256": "8c380ef86bb4165cf5a0dd8c21a4b7d382e620fac47c9b45bccab66e5d85b181",
+      "observed_sha256": "8c380ef86bb4165cf5a0dd8c21a4b7d382e620fac47c9b45bccab66e5d85b181",
+      "matches_record": true
+    },
+    {
+      "name": "pad-polarity/pad_polarity.json",
+      "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/pad-polarity/pad_polarity.json",
+      "recorded_sha256": "0f1c663a3e7198cc5a790bef18f188ae23901ab6a276ae427d6bf3d5e57f4d1b",
+      "observed_sha256": "0f1c663a3e7198cc5a790bef18f188ae23901ab6a276ae427d6bf3d5e57f4d1b",
+      "matches_record": true
+    },
+    {
+      "name": "ram-model.log",
+      "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/ram-model.log",
+      "recorded_sha256": "100aa82cd578763b7b23fa70b6cce7e950d4306b8c4fdd88e514dea1b22e5e89",
+      "observed_sha256": "100aa82cd578763b7b23fa70b6cce7e950d4306b8c4fdd88e514dea1b22e5e89",
+      "matches_record": true
+    },
+    {
+      "name": "ram-negative.log",
+      "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/ram-negative.log",
+      "recorded_sha256": "b0df4b18d197f730a96222a29064a271bcb9adc9d9c009810463947911136fc0",
+      "observed_sha256": "b0df4b18d197f730a96222a29064a271bcb9adc9d9c009810463947911136fc0",
+      "matches_record": true
+    }
+  ],
+  "pdk_file_count": 254,
+  "full_reference_rebuild": "NOT RUN",
+  "current_rtl_matches_historical_build": false
+}

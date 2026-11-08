@@ -1,0 +1,331 @@
+schema_version = 1
+profile = "scl_c1d"
+profile_version = "0.1.0"
+frame = "scl-c1d-2mm"
+frame_top_cell = "frame2mmx2mm"
+die_um = 2000.0
+dbu_um = 0.001
+grid_um = 0.005
+unused_slot_policies = []
+qualification_evidence = "reference/milestone1/acceptance.json"
+
+[[signal_slot]]
+slot = 1
+side = "bottom"
+offset_um = 350.95
+shipped_cell = "AIPAD00"
+
+[[signal_slot]]
+slot = 2
+side = "bottom"
+offset_um = 700.95
+shipped_cell = "IPAD00"
+
+[[signal_slot]]
+slot = 3
+side = "bottom"
+offset_um = 1050.95
+shipped_cell = "AIPAD00"
+
+[[signal_slot]]
+slot = 4
+side = "bottom"
+offset_um = 1400.95
+shipped_cell = "IPAD00"
+
+[[signal_slot]]
+slot = 5
+side = "right"
+offset_um = 350.95
+shipped_cell = "AIPAD00"
+
+[[signal_slot]]
+slot = 6
+side = "right"
+offset_um = 1605.8
+shipped_cell = "IPAD00"
+
+[[signal_slot]]
+slot = 7
+side = "top"
+offset_um = 1400.95
+shipped_cell = "AIPAD00"
+
+[[signal_slot]]
+slot = 8
+side = "top"
+offset_um = 1050.95
+shipped_cell = "IPAD00"
+
+[[signal_slot]]
+slot = 9
+side = "top"
+offset_um = 700.95
+shipped_cell = "AIPAD00"
+
+[[signal_slot]]
+slot = 10
+side = "top"
+offset_um = 350.95
+shipped_cell = "IPAD00"
+
+[[signal_slot]]
+slot = 11
+side = "left"
+offset_um = 1605.8
+shipped_cell = "AIPAD00"
+
+[[signal_slot]]
+slot = 12
+side = "left"
+offset_um = 350.95
+shipped_cell = "IPAD00"
+
+[[power_pad]]
+slot = 13
+cell = "PVDD01"
+net = "VDD"
+
+[[power_pad]]
+slot = 14
+cell = "PVSS01"
+net = "VSS"
+
+[[power_pad]]
+slot = 15
+cell = "PVDD01"
+net = "VDD"
+
+[[power_pad]]
+slot = 16
+cell = "PVSS01"
+net = "VSS"
+
+[pad_cell.OPAD04]
+direction = "output"
+core_pin = "IN1"
+pad_pin = "PAD"
+drivers = ["INVR04"]
+qualified_slots = [1, 3, 5, 7, 9, 11]
+inverting = true
+limitations = ["SCL-C1D-PAD-001"]
+
+[pad_cell.IPAD2D]
+direction = "input"
+core_pin = "OUT1"
+pad_pin = "IN1"
+drivers = []
+qualified_slots = [2, 8, 10, 12]
+limitations = []
+
+[pad_cell.IPAD30]
+direction = "input"
+core_pin = "OUT1"
+pad_pin = "IN1"
+drivers = []
+qualified_slots = [4]
+limitations = ["SCL-C1D-MODEL-001"]
+
+[pad_cell.IPAD3D]
+direction = "input"
+core_pin = "OUT1"
+pad_pin = "IN1"
+drivers = []
+qualified_slots = [6]
+limitations = []
+
+# Excluded cells from synthesis working copies (P01: dropped cells; P02: via-over-poly cells)
+[[excluded_cell]]
+cell = "DFCL11"
+workaround = "P01"
+reason = "Async flip-flop"
+
+[[excluded_cell]]
+cell = "DFPC11"
+workaround = "P01"
+reason = "Async flip-flop"
+
+[[excluded_cell]]
+cell = "DFPR11"
+workaround = "P01"
+reason = "Async flip-flop"
+
+[[excluded_cell]]
+cell = "LTPR11"
+workaround = "P01"
+reason = "Latch with preset"
+
+[[excluded_cell]]
+cell = "NOR201"
+workaround = "P01"
+reason = "Dropped cell"
+
+[[excluded_cell]]
+cell = "MX4122"
+workaround = "P01"
+reason = "Dropped cell"
+
+[[excluded_cell]]
+cell = "DEC24H"
+workaround = "P01"
+reason = "Dropped cell"
+
+[[excluded_cell]]
+cell = "DEC24L"
+workaround = "P01"
+reason = "Dropped cell"
+
+[[excluded_cell]]
+cell = "PDDR02"
+workaround = "P01"
+reason = "Dropped cell"
+
+[[excluded_cell]]
+cell = "PDDR04"
+workaround = "P01"
+reason = "Dropped cell"
+
+[[excluded_cell]]
+cell = "TBUF01"
+workaround = "P01"
+reason = "Tri-state buffer"
+
+[[excluded_cell]]
+cell = "TINV01"
+workaround = "P01"
+reason = "Tri-state inverter"
+
+[[excluded_cell]]
+cell = "MX2101"
+workaround = "P01"
+reason = "High data-pin capacitance (0.66 pF)"
+
+[[excluded_cell]]
+cell = "ADNR01"
+workaround = "P02"
+reason = "Via over poly defect"
+
+[[excluded_cell]]
+cell = "ADOR16"
+workaround = "P02"
+reason = "Via over poly defect"
+
+[[excluded_cell]]
+cell = "AND301"
+workaround = "P02"
+reason = "Via over poly defect"
+
+[[excluded_cell]]
+cell = "AND401"
+workaround = "P02"
+reason = "Via over poly defect"
+
+[[excluded_cell]]
+cell = "AND501"
+workaround = "P02"
+reason = "Via over poly defect"
+
+[[excluded_cell]]
+cell = "AND601"
+workaround = "P02"
+reason = "Via over poly defect"
+
+[[excluded_cell]]
+cell = "AND701"
+workaround = "P02"
+reason = "Via over poly defect"
+
+[[excluded_cell]]
+cell = "AND801"
+workaround = "P02"
+reason = "Via over poly defect"
+
+[[excluded_cell]]
+cell = "INVR06"
+workaround = "P02"
+reason = "Via over poly defect"
+
+[[excluded_cell]]
+cell = "LTCH11"
+workaround = "P02"
+reason = "Via over poly defect"
+
+[[excluded_cell]]
+cell = "LTCL11"
+workaround = "P02"
+reason = "Via over poly defect"
+
+[[excluded_cell]]
+cell = "LTPC11"
+workaround = "P02"
+reason = "Via over poly defect"
+
+[[excluded_cell]]
+cell = "NND701"
+workaround = "P02"
+reason = "Via over poly defect"
+
+[[excluded_cell]]
+cell = "NOR200"
+workaround = "P02"
+reason = "Via over poly defect"
+
+[[excluded_cell]]
+cell = "NOR300"
+workaround = "P02"
+reason = "Via over poly defect"
+
+[[excluded_cell]]
+cell = "NOR401"
+workaround = "P02"
+reason = "Via over poly defect"
+
+[[excluded_cell]]
+cell = "NOR501"
+workaround = "P02"
+reason = "Via over poly defect"
+
+[[excluded_cell]]
+cell = "NOR701"
+workaround = "P02"
+reason = "Via over poly defect"
+
+[[excluded_cell]]
+cell = "NOR801"
+workaround = "P02"
+reason = "Via over poly defect"
+
+[[excluded_cell]]
+cell = "OR3101"
+workaround = "P02"
+reason = "Via over poly defect"
+
+[[excluded_cell]]
+cell = "OR4101"
+workaround = "P02"
+reason = "Via over poly defect"
+
+[[excluded_cell]]
+cell = "OR5101"
+workaround = "P02"
+reason = "Via over poly defect"
+
+[[excluded_cell]]
+cell = "OR8101"
+workaround = "P02"
+reason = "Via over poly defect"
+
+[[excluded_cell]]
+cell = "ORND01"
+workaround = "P02"
+reason = "Via over poly defect"
+
+[[excluded_cell]]
+cell = "XNR201"
+workaround = "P02"
+reason = "Via over poly defect"
+
+[[excluded_cell]]
+cell = "XOR201"
+workaround = "P02"
+reason = "Via over poly defect"

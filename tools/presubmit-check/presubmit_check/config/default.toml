@@ -1,0 +1,99 @@
+# presubmit-check default configuration.
+#
+# PRIVATE: this file holds programme and PDK rule values and must not be
+# published. See README.md.
+#
+# Every PDK location is relative to --pdk-root, which is the folder called
+# SCL_C1D_PDK_17092026 in the unpacked kit. No PDK file is copied into this tool.
+
+[pdk]
+# Which of the two shipped pad frame sets is the reference for checks 9-11.
+# SCL has not confirmed which is correct, so the tool always warns about it.
+frame_set = "padframe"
+frame_file = "frame{die}mmx{die}mm.gds"
+pad_list = "PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/klayout/lvs_cdl/io_pad_list.txt"
+core_lef = "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lef/core_c1d.lef"
+core_gds = "Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/gds/core_c1d.gds"
+
+[pdk.frame_sets.padframe]
+description = "PDK/PadFrame_C1D (top-level kit folder)"
+frames_dir = "PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/pad_frame_gds"
+pad_gds = "PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/klayout/gds/io_pad_c1d.gds"
+
+[pdk.frame_sets.analog]
+description = "ANATECH/libs.ref/PadFrame_C1D (inside the analog kit)"
+frames_dir = "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/PadFrame_C1D/pad_frame_gds"
+pad_gds = "Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.ref/PadFrame_C1D/klayout/gds/io_pad_c1d.gds"
+
+[cells]
+vdd = "PVDD01"
+vss = "PVSS01"
+logo = "OS_SCL_logo"
+context = "$$$CONTEXT_INFO$$$"
+expected_std_cells = 68
+expected_pads = 20
+
+[rules]
+grid_nm = 5
+silicon_pattern = "OS[0-9]{4}"
+version_pattern = "v[0-9]+"
+max_metal_um = 25.0
+pad_window_um = 90.0
+ignore_drc_max_polygons = 2
+
+[rules.layers]
+poly = [4, 0]
+contact = [7, 0]
+metal1 = [8, 0]
+via = [9, 0]
+metal2 = [10, 0]
+pad = [11, 0]
+ignore_drc = [999, 0]
+
+# Layers that become masks (PDK_GUIDE.md section 5). A flattened silicon number
+# block is compared exactly on these; marker layers only need to be present.
+[rules.mask_layers]
+layers = [
+  [1, 0], [2, 0], [3, 0], [4, 0], [5, 0], [6, 0], [7, 0],
+  [8, 0], [9, 0], [10, 0], [11, 0],
+]
+
+# PDK_GUIDE.md section 5 layer table. The table gives some marker layers
+# without a datatype; datatype 0 is assumed because the deck reads them as 0.
+[rules.allowed_layers]
+layers = [
+  [1, 0], [2, 0], [3, 0], [4, 0], [5, 0], [6, 0], [7, 0],
+  [8, 0], [8, 7], [9, 0], [10, 0], [10, 7], [11, 0], [28, 0],
+  [35, 0], [36, 0], [37, 0], [38, 0], [39, 0], [40, 0],
+  [43, 0], [44, 0], [45, 0], [46, 0], [999, 0],
+]
+
+[rules.dies.1]
+size_um = 1000
+pads = 6
+vdd = 1
+vss = 1
+
+[rules.dies.2]
+size_um = 2000
+pads = 16
+vdd = 2
+vss = 2
+
+[rules.dies.3]
+size_um = 3000
+pads = 28
+vdd = 2
+vss = 2
+
+[rules.dies.4]
+size_um = 4000
+pads = 40
+vdd = 4
+vss = 4
+
+[rules.dies.5]
+size_um = 5000
+pads = 52
+vdd = 4
+vss = 4

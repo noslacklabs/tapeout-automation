@@ -1,0 +1,74 @@
+[
+  {
+    "path": "docs/project-format.md",
+    "sha256": "e519adda7f5ba800ddb283610f288351817668d40ae48d2aad3673a0d7f6a796"
+  },
+  {
+    "path": "docs/result-contract.md",
+    "sha256": "79fb15c28b25f683a068d219db60b4c672b42426be7a5f4a1d557e6d79ad4c06"
+  },
+  {
+    "path": "docs/stage-contracts.md",
+    "sha256": "aa17380256ea04fd4adef6743caf31a2e498b2b5717607bbed854361fe6947ae"
+  },
+  {
+    "path": "docs/m1-workarounds.md",
+    "sha256": "97a5292dc3f1fd2ff332a0c63cc61ebc263eed2e8cfcf86c2b05a9aad39b3bd3"
+  },
+  {
+    "path": "docs/m1-environment.md",
+    "sha256": "9e00ad57d0508d1db6e686add237bc5d925fcae498bebe4e8956cef7640f8b36"
+  },
+  {
+    "path": "docs/reference-inventory.md",
+    "sha256": "114aa9b805afd2417fb73ad21fa7f73edd9e343d53be78a14a92bf8f215cf4b8"
+  },
+  {
+    "path": "docs/known-limitations.md",
+    "sha256": "b62bdfaeee80cbaf1b8c467bb7fce6b8792c91a023f7722e987480d68e3fb639"
+  },
+  {
+    "path": "reference/s8/m1-contract-audit.json",
+    "sha256": "a26a2479c078d3945c16f5ba5cd2d9992f221348f18ee87d2fe525cae8c8eb48"
+  },
+  {
+    "path": "toolchains/milestone1/capture.json",
+    "sha256": "d2ea7b88f5e20e19f881933a7d8faa117ff917b6af4254689573ef0d6898928e"
+  },
+  {
+    "path": "toolchains/milestone1/requirements.lock",
+    "sha256": "2f0ef24cf2ff2e02cbaf3576f40772207f2341584dc374c617241809e20c06fa"
+  },
+  {
+    "path": "docs/milestone-1.md",
+    "sha256": "d2dda092684028b7a669cca470d3785fd1ec916e1b8681707d4a8c1cfe74cace"
+  },
+  {
+    "path": "toolchains/milestone1/README.md",
+    "sha256": "08eb51639f354401c719f34f8e6343a6932779a6a87007b90a5c58d4ea7fa161"
+  },
+  {
+    "path": "scripts/m1_environment.py",
+    "sha256": "655017f4cb659f05264afc91e67d677a0caf63620489222adfd9c3b1ea2f93ff"
+  },
+  {
+    "path": "scripts/m1_reference.py",
+    "sha256": "1ada7222dc19108073e6a7f3922b5cd5c3318d8e86dc989d1181a4c0154fb75e"
+  },
+  {
+    "path": "scripts/m1_collect.py",
+    "sha256": "e33ba971d73f61609c59fe6d809cf16c848bca8ce7ea4c0cb4d5417879f59266"
+  },
+  {
+    "path": "scripts/m1_close.py",
+    "sha256": "5791dd0ee11db13f1affa0591522b83c303b2c397090da146aa10d87d1eec346"
+  },
+  {
+    "path": "scripts/m1_process_wrapper.py",
+    "sha256": "f6150f90f5261a36cd53da09b177de9e94efa368c2b4d62e19274756993cf870"
+  },
+  {
+    "path": "tests/milestone1/test_evidence.py",
+    "sha256": "d6ea73b5a66035e9d58d12122b5c480b813544022ddf00f3d1e33de38d106a8c"
+  }
+]

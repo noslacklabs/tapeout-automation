@@ -1,0 +1,291 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-11-07T18:38:19.440462+00:00",
+  "scope": "Installed reference environment; no fresh installation or full chip build performed.",
+  "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "machine": "x86_64",
+  "os_release": {
+    "NAME": "Ubuntu",
+    "ID": "ubuntu",
+    "PRETTY_NAME": "Ubuntu 24.04.1 LTS",
+    "VERSION_ID": "24.04",
+    "VERSION": "24.04.1 LTS (Noble Numbat)",
+    "VERSION_CODENAME": "noble",
+    "ID_LIKE": "debian",
+    "HOME_URL": "https://www.ubuntu.com/",
+    "SUPPORT_URL": "https://help.ubuntu.com/",
+    "BUG_REPORT_URL": "https://bugs.launchpad.net/ubuntu/",
+    "PRIVACY_POLICY_URL": "https://www.ubuntu.com/legal/terms-and-policies/privacy-policy",
+    "UBUNTU_CODENAME": "noble",
+    "LOGO": "ubuntu-logo"
+  },
+  "python": {
+    "executable": "/home/sushant/.venvs/presubmit-check/bin/python",
+    "version": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "packages": {
+      "pip": "24.0",
+      "setuptools": null,
+      "wheel": null,
+      "build": null,
+      "pytest": "9.2.0",
+      "klayout": "0.30.12",
+      "gdstk": "1.0.2",
+      "numpy": "2.5.4",
+      "cocotb": null,
+      "find_libpython": null,
+      "presubmit-check": "0.1.0"
+    }
+  },
+  "installed_distributions": [
+    {
+      "name": "gdstk",
+      "version": "1.0.2"
+    },
+    {
+      "name": "iniconfig",
+      "version": "2.3.1"
+    },
+    {
+      "name": "klayout",
+      "version": "0.30.12"
+    },
+    {
+      "name": "numpy",
+      "version": "2.5.4"
+    },
+    {
+      "name": "packaging",
+      "version": "26.3"
+    },
+    {
+      "name": "pip",
+      "version": "24.0"
+    },
+    {
+      "name": "pluggy",
+      "version": "1.7.0"
+    },
+    {
+      "name": "presubmit-check",
+      "version": "0.1.0"
+    },
+    {
+      "name": "Pygments",
+      "version": "2.21.0"
+    },
+    {
+      "name": "pytest",
+      "version": "9.2.0"
+    }
+  ],
+  "tools": {
+    "yosys": {
+      "path": "/usr/bin/yosys",
+      "exists": true,
+      "version": {
+        "argv": [
+          "/usr/bin/yosys",
+          "-V"
+        ],
+        "returncode": 0,
+        "stdout": "Yosys 0.33 (git sha1 2584903a060)\n",
+        "stderr": ""
+      },
+      "sha256": "88c0a12bb814a1a8716b1ae10b482e35d3005ed558e1f5f626b3dc983ea3abd0",
+      "resolved_path": "/usr/bin/yosys"
+    },
+    "openroad": {
+      "path": "/nix/store/6qbn5zjnnnyna6md4rsmiqw4y26y8556-openroad-26Q3/bin/openroad",
+      "exists": true,
+      "version": {
+        "argv": [
+          "/nix/store/6qbn5zjnnnyna6md4rsmiqw4y26y8556-openroad-26Q3/bin/openroad",
+          "-version"
+        ],
+        "returncode": 0,
+        "stdout": "26Q3 \n",
+        "stderr": ""
+      },
+      "sha256": "3b2a6e9f448e1e6ac55b27a7d173e61e8bcf2475d3023caa7caa8e0a979a8dc5",
+      "resolved_path": "/nix/store/6qbn5zjnnnyna6md4rsmiqw4y26y8556-openroad-26Q3/bin/openroad"
+    },
+    "klayout": {
+      "path": "/nix/store/c8mymw0gckkiw7lqwnm2l6mqnd99xmzy-klayout-0.30.7/bin/klayout",
+      "exists": true,
+      "version": {
+        "argv": [
+          "/nix/store/c8mymw0gckkiw7lqwnm2l6mqnd99xmzy-klayout-0.30.7/bin/klayout",
+          "-v"
+        ],
+        "returncode": 0,
+        "stdout": "KLayout 0.30.7\n",
+        "stderr": ""
+      },
+      "sha256": "9871282c43f561b7e3094f15f71fbd825bb0bf4f376f4651999cad15e115d67a",
+      "resolved_path": "/nix/store/c8mymw0gckkiw7lqwnm2l6mqnd99xmzy-klayout-0.30.7/bin/klayout"
+    },
+    "iverilog": {
+      "path": "/usr/bin/iverilog",
+      "exists": true,
+      "version": {
+        "argv": [
+          "/usr/bin/iverilog",
+          "-V"
+        ],
+        "returncode": 0,
+        "stdout": "Icarus Verilog version 12.0 (stable) ()\n\nCopyright (c) 2000-2021 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Preprocessor version 12.0 (stable) ()\n\nCopyright (c) 1999-2021 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\nIcarus Verilog Parser/Elaborator version 12.0 (stable) ()\n\nCopyright (c) 1998-2021 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n FLAGS DLL vvp.tgt\nvvp.tgt: Icarus Verilog VVP Code Generator 12.0 (stable) ()\n\nCopyright (c) 2001-2021 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n",
+        "stderr": ""
+      },
+      "sha256": "a6071e4b4a68feafca0c8ee0e6aa275eee9a43a108c62801cfd1eca6eab6d8a3",
+      "resolved_path": "/usr/bin/iverilog"
+    },
+    "vvp": {
+      "path": "/usr/bin/vvp",
+      "exists": true,
+      "version": {
+        "argv": [
+          "/usr/bin/vvp",
+          "-V"
+        ],
+        "returncode": 0,
+        "stdout": "",
+        "stderr": "Icarus Verilog runtime version 12.0 (stable) ()\n\nCopyright (c) 2001-2021 Stephen Williams (steve@icarus.com)\n\n  This program is free software; you can redistribute it and/or modify\n  it under the terms of the GNU General Public License as published by\n  the Free Software Foundation; either version 2 of the License, or\n  (at your option) any later version.\n\n  This program is distributed in the hope that it will be useful,\n  but WITHOUT ANY WARRANTY; without even the implied warranty of\n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n  GNU General Public License for more details.\n\n  You should have received a copy of the GNU General Public License along\n  with this program; if not, write to the Free Software Foundation, Inc.,\n  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.\n\n"
+      },
+      "sha256": "a10bd7d4a0850308ac8c2c98115b6a3084f9be978307610f2a521190c28f4023",
+      "resolved_path": "/usr/bin/vvp"
+    },
+    "formal_yosys": {
+      "path": "/nix/store/cfry5mn7l5qk6cy730gspaa51fahc108-yosys-0.70/bin/yosys",
+      "exists": true,
+      "version": {
+        "argv": [
+          "/nix/store/cfry5mn7l5qk6cy730gspaa51fahc108-yosys-0.70/bin/yosys",
+          "-V"
+        ],
+        "returncode": 0,
+        "stdout": "Yosys 0.70+post (git sha1 v0.70, Release, GNU /nix/store/r5ri78axx1qggkjq3vawywlzglg70b5w-gcc-wrapper-16.2.0/bin/g++ 16.2.0)\n",
+        "stderr": ""
+      },
+      "sha256": "f6ddbbc9579497d60f2799df28e11cacf93d93f1cdb399f049d30cb85e537838",
+      "resolved_path": "/nix/store/cfry5mn7l5qk6cy730gspaa51fahc108-yosys-0.70/bin/yosys"
+    },
+    "sby": {
+      "path": "/nix/store/hmrimr3nwb4d2di2jm9s5r9g70cc6zix-sby-0.70/bin/sby",
+      "exists": true,
+      "version": {
+        "argv": [
+          "/nix/store/hmrimr3nwb4d2di2jm9s5r9g70cc6zix-sby-0.70/bin/sby",
+          "--version"
+        ],
+        "returncode": 0,
+        "stdout": "unknown SBY version\n",
+        "stderr": ""
+      },
+      "sha256": "c61af1a9034a0c68b64964c6aba2de8c001f90dd6c2ba8dc3e1a02e3c7b6261a",
+      "resolved_path": "/nix/store/hmrimr3nwb4d2di2jm9s5r9g70cc6zix-sby-0.70/bin/sby"
+    },
+    "z3": {
+      "path": "/nix/store/g91d3ysw40238p0wlkw7789kx9k8hxbq-z3-5.3.2/bin/z3",
+      "exists": true,
+      "version": {
+        "argv": [
+          "/nix/store/g91d3ysw40238p0wlkw7789kx9k8hxbq-z3-5.3.2/bin/z3",
+          "--version"
+        ],
+        "returncode": 0,
+        "stdout": "Z3 version 5.3.2 - 64 bit\n",
+        "stderr": ""
+      },
+      "sha256": "c5fea3e78d24c74dac334efe6d4f7c9966b25b682432a296f5e263f520126c77",
+      "resolved_path": "/nix/store/g91d3ysw40238p0wlkw7789kx9k8hxbq-z3-5.3.2/bin/z3"
+    }
+  },
+  "apt_packages": {
+    "argv": [
+      "dpkg-query",
+      "-W",
+      "yosys",
+      "iverilog",
+      "python3.12"
+    ],
+    "returncode": 0,
+    "stdout": "iverilog\t12.0-2build2\npython3.12\t3.12.3-1ubuntu0.17\nyosys\t0.33-5build2\n",
+    "stderr": ""
+  },
+  "nix": {
+    "argv": [
+      "/nix/var/nix/profiles/default/bin/nix",
+      "--version"
+    ],
+    "returncode": 0,
+    "stdout": "nix (Nix) 2.35.4\n",
+    "stderr": ""
+  },
+  "recipe_candidates": [
+    {
+      "path": "/home/sushant/silicon/designs/tt-template-build/test/requirements.txt",
+      "sha256": "c1ba8e1b931e68c3ff600bb849f20975435fedbb7e5f83932095a05d2dca1372"
+    },
+    {
+      "path": "/home/sushant/silicon/designs/tt-template-build/tt/pyproject.toml",
+      "sha256": "62cae422d61e89c12b02dadf3de0cc1dbcff5dc108178c0c8411131924c143fc"
+    },
+    {
+      "path": "/home/sushant/silicon/designs/tt-template-build/tt/requirements.txt",
+      "sha256": "bbda6f05fe1090589bb1977619802935e1e0e22457a1dd8147e08c44c742992b"
+    },
+    {
+      "path": "/home/sushant/silicon/upstream/OpenROAD-flow-scripts/flake.lock",
+      "sha256": "3f8b50d36e571f71938b472b8334a2ac5c94658319f5988a57e54271d3cf1276"
+    },
+    {
+      "path": "/home/sushant/silicon/upstream/OpenROAD-flow-scripts/flake.nix",
+      "sha256": "7360bd7c508ba0744f8c1f4694fbd1f32dec9f5d540139099ff9e0c271b556e4"
+    },
+    {
+      "path": "/home/sushant/silicon/upstream/librelane/docs/requirements.txt",
+      "sha256": "5314cfe6eef636b72b72abc850066517e9b4d9f875e0d8c2a8e7969db4be4ed1"
+    },
+    {
+      "path": "/home/sushant/silicon/upstream/librelane/flake.lock",
+      "sha256": "a805d3278c3d6da9661f39219b389b8fe595351cc4b728b9114ae2e7c246537e"
+    },
+    {
+      "path": "/home/sushant/silicon/upstream/librelane/flake.nix",
+      "sha256": "73f597c635d11a6fa64213dfffc8581aa93d4ca502159eb3a1d1e1ab59d7fa7e"
+    },
+    {
+      "path": "/home/sushant/silicon/upstream/librelane/pyproject.toml",
+      "sha256": "c42fc5fd4204fd49da1cde0d1d622823212459509b3d7ea93135c5ca7ec51fd4"
+    },
+    {
+      "path": "/home/sushant/silicon/upstream/librelane/shell.nix",
+      "sha256": "ff5b4ea8959db61ebf5bfe3edfb2a9426981b3c1e3cdef8c9b394e371cf65738"
+    },
+    {
+      "path": "/home/sushant/silicon/upstream/tt-template/test/requirements.txt",
+      "sha256": "c1ba8e1b931e68c3ff600bb849f20975435fedbb7e5f83932095a05d2dca1372"
+    }
+  ],
+  "reference_directories": {
+    "/home/sushant/tool-eval": [
+      "data",
+      "logs",
+      "pdkroot",
+      "scripts",
+      "udocker",
+      "venv",
+      "venv-align",
+      "venv-glayout",
+      "venv-glayout311",
+      "work"
+    ],
+    "/home/sushant/silicon": [
+      "builds",
+      "designs",
+      "notes",
+      "scripts",
+      "upstream"
+    ]
+  }
+}

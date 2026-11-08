@@ -1,0 +1,4 @@
+# Observed reference pins; clean-environment installation remains unqualified.
+klayout==0.30.12
+gdstk==1.0.2
+numpy==2.5.4

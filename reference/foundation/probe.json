@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "kind": "environment-probe",
+  "checks": [
+    {
+      "id": "probe.synthesis",
+      "status": "PASS",
+      "cells": 13,
+      "artifact": "mapped.json",
+      "sha256": "4e6be9088d121beeb26b69952d859f7608c1b2fdd85ba2a5e2a67376eb1f0766"
+    },
+    {
+      "id": "probe.geometry",
+      "status": "PASS",
+      "artifact": "geometry.json",
+      "sha256": "5c076d74289ebdc8ed6483c9e18dac9aa4fbf85359a19baec6f2d6b7216f8d73",
+      "details": {
+        "batch_round_trip": "PASS",
+        "frame_read": "PASS",
+        "frame_top": "frame2mmx2mm",
+        "frame_dbu_um": 0.001,
+        "width_um": 2000.0,
+        "height_um": 2000.0,
+        "frame_instances": 17,
+        "pad_policy_qualification": "NOT RUN"
+      }
+    }
+  ],
+  "commands": [
+    {
+      "command": [
+        "/usr/bin/yosys",
+        "-s",
+        "probe.ys"
+      ],
+      "cwd": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/work/installed-wheel-0bbfc81a1b/probe path µ/run-20261107T183833.763764Z-ec27daa75178/probe",
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "error": null,
+      "stdout_log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/work/installed-wheel-0bbfc81a1b/probe path µ/run-20261107T183833.763764Z-ec27daa75178/probe/synthesis.stdout.log",
+      "stderr_log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/work/installed-wheel-0bbfc81a1b/probe path µ/run-20261107T183833.763764Z-ec27daa75178/probe/synthesis.stderr.log",
+      "started_at": "2026-11-07T18:38:35.080082+00:00",
+      "duration_s": 0.20377483399897756
+    },
+    {
+      "command": [
+        "/nix/store/c8mymw0gckkiw7lqwnm2l6mqnd99xmzy-klayout-0.30.7/bin/klayout",
+        "-b",
+        "-r",
+        "probe_batch.py"
+      ],
+      "cwd": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/work/installed-wheel-0bbfc81a1b/probe path µ/run-20261107T183833.763764Z-ec27daa75178/probe",
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "error": null,
+      "stdout_log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/work/installed-wheel-0bbfc81a1b/probe path µ/run-20261107T183833.763764Z-ec27daa75178/probe/batch-geometry.stdout.log",
+      "stderr_log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/work/installed-wheel-0bbfc81a1b/probe path µ/run-20261107T183833.763764Z-ec27daa75178/probe/batch-geometry.stderr.log",
+      "started_at": "2026-11-07T18:38:35.303129+00:00",
+      "duration_s": 1.0542827889985347
+    },
+    {
+      "command": [
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/work/installed-wheel-0bbfc81a1b/venv/bin/python",
+        "-I",
+        "probe_geometry.py"
+      ],
+      "cwd": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/work/installed-wheel-0bbfc81a1b/probe path µ/run-20261107T183833.763764Z-ec27daa75178/probe",
+      "returncode": 0,
+      "timed_out": false,
+      "cancelled": false,
+      "error": null,
+      "stdout_log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/work/installed-wheel-0bbfc81a1b/probe path µ/run-20261107T183833.763764Z-ec27daa75178/probe/geometry-validation.stdout.log",
+      "stderr_log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/work/installed-wheel-0bbfc81a1b/probe path µ/run-20261107T183833.763764Z-ec27daa75178/probe/geometry-validation.stderr.log",
+      "started_at": "2026-11-07T18:38:36.372344+00:00",
+      "duration_s": 0.15550499299934017
+    }
+  ],
+  "exit_code": 0,
+  "chip_build": "NOT RUN",
+  "clean_environment_installation": "NOT RUN",
+  "signoff_ready": false
+}

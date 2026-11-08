@@ -1,0 +1,13 @@
+test_crash_missing_or_bad_parasitics_are_not_expected_failure (test_evidence.EvidenceTests.test_crash_missing_or_bad_parasitics_are_not_expected_failure) ... ok
+test_empty_missing_or_changed_drc_is_not_clean (test_evidence.EvidenceTests.test_empty_missing_or_changed_drc_is_not_clean) ... ok
+test_known_extraction_defect_stays_fail (test_evidence.EvidenceTests.test_known_extraction_defect_stays_fail) ... ok
+test_positive_drc_has_expected_executed_categories (test_evidence.EvidenceTests.test_positive_drc_has_expected_executed_categories) ... ok
+test_proof_status_metadata_and_real_completion_are_both_required (test_evidence.EvidenceTests.test_proof_status_metadata_and_real_completion_are_both_required) ... ok
+test_real_drc_markers_fail (test_evidence.EvidenceTests.test_real_drc_markers_fail) ... ok
+test_report_cannot_be_empty_or_duplicate (test_evidence.EvidenceTests.test_report_cannot_be_empty_or_duplicate) ... ok
+test_xunit_requires_exact_nonzero_complete_tests (test_evidence.EvidenceTests.test_xunit_requires_exact_nonzero_complete_tests) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.007s
+
+OK

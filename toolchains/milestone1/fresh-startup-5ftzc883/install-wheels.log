@@ -1,0 +1,18 @@
+Looking in links: /artifacts/wheels
+Requirement already satisfied: pip==24.0 in /home/chipflow/venv/lib/python3.12/site-packages (from -r /artifacts/requirements.lock (line 1)) (24.0)
+Processing /artifacts/wheels/klayout-0.30.12-cp312-cp312-manylinux_2_27_x86_64.whl (from -r /artifacts/requirements.lock (line 2))
+Processing /artifacts/wheels/gdstk-1.0.2-cp312-cp312-manylinux_2_24_x86_64.whl (from -r /artifacts/requirements.lock (line 3))
+Processing /artifacts/wheels/numpy-2.5.4-cp312-cp312-manylinux_2_27_x86_64.whl (from -r /artifacts/requirements.lock (line 4))
+Processing /artifacts/wheels/cocotb-2.1.0-cp312-cp312-manylinux_2_17_x86_64.whl (from -r /artifacts/requirements.lock (line 5))
+Processing /artifacts/wheels/find_libpython-0.5.1-py3-none-any.whl (from -r /artifacts/requirements.lock (line 6))
+Processing /artifacts/wheels/pytest-9.2.0-py3-none-any.whl (from -r /artifacts/requirements.lock (line 7))
+Processing /artifacts/wheels/iniconfig-2.3.1-py3-none-any.whl (from -r /artifacts/requirements.lock (line 8))
+Processing /artifacts/wheels/packaging-26.3-py3-none-any.whl (from -r /artifacts/requirements.lock (line 9))
+Processing /artifacts/wheels/pluggy-1.7.0-py3-none-any.whl (from -r /artifacts/requirements.lock (line 10))
+Processing /artifacts/wheels/Pygments-2.21.0-py3-none-any.whl (from -r /artifacts/requirements.lock (line 11))
+Processing /artifacts/wheels/setuptools-80.9.0-py3-none-any.whl (from -r /artifacts/requirements.lock (line 12))
+Processing /artifacts/wheels/wheel-0.45.1-py3-none-any.whl (from -r /artifacts/requirements.lock (line 13))
+Processing /artifacts/wheels/chipflow-0.1.0.dev1-py3-none-any.whl (from -r /artifacts/requirements.lock (line 14))
+Processing /artifacts/wheels/presubmit_check-0.1.0-py3-none-any.whl (from -r /artifacts/requirements.lock (line 15))
+Installing collected packages: klayout, wheel, setuptools, pytest, Pygments, presubmit-check, pluggy, packaging, numpy, iniconfig, gdstk, find_libpython, cocotb, chipflow
+Successfully installed Pygments-2.21.0 chipflow-0.1.0.dev1 cocotb-2.1.0 find_libpython-0.5.1 gdstk-1.0.2 iniconfig-2.3.1 klayout-0.30.12 numpy-2.5.4 packaging-26.3 pluggy-1.7.0 presubmit-check-0.1.0 pytest-9.2.0 setuptools-80.9.0 wheel-0.45.1

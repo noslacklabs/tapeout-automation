@@ -1,0 +1,3 @@
+# Separate wider-S8 regression environment, not a required engine dependency.
+cocotb==2.1.0
+find_libpython==0.5.1

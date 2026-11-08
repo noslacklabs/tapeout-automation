@@ -1,0 +1,584 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-11-08T04:57:41.753899+00:00",
+  "rootfs": "/tmp/chipflow-m1-fresh-a18axy5u",
+  "kind": "isolated-fresh-userspace-startup",
+  "commands": [
+    {
+      "argv": [
+        "tar",
+        "-xzf",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/ubuntu-base-24.04.3-base-amd64.tar.gz",
+        "-C",
+        "/tmp/chipflow-m1-fresh-a18axy5u",
+        "--numeric-owner"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/base-extract.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/ca-certificates_20260816ubuntu0.24.04.1_all.repacked.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-00.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/debconf_1.5.86ubuntu1_all.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-01.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/dpkg_1.22.6ubuntu6.6_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-02.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/gcc-14-base_14.2.0-4ubuntu2~24.04.1_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-03.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/iverilog_12.0-2build2_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-04.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/libacl1_2.3.2-1build1.1_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-05.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/libbz2-1.0_1.0.8-5.1ubuntu0.1_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-06.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/libc6_2.39-0ubuntu8.9_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-07.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/libcrypt1_1%3a4.4.36-4build1_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-08.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/libdb5.3t64_5.3.28+dfsg2-7_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-09.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/libexpat1_2.6.1-2ubuntu0.6_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-10.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/libffi8_3.4.6-1build1_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-11.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/libgcc-s1_14.2.0-4ubuntu2~24.04.1_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-12.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/liblzma5_5.6.1+really5.4.5-1ubuntu0.4_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-13.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/libmd0_1.1.0-2build1_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-14.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/libncursesw6_6.4+20240113-1ubuntu2.2_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-15.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/libpcre2-8-0_10.42-4ubuntu2.2_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-16.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/libpython3-stdlib_3.12.3-0ubuntu2.1_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-17.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/libpython3.12-minimal_3.12.3-1ubuntu0.17_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-18.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/libpython3.12-stdlib_3.12.3-1ubuntu0.17_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-19.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/libreadline8t64_8.2-4build1_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-20.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/libselinux1_3.5-2ubuntu2.1_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-21.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/libsqlite3-0_3.45.1-1ubuntu2.8_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-22.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/libssl3t64_3.0.13-0ubuntu3.16_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-23.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/libstdc++6_14.2.0-4ubuntu2~24.04.1_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-24.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/libtcl8.6_8.6.14+dfsg-1build1_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-25.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/libtinfo6_6.4+20240113-1ubuntu2.2_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-26.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/libzstd1_1.5.5+dfsg2-2build1.1_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-27.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/media-types_10.1.0_all.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-28.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/netbase_6.4_all.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-29.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/openssl_3.0.13-0ubuntu3.16_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-30.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/python3_3.12.3-0ubuntu2.1_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-31.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/python3-click_8.1.6-2_all.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-32.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/python3-colorama_0.4.6-4_all.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-33.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/python3-minimal_3.12.3-0ubuntu2.1_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-34.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/python3-pip-whl_24.0+dfsg-1ubuntu1.3_all.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-35.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/python3-setuptools-whl_68.1.2-2ubuntu1.2_all.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-36.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/python3.12_3.12.3-1ubuntu0.17_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-37.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/python3.12-minimal_3.12.3-1ubuntu0.17_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-38.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/python3.12-venv_3.12.3-1ubuntu0.17_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-39.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/readline-common_8.2-4build1_all.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-40.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/tar_1.35+dfsg-3ubuntu0.4_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-41.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/tzdata_2026e-0ubuntu0.24.04.1_all.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-42.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/yosys_0.33-5build2_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-43.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/yosys-abc_0.33-5build2_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-44.log"
+    },
+    {
+      "argv": [
+        "dpkg-deb",
+        "-x",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/debs/zlib1g_1%3a1.3.dfsg-3.1ubuntu2.3_amd64.deb",
+        "/tmp/chipflow-m1-fresh-a18axy5u"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/debian-extract-45.log"
+    },
+    {
+      "argv": [
+        "tar",
+        "-xzf",
+        "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/artifacts/nix-runtime.tar.gz",
+        "-C",
+        "/tmp/chipflow-m1-fresh-a18axy5u",
+        "--numeric-owner"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/nix-runtime-extract.log"
+    },
+    {
+      "argv": [
+        "chroot",
+        "--userspec=1000:1000",
+        "/tmp/chipflow-m1-fresh-a18axy5u",
+        "/usr/bin/env",
+        "-i",
+        "HOME=/home/chipflow",
+        "PATH=/usr/bin:/bin",
+        "LANG=C.UTF-8",
+        "PYTHONIOENCODING=utf-8",
+        "/usr/bin/python3.12",
+        "-I",
+        "-m",
+        "venv",
+        "--without-pip",
+        "/home/chipflow/venv"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/python-venv.log"
+    },
+    {
+      "argv": [
+        "chroot",
+        "--userspec=1000:1000",
+        "/tmp/chipflow-m1-fresh-a18axy5u",
+        "/usr/bin/env",
+        "-i",
+        "HOME=/home/chipflow",
+        "PATH=/usr/bin:/bin",
+        "LANG=C.UTF-8",
+        "PYTHONIOENCODING=utf-8",
+        "/home/chipflow/venv/bin/python",
+        "-I",
+        "-c",
+        "import zipfile; zipfile.ZipFile('/artifacts/wheels/pip-24.0-py3-none-any.whl').extractall('/home/chipflow/venv/lib/python3.12/site-packages')"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/bootstrap-pip.log"
+    },
+    {
+      "argv": [
+        "chroot",
+        "--userspec=1000:1000",
+        "/tmp/chipflow-m1-fresh-a18axy5u",
+        "/usr/bin/env",
+        "-i",
+        "HOME=/home/chipflow",
+        "PATH=/usr/bin:/bin",
+        "LANG=C.UTF-8",
+        "PYTHONIOENCODING=utf-8",
+        "/home/chipflow/venv/bin/python",
+        "-I",
+        "-m",
+        "pip",
+        "install",
+        "--no-index",
+        "--no-deps",
+        "--require-hashes",
+        "--disable-pip-version-check",
+        "--find-links=/artifacts/wheels",
+        "-r",
+        "/artifacts/requirements.lock"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/install-wheels.log"
+    },
+    {
+      "argv": [
+        "chroot",
+        "--userspec=1000:1000",
+        "/tmp/chipflow-m1-fresh-a18axy5u",
+        "/usr/bin/env",
+        "-i",
+        "HOME=/home/chipflow",
+        "PATH=/usr/bin:/bin",
+        "LANG=C.UTF-8",
+        "PYTHONIOENCODING=utf-8",
+        "/home/chipflow/venv/bin/python",
+        "-I",
+        "-c",
+        "import sys,json,pathlib,chipflow,klayout.db,gdstk,numpy,cocotb; assert not pathlib.Path('/home/sushant').exists(); assert not pathlib.Path('/mnt/m').exists(); assert not any('sushant' in p for p in sys.path); assert pathlib.Path(chipflow.__file__).is_relative_to('/home/chipflow/venv'); print(json.dumps({'sys_path':sys.path,'chipflow':chipflow.__file__,'python':sys.version,'host_home_visible':False,'host_mnt_visible':False}))"
+      ],
+      "returncode": 0,
+      "log": "/mnt/m/Desktop Folders/My Projects/Tapeout Automation/toolchains/milestone1/fresh-startup-a18axy5u/isolation-check.log"
+    }
+  ],
+  "host_venv_reuse": false,
+  "host_store_mounted": false,
+  "runtime_archive_import": true,
+  "independent_source_rebuild": "NOT RUN",
+  "clean_wsl_installation": "NOT RUN",
+  "exit_code": 2
+}

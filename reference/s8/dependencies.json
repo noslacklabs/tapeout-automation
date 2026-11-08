@@ -1,0 +1,1956 @@
+{
+  "schema_version": 1,
+  "private": true,
+  "captured_at": "2026-11-07T18:10:18.503279+00:00",
+  "capture_kind": "read_only_inventory_no_build",
+  "source_root": "M:/My Projects/Tapeout Chip",
+  "source_git": {
+    "head": "f01d8574d020dfeef13632a15aa8891c8552e3fb",
+    "working_tree_changes": [
+      " M formal/mutants.py",
+      " M formal/s8_props.vh",
+      " M model/s8_model.py",
+      " M model/test_s8_model.py",
+      " M rtl/s8.v",
+      " M spec/cpu-status.md",
+      " M spec/isa.md",
+      " M spec/walkthrough.md",
+      " M sw/s8asm.py",
+      " M sw/sieve.s",
+      " M sw/test_s8asm.py",
+      " M sw/trace.py",
+      " M tb/routed_util.py",
+      " M tb/test_s8.py"
+    ],
+    "state": "dirty; preserve all existing changes"
+  },
+  "graph_index": {
+    "path": "M:/My Projects/Tapeout Chip/graphify-out/graph.json",
+    "built_from_commit": "a2fb7250",
+    "use": "historical navigation only; source verified separately; graph not rebuilt"
+  },
+  "process": {
+    "id": "scl_c1d",
+    "kit": "SCL_C1D_PDK_17092026",
+    "frame": "frame2mmx2mm",
+    "pdk_root": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026",
+    "digital_root": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d",
+    "padframe_root": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/PadFrame_C1D/PadFrame_C1D/PadFrame_C1D",
+    "analog_root": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d"
+  },
+  "baseline": {
+    "state": "historical_unfrozen_trial",
+    "historical_evidence": "M:/My Projects/Tapeout Chip/reports/flow-resume-evidence.json",
+    "historical_recorded_at": "2026-11-07T00:20:24.675088+05:30",
+    "build_path": "/home/sushant/silicon/builds/chip-flow-resume-20261107",
+    "historical_source_md5": "ced63f7ea8bcad407a151f427743815f",
+    "current_source_md5": "1526c6ba36f68e67d6769f75eef4e41d",
+    "current_source_sha256": "fa52f0fb87289df5dd2f1f5e6004538fb513956fc834ad78556c39021a86ca46",
+    "current_rtl_matches_historical_build": false,
+    "rebuild_required": true,
+    "historical_artifact_hashes": {
+      "run_all.log": {
+        "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/run_all.log",
+        "sha256": "85e35663ec3b745990599ee7483a24593180a06566a7826b7b0db27ca0664ce9"
+      },
+      "synth/s8.v": {
+        "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/synth/s8.v",
+        "sha256": "935ee01e7318595d0363fcbdbdf37bdd60aa3f245d3885c53900ff9893985616"
+      },
+      "pnr/routed.v": {
+        "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/pnr/routed.v",
+        "sha256": "f6b750b15dac3b169c5d0ca3db745ab4abdb457d056989b9f92d9123f7cd85e1"
+      },
+      "chip/OS0000.gds": {
+        "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/chip/OS0000.gds",
+        "sha256": "6c30a314d74514e2837c01003967fb45ba0a2b378a454500f07421d0ec7a8885"
+      },
+      "chip/OS0000.cdl": {
+        "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/chip/OS0000.cdl",
+        "sha256": "2cbf24b74229065eacbaa163b8c73c2c0763a30c639998bda8e19bcc415f28ca"
+      },
+      "chip/OS0000_drc.txt": {
+        "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/chip/OS0000_drc.txt",
+        "sha256": "e49eca7f38a1b03a21b9e82ba6761b49173cecd82c850ad2a055a758587b543b"
+      },
+      "chip/OS0000.lvsdb": {
+        "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/chip/OS0000.lvsdb",
+        "sha256": "5041861c8389a40849c306681b9e4525350efd5b8de930c36391590f61d47023"
+      },
+      "chip/negative.json": {
+        "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/chip/negative.json",
+        "sha256": "a75a8f305d8baddda7adbb56db80b30c3f3d0bfaa1e43a421041e753632262d7"
+      },
+      "chip/flat/flat_drc.txt": {
+        "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/chip/flat/flat_drc.txt",
+        "sha256": "9b609067c3bb51a5e0dd609b87ec52b6aab2cfa3c36ee4084b12508728d6adec"
+      },
+      "chip/presubmit.json": {
+        "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/chip/presubmit.json",
+        "sha256": "d2be29e8bfa3836901ce624c3ea7357a2518d20124995e2242346fc45416c319"
+      },
+      "chip/power_connect.json": {
+        "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/chip/power_connect.json",
+        "sha256": "99cf90f9eec0cadc163b49001b72788ae46bad5e3279579176c299fd49371c52"
+      },
+      "chip/own_checks.json": {
+        "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/chip/own_checks.json",
+        "sha256": "edc19f8acdb20ca3d12b88eb2e72ff2ecd0e715c0971a06634a23019a67d9de7"
+      },
+      "pnr/overlaps.json": {
+        "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/pnr/overlaps.json",
+        "sha256": "3aa82753898db2fb7589cf5eec7d96cf24eafebc0f7783c4f32399533357e4a0"
+      },
+      "sta/wire_cap.json": {
+        "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/sta/wire_cap.json",
+        "sha256": "2ec008b23eabc0c75f06cf5ac9b26e8495c95e75966029e4932f0e985408728b"
+      },
+      "sta/sck_gate.json": {
+        "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/sta/sck_gate.json",
+        "sha256": "49d61c08e06b90bcb41c0d83477e58042b0fd6dd3f8bd174d6028594c1e61a82"
+      },
+      "sta/chip_min.sdf": {
+        "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/sta/chip_min.sdf",
+        "sha256": "ce7509110a4bd74af3d0e7a2899987288bb85938fe1053ae52007aac958865a4"
+      },
+      "sta/chip_typ.sdf": {
+        "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/sta/chip_typ.sdf",
+        "sha256": "9343a5f0012067b53cd05b7ce129e8620c37cf14ff26dca0db997f11635e16c2"
+      },
+      "sta/chip_max.sdf": {
+        "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/sta/chip_max.sdf",
+        "sha256": "9685c7aaf13e9646ebe303bc037f1d4e9a7938e474f4fb166dc1ead281caeeee"
+      },
+      "lec/lec/status": {
+        "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/lec/lec/status",
+        "sha256": "6067ce7f74cc21718481c286007c8a76559dc5de8af3c62d6be185013573fcba"
+      },
+      "routed-clocks.txt": {
+        "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/routed-clocks.txt",
+        "sha256": "8c380ef86bb4165cf5a0dd8c21a4b7d382e620fac47c9b45bccab66e5d85b181"
+      },
+      "pad-polarity/pad_polarity.json": {
+        "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/pad-polarity/pad_polarity.json",
+        "sha256": "0f1c663a3e7198cc5a790bef18f188ae23901ab6a276ae427d6bf3d5e57f4d1b"
+      },
+      "ram-model.log": {
+        "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/ram-model.log",
+        "sha256": "100aa82cd578763b7b23fa70b6cce7e950d4306b8c4fdd88e514dea1b22e5e89"
+      },
+      "ram-negative.log": {
+        "path": "/home/sushant/silicon/builds/chip-flow-resume-20261107/ram-negative.log",
+        "sha256": "b0df4b18d197f730a96222a29064a271bcb9adc9d9c009810463947911136fc0"
+      }
+    },
+    "observed_historical_report_rows": [
+      {
+        "check": "Synthesis",
+        "result": "PASS",
+        "detail": "Yosys 0.33 netlist written"
+      },
+      {
+        "check": "Router (OpenROAD detailed route)",
+        "result": "PASS",
+        "detail": "0 violations after 4 iterations: 149 38 24 0"
+      },
+      {
+        "check": "Routed wires overlapping another net or cell metal",
+        "result": "PASS",
+        "detail": "0 overlaps across 369 nets. Routing attempt used: 0, counting from 0"
+      },
+      {
+        "check": "Top-level GDS in SCL's 2x2 frame",
+        "result": "PASS",
+        "detail": "321 cells, 1537 fillers. Written, one top cell checked below"
+      },
+      {
+        "check": "Row fill with power and pads",
+        "result": "PASS",
+        "detail": "62.0% (10294 of 16598 um). The plan's limit is about 80%"
+      },
+      {
+        "check": "SCL DRC deck (v1.1, KLayout 0.30.7)",
+        "result": "PASS",
+        "detail": "0 markers"
+      },
+      {
+        "check": "SCL LVS deck (KLayout 0.30.7)",
+        "result": "PASS",
+        "detail": "circuits matched 22, not matched 0. Layout and schematic netlists compared"
+      },
+      {
+        "check": "Decks fail on deliberately broken copies",
+        "result": "PASS",
+        "detail": "11 of 11 tests behaved as expected"
+      },
+      {
+        "check": "DRC cross-check, deck in flat mode",
+        "result": "PASS",
+        "detail": "0 markers"
+      },
+      {
+        "check": "presubmit-check",
+        "result": "PASS",
+        "detail": "PASS 38 WARN 8 MANUAL 7"
+      },
+      {
+        "check": "VDD and VSS through metal alone, pads to every row (LVS can't see this)",
+        "result": "PASS",
+        "detail": "92 points checked, 0 problems"
+      },
+      {
+        "check": "Metal wider than 25 um in what we drew",
+        "result": "PASS",
+        "detail": "M1 0, M2 0"
+      },
+      {
+        "check": "Metal space including notches (the deck skips notches)",
+        "result": "PASS",
+        "detail": "M1 0, M2 0"
+      },
+      {
+        "check": "Routed vias over poly (document rule, deck doesn't flag)",
+        "result": "PASS",
+        "detail": "0 of 1646: 0 at pin centres, 0 elsewhere"
+      },
+      {
+        "check": "Routed vias over contact",
+        "result": "PASS",
+        "detail": "0"
+      },
+      {
+        "check": "One top cell, extent exactly the die",
+        "result": "PASS",
+        "detail": "['OS0000'], (0,0;2000,2000)"
+      },
+      {
+        "check": "Timing at three corners, 10 MHz, flip-flop to flip-flop",
+        "result": "PASS",
+        "detail": "Setup and hold met at 100 ns, flip-flop to flip-flop. Wire caps from routed length and LEF values, 30 pF assumed per output"
+      },
+      {
+        "check": "Core slew under SCL's 2.5 ns limit",
+        "result": "PASS",
+        "detail": "min 0 pins, worst 0.00 ns; typ 0 pins, worst 0.00 ns; max 0 pins, worst 0.00 ns"
+      },
+      {
+        "check": "Max capacitance on core nets",
+        "result": "PASS",
+        "detail": "min 0; typ 0; max 0"
+      },
+      {
+        "check": "Wire capacitance from OpenRCX with SCL's rules",
+        "result": "FAIL",
+        "detail": "0.13 pF, against 24.3 pF from 97299 um of routed wire and LEF values. Not used for timing: see flow-status.md"
+      },
+      {
+        "check": "Pad timing to the RAM at 10 MHz",
+        "result": "PASS",
+        "detail": "Smallest margin 7.2 ns. 30 pF per output assumed, no board delay"
+      },
+      {
+        "check": "SCK gate structure in the routed netlist",
+        "result": "PASS",
+        "detail": "One multi-input cell, OR2101, fed by the clock and one flip-flop. Truth table right. Cone: DELBUF -> OR2101 -> INVR01 -> INVR04. On its clock input: nothing. On its idle input: DELBUF fanout41"
+      },
+      {
+        "check": "SCK gate margins at the gate, three corners (hard stop at the freeze)",
+        "result": "PASS",
+        "detail": "Smallest: setup 42.41 ns, hold 3.66 ns"
+      },
+      {
+        "check": "Output edge at the pad, against the RAM's 20 ns limit",
+        "result": "PASS",
+        "detail": "Worst 11.7 ns, with 30 pF assumed. min 5.7; typ 8.1; max 11.7"
+      },
+      {
+        "check": "Post-route simulation, routed netlist, smoke test",
+        "result": "PASS",
+        "detail": "Printed values, halt and gpo checked against each program's expected list. RTL: Fibonacci ok, ALU ok. Routed: Fibonacci ok, ALU ok. No delays, random flip-flop start"
+      },
+      {
+        "check": "Antenna rules",
+        "result": "NOT RUN",
+        "detail": "Not in SCL's deck or documents, so nothing to check against"
+      },
+      {
+        "check": "Metal necking, 12 um bus on one contact, ERC guidelines",
+        "result": "NOT RUN",
+        "detail": "Manual review, due at G4"
+      },
+      {
+        "check": "Current density",
+        "result": "NOT RUN",
+        "detail": "No real activity figures yet"
+      },
+      {
+        "check": "Silicon number block",
+        "result": "NOT RUN",
+        "detail": "Not issued yet. Top cell name is a placeholder, OS0000"
+      }
+    ],
+    "artifacts_rehashed_this_capture": true,
+    "reason": "See recheck.json for current availability and comparison to historical hashes; no new chip build."
+  },
+  "environment_variables": {
+    "BUILD": "default $HOME/silicon/builds/chip (unsafe for reusable runner because original removes stage directories)",
+    "CPU": "default s8",
+    "CPU_V": "default flow/sketch/s8.v; set rtl/s8.v for current CPU",
+    "TOP_CELL": "OS0000 placeholder",
+    "REPORT": "default source reports/flow-report.md",
+    "FAST": "1 skips negative and flat-DRC checks",
+    "THREADS": "10",
+    "PNR_TIMEOUT": "3000 seconds",
+    "TRIES": "0 1 2 3 4 5",
+    "DRT_ITERS": "40",
+    "REPAIR": "1",
+    "SLEW_MARGIN": "10",
+    "CAP_MARGIN": "5",
+    "DENSITY": "uniform",
+    "CTS_ARGS": "-distance_between_buffers 200",
+    "PERIOD": "100 ns (STA; P&R hard-codes 100 separately)",
+    "EXTLOAD": "30 pF per output (STA; P&R hard-codes core 1 pF)",
+    "ALLOW_VIA_OVER_POLY": "default 0",
+    "ABC_D": "optional ABC -D (known incompatible with this Liberty on Yosys 0.33)",
+    "S8_SEED": "simulation seed",
+    "S8_PROGRAMS": "test random-program count",
+    "S8_INSTR": "max instructions/program",
+    "G": "formal Liberty source gate build",
+    "NET": "formal routed-with-shim netlist",
+    "L": "formal output directory",
+    "W": "CPU formal output directory",
+    "LIMIT": "formal timeout"
+  },
+  "source_files": [
+    {
+      "relative_path": "flow/assemble/assemble.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/assemble/assemble.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 14321,
+      "sha256": "35fcdb15d8f6b8e1f219ed5f2b3028dcee5f6573383eb9324d40765a76f595d2",
+      "reopened_available": true,
+      "reopened_sha256": "35fcdb15d8f6b8e1f219ed5f2b3028dcee5f6573383eb9324d40765a76f595d2"
+    },
+    {
+      "relative_path": "flow/assemble/make_cdl.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/assemble/make_cdl.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 3446,
+      "sha256": "ac3b8e6bb89b7b970a91d3f046746744b655c7e0a22f2d7de8dd282a0c41e1c2",
+      "reopened_available": true,
+      "reopened_sha256": "ac3b8e6bb89b7b970a91d3f046746744b655c7e0a22f2d7de8dd282a0c41e1c2"
+    },
+    {
+      "relative_path": "flow/assemble.sh",
+      "path": "M:/My Projects/Tapeout Chip/flow/assemble.sh",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 1055,
+      "sha256": "baf7b0b4b8e37c1f5ae9e333a0f84c90ff6a60cfa5060ee0ee40ecaad269ea78",
+      "reopened_available": true,
+      "reopened_sha256": "baf7b0b4b8e37c1f5ae9e333a0f84c90ff6a60cfa5060ee0ee40ecaad269ea78"
+    },
+    {
+      "relative_path": "flow/checks/current_budget.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/checks/current_budget.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 9368,
+      "sha256": "640a3ce1450316a5c102ba289a2f489a611a0b9b8566790343f88752832b3e64",
+      "reopened_available": true,
+      "reopened_sha256": "640a3ce1450316a5c102ba289a2f489a611a0b9b8566790343f88752832b3e64"
+    },
+    {
+      "relative_path": "flow/checks/erc_netlist_inventory.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/checks/erc_netlist_inventory.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 2380,
+      "sha256": "c9db097f6ab0797744fd007262c97cbca71d2bcb5fc95744f3d2fef11e9901d9",
+      "reopened_available": true,
+      "reopened_sha256": "c9db097f6ab0797744fd007262c97cbca71d2bcb5fc95744f3d2fef11e9901d9"
+    },
+    {
+      "relative_path": "flow/checks/manual_first_pass.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/checks/manual_first_pass.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 5663,
+      "sha256": "3164204e9166d676d07d6db95b8afdc335d6812e006ce927cc44a67a37a1b7dd",
+      "reopened_available": true,
+      "reopened_sha256": "3164204e9166d676d07d6db95b8afdc335d6812e006ce927cc44a67a37a1b7dd"
+    },
+    {
+      "relative_path": "flow/checks/negative_tests.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/checks/negative_tests.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 6998,
+      "sha256": "7693c354a3b47ccfc7f3b6d2d3760828fb82c99b59380630ea2aa559cd754b35",
+      "reopened_available": true,
+      "reopened_sha256": "7693c354a3b47ccfc7f3b6d2d3760828fb82c99b59380630ea2aa559cd754b35"
+    },
+    {
+      "relative_path": "flow/checks/own_checks.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/checks/own_checks.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 5105,
+      "sha256": "64402bc3fc533df7832d05be2e44a1ed30190e6722ccb3d25ed1a39318875e0a",
+      "reopened_available": true,
+      "reopened_sha256": "64402bc3fc533df7832d05be2e44a1ed30190e6722ccb3d25ed1a39318875e0a"
+    },
+    {
+      "relative_path": "flow/checks/power_connect.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/checks/power_connect.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 3013,
+      "sha256": "4d8ebbe83b88b1c2c65dbf7f5ecea45280ef69e0c04b33f89454e8c8c1fbbff4",
+      "reopened_available": true,
+      "reopened_sha256": "4d8ebbe83b88b1c2c65dbf7f5ecea45280ef69e0c04b33f89454e8c8c1fbbff4"
+    },
+    {
+      "relative_path": "flow/checks/sck_gate.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/checks/sck_gate.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 5522,
+      "sha256": "2907aaca08477e59f3e45b300f96f60957cd74aed23c9c357fe20025b2dd1151",
+      "reopened_available": true,
+      "reopened_sha256": "2907aaca08477e59f3e45b300f96f60957cd74aed23c9c357fe20025b2dd1151"
+    },
+    {
+      "relative_path": "flow/checks/sim_check.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/checks/sim_check.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 2318,
+      "sha256": "ab61ba1c13d160ca5c0a70991598dc3f8837e6a6abbf2fe3911408acadc40600",
+      "reopened_available": true,
+      "reopened_sha256": "ab61ba1c13d160ca5c0a70991598dc3f8837e6a6abbf2fe3911408acadc40600"
+    },
+    {
+      "relative_path": "flow/checks/wire_vs_cells.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/checks/wire_vs_cells.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 7400,
+      "sha256": "3cbee52e69ce23198da5efac02311995681b6b58eda60062c81ca2971a840813",
+      "reopened_available": true,
+      "reopened_sha256": "3cbee52e69ce23198da5efac02311995681b6b58eda60062c81ca2971a840813"
+    },
+    {
+      "relative_path": "flow/drc_summary.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/drc_summary.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 2345,
+      "sha256": "3381fa099b363a60c0610b6ecd8b9e8a015916aecbe1cda4c8287efb0c8e9f00",
+      "reopened_available": true,
+      "reopened_sha256": "3381fa099b363a60c0610b6ecd8b9e8a015916aecbe1cda4c8287efb0c8e9f00"
+    },
+    {
+      "relative_path": "flow/env.sh",
+      "path": "M:/My Projects/Tapeout Chip/flow/env.sh",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 1263,
+      "sha256": "41b8a74906754d40a0f3d2da430bb76b5bcea8d594503ea10501d9821d20dadd",
+      "reopened_available": true,
+      "reopened_sha256": "41b8a74906754d40a0f3d2da430bb76b5bcea8d594503ea10501d9821d20dadd"
+    },
+    {
+      "relative_path": "flow/floorplan.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/floorplan.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 8096,
+      "sha256": "b3ea779e62167b8041dccbb7901b6abe00061de6abdbffffad03575204d90de0",
+      "reopened_available": true,
+      "reopened_sha256": "b3ea779e62167b8041dccbb7901b6abe00061de6abdbffffad03575204d90de0"
+    },
+    {
+      "relative_path": "flow/gen_core.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/gen_core.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 1996,
+      "sha256": "39df904525d02c05e257e7a2ae4fd0d2165241fd723d9fa09beb76b108742a21",
+      "reopened_available": true,
+      "reopened_sha256": "39df904525d02c05e257e7a2ae4fd0d2165241fd723d9fa09beb76b108742a21"
+    },
+    {
+      "relative_path": "flow/libcheck/lvs_cells.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/libcheck/lvs_cells.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 1864,
+      "sha256": "f4a06282eb1bdb3456bd8ff3d8261d690239b7381e4562270a780217735959d6",
+      "reopened_available": true,
+      "reopened_sha256": "f4a06282eb1bdb3456bd8ff3d8261d690239b7381e4562270a780217735959d6"
+    },
+    {
+      "relative_path": "flow/libcheck/make_lib_tests.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/libcheck/make_lib_tests.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 3174,
+      "sha256": "5fbfc0a77882c56f6091a4e5a9da2d284374d888dd0a063b613b64e1d8acf7ae",
+      "reopened_available": true,
+      "reopened_sha256": "5fbfc0a77882c56f6091a4e5a9da2d284374d888dd0a063b613b64e1d8acf7ae"
+    },
+    {
+      "relative_path": "flow/libcheck/pad_polarity.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/libcheck/pad_polarity.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 6371,
+      "sha256": "bd7dd24e693341626fa820c35cecce5fb81d4d19e8341963cd9a974578bf2b33",
+      "reopened_available": true,
+      "reopened_sha256": "bd7dd24e693341626fa820c35cecce5fb81d4d19e8341963cd9a974578bf2b33"
+    },
+    {
+      "relative_path": "flow/libcheck/pad_swap_test.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/libcheck/pad_swap_test.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 1640,
+      "sha256": "d3c89040b9734c1f2027d95d859fbafc92d8459c8b752b57fca953b8d4f00075",
+      "reopened_available": true,
+      "reopened_sha256": "d3c89040b9734c1f2027d95d859fbafc92d8459c8b752b57fca953b8d4f00075"
+    },
+    {
+      "relative_path": "flow/libcheck/read_pairs.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/libcheck/read_pairs.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 2380,
+      "sha256": "aea9842b91e3a2eb63a29be3ac0958df028a2e30419aa0ece578fd422955c71c",
+      "reopened_available": true,
+      "reopened_sha256": "aea9842b91e3a2eb63a29be3ac0958df028a2e30419aa0ece578fd422955c71c"
+    },
+    {
+      "relative_path": "flow/libcheck/via_poly_table.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/libcheck/via_poly_table.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 1925,
+      "sha256": "dadde50aedda8ec336988e6f041e485cfaf4669b7d309ae024813bd573801ea1",
+      "reopened_available": true,
+      "reopened_sha256": "dadde50aedda8ec336988e6f041e485cfaf4669b7d309ae024813bd573801ea1"
+    },
+    {
+      "relative_path": "flow/lvsdb_summary.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/lvsdb_summary.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 1511,
+      "sha256": "0d0c1f7af6196b8d25dd3e37bcc87e1309f6870835a4d4812b7fdbd6c71b5706",
+      "reopened_available": true,
+      "reopened_sha256": "0d0c1f7af6196b8d25dd3e37bcc87e1309f6870835a4d4812b7fdbd6c71b5706"
+    },
+    {
+      "relative_path": "flow/matrix.sh",
+      "path": "M:/My Projects/Tapeout Chip/flow/matrix.sh",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 3469,
+      "sha256": "f09bc919810e224c7b18b935e85408903d7b24224b3f69ed984adae69ec21797",
+      "reopened_available": true,
+      "reopened_sha256": "f09bc919810e224c7b18b935e85408903d7b24224b3f69ed984adae69ec21797"
+    },
+    {
+      "relative_path": "flow/pads.tsv",
+      "path": "M:/My Projects/Tapeout Chip/flow/pads.tsv",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 857,
+      "sha256": "f57c28260de074cae75043701967a7fbdf63abedf011fcff661cb2f040d313a9",
+      "reopened_available": true,
+      "reopened_sha256": "f57c28260de074cae75043701967a7fbdf63abedf011fcff661cb2f040d313a9"
+    },
+    {
+      "relative_path": "flow/pnr/pnr.tcl",
+      "path": "M:/My Projects/Tapeout Chip/flow/pnr/pnr.tcl",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 4620,
+      "sha256": "4446d8060be15130f4d4750ff7de55d94c499b647a804c62e4dcf27b7896a917",
+      "reopened_available": true,
+      "reopened_sha256": "4446d8060be15130f4d4750ff7de55d94c499b647a804c62e4dcf27b7896a917"
+    },
+    {
+      "relative_path": "flow/pnr/route.tcl",
+      "path": "M:/My Projects/Tapeout Chip/flow/pnr/route.tcl",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 860,
+      "sha256": "e9d36c7cf82b521415f94ed75f27168b6e104752fefa4f6fb5ff57e68f3b065c",
+      "reopened_available": true,
+      "reopened_sha256": "e9d36c7cf82b521415f94ed75f27168b6e104752fefa4f6fb5ff57e68f3b065c"
+    },
+    {
+      "relative_path": "flow/pnr.sh",
+      "path": "M:/My Projects/Tapeout Chip/flow/pnr.sh",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 2353,
+      "sha256": "1b2c4c1f53a4821c4b8b9da1c20b5cb552e9f7945e3ed5824511c6e22db58cf9",
+      "reopened_available": true,
+      "reopened_sha256": "1b2c4c1f53a4821c4b8b9da1c20b5cb552e9f7945e3ed5824511c6e22db58cf9"
+    },
+    {
+      "relative_path": "flow/probe/check.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/probe/check.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 5925,
+      "sha256": "6e49ec32f330c2af7ba9510b1b4f0c0f1c10b0c76f7b19aba0d5468eb59e3024",
+      "reopened_available": true,
+      "reopened_sha256": "6e49ec32f330c2af7ba9510b1b4f0c0f1c10b0c76f7b19aba0d5468eb59e3024"
+    },
+    {
+      "relative_path": "flow/probe/filt.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/probe/filt.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 662,
+      "sha256": "478fa7dac93ce31b1ef049c9c010abb6e03e6057944528db11cd33c75afefe25",
+      "reopened_available": true,
+      "reopened_sha256": "478fa7dac93ce31b1ef049c9c010abb6e03e6057944528db11cd33c75afefe25"
+    },
+    {
+      "relative_path": "flow/probe/lef.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/probe/lef.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 3616,
+      "sha256": "f211f116cff7d3f5ee5a11497cd51ee86c5ecf7291e1a901e56433880e7ff0d9",
+      "reopened_available": true,
+      "reopened_sha256": "f211f116cff7d3f5ee5a11497cd51ee86c5ecf7291e1a901e56433880e7ff0d9"
+    },
+    {
+      "relative_path": "flow/probe/pnr.tcl",
+      "path": "M:/My Projects/Tapeout Chip/flow/probe/pnr.tcl",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 2203,
+      "sha256": "5dbdab1a34b07ffa44e78fc225251d4485982f919758796ceae524d82771933f",
+      "reopened_available": true,
+      "reopened_sha256": "5dbdab1a34b07ffa44e78fc225251d4485982f919758796ceae524d82771933f"
+    },
+    {
+      "relative_path": "flow/probe/run_probe.sh",
+      "path": "M:/My Projects/Tapeout Chip/flow/probe/run_probe.sh",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 3209,
+      "sha256": "a51aa26c8b390c7f693ea428771d7a643ea96a39c550115043cbd63d21e298aa",
+      "reopened_available": true,
+      "reopened_sha256": "a51aa26c8b390c7f693ea428771d7a643ea96a39c550115043cbd63d21e298aa"
+    },
+    {
+      "relative_path": "flow/probe/width.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/probe/width.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 952,
+      "sha256": "94ef2ab75aaf22961c98334be12cbd5c08674a63c7f19d89f956e1e54c7ba824",
+      "reopened_available": true,
+      "reopened_sha256": "94ef2ab75aaf22961c98334be12cbd5c08674a63c7f19d89f956e1e54c7ba824"
+    },
+    {
+      "relative_path": "flow/README.md",
+      "path": "M:/My Projects/Tapeout Chip/flow/README.md",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 2904,
+      "sha256": "47065de3df9e09d63aacd241932b4ea9be8da2196ceb70acb8e25dafdc7d3131",
+      "reopened_available": true,
+      "reopened_sha256": "47065de3df9e09d63aacd241932b4ea9be8da2196ceb70acb8e25dafdc7d3131"
+    },
+    {
+      "relative_path": "flow/report/figures_data.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/report/figures_data.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 11852,
+      "sha256": "919d15e31840b9c310ec5239e1583b5fd2da9342fca5fc141d7deb2de49df7ba",
+      "reopened_available": true,
+      "reopened_sha256": "919d15e31840b9c310ec5239e1583b5fd2da9342fca5fc141d7deb2de49df7ba"
+    },
+    {
+      "relative_path": "flow/report/figures_make.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/report/figures_make.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 39828,
+      "sha256": "a03c56122b4b2e00332f501f8f5b12d5a3dbc4b74be8d7535ecbc188adc3821c",
+      "reopened_available": true,
+      "reopened_sha256": "a03c56122b4b2e00332f501f8f5b12d5a3dbc4b74be8d7535ecbc188adc3821c"
+    },
+    {
+      "relative_path": "flow/report/figures_render.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/report/figures_render.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 3235,
+      "sha256": "7e3f7be3b4a443674859c7291793dd5f7d4b8d4c056992648544615e37ac9010",
+      "reopened_available": true,
+      "reopened_sha256": "7e3f7be3b4a443674859c7291793dd5f7d4b8d4c056992648544615e37ac9010"
+    },
+    {
+      "relative_path": "flow/report/figures_sta.tcl",
+      "path": "M:/My Projects/Tapeout Chip/flow/report/figures_sta.tcl",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 1497,
+      "sha256": "4aa6d8bc669b74f9a29543e006e8d611857d8bd230aa71d2dd3b72fdb8247969",
+      "reopened_available": true,
+      "reopened_sha256": "4aa6d8bc669b74f9a29543e006e8d611857d8bd230aa71d2dd3b72fdb8247969"
+    },
+    {
+      "relative_path": "flow/report/make_figures.sh",
+      "path": "M:/My Projects/Tapeout Chip/flow/report/make_figures.sh",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 2357,
+      "sha256": "f96e74f9025b3018cd8a004febac0836ead86d426cf2c37a685f1924f263f337",
+      "reopened_available": true,
+      "reopened_sha256": "f96e74f9025b3018cd8a004febac0836ead86d426cf2c37a685f1924f263f337"
+    },
+    {
+      "relative_path": "flow/report/make_report.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/report/make_report.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 21550,
+      "sha256": "52ecaa5f2557f8868d5f8a2ee68d71336ff235fd83b46df77a443e26a4562256",
+      "reopened_available": true,
+      "reopened_sha256": "52ecaa5f2557f8868d5f8a2ee68d71336ff235fd83b46df77a443e26a4562256"
+    },
+    {
+      "relative_path": "flow/report/render.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/report/render.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 1101,
+      "sha256": "609cac775781bc65dc4b2d613693498eec833082f5a519db82fe535ca81b7451",
+      "reopened_available": true,
+      "reopened_sha256": "609cac775781bc65dc4b2d613693498eec833082f5a519db82fe535ca81b7451"
+    },
+    {
+      "relative_path": "flow/run_all.sh",
+      "path": "M:/My Projects/Tapeout Chip/flow/run_all.sh",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 3493,
+      "sha256": "f50554a6602b1b934d61d50a989c6d5f9705edb1cb18d1b45f1f2a2e2f51da3a",
+      "reopened_available": true,
+      "reopened_sha256": "f50554a6602b1b934d61d50a989c6d5f9705edb1cb18d1b45f1f2a2e2f51da3a"
+    },
+    {
+      "relative_path": "flow/run_decks.sh",
+      "path": "M:/My Projects/Tapeout Chip/flow/run_decks.sh",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 1134,
+      "sha256": "326a72f5d1fc3efb6ebb31a671200da3ff7301b2a1f1996f92d0d6befb031ddd",
+      "reopened_available": true,
+      "reopened_sha256": "326a72f5d1fc3efb6ebb31a671200da3ff7301b2a1f1996f92d0d6befb031ddd"
+    },
+    {
+      "relative_path": "flow/run_sta.sh",
+      "path": "M:/My Projects/Tapeout Chip/flow/run_sta.sh",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 3757,
+      "sha256": "b94ce773cc9abea91a33b82eac6e73097088b4d933c16bceb55843a77e9801a6",
+      "reopened_available": true,
+      "reopened_sha256": "b94ce773cc9abea91a33b82eac6e73097088b4d933c16bceb55843a77e9801a6"
+    },
+    {
+      "relative_path": "flow/sketch/s8.v",
+      "path": "M:/My Projects/Tapeout Chip/flow/sketch/s8.v",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 3312,
+      "sha256": "2103570d9af1d3f00f18362de286022f0427e3d9d76e5e8d3eb814fae0a3d397",
+      "reopened_available": true,
+      "reopened_sha256": "2103570d9af1d3f00f18362de286022f0427e3d9d76e5e8d3eb814fae0a3d397"
+    },
+    {
+      "relative_path": "flow/sketch/tb_smoke.v",
+      "path": "M:/My Projects/Tapeout Chip/flow/sketch/tb_smoke.v",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 2993,
+      "sha256": "69ae4584586225ee161d6e2e8096236c5b5be9280414b36e4dffe6838d95bda5",
+      "reopened_available": true,
+      "reopened_sha256": "69ae4584586225ee161d6e2e8096236c5b5be9280414b36e4dffe6838d95bda5"
+    },
+    {
+      "relative_path": "flow/sta/extract.tcl",
+      "path": "M:/My Projects/Tapeout Chip/flow/sta/extract.tcl",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 312,
+      "sha256": "3d88f4d9ea66886461a5c497abcbe619e29da2813ca1cc2ac5098a94888a4793",
+      "reopened_available": true,
+      "reopened_sha256": "3d88f4d9ea66886461a5c497abcbe619e29da2813ca1cc2ac5098a94888a4793"
+    },
+    {
+      "relative_path": "flow/sta/gen_chip.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/sta/gen_chip.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 2657,
+      "sha256": "fd2d9f4a51e416e8f6dd3a78b2b3735869a8c9f8be5c2e5807570a0db00dc65d",
+      "reopened_available": true,
+      "reopened_sha256": "fd2d9f4a51e416e8f6dd3a78b2b3735869a8c9f8be5c2e5807570a0db00dc65d"
+    },
+    {
+      "relative_path": "flow/sta/scale_spef.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/sta/scale_spef.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 3800,
+      "sha256": "29391d4139672599401dbfe08b8f0d4d632840f40c7043d03531312c908c0635",
+      "reopened_available": true,
+      "reopened_sha256": "29391d4139672599401dbfe08b8f0d4d632840f40c7043d03531312c908c0635"
+    },
+    {
+      "relative_path": "flow/sta/sta.tcl",
+      "path": "M:/My Projects/Tapeout Chip/flow/sta/sta.tcl",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 4611,
+      "sha256": "6310fc70c04cb6f3282b620f24261e7a3ee5d0515173393a35b1235f77bec478",
+      "reopened_available": true,
+      "reopened_sha256": "6310fc70c04cb6f3282b620f24261e7a3ee5d0515173393a35b1235f77bec478"
+    },
+    {
+      "relative_path": "flow/synth.sh",
+      "path": "M:/My Projects/Tapeout Chip/flow/synth.sh",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 2567,
+      "sha256": "cb1fdf2e8780d012f5c31e42f674472df2022089b92375092958051763c6fc80",
+      "reopened_available": true,
+      "reopened_sha256": "cb1fdf2e8780d012f5c31e42f674472df2022089b92375092958051763c6fc80"
+    },
+    {
+      "relative_path": "flow/tech/filt.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/tech/filt.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 662,
+      "sha256": "478fa7dac93ce31b1ef049c9c010abb6e03e6057944528db11cd33c75afefe25",
+      "reopened_available": true,
+      "reopened_sha256": "478fa7dac93ce31b1ef049c9c010abb6e03e6057944528db11cd33c75afefe25"
+    },
+    {
+      "relative_path": "flow/tech/make_tech.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/tech/make_tech.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 10076,
+      "sha256": "e0d34890a1e43f297e881b3d3c7939de7ed65f8d4e51c1de939527ea390eb079",
+      "reopened_available": true,
+      "reopened_sha256": "e0d34890a1e43f297e881b3d3c7939de7ed65f8d4e51c1de939527ea390eb079"
+    },
+    {
+      "relative_path": "flow/tech/width.py",
+      "path": "M:/My Projects/Tapeout Chip/flow/tech/width.py",
+      "role": "reference_flow",
+      "available": true,
+      "bytes": 952,
+      "sha256": "94ef2ab75aaf22961c98334be12cbd5c08674a63c7f19d89f956e1e54c7ba824",
+      "reopened_available": true,
+      "reopened_sha256": "94ef2ab75aaf22961c98334be12cbd5c08674a63c7f19d89f956e1e54c7ba824"
+    },
+    {
+      "relative_path": "rtl/s8.v",
+      "path": "M:/My Projects/Tapeout Chip/rtl/s8.v",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 8759,
+      "sha256": "fa52f0fb87289df5dd2f1f5e6004538fb513956fc834ad78556c39021a86ca46",
+      "reopened_available": true,
+      "reopened_sha256": "fa52f0fb87289df5dd2f1f5e6004538fb513956fc834ad78556c39021a86ca46"
+    },
+    {
+      "relative_path": "tb/check_random_start_sdf.py",
+      "path": "M:/My Projects/Tapeout Chip/tb/check_random_start_sdf.py",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 3314,
+      "sha256": "a82193b0817e35a63104b28443c8bda6ca3a501c2b25e0f2b0f84ea758177db3",
+      "reopened_available": true,
+      "reopened_sha256": "a82193b0817e35a63104b28443c8bda6ca3a501c2b25e0f2b0f84ea758177db3"
+    },
+    {
+      "relative_path": "tb/check_routed_clocks.py",
+      "path": "M:/My Projects/Tapeout Chip/tb/check_routed_clocks.py",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 1776,
+      "sha256": "3fb7572279197bcaafbfbc219fd5d5eb0487577ccc00e47a8490bb4aec7a6bec",
+      "reopened_available": true,
+      "reopened_sha256": "3fb7572279197bcaafbfbc219fd5d5eb0487577ccc00e47a8490bb4aec7a6bec"
+    },
+    {
+      "relative_path": "tb/dump.v",
+      "path": "M:/My Projects/Tapeout Chip/tb/dump.v",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 181,
+      "sha256": "7623d46ef2cd777591c0b7f1ed804690945acf40c9227ba33c4ca3d8c91a3497",
+      "reopened_available": true,
+      "reopened_sha256": "7623d46ef2cd777591c0b7f1ed804690945acf40c9227ba33c4ca3d8c91a3497"
+    },
+    {
+      "relative_path": "tb/gate_build.sh",
+      "path": "M:/My Projects/Tapeout Chip/tb/gate_build.sh",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 2081,
+      "sha256": "cfb1efbc16a22402b2c0037d7554bbeef914459dfa24648b70ceab99e62ed583",
+      "reopened_available": true,
+      "reopened_sha256": "cfb1efbc16a22402b2c0037d7554bbeef914459dfa24648b70ceab99e62ed583"
+    },
+    {
+      "relative_path": "tb/gate_sim.sh",
+      "path": "M:/My Projects/Tapeout Chip/tb/gate_sim.sh",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 1067,
+      "sha256": "ee62874e3f0ff51ab2a7d197579e085c4d7b8be15730693ff6037f1b4afedd88",
+      "reopened_available": true,
+      "reopened_sha256": "ee62874e3f0ff51ab2a7d197579e085c4d7b8be15730693ff6037f1b4afedd88"
+    },
+    {
+      "relative_path": "tb/random_campaign.sh",
+      "path": "M:/My Projects/Tapeout Chip/tb/random_campaign.sh",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 2186,
+      "sha256": "254830c42ba65ce99497dd97a1fa3c0744abf9621d36623dbbff64a9430f0cd3",
+      "reopened_available": true,
+      "reopened_sha256": "254830c42ba65ce99497dd97a1fa3c0744abf9621d36623dbbff64a9430f0cd3"
+    },
+    {
+      "relative_path": "tb/routed_random.py",
+      "path": "M:/My Projects/Tapeout Chip/tb/routed_random.py",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 6471,
+      "sha256": "d8efdd6522849ce1b571531ecd8005facd6adebc1a96c193b46583c1f11597aa",
+      "reopened_available": true,
+      "reopened_sha256": "d8efdd6522849ce1b571531ecd8005facd6adebc1a96c193b46583c1f11597aa"
+    },
+    {
+      "relative_path": "tb/routed_top.v",
+      "path": "M:/My Projects/Tapeout Chip/tb/routed_top.v",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 852,
+      "sha256": "0dbb40e4496a6f1f9e9e11b5f584eded67d67dfed11861f2a02c8f7b69a15dee",
+      "reopened_available": true,
+      "reopened_sha256": "0dbb40e4496a6f1f9e9e11b5f584eded67d67dfed11861f2a02c8f7b69a15dee"
+    },
+    {
+      "relative_path": "tb/routed_util.py",
+      "path": "M:/My Projects/Tapeout Chip/tb/routed_util.py",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 3790,
+      "sha256": "fa19f3dd4c89f947b7ab59741539086300e443b82d31eb03991caab45ab48c00",
+      "reopened_available": true,
+      "reopened_sha256": "fa19f3dd4c89f947b7ab59741539086300e443b82d31eb03991caab45ab48c00"
+    },
+    {
+      "relative_path": "tb/run.py",
+      "path": "M:/My Projects/Tapeout Chip/tb/run.py",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 3751,
+      "sha256": "73e0dc7f14e192099347c6a3a68ea65a84db66c524b15f6652d136db7d8349b6",
+      "reopened_available": true,
+      "reopened_sha256": "73e0dc7f14e192099347c6a3a68ea65a84db66c524b15f6652d136db7d8349b6"
+    },
+    {
+      "relative_path": "tb/run_ram_model.py",
+      "path": "M:/My Projects/Tapeout Chip/tb/run_ram_model.py",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 9064,
+      "sha256": "27d7667d44da1c67b562b60c40c46542c2cc04f5c5b3564bd2b2f709b365611d",
+      "reopened_available": true,
+      "reopened_sha256": "27d7667d44da1c67b562b60c40c46542c2cc04f5c5b3564bd2b2f709b365611d"
+    },
+    {
+      "relative_path": "tb/s8_bench.py",
+      "path": "M:/My Projects/Tapeout Chip/tb/s8_bench.py",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 8004,
+      "sha256": "e95aa941cdbc69188e782b4c1808aa7d92e684768e375716ff7b79696b89361d",
+      "reopened_available": true,
+      "reopened_sha256": "e95aa941cdbc69188e782b4c1808aa7d92e684768e375716ff7b79696b89361d"
+    },
+    {
+      "relative_path": "tb/s8_gen.py",
+      "path": "M:/My Projects/Tapeout Chip/tb/s8_gen.py",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 2284,
+      "sha256": "6d36016626bf49710d080d16b89ca64b637f0fc8ef403434d718af14d864ca89",
+      "reopened_available": true,
+      "reopened_sha256": "6d36016626bf49710d080d16b89ca64b637f0fc8ef403434d718af14d864ca89"
+    },
+    {
+      "relative_path": "tb/s8_top.v",
+      "path": "M:/My Projects/Tapeout Chip/tb/s8_top.v",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 511,
+      "sha256": "a65f59f7e65ddb73247eb26d0c752f63e3c9ce615ddc908bc4ea2464f1b306e0",
+      "reopened_available": true,
+      "reopened_sha256": "a65f59f7e65ddb73247eb26d0c752f63e3c9ce615ddc908bc4ea2464f1b306e0"
+    },
+    {
+      "relative_path": "tb/tb_ram_model.v",
+      "path": "M:/My Projects/Tapeout Chip/tb/tb_ram_model.v",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 8891,
+      "sha256": "6d02774c0f8028120fb82ab8e67e440d37dd2fc5485e68214c5d5c959aa6c4d7",
+      "reopened_available": true,
+      "reopened_sha256": "6d02774c0f8028120fb82ab8e67e440d37dd2fc5485e68214c5d5c959aa6c4d7"
+    },
+    {
+      "relative_path": "tb/tb_smoke.v",
+      "path": "M:/My Projects/Tapeout Chip/tb/tb_smoke.v",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 3254,
+      "sha256": "a6b0a82b63984a2f6298417d7563a33274ab096c6479fdcf42da028ab4011703",
+      "reopened_available": true,
+      "reopened_sha256": "a6b0a82b63984a2f6298417d7563a33274ab096c6479fdcf42da028ab4011703"
+    },
+    {
+      "relative_path": "tb/test_demos.py",
+      "path": "M:/My Projects/Tapeout Chip/tb/test_demos.py",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 3901,
+      "sha256": "22d3bc75c7e9750a7e76a07d8a44fead62dfddf81a8c85ce5d3deb1170b64747",
+      "reopened_available": true,
+      "reopened_sha256": "22d3bc75c7e9750a7e76a07d8a44fead62dfddf81a8c85ce5d3deb1170b64747"
+    },
+    {
+      "relative_path": "tb/test_ic_vectors.py",
+      "path": "M:/My Projects/Tapeout Chip/tb/test_ic_vectors.py",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 1577,
+      "sha256": "3843e07f424fc993c9e900be54c348cdb568e1bdd8491e978a2edcd889c62b99",
+      "reopened_available": true,
+      "reopened_sha256": "3843e07f424fc993c9e900be54c348cdb568e1bdd8491e978a2edcd889c62b99"
+    },
+    {
+      "relative_path": "tb/test_s8.py",
+      "path": "M:/My Projects/Tapeout Chip/tb/test_s8.py",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 16027,
+      "sha256": "7a988462778450c9a75903ad9fe48748962d6762f7a09544ac338f8bcc7b37e0",
+      "reopened_available": true,
+      "reopened_sha256": "7a988462778450c9a75903ad9fe48748962d6762f7a09544ac338f8bcc7b37e0"
+    },
+    {
+      "relative_path": "formal/lec.sh",
+      "path": "M:/My Projects/Tapeout Chip/formal/lec.sh",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 2264,
+      "sha256": "4418e95ef572150d4176976cd2fcf427ab746573bb370d065f1784a70ae8dd45",
+      "reopened_available": true,
+      "reopened_sha256": "4418e95ef572150d4176976cd2fcf427ab746573bb370d065f1784a70ae8dd45"
+    },
+    {
+      "relative_path": "formal/mutants.py",
+      "path": "M:/My Projects/Tapeout Chip/formal/mutants.py",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 8261,
+      "sha256": "48d92dcdb30b7bf2427353f15db02c09e1d072cc32350e23cadc31a0051f822f",
+      "reopened_available": true,
+      "reopened_sha256": "48d92dcdb30b7bf2427353f15db02c09e1d072cc32350e23cadc31a0051f822f"
+    },
+    {
+      "relative_path": "formal/run.sh",
+      "path": "M:/My Projects/Tapeout Chip/formal/run.sh",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 1093,
+      "sha256": "0a02d45a5c79a45ffca2addfc23505832ab1230d200d55fa446a694756830323",
+      "reopened_available": true,
+      "reopened_sha256": "0a02d45a5c79a45ffca2addfc23505832ab1230d200d55fa446a694756830323"
+    },
+    {
+      "relative_path": "formal/s8.sby",
+      "path": "M:/My Projects/Tapeout Chip/formal/s8.sby",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 781,
+      "sha256": "15929783eb7de34411ecf1871af2f95d54f8969be19dd3551d51a63a7355b608",
+      "reopened_available": true,
+      "reopened_sha256": "15929783eb7de34411ecf1871af2f95d54f8969be19dd3551d51a63a7355b608"
+    },
+    {
+      "relative_path": "formal/s8_props.vh",
+      "path": "M:/My Projects/Tapeout Chip/formal/s8_props.vh",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 10182,
+      "sha256": "31758353e63761646118d7a0fbfe5b024db5c4a01286407865a36ad60bb50df8",
+      "reopened_available": true,
+      "reopened_sha256": "31758353e63761646118d7a0fbfe5b024db5c4a01286407865a36ad60bb50df8"
+    },
+    {
+      "relative_path": "model/s8_model.py",
+      "path": "M:/My Projects/Tapeout Chip/model/s8_model.py",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 17275,
+      "sha256": "233e48145d4a9db4cd008891fc91b62ffea764800336ca15d12626229f5dd687",
+      "reopened_available": true,
+      "reopened_sha256": "233e48145d4a9db4cd008891fc91b62ffea764800336ca15d12626229f5dd687"
+    },
+    {
+      "relative_path": "model/test_s8_model.py",
+      "path": "M:/My Projects/Tapeout Chip/model/test_s8_model.py",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 32892,
+      "sha256": "89f33d7b22b40bf982f565be20388a1bbee5d9e290cabf5f6cc9318c88afb09e",
+      "reopened_available": true,
+      "reopened_sha256": "89f33d7b22b40bf982f565be20388a1bbee5d9e290cabf5f6cc9318c88afb09e"
+    },
+    {
+      "relative_path": "sw/blink.s",
+      "path": "M:/My Projects/Tapeout Chip/sw/blink.s",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 653,
+      "sha256": "73c25b908f1eaaf055021fb286608a21efe8ba8a1903bf868f2673461dddc208",
+      "reopened_available": true,
+      "reopened_sha256": "73c25b908f1eaaf055021fb286608a21efe8ba8a1903bf868f2673461dddc208"
+    },
+    {
+      "relative_path": "sw/fib.s",
+      "path": "M:/My Projects/Tapeout Chip/sw/fib.s",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 779,
+      "sha256": "c45be6007e38bf605752487070ff914d267be8c8aae199e5b5b4b018ff4d508d",
+      "reopened_available": true,
+      "reopened_sha256": "c45be6007e38bf605752487070ff914d267be8c8aae199e5b5b4b018ff4d508d"
+    },
+    {
+      "relative_path": "sw/s8asm.py",
+      "path": "M:/My Projects/Tapeout Chip/sw/s8asm.py",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 14098,
+      "sha256": "4dabd9ec15fa69b616569141246798d28d9c0d9e9bac01ccd965f351b3b8e108",
+      "reopened_available": true,
+      "reopened_sha256": "4dabd9ec15fa69b616569141246798d28d9c0d9e9bac01ccd965f351b3b8e108"
+    },
+    {
+      "relative_path": "sw/sieve.s",
+      "path": "M:/My Projects/Tapeout Chip/sw/sieve.s",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 1134,
+      "sha256": "d13df8782432194b6dbd9ad11108a0f8d70fc3959c2fedafa79566ab03be9ec7",
+      "reopened_available": true,
+      "reopened_sha256": "d13df8782432194b6dbd9ad11108a0f8d70fc3959c2fedafa79566ab03be9ec7"
+    },
+    {
+      "relative_path": "sw/test_s8asm.py",
+      "path": "M:/My Projects/Tapeout Chip/sw/test_s8asm.py",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 9433,
+      "sha256": "20932791f94eeb171926a7a11f4a454fcf981891109ec1daa5a44b02287079d4",
+      "reopened_available": true,
+      "reopened_sha256": "20932791f94eeb171926a7a11f4a454fcf981891109ec1daa5a44b02287079d4"
+    },
+    {
+      "relative_path": "sw/trace.py",
+      "path": "M:/My Projects/Tapeout Chip/sw/trace.py",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 1465,
+      "sha256": "1ce4032ec78c2e8cdd508e01101a9bba764ba4e1f0103f7594e9c7986db327cd",
+      "reopened_available": true,
+      "reopened_sha256": "1ce4032ec78c2e8cdd508e01101a9bba764ba4e1f0103f7594e9c7986db327cd"
+    },
+    {
+      "relative_path": "sw/uart.s",
+      "path": "M:/My Projects/Tapeout Chip/sw/uart.s",
+      "role": "project_input_or_regression",
+      "available": true,
+      "bytes": 1684,
+      "sha256": "1a27f76cec0d97e9ef7b3d74de1b80e5e183c87a912135ddfc6a0a46321ca704",
+      "reopened_available": true,
+      "reopened_sha256": "1a27f76cec0d97e9ef7b3d74de1b80e5e183c87a912135ddfc6a0a46321ca704"
+    }
+  ],
+  "evidence_files": [
+    {
+      "relative_path": "reports/flow-continuation.md",
+      "path": "M:/My Projects/Tapeout Chip/reports/flow-continuation.md",
+      "role": "historical_evidence_or_context",
+      "available": true,
+      "bytes": 8549,
+      "sha256": "0bc0be08bbe75bc7adcdcdff28c49e8df99645ea7b524beaf187fc69094c2833",
+      "reopened_available": true,
+      "reopened_sha256": "0bc0be08bbe75bc7adcdcdff28c49e8df99645ea7b524beaf187fc69094c2833"
+    },
+    {
+      "relative_path": "reports/flow-resume-evidence.json",
+      "path": "M:/My Projects/Tapeout Chip/reports/flow-resume-evidence.json",
+      "role": "historical_evidence_or_context",
+      "available": true,
+      "bytes": 31187,
+      "sha256": "7598b0714573766951bc22b4d46d7dcd82939a5f0d544d9267ad9d8ae9451a3d",
+      "reopened_available": true,
+      "reopened_sha256": "7598b0714573766951bc22b4d46d7dcd82939a5f0d544d9267ad9d8ae9451a3d"
+    },
+    {
+      "relative_path": "reports/flow-report-resume.md",
+      "path": "M:/My Projects/Tapeout Chip/reports/flow-report-resume.md",
+      "role": "historical_evidence_or_context",
+      "available": true,
+      "bytes": 6622,
+      "sha256": "ed921cff0bd12d355047023408f1fba7af48ee45c3ccaf6c6948deaa24c421e7",
+      "reopened_available": true,
+      "reopened_sha256": "ed921cff0bd12d355047023408f1fba7af48ee45c3ccaf6c6948deaa24c421e7"
+    },
+    {
+      "relative_path": "reports/signoff-checklist.md",
+      "path": "M:/My Projects/Tapeout Chip/reports/signoff-checklist.md",
+      "role": "historical_evidence_or_context",
+      "available": true,
+      "bytes": 5723,
+      "sha256": "a6c986d2a064cfa339ebb89007223ef6966547c184dc5739ccc52a9ef6148647",
+      "reopened_available": true,
+      "reopened_sha256": "a6c986d2a064cfa339ebb89007223ef6966547c184dc5739ccc52a9ef6148647"
+    },
+    {
+      "relative_path": "reports/routed-random-start-20261107.md",
+      "path": "M:/My Projects/Tapeout Chip/reports/routed-random-start-20261107.md",
+      "role": "historical_evidence_or_context",
+      "available": true,
+      "bytes": 3753,
+      "sha256": "2f43f8dc6b4fbf29ad652ea45083ab6fdd91d312ba87e8aa915597e6a3a99e09",
+      "reopened_available": true,
+      "reopened_sha256": "2f43f8dc6b4fbf29ad652ea45083ab6fdd91d312ba87e8aa915597e6a3a99e09"
+    },
+    {
+      "relative_path": "reports/routed-random-evidence-20261107.json",
+      "path": "M:/My Projects/Tapeout Chip/reports/routed-random-evidence-20261107.json",
+      "role": "historical_evidence_or_context",
+      "available": true,
+      "bytes": 45393,
+      "sha256": "150840da709fe41d0b8037eb7a66031b9d9d8768afcc88bc1fb7dd852c095469",
+      "reopened_available": true,
+      "reopened_sha256": "150840da709fe41d0b8037eb7a66031b9d9d8768afcc88bc1fb7dd852c095469"
+    },
+    {
+      "relative_path": "reports/pad-polarity.md",
+      "path": "M:/My Projects/Tapeout Chip/reports/pad-polarity.md",
+      "role": "historical_evidence_or_context",
+      "available": true,
+      "bytes": 2375,
+      "sha256": "af706c39c870108cf09f76ac8e96b18f5784d8138c417ae458585b0cf58516a7",
+      "reopened_available": true,
+      "reopened_sha256": "af706c39c870108cf09f76ac8e96b18f5784d8138c417ae458585b0cf58516a7"
+    },
+    {
+      "relative_path": "reports/manual-review-20261107.md",
+      "path": "M:/My Projects/Tapeout Chip/reports/manual-review-20261107.md",
+      "role": "historical_evidence_or_context",
+      "available": true,
+      "bytes": 11913,
+      "sha256": "d1c4c0a6df00cc8d4ceaccb39b2ba67499490ad2297091d34d2f0dde25610ab5",
+      "reopened_available": true,
+      "reopened_sha256": "d1c4c0a6df00cc8d4ceaccb39b2ba67499490ad2297091d34d2f0dde25610ab5"
+    },
+    {
+      "relative_path": "reports/flow-status.md",
+      "path": "M:/My Projects/Tapeout Chip/reports/flow-status.md",
+      "role": "historical_evidence_or_context",
+      "available": true,
+      "bytes": 19368,
+      "sha256": "70aeab8bc03c01e65910dd0dd89f1e2aa8532c1a30dc658c24b318fbe7fc1dce",
+      "reopened_available": true,
+      "reopened_sha256": "70aeab8bc03c01e65910dd0dd89f1e2aa8532c1a30dc658c24b318fbe7fc1dce"
+    },
+    {
+      "relative_path": "reports/codex-resume.md",
+      "path": "M:/My Projects/Tapeout Chip/reports/codex-resume.md",
+      "role": "historical_evidence_or_context",
+      "available": true,
+      "bytes": 3484,
+      "sha256": "51ec039ee1a763313a88a736f3d673ddeb6abcb33d9097015847cea4eea84430",
+      "reopened_available": true,
+      "reopened_sha256": "51ec039ee1a763313a88a736f3d673ddeb6abcb33d9097015847cea4eea84430"
+    },
+    {
+      "relative_path": "spec/cpu-status.md",
+      "path": "M:/My Projects/Tapeout Chip/spec/cpu-status.md",
+      "role": "historical_evidence_or_context",
+      "available": true,
+      "bytes": 17728,
+      "sha256": "61615441516076e3cde79add354ee30a311d740aa2cd8a04f870e4861bd42756",
+      "reopened_available": true,
+      "reopened_sha256": "61615441516076e3cde79add354ee30a311d740aa2cd8a04f870e4861bd42756"
+    },
+    {
+      "relative_path": "docs/STATUS.md",
+      "path": "M:/My Projects/Tapeout Chip/docs/STATUS.md",
+      "role": "historical_evidence_or_context",
+      "available": true,
+      "bytes": 14634,
+      "sha256": "16b51f33d86590a904b332908b79fd691a35ca78c4569471409025fffbcc2e93",
+      "reopened_available": true,
+      "reopened_sha256": "16b51f33d86590a904b332908b79fd691a35ca78c4569471409025fffbcc2e93"
+    },
+    {
+      "relative_path": "docs/plan.md",
+      "path": "M:/My Projects/Tapeout Chip/docs/plan.md",
+      "role": "historical_evidence_or_context",
+      "available": true,
+      "bytes": 11380,
+      "sha256": "7d985747f05ebb3834824bed0563a7d3fa25e7e7d58b1221b12531569978f0a9",
+      "reopened_available": true,
+      "reopened_sha256": "7d985747f05ebb3834824bed0563a7d3fa25e7e7d58b1221b12531569978f0a9"
+    },
+    {
+      "relative_path": "docs/decisions-and-context.md",
+      "path": "M:/My Projects/Tapeout Chip/docs/decisions-and-context.md",
+      "role": "historical_evidence_or_context",
+      "available": true,
+      "bytes": 10573,
+      "sha256": "201be9c79260576975a4148613bdf8996bcd4100c0c0a9a11914f028238d4c0d",
+      "reopened_available": true,
+      "reopened_sha256": "201be9c79260576975a4148613bdf8996bcd4100c0c0a9a11914f028238d4c0d"
+    }
+  ],
+  "pdk_assets": [
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lib/c1d_core_min.lib",
+      "role": "liberty",
+      "available": true,
+      "bytes": 934286,
+      "sha256": "137888a5ea9cebe8a3b67bca5e03995381269373ca76d75c22940426bd275cfb",
+      "reopened_available": true,
+      "reopened_sha256": "137888a5ea9cebe8a3b67bca5e03995381269373ca76d75c22940426bd275cfb"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lib/scl1u_pads_min.lib",
+      "role": "liberty",
+      "available": true,
+      "bytes": 156555,
+      "sha256": "00d6109fd8bf6a1f13edcd01e4b46063fadc49e09ff7a95ff63ee765372542d9",
+      "reopened_available": true,
+      "reopened_sha256": "00d6109fd8bf6a1f13edcd01e4b46063fadc49e09ff7a95ff63ee765372542d9"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lib/c1d_core_typ.lib",
+      "role": "liberty",
+      "available": true,
+      "bytes": 930936,
+      "sha256": "8a6101dabe703cb9c73feb411cc21e1d7cd331eeb30d3d0ed2ac2884f52544c8",
+      "reopened_available": true,
+      "reopened_sha256": "8a6101dabe703cb9c73feb411cc21e1d7cd331eeb30d3d0ed2ac2884f52544c8"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lib/scl1u_pads_typ.lib",
+      "role": "liberty",
+      "available": true,
+      "bytes": 156267,
+      "sha256": "4c1bbe64441f4811f8644443935051b4de318c56d2508b0e1efdd2f7947ee249",
+      "reopened_available": true,
+      "reopened_sha256": "4c1bbe64441f4811f8644443935051b4de318c56d2508b0e1efdd2f7947ee249"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lib/c1d_core_max.lib",
+      "role": "liberty",
+      "available": true,
+      "bytes": 930199,
+      "sha256": "df62cded71a8c7ef56681d180f8ac1b5aba80c96a0fa6ca199cb6205cd5144fd",
+      "reopened_available": true,
+      "reopened_sha256": "df62cded71a8c7ef56681d180f8ac1b5aba80c96a0fa6ca199cb6205cd5144fd"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lib/scl1u_pads_max.lib",
+      "role": "liberty",
+      "available": true,
+      "bytes": 156657,
+      "sha256": "356824f2f973ece094d81952ddfdfe67da21d5c12e8b7941c68aa4abe038b48d",
+      "reopened_available": true,
+      "reopened_sha256": "356824f2f973ece094d81952ddfdfe67da21d5c12e8b7941c68aa4abe038b48d"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lef/tech_c1d.lef",
+      "role": "technology_lef",
+      "available": true,
+      "bytes": 2186,
+      "sha256": "eb5e5687ca36407478512375582b4e2fd9b5847aeaaa5b9b9b436709eb52c220",
+      "reopened_available": true,
+      "reopened_sha256": "eb5e5687ca36407478512375582b4e2fd9b5847aeaaa5b9b9b436709eb52c220"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lef/core_c1d.lef",
+      "role": "core_lef",
+      "available": true,
+      "bytes": 294518,
+      "sha256": "7561610745cc6dff139b638d63238bbe4f331002376a94c9c76683af32b89128",
+      "reopened_available": true,
+      "reopened_sha256": "7561610745cc6dff139b638d63238bbe4f331002376a94c9c76683af32b89128"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/lef/io_c1d.lef",
+      "role": "io_lef",
+      "available": true,
+      "bytes": 203154,
+      "sha256": "1fd933c11b84f710f7801525edaa83aac9ab202392c30dc404e9af9bdd7be8a7",
+      "reopened_available": true,
+      "reopened_sha256": "1fd933c11b84f710f7801525edaa83aac9ab202392c30dc404e9af9bdd7be8a7"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/gds/core_c1d.gds",
+      "role": "core_gds",
+      "available": true,
+      "bytes": 501146,
+      "sha256": "aeae8d4d6a09837c06f3d59d73c87f0cb4796ed3154ccf21c033b9b9f0a95ace",
+      "reopened_available": true,
+      "reopened_sha256": "aeae8d4d6a09837c06f3d59d73c87f0cb4796ed3154ccf21c033b9b9f0a95ace"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/cdl/core_iolib_c1d.cdl",
+      "role": "core_cdl",
+      "available": true,
+      "bytes": 143590,
+      "sha256": "58d3100035f5164a7f0e4ccc658078ade28eb8f8e02c4791284d06bb3d004685",
+      "reopened_available": true,
+      "reopened_sha256": "58d3100035f5164a7f0e4ccc658078ade28eb8f8e02c4791284d06bb3d004685"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/verilog/c1d.v",
+      "role": "digital_models",
+      "available": true,
+      "bytes": 69582,
+      "sha256": "308a84fb471631c96a82113b80c6d45cb985d1326eaed59eeeb1d28a2648f3eb",
+      "reopened_available": true,
+      "reopened_sha256": "308a84fb471631c96a82113b80c6d45cb985d1326eaed59eeeb1d28a2648f3eb"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.tech/openrcx/scl_c1d.rcx.lib",
+      "role": "raw_extraction_rules",
+      "available": true,
+      "bytes": 3166,
+      "sha256": "3f0fe1c65e3b2664f686430d8e8cb4e6c1a14359fdf70d8fea290d0c503fc98e",
+      "reopened_available": true,
+      "reopened_sha256": "3f0fe1c65e3b2664f686430d8e8cb4e6c1a14359fdf70d8fea290d0c503fc98e"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.tech/klayout/tech/drc/c1d_drc.drc",
+      "role": "drc_deck",
+      "available": true,
+      "bytes": 24553,
+      "sha256": "12ac6299b6464d798fabd8038797e686a28aee1db2f91e9c74fdf22ff46b8633",
+      "reopened_available": true,
+      "reopened_sha256": "12ac6299b6464d798fabd8038797e686a28aee1db2f91e9c74fdf22ff46b8633"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/libs.tech/klayout/tech/lvs/lvs_os_scl_c1d.lvs",
+      "role": "lvs_deck",
+      "available": true,
+      "bytes": 15405,
+      "sha256": "2590471634771968ae53237c7e15d9482d23bb43a9d743c3a729a118e596f9cd",
+      "reopened_available": true,
+      "reopened_sha256": "2590471634771968ae53237c7e15d9482d23bb43a9d743c3a729a118e596f9cd"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/pad_frame_gds/frame2mmx2mm.gds",
+      "role": "frame_gds",
+      "available": true,
+      "bytes": 71892,
+      "sha256": "69db3e51d03ef5831d1a82257298088379974ee48c6e21d4e034d690a32cfee6",
+      "reopened_available": true,
+      "reopened_sha256": "69db3e51d03ef5831d1a82257298088379974ee48c6e21d4e034d690a32cfee6"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/pad_frame_cdl/frame2mmx2mm.cdl",
+      "role": "frame_cdl",
+      "available": true,
+      "bytes": 661,
+      "sha256": "9adfd16aaa4e1a1b562bb174bc00ae83c47f709f6c1e879707de93e44644f5b1",
+      "reopened_available": true,
+      "reopened_sha256": "9adfd16aaa4e1a1b562bb174bc00ae83c47f709f6c1e879707de93e44644f5b1"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/klayout/gds/io_pad_c1d.gds",
+      "role": "pad_gds",
+      "available": true,
+      "bytes": 934476,
+      "sha256": "50f53792cfe1b49e42d51cfb6a99de49ba8f2c0ae96ef764d469178be80a8ecf",
+      "reopened_available": true,
+      "reopened_sha256": "50f53792cfe1b49e42d51cfb6a99de49ba8f2c0ae96ef764d469178be80a8ecf"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/PadFrame_C1D/PadFrame_C1D/PadFrame_C1D/klayout/lvs_cdl/io_pad_c1d.cdl",
+      "role": "pad_cdl",
+      "available": true,
+      "bytes": 36582,
+      "sha256": "0e48625fe4789f4cb409c7c12de501bf5d03dc0c3d82ed64b0dc5114ea5292ef",
+      "reopened_available": true,
+      "reopened_sha256": "0e48625fe4789f4cb409c7c12de501bf5d03dc0c3d82ed64b0dc5114ea5292ef"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/diode/diodes",
+      "role": "analog_model_data",
+      "available": true,
+      "bytes": 945,
+      "sha256": "827bdd39d69135819077ed0ba0424fa0edde569a46ecb56a6b3c67f9a7e2fab7",
+      "reopened_available": true,
+      "reopened_sha256": "827bdd39d69135819077ed0ba0424fa0edde569a46ecb56a6b3c67f9a7e2fab7"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/diode/Readme",
+      "role": "analog_model_data",
+      "available": true,
+      "bytes": 705,
+      "sha256": "6c6f211b6c33bf639ae987df84f328e32198a1073a301b015e5bc31e9aac9357",
+      "reopened_available": true,
+      "reopened_sha256": "6c6f211b6c33bf639ae987df84f328e32198a1073a301b015e5bc31e9aac9357"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/header.lib",
+      "role": "analog_model_data",
+      "available": true,
+      "bytes": 2865,
+      "sha256": "a57a948ae8431e42d350ec7d6db7b34c79d544c97346ef364ee3901964f3f3dd",
+      "reopened_available": true,
+      "reopened_sha256": "a57a948ae8431e42d350ec7d6db7b34c79d544c97346ef364ee3901964f3f3dd"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/mos/bnbp49_5v",
+      "role": "analog_model_data",
+      "available": true,
+      "bytes": 4703,
+      "sha256": "dd3026e9d8462052d1fd327b1bcc1935ed0e4d20e26e9d66ddbb772977c16ac5",
+      "reopened_available": true,
+      "reopened_sha256": "dd3026e9d8462052d1fd327b1bcc1935ed0e4d20e26e9d66ddbb772977c16ac5"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/mos/bnwp49_5v",
+      "role": "analog_model_data",
+      "available": true,
+      "bytes": 4602,
+      "sha256": "5b888ba2aab4c5716dccf37a6d6e12dc608d56b9d70100904b7734ab72060d45",
+      "reopened_available": true,
+      "reopened_sha256": "5b888ba2aab4c5716dccf37a6d6e12dc608d56b9d70100904b7734ab72060d45"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/mos/Readme",
+      "role": "analog_model_data",
+      "available": true,
+      "bytes": 925,
+      "sha256": "25e3b5702e39144afacccca9d0b5cee20661c82c9b564072aac96f025f1fce80",
+      "reopened_available": true,
+      "reopened_sha256": "25e3b5702e39144afacccca9d0b5cee20661c82c9b564072aac96f025f1fce80"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/mos/tntp49_5v",
+      "role": "analog_model_data",
+      "available": true,
+      "bytes": 4737,
+      "sha256": "7c3c003a495c7839dfd15cd667bb6e9e919ecf0ff8998ccf63cf3043a7d9e00a",
+      "reopened_available": true,
+      "reopened_sha256": "7c3c003a495c7839dfd15cd667bb6e9e919ecf0ff8998ccf63cf3043a7d9e00a"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/mos/wnbp49_5v",
+      "role": "analog_model_data",
+      "available": true,
+      "bytes": 4599,
+      "sha256": "8fa09b55c665395900938b1e2ca94719f8cde8d705edbfa3b14e17d961b527d6",
+      "reopened_available": true,
+      "reopened_sha256": "8fa09b55c665395900938b1e2ca94719f8cde8d705edbfa3b14e17d961b527d6"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/mos/wnwp49_5v",
+      "role": "analog_model_data",
+      "available": true,
+      "bytes": 4699,
+      "sha256": "13c6db74da471c297e930d9a33660a91a4e6b7023d95d8d8a61a6b308e6e9971",
+      "reopened_available": true,
+      "reopened_sha256": "13c6db74da471c297e930d9a33660a91a4e6b7023d95d8d8a61a6b308e6e9971"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/best/ndiffr",
+      "role": "analog_model_data",
+      "available": true,
+      "bytes": 828,
+      "sha256": "fb3015b329b5c641e4dddf4477182a489b5b534d16724d00d28324a80220d0c4",
+      "reopened_available": true,
+      "reopened_sha256": "fb3015b329b5c641e4dddf4477182a489b5b534d16724d00d28324a80220d0c4"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/best/npr",
+      "role": "analog_model_data",
+      "available": true,
+      "bytes": 811,
+      "sha256": "da61f5208bf5714e71f1882c76971e897f66f90d6a467c41f98ff19e6f8b8087",
+      "reopened_available": true,
+      "reopened_sha256": "da61f5208bf5714e71f1882c76971e897f66f90d6a467c41f98ff19e6f8b8087"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/best/nwr",
+      "role": "analog_model_data",
+      "available": true,
+      "bytes": 828,
+      "sha256": "c12c5d03cd968412520b585bfccebc16c05fab442996994558879369fbbdecf2",
+      "reopened_available": true,
+      "reopened_sha256": "c12c5d03cd968412520b585bfccebc16c05fab442996994558879369fbbdecf2"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/best/pdiffr",
+      "role": "analog_model_data",
+      "available": true,
+      "bytes": 824,
+      "sha256": "b49e7b0a648c16baf7af6868a4c2447d8f11d008520285226c9f69dc24a737d1",
+      "reopened_available": true,
+      "reopened_sha256": "b49e7b0a648c16baf7af6868a4c2447d8f11d008520285226c9f69dc24a737d1"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/best/ppr",
+      "role": "analog_model_data",
+      "available": true,
+      "bytes": 812,
+      "sha256": "decf4027e40bea396bf89ee88f357cc376d86282b64859e025a2d860368a3981",
+      "reopened_available": true,
+      "reopened_sha256": "decf4027e40bea396bf89ee88f357cc376d86282b64859e025a2d860368a3981"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/Readme",
+      "role": "analog_model_data",
+      "available": true,
+      "bytes": 913,
+      "sha256": "65547fef83c0ec46508882151ed7d3256ccd3d5f7bdb7256f1a5306cadfbb9df",
+      "reopened_available": true,
+      "reopened_sha256": "65547fef83c0ec46508882151ed7d3256ccd3d5f7bdb7256f1a5306cadfbb9df"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/typ/ndiffr",
+      "role": "analog_model_data",
+      "available": true,
+      "bytes": 833,
+      "sha256": "cf2a87b320d2cc794653d8487688a6ee80a385844c1bf0d05b2bf0b662876ec6",
+      "reopened_available": true,
+      "reopened_sha256": "cf2a87b320d2cc794653d8487688a6ee80a385844c1bf0d05b2bf0b662876ec6"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/typ/npr",
+      "role": "analog_model_data",
+      "available": true,
+      "bytes": 672,
+      "sha256": "f36c7efc3bc2595635167bc27975217a0171749b4846854413e186c8ff461b38",
+      "reopened_available": true,
+      "reopened_sha256": "f36c7efc3bc2595635167bc27975217a0171749b4846854413e186c8ff461b38"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/typ/nwr",
+      "role": "analog_model_data",
+      "available": true,
+      "bytes": 834,
+      "sha256": "d15e8528e0c4afaf6cbd26846e7a13bd34c476a8fbbf329792a5ef82973cc2be",
+      "reopened_available": true,
+      "reopened_sha256": "d15e8528e0c4afaf6cbd26846e7a13bd34c476a8fbbf329792a5ef82973cc2be"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/typ/pdiffr",
+      "role": "analog_model_data",
+      "available": true,
+      "bytes": 824,
+      "sha256": "0483876d1698a6064e577dabbd1d83b3a8002311850f0e36158151263ded74fc",
+      "reopened_available": true,
+      "reopened_sha256": "0483876d1698a6064e577dabbd1d83b3a8002311850f0e36158151263ded74fc"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/typ/ppr",
+      "role": "analog_model_data",
+      "available": true,
+      "bytes": 815,
+      "sha256": "9712d78754376bd2655a6db1ebc8f4f082335782b6f8d16d7afe28c6b34ac62d",
+      "reopened_available": true,
+      "reopened_sha256": "9712d78754376bd2655a6db1ebc8f4f082335782b6f8d16d7afe28c6b34ac62d"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/worst/ndiffr",
+      "role": "analog_model_data",
+      "available": true,
+      "bytes": 831,
+      "sha256": "4ee632e107447cefdece70a47d14a89a2c5d633b072b547ba94583888eff10d7",
+      "reopened_available": true,
+      "reopened_sha256": "4ee632e107447cefdece70a47d14a89a2c5d633b072b547ba94583888eff10d7"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/worst/npr",
+      "role": "analog_model_data",
+      "available": true,
+      "bytes": 816,
+      "sha256": "af8d99ba803e3c199be67a4696d55cda03fb2eb53b146c371672ed517bb2ab6e",
+      "reopened_available": true,
+      "reopened_sha256": "af8d99ba803e3c199be67a4696d55cda03fb2eb53b146c371672ed517bb2ab6e"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/worst/nwr",
+      "role": "analog_model_data",
+      "available": true,
+      "bytes": 825,
+      "sha256": "d9f5dbc2d5f2a32d9b0eceb6c74f7fedc9898fa879ec1ff0ba7165dbfac0f54d",
+      "reopened_available": true,
+      "reopened_sha256": "d9f5dbc2d5f2a32d9b0eceb6c74f7fedc9898fa879ec1ff0ba7165dbfac0f54d"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/worst/pdiffr",
+      "role": "analog_model_data",
+      "available": true,
+      "bytes": 832,
+      "sha256": "a8a3c7b23b112eada26b690327b4b0f43f790383124e2c3c12ec476876d228e6",
+      "reopened_available": true,
+      "reopened_sha256": "a8a3c7b23b112eada26b690327b4b0f43f790383124e2c3c12ec476876d228e6"
+    },
+    {
+      "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Analog_C1D/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/Open_Source_SCL_1.2micron_PDK/open_source_scl_c1d/open_pdks/scl_c1d/libs.tech/ngpsice/model/hspice/models49/res/worst/ppr",
+      "role": "analog_model_data",
+      "available": true,
+      "bytes": 811,
+      "sha256": "6d862d83c6f164b5769af892bee05b8ca7b2666c772433c0f64720343f90f077",
+      "reopened_available": true,
+      "reopened_sha256": "6d862d83c6f164b5769af892bee05b8ca7b2666c772433c0f64720343f90f077"
+    }
+  ],
+  "external_models": [
+    {
+      "id": "c1d.copied_digital_model",
+      "runner_reference": "~/tool-eval/data/digital_c1d/verilog/c1d.v",
+      "origin": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/pdk/SCL 1.2 µm PDK/SCL_C1D_PDK_17092026/Digital_C1D/my_dtech/my_dtech/Open_Source_SCL_1.2micron_PDK_digital/open_source_scl_c1d/open_pdks/sclc1d/digital_c1d/verilog/c1d.v",
+      "historically_recorded_sha256": "308a84fb471631c96a82113b80c6d45cb985d1326eaed59eeeb1d28a2648f3eb",
+      "origin_sha256": "308a84fb471631c96a82113b80c6d45cb985d1326eaed59eeeb1d28a2648f3eb",
+      "copied_model_availability": "reopened in WSL; see observed fields",
+      "redistribution": "private PDK data; reference externally",
+      "observed_path": "/home/sushant/tool-eval/data/digital_c1d/verilog/c1d.v",
+      "observed_available": true,
+      "observed_sha256": "308a84fb471631c96a82113b80c6d45cb985d1326eaed59eeeb1d28a2648f3eb",
+      "matches_origin": true
+    },
+    {
+      "id": "microchip.23LC512",
+      "runner_reference": "~/silicon/builds/chip-cpu/ram-model/v/23LC512.v",
+      "origin": "Microchip 23xx512 model per historical project evidence",
+      "availability": "reopened in WSL; see observed fields",
+      "sha256": null,
+      "resolution": "capture actual file hash and provenance/license before migration; do not download or bundle implicitly",
+      "redistribution": "third-party model; external dependency",
+      "observed_path": "/home/sushant/silicon/builds/chip-cpu/ram-model/v/23LC512.v",
+      "observed_available": true,
+      "observed_sha256": "8e050e5eb11886bc6c7fec5a75e8a1736115ac91ac383c8e1eb8faa598894e1f"
+    }
+  ],
+  "regressions": [
+    {
+      "id": "s8.full_physical_flow",
+      "command": "CPU_V=rtl/s8.v BUILD=\"$B\" REPORT=\"$PWD/reports/flow-report-new.md\" bash flow/run_all.sh </dev/null",
+      "runners": [
+        "flow/run_all.sh"
+      ],
+      "inputs": [
+        "rtl/s8.v",
+        "flow/pads.tsv",
+        "flow/env.sh"
+      ],
+      "expected_evidence": [
+        "nonempty OS0000 GDS/CDL and inventories",
+        "DRC expected categories executed with zero markers",
+        "LVS expected top and complete matching coverage",
+        "11/11 deliberate defects detected",
+        "presubmit 38 PASS, 8 WARN, 7 MANUAL in recorded trial",
+        "power connectivity: 92 points, zero issues",
+        "raw extraction plausibility FAIL preserved"
+      ],
+      "historical_build_exit": "not reliable: wrapper masks child exits and only enforces SCK gate; reusable full-build result must be 1 when raw extraction FAIL is reproduced"
+    },
+    {
+      "id": "s8.routed_clocks",
+      "command": "python3 tb/check_routed_clocks.py \"$B/pnr/routed.v\"",
+      "runners": [
+        "tb/check_routed_clocks.py"
+      ],
+      "expected_evidence": [
+        "45/45 DFF clock pins reach external clock through four buffer levels in historical build; count must reconcile to current mapped design"
+      ]
+    },
+    {
+      "id": "s8.routed_equivalence",
+      "command": "cat \"$B/pnr/routed.v\" \"$B/sta/shim.v\" > \"$B/routed-with-shim.v\"; NET=\"$B/routed-with-shim.v\" L=\"$B/lec\" bash formal/lec.sh </dev/null",
+      "runners": [
+        "formal/lec.sh"
+      ],
+      "inputs": [
+        "rtl/s8.v",
+        "~/silicon/builds/chip-cpu/gate/du.lib"
+      ],
+      "expected_evidence": [
+        "nonempty proof status PASS",
+        "matching gold and gate netlists, Liberty and shim hashes",
+        "proof reaches post-reset comparison; no timeout/crash treated as proof"
+      ]
+    },
+    {
+      "id": "s8.routed_sdf_tests",
+      "command": "~/tool-eval/venv/bin/python tb/run.py --routed \"$B\" --corner <min|typ|max> --tag <unique-tag> </dev/null",
+      "runners": [
+        "tb/run.py",
+        "tb/routed_util.py",
+        "tb/routed_top.v",
+        "tb/s8_top.v",
+        "tb/test_s8.py",
+        "tb/test_demos.py"
+      ],
+      "expected_evidence": [
+        "20 tests at each of min/typ/max, no failure/error/skip",
+        "nonempty matched SDF and -gspecify invocation",
+        "no SDF annotation diagnostics",
+        "nonzero delay established separately by annotation probe"
+      ]
+    },
+    {
+      "id": "s8.routed_random_start",
+      "command": "~/tool-eval/venv/bin/python tb/routed_random.py \"$B\" --output \"${B}-routed-random\" </dev/null",
+      "runners": [
+        "tb/routed_random.py",
+        "tb/run.py",
+        "tb/routed_util.py"
+      ],
+      "expected_evidence": [
+        "seeds 1..5 at min/typ/max: 15 runs, 20 tests each, 300 total",
+        "all 45 historical DFFs have one startup record before bench clock",
+        "seed vectors distinct and same across corners",
+        "complete original UDP and specify arcs retained on private copy",
+        "50 programs/run, max 100 instructions in historical campaign"
+      ]
+    },
+    {
+      "id": "s8.sdf_nonzero_probe",
+      "command": "~/tool-eval/venv/bin/python tb/check_random_start_sdf.py \"$B\" \"${B}-routed-random/sdf-probe\" </dev/null",
+      "runners": [
+        "tb/check_random_start_sdf.py",
+        "tb/routed_util.py"
+      ],
+      "expected_evidence": [
+        "measured C-to-Q min/typ/max nonzero and matches SDF",
+        "historical 1.221/2.405/2.854 ns",
+        "instance path, corner, timescale and annotation diagnostics checked"
+      ]
+    },
+    {
+      "id": "s8.ram_protocol",
+      "command": "~/tool-eval/venv/bin/python tb/run_ram_model.py --routed \"$B\" --build-dir \"$B/ram-model\" </dev/null",
+      "runners": [
+        "tb/run_ram_model.py",
+        "tb/tb_ram_model.v",
+        "tb/routed_util.py",
+        "model/s8_model.py",
+        "sw/s8asm.py"
+      ],
+      "inputs": [
+        "sw/fib.s",
+        "sw/sieve.s",
+        "sw/uart.s",
+        "sw/blink.s",
+        "~/silicon/builds/chip-cpu/ram-model/v/23LC512.v"
+      ],
+      "expected_evidence": [
+        "4 demos x 3 corners x 3 duty cycles = 36/36 positive cases",
+        "independent ISS expected RAM contents and output event clocks",
+        "RAM pin timing measured against reviewed limits",
+        "25 MHz deliberate negative: four cases positively detect timing violations; process exit 1"
+      ]
+    },
+    {
+      "id": "s8.pad_dc_polarity",
+      "command": "python flow/libcheck/pad_polarity.py <PF-pad-CDL> <DIG-core-CDL> <ANATECH-models49> <new-output> <ngspice>",
+      "runners": [
+        "flow/libcheck/pad_polarity.py"
+      ],
+      "expected_evidence": [
+        "72/72 rail cases with model hashes and measurements",
+        "INVR04+OPAD04 double inversion restores polarity",
+        "DC evidence does not validate load, slew, hysteresis or current ratings"
+      ]
+    },
+    {
+      "id": "s8.cpu_formal",
+      "command": "W=<new-output> bash formal/run.sh </dev/null",
+      "runners": [
+        "formal/run.sh",
+        "formal/s8.sby",
+        "formal/s8_props.vh"
+      ],
+      "expected_evidence": [
+        "reset_hold reset_release bus commands isa isa_cover halt: seven task statuses",
+        "historical continuation explicitly did not rerun these tasks; preserve prior evidence and repeat after freeze"
+      ]
+    },
+    {
+      "id": "s8.mapped_random_campaign",
+      "command": "bash tb/gate_build.sh </dev/null; bash tb/gate_sim.sh </dev/null; bash tb/random_campaign.sh </dev/null",
+      "runners": [
+        "tb/gate_build.sh",
+        "tb/gate_sim.sh",
+        "tb/random_campaign.sh"
+      ],
+      "expected_evidence": [
+        "preserve earlier campaigns as prior evidence only",
+        "mapped behavioral random-start DFF does not establish routed SDF coverage",
+        "repeat seeded campaign after source freeze with explicit counts and hashes"
+      ]
+    }
+  ],
+  "qualification": {
+    "status": "NOT RUN",
+    "current_reference_reproduction": "NOT RUN",
+    "current_automated_signoff": "NOT RUN",
+    "historical_extraction_plausibility": "FAIL",
+    "expected_new_full_build_exit_when_exact_known_extraction_failure_reproduced": 1,
+    "environment_reproduction": "not established by this inventory"
+  },
+  "inventory_recheck": {
+    "path": "recheck.json",
+    "verified_files": 147,
+    "issue_count": 0
+  }
+}

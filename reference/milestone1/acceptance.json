@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "milestone": 1,
+  "status": "COMPLETE",
+  "captured_at": "2026-11-08T05:10:09.681643+00:00",
+  "acceptance": [
+    {
+      "id": "M1.1",
+      "status": "PASS",
+      "evidence": [
+        "source-inputs.json",
+        "../s8/dependencies.json"
+      ],
+      "detail": "Current source/scripts/environment and historical results inventoried and immutable reference inputs captured."
+    },
+    {
+      "id": "M1.2",
+      "status": "PASS",
+      "evidence": [
+        "baseline.json",
+        "artifact-manifest.json",
+        "reference-environment.json"
+      ],
+      "detail": "Exact tool/config/source/PDK identities and fresh current-source physical/verification artifacts recorded."
+    },
+    {
+      "id": "M1.3",
+      "status": "PASS",
+      "evidence": [
+        "../../docs/m1-workarounds.md",
+        "../s8/m1-contract-audit.json"
+      ],
+      "detail": "Engine/process/S8/local assumptions and every registered workaround classified with source/evidence hashes."
+    },
+    {
+      "id": "M1.4",
+      "status": "PASS",
+      "evidence": [
+        "../../docs/project-format.md",
+        "../../docs/stage-contracts.md",
+        "../../docs/result-contract.md"
+      ],
+      "detail": "Versioned project/stage/result/required-check contracts defined before reusable physical extraction; semantic implementation remains M2."
+    },
+    {
+      "id": "M1.5",
+      "status": "PASS",
+      "evidence": [
+        "environment-startup.json",
+        "../../toolchains/milestone1/capture.json"
+      ],
+      "detail": "Hash-pinned binary recipe installed offline in fresh Ubuntu userspace; configured startup and real synthesis/geometry probes passed without host store/venv visibility."
+    },
+    {
+      "id": "M1.6",
+      "status": "PASS",
+      "evidence": [
+        "baseline.json",
+        "../s8/dependencies.json"
+      ],
+      "detail": "Ten wider regression groups and external model availability/provenance captured; 380 RTL/routed tests, routed proof/clock tracing, RAM and DC baseline evidence reproduced."
+    },
+    {
+      "id": "M1.7",
+      "status": "PASS",
+      "evidence": [
+        "limitations.json",
+        "baseline.json"
+      ],
+      "detail": "Exact expected process/model/manual states preserved; raw extraction remains FAIL and real design-status validation exits 1."
+    }
+  ],
+  "source_rtl_sha256": "fa52f0fb87289df5dd2f1f5e6004538fb513956fc834ad78556c39021a86ca46",
+  "reference_run": "work/milestone1/reference-20261107T202316Z-f546a6c1",
+  "reference_reproduction": "PASS",
+  "reference_design_exit": 1,
+  "qualification_exit": 0,
+  "fresh_userspace_startup": "PASS",
+  "evidence_guard_tests": 8,
+  "artifact_count": 653,
+  "registered_workarounds": 36,
+  "active_project_and_pdk_unchanged": true,
+  "engine_physical_adapters": "NOT RUN",
+  "clean_wsl_installation": "NOT RUN",
+  "independent_eda_source_rebuild": "NOT RUN",
+  "final_silicon_source_freeze": "NOT RUN",
+  "signoff_ready": false,
+  "explanation": "Milestone 1 is reference capture/contracts and fresh binary-runtime startup; later engine/release qualification and chip signoff remain separate."
+}

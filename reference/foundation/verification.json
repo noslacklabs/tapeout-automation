@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-11-07T18:40:33.876451+00:00",
+  "kind": "foundation-increment-verification",
+  "engine_version": "0.1.0.dev1",
+  "wheel_path": "dist/chipflow-0.1.0.dev1-py3-none-any.whl",
+  "wheel_sha256": "10bb95eb5bea429054e3f2e8df13f4526f4749a3fe85efc99394dc6119b2b9eb",
+  "tests": {
+    "windows": 27,
+    "installed_wsl_wheel": 27
+  },
+  "installed_import_verified": true,
+  "real_environment_probe": "PASS",
+  "unicode_space_path": "PASS",
+  "pdk_unchanged": true,
+  "pdk_files_checked": 254,
+  "evidence": [
+    {
+      "path": "windows-tests.log",
+      "sha256": "3fe40d909128b585835a0e24905cc924cf4ae01a7371a999b4964d2fea575d65"
+    },
+    {
+      "path": "installed-tests.log",
+      "sha256": "06fb61b4b92ad6faa2a2211d0297a56a5d3035b22f125df652977b4518cb6a2f"
+    },
+    {
+      "path": "installed-wheel.json",
+      "sha256": "eb8b0642610173f6b044bc08c9b68faaf5f98c5626a81bb71d622ff7f82fc5b8"
+    },
+    {
+      "path": "import-location.log",
+      "sha256": "15e774b4ecda3c2d61055450df1f7b217a634f2b30f0442d98765ca120c49886"
+    },
+    {
+      "path": "doctor.json",
+      "sha256": "f8202c2fd67f17f65190823c99e27c94e7dc764d20be10da9ae3648976e14535"
+    },
+    {
+      "path": "probe.json",
+      "sha256": "6a83eed5347fdbb083bc8fb89e49dfded6d8dd2842a371e655d508f7c063cc68"
+    }
+  ],
+  "full_chip_build": "NOT RUN",
+  "clean_eda_installation": "NOT RUN",
+  "reference_current_rtl_reproduction": "NOT RUN",
+  "milestones_1_and_2": "partial",
+  "signoff_ready": false
+}

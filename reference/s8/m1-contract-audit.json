@@ -1,0 +1,1836 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-11-07T20:25:53.535105+00:00",
+  "kind": "milestone1-contract-workaround-audit",
+  "scope": "Read-only source/historical evidence audit; no chip build or electrical qualification run by this audit",
+  "source_root": "M:/My Projects/Tapeout Chip",
+  "source_inventory_count": 89,
+  "source_drift_since_inventory": [],
+  "current_rtl_sha256": "fa52f0fb87289df5dd2f1f5e6004538fb513956fc834ad78556c39021a86ca46",
+  "workarounds": [
+    {
+      "id": "P01",
+      "owner": "process",
+      "title": "Filtered cells",
+      "operation": "Exclude asynchronous/latch/tristate and high-risk cells including MX2101 from working Liberty copies.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/synth.sh",
+          "line_start": 14,
+          "line_end": 25,
+          "sha256": "cb1fdf2e8780d012f5c31e42f674472df2022089b92375092958051763c6fc80"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/tech/filt.py",
+          "line_start": 6,
+          "line_end": 23,
+          "sha256": "478fa7dac93ce31b1ef049c9c010abb6e03e6057944528db11cd33c75afefe25"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/TOOL_EVALUATION.md",
+          "line_start": 91,
+          "line_end": 102,
+          "sha256": "17e3a05db715fbc6faf1b899931ff8d262969e9d6f7609710cdb99d5010dfb90"
+        }
+      ],
+      "implementation_state": "applied",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "P02",
+      "owner": "process",
+      "title": "Poly-pin cell exclusions",
+      "operation": "Default FORCE exclusions avoid cells whose pins require vias over poly. ALLOW_VIA_OVER_POLY is a reviewed opt-out, not a waiver.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/synth.sh",
+          "line_start": 17,
+          "line_end": 22,
+          "sha256": "cb1fdf2e8780d012f5c31e42f674472df2022089b92375092958051763c6fc80"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/libcheck/via_poly_table.py",
+          "line_start": 1,
+          "line_end": 42,
+          "sha256": "dadde50aedda8ec336988e6f041e485cfaf4669b7d309ae024813bd573801ea1"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/flow-status.md",
+          "line_start": 158,
+          "line_end": 158,
+          "sha256": "70aeab8bc03c01e65910dd0dd89f1e2aa8532c1a30dc658c24b318fbe7fc1dce"
+        },
+        {
+          "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/TOOL_EVALUATION.md",
+          "line_start": 79,
+          "line_end": 79,
+          "sha256": "17e3a05db715fbc6faf1b899931ff8d262969e9d6f7609710cdb99d5010dfb90"
+        }
+      ],
+      "implementation_state": "applied",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [
+        "SCL-C1D-C17.2"
+      ],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "P03",
+      "owner": "process/tool",
+      "title": "ABC buffer and timing option",
+      "operation": "Keep DELBUF so ABC has a buffer. Avoid incompatible abc -D constraint timing on pinned Yosys0.33.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/synth.sh",
+          "line_start": 14,
+          "line_end": 16,
+          "sha256": "cb1fdf2e8780d012f5c31e42f674472df2022089b92375092958051763c6fc80"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/synth.sh",
+          "line_start": 32,
+          "line_end": 40,
+          "sha256": "cb1fdf2e8780d012f5c31e42f674472df2022089b92375092958051763c6fc80"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/TOOL_EVALUATION.md",
+          "line_start": 91,
+          "line_end": 99,
+          "sha256": "17e3a05db715fbc6faf1b899931ff8d262969e9d6f7609710cdb99d5010dfb90"
+        }
+      ],
+      "implementation_state": "applied",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "P04",
+      "owner": "process",
+      "title": "Physical constant ties",
+      "operation": "Map constants through VDDCON/TIEHI and VSSCON/TIELO before routing.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/synth.sh",
+          "line_start": 41,
+          "line_end": 42,
+          "sha256": "cb1fdf2e8780d012f5c31e42f674472df2022089b92375092958051763c6fc80"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/tb/gate_build.sh",
+          "line_start": 22,
+          "line_end": 25,
+          "sha256": "cfb1efbc16a22402b2c0037d7554bbeef914459dfa24648b70ceab99e62ed583"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/TOOL_EVALUATION.md",
+          "line_start": 103,
+          "line_end": 104,
+          "sha256": "17e3a05db715fbc6faf1b899931ff8d262969e9d6f7609710cdb99d5010dfb90"
+        }
+      ],
+      "implementation_state": "applied",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "P05",
+      "owner": "process",
+      "title": "LEF width utilization",
+      "operation": "Use LEF widths and row budgets instead of interpreting Liberty area as square micrometres.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/tech/width.py",
+          "line_start": 1,
+          "line_end": 23,
+          "sha256": "94ef2ab75aaf22961c98334be12cbd5c08674a63c7f19d89f956e1e54c7ba824"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/TOOL_EVALUATION.md",
+          "line_start": 99,
+          "line_end": 99,
+          "sha256": "17e3a05db715fbc6faf1b899931ff8d262969e9d6f7609710cdb99d5010dfb90"
+        }
+      ],
+      "implementation_state": "applied",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "P06",
+      "owner": "process",
+      "title": "Working abstract grid",
+      "operation": "Change CORE site and metal1 pitch to4.2um and snap RECT coordinates to0.005um in working LEF only.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/tech/make_tech.py",
+          "line_start": 7,
+          "line_end": 14,
+          "sha256": "e0d34890a1e43f297e881b3d3c7939de7ed65f8d4e51c1de939527ea390eb079"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/tech/make_tech.py",
+          "line_start": 48,
+          "line_end": 54,
+          "sha256": "e0d34890a1e43f297e881b3d3c7939de7ed65f8d4e51c1de939527ea390eb079"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/tech/make_tech.py",
+          "line_start": 173,
+          "line_end": 200,
+          "sha256": "e0d34890a1e43f297e881b3d3c7939de7ed65f8d4e51c1de939527ea390eb079"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/flow-status.md",
+          "line_start": 136,
+          "line_end": 143,
+          "sha256": "70aeab8bc03c01e65910dd0dd89f1e2aa8532c1a30dc658c24b318fbe7fc1dce"
+        },
+        {
+          "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/TOOL_EVALUATION.md",
+          "line_start": 95,
+          "line_end": 96,
+          "sha256": "17e3a05db715fbc6faf1b899931ff8d262969e9d6f7609710cdb99d5010dfb90"
+        }
+      ],
+      "implementation_state": "applied",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "P07",
+      "owner": "process",
+      "title": "Abstract width rounding",
+      "operation": "Round non-filler widths upward to4.2um sites and add a site when a remainder would leave an illegal small gap.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/tech/make_tech.py",
+          "line_start": 192,
+          "line_end": 200,
+          "sha256": "e0d34890a1e43f297e881b3d3c7939de7ed65f8d4e51c1de939527ea390eb079"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/flow-status.md",
+          "line_start": 138,
+          "line_end": 143,
+          "sha256": "70aeab8bc03c01e65910dd0dd89f1e2aa8532c1a30dc658c24b318fbe7fc1dce"
+        }
+      ],
+      "implementation_state": "applied",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "P08",
+      "owner": "process",
+      "title": "Missing metal1 obstruction",
+      "operation": "Read real GDS metal1 and add geometry absent from the shipped LEF to working obstruction views.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/tech/make_tech.py",
+          "line_start": 157,
+          "line_end": 164,
+          "sha256": "e0d34890a1e43f297e881b3d3c7939de7ed65f8d4e51c1de939527ea390eb079"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/TOOL_EVALUATION.md",
+          "line_start": 74,
+          "line_end": 74,
+          "sha256": "17e3a05db715fbc6faf1b899931ff8d262969e9d6f7609710cdb99d5010dfb90"
+        }
+      ],
+      "implementation_state": "applied",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "P09",
+      "owner": "process",
+      "title": "Metal2 pin straps",
+      "operation": "Trace connected GDS metal2 through cell vias into signal pins and rebuild remaining metal2 as obstruction.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/tech/make_tech.py",
+          "line_start": 107,
+          "line_end": 134,
+          "sha256": "e0d34890a1e43f297e881b3d3c7939de7ed65f8d4e51c1de939527ea390eb079"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/tech/make_tech.py",
+          "line_start": 165,
+          "line_end": 169,
+          "sha256": "e0d34890a1e43f297e881b3d3c7939de7ed65f8d4e51c1de939527ea390eb079"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/tech/make_tech.py",
+          "line_start": 205,
+          "line_end": 212,
+          "sha256": "e0d34890a1e43f297e881b3d3c7939de7ed65f8d4e51c1de939527ea390eb079"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/TOOL_EVALUATION.md",
+          "line_start": 74,
+          "line_end": 74,
+          "sha256": "17e3a05db715fbc6faf1b899931ff8d262969e9d6f7609710cdb99d5010dfb90"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/flow-status.md",
+          "line_start": 141,
+          "line_end": 143,
+          "sha256": "70aeab8bc03c01e65910dd0dd89f1e2aa8532c1a30dc658c24b318fbe7fc1dce"
+        }
+      ],
+      "implementation_state": "applied",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "P10",
+      "owner": "process",
+      "title": "Hidden material via keepouts",
+      "operation": "Add via1 obstructions for contact, shrunk poly and diffusion edges with defined signal-pin access openings.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/tech/make_tech.py",
+          "line_start": 138,
+          "line_end": 156,
+          "sha256": "e0d34890a1e43f297e881b3d3c7939de7ed65f8d4e51c1de939527ea390eb079"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/flow-status.md",
+          "line_start": 140,
+          "line_end": 141,
+          "sha256": "70aeab8bc03c01e65910dd0dd89f1e2aa8532c1a30dc658c24b318fbe7fc1dce"
+        },
+        {
+          "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/TOOL_EVALUATION.md",
+          "line_start": 100,
+          "line_end": 101,
+          "sha256": "17e3a05db715fbc6faf1b899931ff8d262969e9d6f7609710cdb99d5010dfb90"
+        }
+      ],
+      "implementation_state": "applied",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "P11",
+      "owner": "process",
+      "title": "MX201B matched offset",
+      "operation": "Shift MX201B5.2um within50.4um abstract and use the identical GDS placement/checker offset to put its pins on tracks.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/tech/make_tech.py",
+          "line_start": 228,
+          "line_end": 241,
+          "sha256": "e0d34890a1e43f297e881b3d3c7939de7ed65f8d4e51c1de939527ea390eb079"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/assemble/assemble.py",
+          "line_start": 199,
+          "line_end": 216,
+          "sha256": "35fcdb15d8f6b8e1f219ed5f2b3028dcee5f6573383eb9324d40765a76f595d2"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/checks/wire_vs_cells.py",
+          "line_start": 48,
+          "line_end": 61,
+          "sha256": "3cbee52e69ce23198da5efac02311995681b6b58eda60062c81ca2971a840813"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/flow-status.md",
+          "line_start": 141,
+          "line_end": 143,
+          "sha256": "70aeab8bc03c01e65910dd0dd89f1e2aa8532c1a30dc658c24b318fbe7fc1dce"
+        },
+        {
+          "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/TOOL_EVALUATION.md",
+          "line_start": 84,
+          "line_end": 84,
+          "sha256": "17e3a05db715fbc6faf1b899931ff8d262969e9d6f7609710cdb99d5010dfb90"
+        }
+      ],
+      "implementation_state": "applied",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "P12",
+      "owner": "process",
+      "title": "Separated unmirrored rows",
+      "operation": "Replace default placement rows with spaced R0 rows because Y-only site symmetry does not permit alternating abutted supply rails.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/pnr/pnr.tcl",
+          "line_start": 25,
+          "line_end": 34,
+          "sha256": "4446d8060be15130f4d4750ff7de55d94c499b647a804c62e4dcf27b7896a917"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/flow-status.md",
+          "line_start": 178,
+          "line_end": 183,
+          "sha256": "70aeab8bc03c01e65910dd0dd89f1e2aa8532c1a30dc658c24b318fbe7fc1dce"
+        }
+      ],
+      "implementation_state": "applied",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "P13",
+      "owner": "process",
+      "title": "Track and pin alignment",
+      "operation": "Use4.2um metal1/metal2 grids with profile offsets and assembly-matched pin positions.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/floorplan.py",
+          "line_start": 25,
+          "line_end": 42,
+          "sha256": "b3ea779e62167b8041dccbb7901b6abe00061de6abdbffffad03575204d90de0"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/pnr/pnr.tcl",
+          "line_start": 36,
+          "line_end": 44,
+          "sha256": "4446d8060be15130f4d4750ff7de55d94c499b647a804c62e4dcf27b7896a917"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/TOOL_EVALUATION.md",
+          "line_start": 75,
+          "line_end": 75,
+          "sha256": "17e3a05db715fbc6faf1b899931ff8d262969e9d6f7609710cdb99d5010dfb90"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/flow-status.md",
+          "line_start": 178,
+          "line_end": 183,
+          "sha256": "70aeab8bc03c01e65910dd0dd89f1e2aa8532c1a30dc658c24b318fbe7fc1dce"
+        }
+      ],
+      "implementation_state": "applied",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "P14",
+      "owner": "process",
+      "title": "Reserve rail metal",
+      "operation": "Block routing over row rail regions that assembly draws continuously through cell gaps.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/pnr/pnr.tcl",
+          "line_start": 46,
+          "line_end": 53,
+          "sha256": "4446d8060be15130f4d4750ff7de55d94c499b647a804c62e4dcf27b7896a917"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/assemble/assemble.py",
+          "line_start": 244,
+          "line_end": 247,
+          "sha256": "35fcdb15d8f6b8e1f219ed5f2b3028dcee5f6573383eb9324d40765a76f595d2"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/flow-continuation.md",
+          "line_start": 18,
+          "line_end": 25,
+          "sha256": "0bc0be08bbe75bc7adcdcdff28c49e8df99645ea7b524beaf187fc69094c2833"
+        }
+      ],
+      "implementation_state": "applied",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "P15",
+      "owner": "process",
+      "title": "NND301 left padding",
+      "operation": "Reserve one left site on NND301 to avoid the known AND201-to-NND301 boron-width failure.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/pnr/pnr.tcl",
+          "line_start": 75,
+          "line_end": 76,
+          "sha256": "4446d8060be15130f4d4750ff7de55d94c499b647a804c62e4dcf27b7896a917"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/flow-status.md",
+          "line_start": 139,
+          "line_end": 143,
+          "sha256": "70aeab8bc03c01e65910dd0dd89f1e2aa8532c1a30dc658c24b318fbe7fc1dce"
+        },
+        {
+          "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/TOOL_EVALUATION.md",
+          "line_start": 72,
+          "line_end": 73,
+          "sha256": "17e3a05db715fbc6faf1b899931ff8d262969e9d6f7609710cdb99d5010dfb90"
+        }
+      ],
+      "implementation_state": "applied",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "P16",
+      "owner": "process",
+      "title": "Tested filler pattern",
+      "operation": "Use FILLER2 every4.2um plus continuous rails and FILLER2/FILLER4 in the MX201B left gap. Do not substitute arbitrary shipped fillers.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/assemble/assemble.py",
+          "line_start": 221,
+          "line_end": 247,
+          "sha256": "35fcdb15d8f6b8e1f219ed5f2b3028dcee5f6573383eb9324d40765a76f595d2"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/TOOL_EVALUATION.md",
+          "line_start": 72,
+          "line_end": 73,
+          "sha256": "17e3a05db715fbc6faf1b899931ff8d262969e9d6f7609710cdb99d5010dfb90"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/flow-continuation.md",
+          "line_start": 18,
+          "line_end": 25,
+          "sha256": "0bc0be08bbe75bc7adcdcdff28c49e8df99645ea7b524beaf187fc69094c2833"
+        }
+      ],
+      "implementation_state": "applied",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "P17",
+      "owner": "process/S8",
+      "title": "Explicit stronger output drivers",
+      "operation": "Keep and lock INVR04 near OPAD04 rather than use the document INVR02 suggestion. Double inversion preserves port polarity; modeled capacitance motivates the change.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/gen_core.py",
+          "line_start": 4,
+          "line_end": 7,
+          "sha256": "39df904525d02c05e257e7a2ae4fd0d2165241fd723d9fa09beb76b108742a21"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/gen_core.py",
+          "line_start": 48,
+          "line_end": 54,
+          "sha256": "39df904525d02c05e257e7a2ae4fd0d2165241fd723d9fa09beb76b108742a21"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/pnr/pnr.tcl",
+          "line_start": 56,
+          "line_end": 64,
+          "sha256": "4446d8060be15130f4d4750ff7de55d94c499b647a804c62e4dcf27b7896a917"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/pads.tsv",
+          "line_start": 1,
+          "line_end": 13,
+          "sha256": "f57c28260de074cae75043701967a7fbdf63abedf011fcff661cb2f040d313a9"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/flow-status.md",
+          "line_start": 147,
+          "line_end": 150,
+          "sha256": "70aeab8bc03c01e65910dd0dd89f1e2aa8532c1a30dc658c24b318fbe7fc1dce"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/flow-continuation.md",
+          "line_start": 37,
+          "line_end": 40,
+          "sha256": "0bc0be08bbe75bc7adcdcdff28c49e8df99645ea7b524beaf187fc69094c2833"
+        }
+      ],
+      "implementation_state": "applied",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [
+        "SCL-C1D-PAD-001"
+      ],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "P18",
+      "owner": "process/S8",
+      "title": "Input buffering",
+      "operation": "When REPAIR is enabled insert DELBUF on data inputs and repair slew/capacitance; preserve clock exception and check actual pad loading.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/pnr/pnr.tcl",
+          "line_start": 78,
+          "line_end": 87,
+          "sha256": "4446d8060be15130f4d4750ff7de55d94c499b647a804c62e4dcf27b7896a917"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/flow-status.md",
+          "line_start": 111,
+          "line_end": 115,
+          "sha256": "70aeab8bc03c01e65910dd0dd89f1e2aa8532c1a30dc658c24b318fbe7fc1dce"
+        }
+      ],
+      "implementation_state": "applied",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [
+        "SCL-C1D-PAD-001"
+      ],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "P19",
+      "owner": "process",
+      "title": "Clock buffer choice",
+      "operation": "Use noninverting CDRI01 instead of the supplied template inverter. Clock-buffer capacitance/fanout interpretations remain explicit limitations.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/pnr/pnr.tcl",
+          "line_start": 99,
+          "line_end": 101,
+          "sha256": "4446d8060be15130f4d4750ff7de55d94c499b647a804c62e4dcf27b7896a917"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/TOOL_EVALUATION.md",
+          "line_start": 81,
+          "line_end": 81,
+          "sha256": "17e3a05db715fbc6faf1b899931ff8d262969e9d6f7609710cdb99d5010dfb90"
+        },
+        {
+          "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/TOOL_EVALUATION.md",
+          "line_start": 97,
+          "line_end": 97,
+          "sha256": "17e3a05db715fbc6faf1b899931ff8d262969e9d6f7609710cdb99d5010dfb90"
+        }
+      ],
+      "implementation_state": "applied",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [
+        "SCL-C1D-CLK-001"
+      ],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "T01",
+      "owner": "tool",
+      "title": "Tool-compatible script names",
+      "operation": "Copy OpenROAD Tcl entries into working directories and invoke relative names. Embedded Yosys/Tcl path text still needs staging.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/pnr.sh",
+          "line_start": 11,
+          "line_end": 15,
+          "sha256": "1b2c4c1f53a4821c4b8b9da1c20b5cb552e9f7945e3ed5824511c6e22db58cf9"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/pnr.sh",
+          "line_start": 23,
+          "line_end": 27,
+          "sha256": "1b2c4c1f53a4821c4b8b9da1c20b5cb552e9f7945e3ed5824511c6e22db58cf9"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/run_sta.sh",
+          "line_start": 7,
+          "line_end": 8,
+          "sha256": "b94ce773cc9abea91a33b82eac6e73097088b4d933c16bceb55843a77e9801a6"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/TOOL_EVALUATION.md",
+          "line_start": 86,
+          "line_end": 87,
+          "sha256": "17e3a05db715fbc6faf1b899931ff8d262969e9d6f7609710cdb99d5010dfb90"
+        }
+      ],
+      "implementation_state": "applied",
+      "scope": "OpenROAD26Q3 script loader",
+      "limitation_ids": [],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "T02",
+      "owner": "S8/tool",
+      "title": "CTS gate disconnect",
+      "operation": "Disconnect non-DFF loads from clk during CTS then reconnect to the root. Future use requires an S8-only structural before/after check.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/pnr/pnr.tcl",
+          "line_start": 90,
+          "line_end": 101,
+          "sha256": "4446d8060be15130f4d4750ff7de55d94c499b647a804c62e4dcf27b7896a917"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/flow-status.md",
+          "line_start": 111,
+          "line_end": 115,
+          "sha256": "70aeab8bc03c01e65910dd0dd89f1e2aa8532c1a30dc658c24b318fbe7fc1dce"
+        },
+        {
+          "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/TOOL_EVALUATION.md",
+          "line_start": 85,
+          "line_end": 85,
+          "sha256": "17e3a05db715fbc6faf1b899931ff8d262969e9d6f7609710cdb99d5010dfb90"
+        }
+      ],
+      "implementation_state": "applied",
+      "scope": "S8 externally gated SCK exception on pinned OpenROAD26Q3",
+      "limitation_ids": [],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "T03",
+      "owner": "tool/process",
+      "title": "Overlap check and route retries",
+      "operation": "Independently compare routed nets/cell metal and preserve attempts. Legacy retry exhaustion is not a hard failure; require a fresh positively accepted attempt.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/pnr.sh",
+          "line_start": 20,
+          "line_end": 40,
+          "sha256": "1b2c4c1f53a4821c4b8b9da1c20b5cb552e9f7945e3ed5824511c6e22db58cf9"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/checks/wire_vs_cells.py",
+          "line_start": 1,
+          "line_end": 10,
+          "sha256": "3cbee52e69ce23198da5efac02311995681b6b58eda60062c81ca2971a840813"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/flow-status.md",
+          "line_start": 141,
+          "line_end": 143,
+          "sha256": "70aeab8bc03c01e65910dd0dd89f1e2aa8532c1a30dc658c24b318fbe7fc1dce"
+        },
+        {
+          "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/TOOL_EVALUATION.md",
+          "line_start": 84,
+          "line_end": 84,
+          "sha256": "17e3a05db715fbc6faf1b899931ff8d262969e9d6f7609710cdb99d5010dfb90"
+        }
+      ],
+      "implementation_state": "applied with legacy aggregation limitation",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "T04",
+      "owner": "process",
+      "title": "Metal-only power check",
+      "operation": "Trace metal1/via1/metal2 from supply pads to every row independently of LVS substrate/well connectivity.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/checks/power_connect.py",
+          "line_start": 2,
+          "line_end": 7,
+          "sha256": "4d8ebbe83b88b1c2c65dbf7f5ecea45280ef69e0c04b33f89454e8c8c1fbbff4"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/checks/power_connect.py",
+          "line_start": 19,
+          "line_end": 28,
+          "sha256": "4d8ebbe83b88b1c2c65dbf7f5ecea45280ef69e0c04b33f89454e8c8c1fbbff4"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/checks/power_connect.py",
+          "line_start": 35,
+          "line_end": 70,
+          "sha256": "4d8ebbe83b88b1c2c65dbf7f5ecea45280ef69e0c04b33f89454e8c8c1fbbff4"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/TOOL_EVALUATION.md",
+          "line_start": 82,
+          "line_end": 82,
+          "sha256": "17e3a05db715fbc6faf1b899931ff8d262969e9d6f7609710cdb99d5010dfb90"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/flow-continuation.md",
+          "line_start": 18,
+          "line_end": 25,
+          "sha256": "0bc0be08bbe75bc7adcdcdff28c49e8df99645ea7b524beaf187fc69094c2833"
+        }
+      ],
+      "implementation_state": "applied",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "T05",
+      "owner": "process",
+      "title": "Supplement deck omissions",
+      "operation": "Check routed vias over poly/contact, drawn metal width, notches, grid and top extent separately. Preserve inherited kit warnings and manual policy items.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/checks/own_checks.py",
+          "line_start": 2,
+          "line_end": 9,
+          "sha256": "64402bc3fc533df7832d05be2e44a1ed30190e6722ccb3d25ed1a39318875e0a"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/checks/own_checks.py",
+          "line_start": 93,
+          "line_end": 120,
+          "sha256": "64402bc3fc533df7832d05be2e44a1ed30190e6722ccb3d25ed1a39318875e0a"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/flow-continuation.md",
+          "line_start": 18,
+          "line_end": 25,
+          "sha256": "0bc0be08bbe75bc7adcdcdff28c49e8df99645ea7b524beaf187fc69094c2833"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/signoff-checklist.md",
+          "line_start": 8,
+          "line_end": 24,
+          "sha256": "a6c986d2a064cfa339ebb89007223ef6966547c184dc5739ccc52a9ef6148647"
+        }
+      ],
+      "implementation_state": "applied",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [
+        "SCL-C1D-C17.2"
+      ],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "T06",
+      "owner": "process/tool",
+      "title": "Flat DRC crosscheck",
+      "operation": "Replace only deep with flat in a separately hashed deck working copy and compare positive rule coverage/results.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/run_all.sh",
+          "line_start": 51,
+          "line_end": 60,
+          "sha256": "f50554a6602b1b934d61d50a989c6d5f9705edb1cb18d1b45f1f2a2e2f51da3a"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/flow-continuation.md",
+          "line_start": 18,
+          "line_end": 25,
+          "sha256": "0bc0be08bbe75bc7adcdcdff28c49e8df99645ea7b524beaf187fc69094c2833"
+        }
+      ],
+      "implementation_state": "applied",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "T07",
+      "owner": "tool/process",
+      "title": "Local inline CDL conversion",
+      "operation": "Inline selected subcircuits instead of executing the kit converter. Current regex parser ignores assign aliases and is unqualified for generic conversion.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/assemble/make_cdl.py",
+          "line_start": 4,
+          "line_end": 7,
+          "sha256": "ac3b8e6bb89b7b970a91d3f046746744b655c7e0a22f2d7de8dd282a0c41e1c2"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/assemble/make_cdl.py",
+          "line_start": 44,
+          "line_end": 54,
+          "sha256": "ac3b8e6bb89b7b970a91d3f046746744b655c7e0a22f2d7de8dd282a0c41e1c2"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/assemble/make_cdl.py",
+          "line_start": 89,
+          "line_end": 96,
+          "sha256": "ac3b8e6bb89b7b970a91d3f046746744b655c7e0a22f2d7de8dd282a0c41e1c2"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/Desktop Folders/My Projects/Tapeout Automation/PLAN_REVIEW.md",
+          "line_start": 30,
+          "line_end": 62,
+          "sha256": "dc09c1deae3aaca40d72f668cbdb08c912224d49517c8fe2a4a7e759e0349e7f"
+        }
+      ],
+      "implementation_state": "applied in reference only; generic reuse blocked",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "T08",
+      "owner": "process/model",
+      "title": "Distinct parasitic estimate",
+      "operation": "Preserve raw SPEF and generate a separate per-net routed-length/LEF capacitance estimate retaining network/resistance. It does not validate extraction or bound real parasitics.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/run_sta.sh",
+          "line_start": 15,
+          "line_end": 32,
+          "sha256": "b94ce773cc9abea91a33b82eac6e73097088b4d933c16bceb55843a77e9801a6"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/sta/scale_spef.py",
+          "line_start": 2,
+          "line_end": 17,
+          "sha256": "29391d4139672599401dbfe08b8f0d4d632840f40c7043d03531312c908c0635"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/sta/scale_spef.py",
+          "line_start": 74,
+          "line_end": 107,
+          "sha256": "29391d4139672599401dbfe08b8f0d4d632840f40c7043d03531312c908c0635"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/flow-continuation.md",
+          "line_start": 44,
+          "line_end": 55,
+          "sha256": "0bc0be08bbe75bc7adcdcdff28c49e8df99645ea7b524beaf187fc69094c2833"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/flow-status.md",
+          "line_start": 186,
+          "line_end": 189,
+          "sha256": "70aeab8bc03c01e65910dd0dd89f1e2aa8532c1a30dc658c24b318fbe7fc1dce"
+        }
+      ],
+      "implementation_state": "applied diagnostic estimate",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [
+        "SCL-C1D-RCX-001"
+      ],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "T09",
+      "owner": "tool",
+      "title": "Hierarchical SPEF annotation",
+      "operation": "Use link_design -hier before read_spef -path u_core to preserve wrapper/core timing identity.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/sta/sta.tcl",
+          "line_start": 12,
+          "line_end": 15,
+          "sha256": "6310fc70c04cb6f3282b620f24261e7a3ee5d0515173393a35b1235f77bec478"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/TOOL_EVALUATION.md",
+          "line_start": 87,
+          "line_end": 87,
+          "sha256": "17e3a05db715fbc6faf1b899931ff8d262969e9d6f7609710cdb99d5010dfb90"
+        }
+      ],
+      "implementation_state": "applied",
+      "scope": "Pinned OpenROAD/OpenSTA hierarchy behavior",
+      "limitation_ids": [],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "T10",
+      "owner": "tool",
+      "title": "Full SDF triples",
+      "operation": "Use write_sdf -include_typ and divider / so Icarus does not silently use zero for an empty typical field.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/sta/sta.tcl",
+          "line_start": 98,
+          "line_end": 98,
+          "sha256": "6310fc70c04cb6f3282b620f24261e7a3ee5d0515173393a35b1235f77bec478"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/TOOL_EVALUATION.md",
+          "line_start": 90,
+          "line_end": 90,
+          "sha256": "17e3a05db715fbc6faf1b899931ff8d262969e9d6f7609710cdb99d5010dfb90"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/routed-random-start-20261107.md",
+          "line_start": 31,
+          "line_end": 41,
+          "sha256": "2f43f8dc6b4fbf29ad652ea45083ab6fdd91d312ba87e8aa915597e6a3a99e09"
+        }
+      ],
+      "implementation_state": "applied",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "S01",
+      "owner": "S8/simulation",
+      "title": "Behavioral random-start smoke flop",
+      "operation": "Rename kit DFFL11 and append a behavioral initialized replacement for zero-delay smoke/mapped campaigns. The replacement lacks specify arcs and cannot qualify SDF.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/run_sta.sh",
+          "line_start": 34,
+          "line_end": 43,
+          "sha256": "b94ce773cc9abea91a33b82eac6e73097088b4d933c16bceb55843a77e9801a6"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/tb/gate_build.sh",
+          "line_start": 29,
+          "line_end": 43,
+          "sha256": "cfb1efbc16a22402b2c0037d7554bbeef914459dfa24648b70ceab99e62ed583"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/flow-continuation.md",
+          "line_start": 50,
+          "line_end": 55,
+          "sha256": "0bc0be08bbe75bc7adcdcdff28c49e8df99645ea7b524beaf187fc69094c2833"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/routed-random-start-20261107.md",
+          "line_start": 9,
+          "line_end": 19,
+          "sha256": "2f43f8dc6b4fbf29ad652ea45083ab6fdd91d312ba87e8aa915597e6a3a99e09"
+        }
+      ],
+      "implementation_state": "applied only to named zero-delay/mapped checks",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [
+        "SCL-C1D-SIM-001"
+      ],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "S02",
+      "owner": "S8/simulation",
+      "title": "Seeded original UDP startup",
+      "operation": "Pulse original DFFL11 startup set/reset on a private model copy with deterministic seed/instance hash; retain output buffers and entire specify block and verify initialized bits.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/tb/routed_util.py",
+          "line_start": 23,
+          "line_end": 70,
+          "sha256": "fa19f3dd4c89f947b7ab59741539086300e443b82d31eb03991caab45ab48c00"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/routed-random-start-20261107.md",
+          "line_start": 9,
+          "line_end": 41,
+          "sha256": "2f43f8dc6b4fbf29ad652ea45083ab6fdd91d312ba87e8aa915597e6a3a99e09"
+        }
+      ],
+      "implementation_state": "applied in seeded routed regression",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [
+        "SCL-C1D-SIM-001"
+      ],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "S03",
+      "owner": "tool/simulation",
+      "title": "Legacy SDF copy repair",
+      "operation": "Rewrite old min::max triples to min:min:max on a working copy only. Newly written full triples remain unchanged; no independent typical model is created.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/tb/routed_util.py",
+          "line_start": 73,
+          "line_end": 86,
+          "sha256": "fa19f3dd4c89f947b7ab59741539086300e443b82d31eb03991caab45ab48c00"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/flow-status.md",
+          "line_start": 189,
+          "line_end": 189,
+          "sha256": "70aeab8bc03c01e65910dd0dd89f1e2aa8532c1a30dc658c24b318fbe7fc1dce"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/routed-random-start-20261107.md",
+          "line_start": 31,
+          "line_end": 41,
+          "sha256": "2f43f8dc6b4fbf29ad652ea45083ab6fdd91d312ba87e8aa915597e6a3a99e09"
+        }
+      ],
+      "implementation_state": "legacy compatibility path only",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "S04",
+      "owner": "process/simulation",
+      "title": "Missing IPAD30 model stand-in",
+      "operation": "Provide buffer plus specify arc for IPAD30. Annotated delay is retained but Schmitt thresholds/hysteresis and analog behavior are not modeled.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/tb/routed_top.v",
+          "line_start": 12,
+          "line_end": 18,
+          "sha256": "0dbb40e4496a6f1f9e9e11b5f584eded67d67dfed11861f2a02c8f7b69a15dee"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/flow-continuation.md",
+          "line_start": 50,
+          "line_end": 55,
+          "sha256": "0bc0be08bbe75bc7adcdcdff28c49e8df99645ea7b524beaf187fc69094c2833"
+        },
+        {
+          "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/TOOL_EVALUATION.md",
+          "line_start": 89,
+          "line_end": 90,
+          "sha256": "17e3a05db715fbc6faf1b899931ff8d262969e9d6f7609710cdb99d5010dfb90"
+        }
+      ],
+      "implementation_state": "applied in routed model",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [
+        "SCL-C1D-MODEL-001"
+      ],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "T11",
+      "owner": "process/model",
+      "title": "Passive model-data copies",
+      "operation": "Build selected MOS/diode/resistor model libraries locally instead of environment-dependent include headers; reject executable directives and hash consumed data.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/libcheck/pad_polarity.py",
+          "line_start": 36,
+          "line_end": 65,
+          "sha256": "bd7dd24e693341626fa820c35cecce5fb81d4d19e8341963cd9a974578bf2b33"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/libcheck/pad_polarity.py",
+          "line_start": 84,
+          "line_end": 108,
+          "sha256": "bd7dd24e693341626fa820c35cecce5fb81d4d19e8341963cd9a974578bf2b33"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/reports/flow-continuation.md",
+          "line_start": 37,
+          "line_end": 40,
+          "sha256": "0bc0be08bbe75bc7adcdcdff28c49e8df99645ea7b524beaf187fc69094c2833"
+        }
+      ],
+      "implementation_state": "applied",
+      "scope": "72 rail-level DC measurements only",
+      "limitation_ids": [],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "L01",
+      "owner": "tool",
+      "title": "Historical next_state trim",
+      "operation": "Yosys0.62 needed next_state whitespace trimmed in a working Liberty. Pinned Yosys0.33 reads the original data; do not silently add that transformation.",
+      "source": [
+        {
+          "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/TOOL_EVALUATION.md",
+          "line_start": 55,
+          "line_end": 57,
+          "sha256": "17e3a05db715fbc6faf1b899931ff8d262969e9d6f7609710cdb99d5010dfb90"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/TOOL_EVALUATION.md",
+          "line_start": 14,
+          "line_end": 16,
+          "sha256": "17e3a05db715fbc6faf1b899931ff8d262969e9d6f7609710cdb99d5010dfb90"
+        }
+      ],
+      "implementation_state": "historical experiment; not current baseline",
+      "scope": "Yosys0.62 experiment only",
+      "limitation_ids": [],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    },
+    {
+      "id": "L02",
+      "owner": "process/experiment",
+      "title": "Closed poly-pin access experiment",
+      "operation": "NO_POLY_PIN_VIAS removes access openings at poly-overlapping pins. The experiment had pin-access failures and is not the supported default.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/tech/make_tech.py",
+          "line_start": 149,
+          "line_end": 155,
+          "sha256": "e0d34890a1e43f297e881b3d3c7939de7ed65f8d4e51c1de939527ea390eb079"
+        }
+      ],
+      "historical_evidence": [
+        {
+          "path": "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/TOOL_EVALUATION.md",
+          "line_start": 79,
+          "line_end": 79,
+          "sha256": "17e3a05db715fbc6faf1b899931ff8d262969e9d6f7609710cdb99d5010dfb90"
+        }
+      ],
+      "implementation_state": "disabled experimental option",
+      "scope": "Pinned SCL_C1D_PDK_17092026 reference toolchain",
+      "limitation_ids": [],
+      "verification_scope": "Historical/reference evidence only; not generic electrical or foundry qualification"
+    }
+  ],
+  "regressions": [
+    {
+      "id": "routed_cocotb",
+      "current_count": 20,
+      "historical_count": 20,
+      "current_cases": [
+        {
+          "module": "test_s8",
+          "name": "smoke_fibonacci",
+          "source": {
+            "path": "M:/My Projects/Tapeout Chip/tb/test_s8.py",
+            "line_start": 61,
+            "line_end": 61,
+            "sha256": "7a988462778450c9a75903ad9fe48748962d6762f7a09544ac338f8bcc7b37e0"
+          }
+        },
+        {
+          "module": "test_s8",
+          "name": "sign_of_life_miso_low",
+          "source": {
+            "path": "M:/My Projects/Tapeout Chip/tb/test_s8.py",
+            "line_start": 96,
+            "line_end": 96,
+            "sha256": "7a988462778450c9a75903ad9fe48748962d6762f7a09544ac338f8bcc7b37e0"
+          }
+        },
+        {
+          "module": "test_s8",
+          "name": "sign_of_life_miso_high",
+          "source": {
+            "path": "M:/My Projects/Tapeout Chip/tb/test_s8.py",
+            "line_start": 102,
+            "line_end": 102,
+            "sha256": "7a988462778450c9a75903ad9fe48748962d6762f7a09544ac338f8bcc7b37e0"
+          }
+        },
+        {
+          "module": "test_s8",
+          "name": "every_opcode",
+          "source": {
+            "path": "M:/My Projects/Tapeout Chip/tb/test_s8.py",
+            "line_start": 108,
+            "line_end": 108,
+            "sha256": "7a988462778450c9a75903ad9fe48748962d6762f7a09544ac338f8bcc7b37e0"
+          }
+        },
+        {
+          "module": "test_s8",
+          "name": "carry_chains",
+          "source": {
+            "path": "M:/My Projects/Tapeout Chip/tb/test_s8.py",
+            "line_start": 135,
+            "line_end": 135,
+            "sha256": "7a988462778450c9a75903ad9fe48748962d6762f7a09544ac338f8bcc7b37e0"
+          }
+        },
+        {
+          "module": "test_s8",
+          "name": "pc_wrap",
+          "source": {
+            "path": "M:/My Projects/Tapeout Chip/tb/test_s8.py",
+            "line_start": 151,
+            "line_end": 151,
+            "sha256": "7a988462778450c9a75903ad9fe48748962d6762f7a09544ac338f8bcc7b37e0"
+          }
+        },
+        {
+          "module": "test_s8",
+          "name": "self_modifying",
+          "source": {
+            "path": "M:/My Projects/Tapeout Chip/tb/test_s8.py",
+            "line_start": 162,
+            "line_end": 162,
+            "sha256": "7a988462778450c9a75903ad9fe48748962d6762f7a09544ac338f8bcc7b37e0"
+          }
+        },
+        {
+          "module": "test_s8",
+          "name": "halt_is_quiet",
+          "source": {
+            "path": "M:/My Projects/Tapeout Chip/tb/test_s8.py",
+            "line_start": 171,
+            "line_end": 171,
+            "sha256": "7a988462778450c9a75903ad9fe48748962d6762f7a09544ac338f8bcc7b37e0"
+          }
+        },
+        {
+          "module": "test_s8",
+          "name": "reset_mid_frame",
+          "source": {
+            "path": "M:/My Projects/Tapeout Chip/tb/test_s8.py",
+            "line_start": 188,
+            "line_end": 188,
+            "sha256": "7a988462778450c9a75903ad9fe48748962d6762f7a09544ac338f8bcc7b37e0"
+          }
+        },
+        {
+          "module": "test_s8",
+          "name": "reset_exactly_16_from_random",
+          "source": {
+            "path": "M:/My Projects/Tapeout Chip/tb/test_s8.py",
+            "line_start": 211,
+            "line_end": 211,
+            "sha256": "7a988462778450c9a75903ad9fe48748962d6762f7a09544ac338f8bcc7b37e0"
+          }
+        },
+        {
+          "module": "test_s8",
+          "name": "reset_state_is_as_specified",
+          "source": {
+            "path": "M:/My Projects/Tapeout Chip/tb/test_s8.py",
+            "line_start": 222,
+            "line_end": 222,
+            "sha256": "7a988462778450c9a75903ad9fe48748962d6762f7a09544ac338f8bcc7b37e0"
+          }
+        },
+        {
+          "module": "test_s8",
+          "name": "before_the_first_reset",
+          "source": {
+            "path": "M:/My Projects/Tapeout Chip/tb/test_s8.py",
+            "line_start": 248,
+            "line_end": 248,
+            "sha256": "7a988462778450c9a75903ad9fe48748962d6762f7a09544ac338f8bcc7b37e0"
+          }
+        },
+        {
+          "module": "test_s8",
+          "name": "short_reset_recovers",
+          "source": {
+            "path": "M:/My Projects/Tapeout Chip/tb/test_s8.py",
+            "line_start": 297,
+            "line_end": 297,
+            "sha256": "7a988462778450c9a75903ad9fe48748962d6762f7a09544ac338f8bcc7b37e0"
+          }
+        },
+        {
+          "module": "test_s8",
+          "name": "inputs_change_during_jumps",
+          "source": {
+            "path": "M:/My Projects/Tapeout Chip/tb/test_s8.py",
+            "line_start": 328,
+            "line_end": 328,
+            "sha256": "7a988462778450c9a75903ad9fe48748962d6762f7a09544ac338f8bcc7b37e0"
+          }
+        },
+        {
+          "module": "test_s8",
+          "name": "stepped_clock",
+          "source": {
+            "path": "M:/My Projects/Tapeout Chip/tb/test_s8.py",
+            "line_start": 345,
+            "line_end": 345,
+            "sha256": "7a988462778450c9a75903ad9fe48748962d6762f7a09544ac338f8bcc7b37e0"
+          }
+        },
+        {
+          "module": "test_s8",
+          "name": "random_programs",
+          "source": {
+            "path": "M:/My Projects/Tapeout Chip/tb/test_s8.py",
+            "line_start": 386,
+            "line_end": 386,
+            "sha256": "7a988462778450c9a75903ad9fe48748962d6762f7a09544ac338f8bcc7b37e0"
+          }
+        },
+        {
+          "module": "test_demos",
+          "name": "demo_fib",
+          "source": {
+            "path": "M:/My Projects/Tapeout Chip/tb/test_demos.py",
+            "line_start": 32,
+            "line_end": 32,
+            "sha256": "22d3bc75c7e9750a7e76a07d8a44fead62dfddf81a8c85ce5d3deb1170b64747"
+          }
+        },
+        {
+          "module": "test_demos",
+          "name": "demo_sieve",
+          "source": {
+            "path": "M:/My Projects/Tapeout Chip/tb/test_demos.py",
+            "line_start": 42,
+            "line_end": 42,
+            "sha256": "22d3bc75c7e9750a7e76a07d8a44fead62dfddf81a8c85ce5d3deb1170b64747"
+          }
+        },
+        {
+          "module": "test_demos",
+          "name": "demo_blink",
+          "source": {
+            "path": "M:/My Projects/Tapeout Chip/tb/test_demos.py",
+            "line_start": 54,
+            "line_end": 54,
+            "sha256": "22d3bc75c7e9750a7e76a07d8a44fead62dfddf81a8c85ce5d3deb1170b64747"
+          }
+        },
+        {
+          "module": "test_demos",
+          "name": "demo_uart",
+          "source": {
+            "path": "M:/My Projects/Tapeout Chip/tb/test_demos.py",
+            "line_start": 76,
+            "line_end": 76,
+            "sha256": "22d3bc75c7e9750a7e76a07d8a44fead62dfddf81a8c85ce5d3deb1170b64747"
+          }
+        }
+      ],
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/tb/run.py",
+          "line_start": 20,
+          "line_end": 36,
+          "sha256": "73e0dc7f14e192099347c6a3a68ea65a84db66c524b15f6652d136db7d8349b6"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/tb/run.py",
+          "line_start": 48,
+          "line_end": 76,
+          "sha256": "73e0dc7f14e192099347c6a3a68ea65a84db66c524b15f6652d136db7d8349b6"
+        }
+      ],
+      "caution": "Source decorator count remains20; no newly executed results are claimed by this audit"
+    },
+    {
+      "id": "routed_seeded",
+      "expected_runs": 15,
+      "cases_per_run": 20,
+      "expected_total": 300,
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "corners": [
+        "min",
+        "typ",
+        "max"
+      ],
+      "programs_per_run": 50,
+      "instructions_per_program": 100,
+      "flops": "Derive from frozen current routed DFFL11 inventory; historical45 is not hard-coded",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/tb/routed_random.py",
+          "line_start": 32,
+          "line_end": 39,
+          "sha256": "d8efdd6522849ce1b571531ecd8005facd6adebc1a96c193b46583c1f11597aa"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/tb/routed_random.py",
+          "line_start": 52,
+          "line_end": 102,
+          "sha256": "d8efdd6522849ce1b571531ecd8005facd6adebc1a96c193b46583c1f11597aa"
+        }
+      ]
+    },
+    {
+      "id": "ram_positive",
+      "expected_runs": 36,
+      "dimensions": {
+        "demos": 4,
+        "corners": 3,
+        "duty_cycles": 3
+      },
+      "duty_percent": [
+        40,
+        50,
+        60
+      ],
+      "period_ns": 100,
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/tb/run_ram_model.py",
+          "line_start": 155,
+          "line_end": 201,
+          "sha256": "27d7667d44da1c67b562b60c40c46542c2cc04f5c5b3564bd2b2f709b365611d"
+        }
+      ]
+    },
+    {
+      "id": "ram_negative_25mhz",
+      "historical_cases": 4,
+      "command": "python tb/run_ram_model.py --period 40 --build-dir <new-output>",
+      "expected": "Exit1 plus all four named typical RTL demos positively report timing violations",
+      "caution": "Adding --routed keeps the36-case matrix, not four cases",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/tb/run_ram_model.py",
+          "line_start": 175,
+          "line_end": 201,
+          "sha256": "27d7667d44da1c67b562b60c40c46542c2cc04f5c5b3564bd2b2f709b365611d"
+        }
+      ]
+    },
+    {
+      "id": "routed_equivalence",
+      "expectation": "Nonempty proof status PASS with gold/gate/shim and G/du.lib hashes; not echo-only exit",
+      "external_liberty": "G/du.lib",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/formal/lec.sh",
+          "line_start": 9,
+          "line_end": 27,
+          "sha256": "4418e95ef572150d4176976cd2fcf427ab746573bb370d065f1784a70ae8dd45"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/formal/lec.sh",
+          "line_start": 46,
+          "line_end": 66,
+          "sha256": "4418e95ef572150d4176976cd2fcf427ab746573bb370d065f1784a70ae8dd45"
+        }
+      ]
+    },
+    {
+      "id": "cpu_formal",
+      "tasks": [
+        "reset_hold",
+        "reset_release",
+        "bus",
+        "commands",
+        "isa",
+        "isa_cover",
+        "halt"
+      ],
+      "modes": {
+        "reset_hold": "bmc depth24",
+        "reset_release": "bmc depth24",
+        "bus": "prove",
+        "commands": "prove",
+        "isa": "bmc depth123",
+        "isa_cover": "cover depth123",
+        "halt": "prove"
+      },
+      "caution": "Read each task status; wrapper does not aggregate. BMC/cover modes are not unbounded proofs.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/formal/run.sh",
+          "line_start": 18,
+          "line_end": 25,
+          "sha256": "0a02d45a5c79a45ffca2addfc23505832ab1230d200d55fa446a694756830323"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/formal/s8.sby",
+          "line_start": 1,
+          "line_end": 24,
+          "sha256": "15929783eb7de34411ecf1871af2f95d54f8969be19dd3551d51a63a7355b608"
+        }
+      ]
+    },
+    {
+      "id": "sdf_probe",
+      "corners": 3,
+      "expected": "Nonzero measured C-to-Q matches selected SDF arc within0.002ns, compile/vvp success and no SDF warning/error",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/tb/check_random_start_sdf.py",
+          "line_start": 24,
+          "line_end": 78,
+          "sha256": "a82193b0817e35a63104b28443c8bda6ca3a501c2b25e0f2b0f84ea758177db3"
+        }
+      ]
+    },
+    {
+      "id": "pad_polarity",
+      "spice_runs": 36,
+      "rail_measurements": 72,
+      "expected": "Six cases x two sweep directions x three corners with two rails; source hashes and DC-only limits",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/libcheck/pad_polarity.py",
+          "line_start": 48,
+          "line_end": 66,
+          "sha256": "bd7dd24e693341626fa820c35cecce5fb81d4d19e8341963cd9a974578bf2b33"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/libcheck/pad_polarity.py",
+          "line_start": 92,
+          "line_end": 112,
+          "sha256": "bd7dd24e693341626fa820c35cecce5fb81d4d19e8341963cd9a974578bf2b33"
+        }
+      ]
+    }
+  ],
+  "reference_run_risks": [
+    {
+      "id": "LEGACY-EXIT",
+      "detail": "Wrappers print child tool exits without propagating them; run_all.sh pipes stages without pipefail. Validate positive outputs and every child process.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/run_all.sh",
+          "line_start": 17,
+          "line_end": 22,
+          "sha256": "f50554a6602b1b934d61d50a989c6d5f9705edb1cb18d1b45f1f2a2e2f51da3a"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/run_decks.sh",
+          "line_start": 13,
+          "line_end": 24,
+          "sha256": "326a72f5d1fc3efb6ebb31a671200da3ff7301b2a1f1996f92d0d6befb031ddd"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/formal/run.sh",
+          "line_start": 19,
+          "line_end": 25,
+          "sha256": "0a02d45a5c79a45ffca2addfc23505832ab1230d200d55fa446a694756830323"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/formal/lec.sh",
+          "line_start": 65,
+          "line_end": 66,
+          "sha256": "4418e95ef572150d4176976cd2fcf427ab746573bb370d065f1784a70ae8dd45"
+        }
+      ]
+    },
+    {
+      "id": "LEGACY-ROUTE",
+      "detail": "Exhausted route retries lack a hard failure. Require a current accepted route_try.txt, successful last attempt, complete zero-violation report and zero validated overlaps.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/pnr.sh",
+          "line_start": 24,
+          "line_end": 40,
+          "sha256": "1b2c4c1f53a4821c4b8b9da1c20b5cb552e9f7945e3ed5824511c6e22db58cf9"
+        }
+      ]
+    },
+    {
+      "id": "LEGACY-HOME",
+      "detail": "Simulation output/model paths and shell interpreter/checker paths derive from HOME. Use explicit recorded private-HOME/model/tool links or a copy-only path adapter, preserving existing results.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/tb/run.py",
+          "line_start": 20,
+          "line_end": 21,
+          "sha256": "73e0dc7f14e192099347c6a3a68ea65a84db66c524b15f6652d136db7d8349b6"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/tb/routed_random.py",
+          "line_start": 22,
+          "line_end": 22,
+          "sha256": "d8efdd6522849ce1b571531ecd8005facd6adebc1a96c193b46583c1f11597aa"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/tb/run_ram_model.py",
+          "line_start": 30,
+          "line_end": 33,
+          "sha256": "27d7667d44da1c67b562b60c40c46542c2cc04f5c5b3564bd2b2f709b365611d"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/env.sh",
+          "line_start": 14,
+          "line_end": 18,
+          "sha256": "41b8a74906754d40a0f3d2da430bb76b5bcea8d594503ea10501d9821d20dadd"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/run_all.sh",
+          "line_start": 39,
+          "line_end": 40,
+          "sha256": "f50554a6602b1b934d61d50a989c6d5f9705edb1cb18d1b45f1f2a2e2f51da3a"
+        }
+      ]
+    },
+    {
+      "id": "LEGACY-SPACE",
+      "detail": "Embedded Yosys, SBY and SPICE path text is not made safe by argument arrays. Use a retained original-to-staged map and tool-compatible private paths.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/synth.sh",
+          "line_start": 33,
+          "line_end": 40,
+          "sha256": "cb1fdf2e8780d012f5c31e42f674472df2022089b92375092958051763c6fc80"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/formal/lec.sh",
+          "line_start": 19,
+          "line_end": 27,
+          "sha256": "4418e95ef572150d4176976cd2fcf427ab746573bb370d065f1784a70ae8dd45"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/libcheck/pad_polarity.py",
+          "line_start": 76,
+          "line_end": 80,
+          "sha256": "bd7dd24e693341626fa820c35cecce5fb81d4d19e8341963cd9a974578bf2b33"
+        }
+      ]
+    },
+    {
+      "id": "LEGACY-DRC",
+      "detail": "Empty marker XML categories can currently be summarized as zero violations. Require expected nonempty executed-rule coverage.",
+      "source": [
+        {
+          "path": "M:/Desktop Folders/My Projects/Tapeout Automation/PLAN_REVIEW.md",
+          "line_start": 11,
+          "line_end": 28,
+          "sha256": "dc09c1deae3aaca40d72f668cbdb08c912224d49517c8fe2a4a7e759e0349e7f"
+        }
+      ]
+    },
+    {
+      "id": "LEGACY-ALIAS",
+      "detail": "Current CDL regex conversion ignores continuous assign aliases. Generic reuse needs structured connectivity or a rigorously validated input boundary.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/assemble/make_cdl.py",
+          "line_start": 44,
+          "line_end": 54,
+          "sha256": "ac3b8e6bb89b7b970a91d3f046746744b655c7e0a22f2d7de8dd282a0c41e1c2"
+        },
+        {
+          "path": "M:/Desktop Folders/My Projects/Tapeout Automation/PLAN_REVIEW.md",
+          "line_start": 30,
+          "line_end": 62,
+          "sha256": "dc09c1deae3aaca40d72f668cbdb08c912224d49517c8fe2a4a7e759e0349e7f"
+        }
+      ]
+    },
+    {
+      "id": "LEGACY-STA",
+      "detail": "P&R hard-codes clk/100ns/1pF core loads while chip STA uses separate period/external loads. Record baseline assumptions; unified constraint propagation is a later implementation gate.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/pnr/pnr.tcl",
+          "line_start": 66,
+          "line_end": 73,
+          "sha256": "4446d8060be15130f4d4750ff7de55d94c499b647a804c62e4dcf27b7896a917"
+        },
+        {
+          "path": "M:/My Projects/Tapeout Chip/flow/sta/sta.tcl",
+          "line_start": 17,
+          "line_end": 25,
+          "sha256": "6310fc70c04cb6f3282b620f24261e7a3ee5d0515173393a35b1235f77bec478"
+        }
+      ]
+    },
+    {
+      "id": "LEGACY-RAM-RC",
+      "detail": "RAM run_one parses vvp stdout but discards vvp returncode. Positive case summaries and specifically detected timing violations remain mandatory; later adapter must retain process codes.",
+      "source": [
+        {
+          "path": "M:/My Projects/Tapeout Chip/tb/run_ram_model.py",
+          "line_start": 100,
+          "line_end": 141,
+          "sha256": "27d7667d44da1c67b562b60c40c46542c2cc04f5c5b3564bd2b2f709b365611d"
+        }
+      ]
+    }
+  ],
+  "source_hashes": {
+    "M:/My Projects/Tapeout Chip/flow/synth.sh": "cb1fdf2e8780d012f5c31e42f674472df2022089b92375092958051763c6fc80",
+    "M:/My Projects/Tapeout Chip/flow/tech/filt.py": "478fa7dac93ce31b1ef049c9c010abb6e03e6057944528db11cd33c75afefe25",
+    "M:/Desktop Folders/My Projects/Tapeout Automation/scl-pdk-1.2um/TOOL_EVALUATION.md": "17e3a05db715fbc6faf1b899931ff8d262969e9d6f7609710cdb99d5010dfb90",
+    "M:/My Projects/Tapeout Chip/flow/libcheck/via_poly_table.py": "dadde50aedda8ec336988e6f041e485cfaf4669b7d309ae024813bd573801ea1",
+    "M:/My Projects/Tapeout Chip/reports/flow-status.md": "70aeab8bc03c01e65910dd0dd89f1e2aa8532c1a30dc658c24b318fbe7fc1dce",
+    "M:/My Projects/Tapeout Chip/tb/gate_build.sh": "cfb1efbc16a22402b2c0037d7554bbeef914459dfa24648b70ceab99e62ed583",
+    "M:/My Projects/Tapeout Chip/flow/tech/width.py": "94ef2ab75aaf22961c98334be12cbd5c08674a63c7f19d89f956e1e54c7ba824",
+    "M:/My Projects/Tapeout Chip/flow/tech/make_tech.py": "e0d34890a1e43f297e881b3d3c7939de7ed65f8d4e51c1de939527ea390eb079",
+    "M:/My Projects/Tapeout Chip/flow/assemble/assemble.py": "35fcdb15d8f6b8e1f219ed5f2b3028dcee5f6573383eb9324d40765a76f595d2",
+    "M:/My Projects/Tapeout Chip/flow/checks/wire_vs_cells.py": "3cbee52e69ce23198da5efac02311995681b6b58eda60062c81ca2971a840813",
+    "M:/My Projects/Tapeout Chip/flow/pnr/pnr.tcl": "4446d8060be15130f4d4750ff7de55d94c499b647a804c62e4dcf27b7896a917",
+    "M:/My Projects/Tapeout Chip/flow/floorplan.py": "b3ea779e62167b8041dccbb7901b6abe00061de6abdbffffad03575204d90de0",
+    "M:/My Projects/Tapeout Chip/reports/flow-continuation.md": "0bc0be08bbe75bc7adcdcdff28c49e8df99645ea7b524beaf187fc69094c2833",
+    "M:/My Projects/Tapeout Chip/flow/gen_core.py": "39df904525d02c05e257e7a2ae4fd0d2165241fd723d9fa09beb76b108742a21",
+    "M:/My Projects/Tapeout Chip/flow/pads.tsv": "f57c28260de074cae75043701967a7fbdf63abedf011fcff661cb2f040d313a9",
+    "M:/My Projects/Tapeout Chip/flow/pnr.sh": "1b2c4c1f53a4821c4b8b9da1c20b5cb552e9f7945e3ed5824511c6e22db58cf9",
+    "M:/My Projects/Tapeout Chip/flow/run_sta.sh": "b94ce773cc9abea91a33b82eac6e73097088b4d933c16bceb55843a77e9801a6",
+    "M:/My Projects/Tapeout Chip/flow/checks/power_connect.py": "4d8ebbe83b88b1c2c65dbf7f5ecea45280ef69e0c04b33f89454e8c8c1fbbff4",
+    "M:/My Projects/Tapeout Chip/flow/checks/own_checks.py": "64402bc3fc533df7832d05be2e44a1ed30190e6722ccb3d25ed1a39318875e0a",
+    "M:/My Projects/Tapeout Chip/reports/signoff-checklist.md": "a6c986d2a064cfa339ebb89007223ef6966547c184dc5739ccc52a9ef6148647",
+    "M:/My Projects/Tapeout Chip/flow/run_all.sh": "f50554a6602b1b934d61d50a989c6d5f9705edb1cb18d1b45f1f2a2e2f51da3a",
+    "M:/My Projects/Tapeout Chip/flow/assemble/make_cdl.py": "ac3b8e6bb89b7b970a91d3f046746744b655c7e0a22f2d7de8dd282a0c41e1c2",
+    "M:/Desktop Folders/My Projects/Tapeout Automation/PLAN_REVIEW.md": "dc09c1deae3aaca40d72f668cbdb08c912224d49517c8fe2a4a7e759e0349e7f",
+    "M:/My Projects/Tapeout Chip/flow/sta/scale_spef.py": "29391d4139672599401dbfe08b8f0d4d632840f40c7043d03531312c908c0635",
+    "M:/My Projects/Tapeout Chip/flow/sta/sta.tcl": "6310fc70c04cb6f3282b620f24261e7a3ee5d0515173393a35b1235f77bec478",
+    "M:/My Projects/Tapeout Chip/reports/routed-random-start-20261107.md": "2f43f8dc6b4fbf29ad652ea45083ab6fdd91d312ba87e8aa915597e6a3a99e09",
+    "M:/My Projects/Tapeout Chip/tb/routed_util.py": "fa19f3dd4c89f947b7ab59741539086300e443b82d31eb03991caab45ab48c00",
+    "M:/My Projects/Tapeout Chip/tb/routed_top.v": "0dbb40e4496a6f1f9e9e11b5f584eded67d67dfed11861f2a02c8f7b69a15dee",
+    "M:/My Projects/Tapeout Chip/flow/libcheck/pad_polarity.py": "bd7dd24e693341626fa820c35cecce5fb81d4d19e8341963cd9a974578bf2b33",
+    "M:/My Projects/Tapeout Chip/tb/test_s8.py": "7a988462778450c9a75903ad9fe48748962d6762f7a09544ac338f8bcc7b37e0",
+    "M:/My Projects/Tapeout Chip/tb/test_demos.py": "22d3bc75c7e9750a7e76a07d8a44fead62dfddf81a8c85ce5d3deb1170b64747",
+    "M:/My Projects/Tapeout Chip/flow/run_decks.sh": "326a72f5d1fc3efb6ebb31a671200da3ff7301b2a1f1996f92d0d6befb031ddd",
+    "M:/My Projects/Tapeout Chip/formal/run.sh": "0a02d45a5c79a45ffca2addfc23505832ab1230d200d55fa446a694756830323",
+    "M:/My Projects/Tapeout Chip/formal/lec.sh": "4418e95ef572150d4176976cd2fcf427ab746573bb370d065f1784a70ae8dd45",
+    "M:/My Projects/Tapeout Chip/tb/run.py": "73e0dc7f14e192099347c6a3a68ea65a84db66c524b15f6652d136db7d8349b6",
+    "M:/My Projects/Tapeout Chip/tb/routed_random.py": "d8efdd6522849ce1b571531ecd8005facd6adebc1a96c193b46583c1f11597aa",
+    "M:/My Projects/Tapeout Chip/tb/run_ram_model.py": "27d7667d44da1c67b562b60c40c46542c2cc04f5c5b3564bd2b2f709b365611d",
+    "M:/My Projects/Tapeout Chip/flow/env.sh": "41b8a74906754d40a0f3d2da430bb76b5bcea8d594503ea10501d9821d20dadd",
+    "M:/My Projects/Tapeout Chip/formal/s8.sby": "15929783eb7de34411ecf1871af2f95d54f8969be19dd3551d51a63a7355b608",
+    "M:/My Projects/Tapeout Chip/tb/check_random_start_sdf.py": "a82193b0817e35a63104b28443c8bda6ca3a501c2b25e0f2b0f84ea758177db3"
+  },
+  "contract_document": "docs/stage-contracts.md",
+  "milestone1_scope": "Freeze and explain reference inputs/configuration/behavior, inventory complete wider verification and establish fresh configured environment probe. Later three-design full-engine qualification is not silently claimed.",
+  "signoff_ready": false
+}

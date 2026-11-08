@@ -1,0 +1,95 @@
+# Implementation checkpoint — 8 November 2026
+
+**Milestone 1 and Milestone 2 are complete. Milestone 3 remains future work.** The private v0.1 release
+and reusable physical-flow qualification remain future work.
+
+## Milestone 1 completion
+
+An immutable engineering snapshot of current S8 RTL has now been built and
+verified: SHA-256 `fa52f0fb87289df5dd2f1f5e6004538fb513956fc834ad78556c39021a86ca46`.
+It reproduces the recorded behavior, including known limitations. This is separate
+from an approved final silicon source freeze.
+
+- DRC and flat DRC execute all 72 expected categories with zero markers. LVS
+  matches 22 circuits, including the expected top and nonempty matching coverage.
+- Routing overlaps are zero; all 92 metal-only power probes pass; all 11 layout
+  negative/control cases behave as expected. Presubmit retains 38 PASS, 8 WARN,
+  7 MANUAL and no tool errors.
+- Routed equivalence and all 45 clock traces pass. RTL/routed/SDF tests total 380
+  passing cases, including 300 seeded cases. Nonzero SDF delays match all corners.
+- The 36-case routed RAM matrix passes; all four intended 25 MHz negatives detect
+  timing violations. Actual exits for 40 simulator and 2 compiler processes were
+  captured and checked. Pad DC polarity passes 72 rail measurements.
+- Raw extraction remains **FAIL**: 0.1374 pF against the 26.915 pF diagnostic
+  routed-length/LEF estimate. Design-status validation returns **1**; reference
+  reproduction qualifies separately. The estimate is not electrically validated.
+
+The complete hash-pinned binary runtime was installed offline into fresh Ubuntu
+userspace with private PID/mount namespaces, no mounted host store or home and no
+reused Python site-packages. Configured tool checks, real SCL synthesis, KLayout
+geometry/frame probes and Ngspice startup pass. The run path includes spaces and
+U+00B5. The first missing-proc failure and logs remain retained. Clean WSL release
+installation remains milestone 6 work; independent EDA source rebuilds are not claimed.
+
+Project/stage/result/required-check contracts, assumption ownership, workaround
+evidence, ten wider regression groups and model provenance/availability are
+documented. Eight guard tests reject empty/malformed/missing reports, bad proof
+status and invalid parasitics. See [milestone report](milestone-1.md) and
+[acceptance](../reference/milestone1/acceptance.json).
+
+## Existing milestone 2 foundation
+
+- Installable `chipflow` 0.1.0.dev1, schema/result version 1 and profile version 0.1.0.
+- Strict typed project contract, project-relative input resolution and declared
+  dependency snapshots. Unknown/unsupported/unsafe inputs fail early.
+- Dependency-aware runner with unique locked runs, fresh stage directories,
+  argument arrays, logs, artifact hashes, structural validators, atomic results,
+  Windows/POSIX process-tree cleanup, timeout and cancellation.
+- Full-build minimum and result policy: design FAIL stays nonzero, infrastructure
+  takes precedence, optional executed failure cannot pass and cancellation is 130.
+- Configured toolchain doctor and real Liberty synthesis / batch-plus-Python
+  KLayout geometry/frame probe. The engine contains no S8 names or local executable paths.
+- Current source/evidence/PDK inventories, historical artifact comparison,
+  wider S8 regression/model dependencies, limitations and recovered tool recipes.
+
+## Milestone 2 completion
+
+Milestone 2 ("Package configuration and reliable execution") is complete and verified:
+- **Project & pad configuration**: Strict schema-1 TOML loaders for `chip.toml` and `pads.toml` (`chipflow.config.project`, `chipflow.config.pads`), supporting derived clock outputs (`[clock.derived_outputs]`), synchronous active-high resets, and I/O delay/load specs.
+- **Process profile**: SCL C1D 1.2 µm 2×2 mm frame profile (`profile-0.1.0.toml`) with 12 peripheral signal slots, 4 power pads, allowed pad cell and driver pairings, and DROP/FORCE standard cell exclusion rules.
+- **Stage execution & provenance**: Dependency-aware runner with isolated stage directories (`stages/<id>/`), command logs, timeout enforcement, process tree cleanup, diagnostic continuation, and full provenance tracking in `run-manifest.json` and `input-manifest.json`.
+- **Bounded elaboration**: Yosys 0.33 elaboration adapter (`chipflow.stages.elaboration`) with safe path staging, AST/JSON inspection, state bit accounting, blackbox rejection, and clock net usage cone tracing with source line citations.
+- **Semantic validation**: 10 pad qualification checks (`pads.schema`, `pads.frame`, `pads.slot_coverage`, `pads.cell`, `pads.driver`, `pads.unused`, `pads.qualification`, `pads.direction`, `pads.port_coverage`, `pads.capacity`), port/bus cross-validation, and `pad-plan.json` generation.
+- **Mapped netlist checks**: Post-synthesis gate-level netlist checker (`chipflow.stages.netlist_checks`) verifying absence of `$` cells, sequential clock connectivity, DROP/FORCE cell absence, and VDDCON/VSSCON tie cell usage.
+- **CLI commands**: Full `chipflow validate` exiting 0 on clean preflight and 2 on semantic failure; `chipflow build` running preflight and exiting 2 reporting physical adapters pending Milestone 3.
+- **Validation evidence**:
+  - Real S8 validation run (`projects/s8/builds/run-20261108T073506.325648Z-86dd80335af2`): Exit 0 (toolchain, elaboration, configuration PASS).
+  - S8 build preflight run (`projects/s8/builds/run-20261108T073612.417603Z-974e15752cae`): Exit 2 (infrastructure notice, downstream checks NOT RUN).
+  - Negative test (S8 without derived outputs): Exit 2 citing `clock net used outside flop CLK pins` at `rtl/s8.v:183`.
+  - Negative test (Counter with unused slots): Exit 2 citing `pads.unused: no qualified unused-slot policy in profile 0.1.0`.
+
+## Package verification
+
+- Test suite: 94 tests after the verification fixes (`docs/milestone-2-verification.md`):
+  - 94/94 pass on WSL2 Ubuntu 24.04, Python 3.12.3, with `CHIPFLOW_TEST_TOOLCHAIN` set.
+  - 85 pass and 9 real-Yosys tests skip, with the reason printed, on Windows Python 3.13.5.
+- Wheel `chipflow-0.1.0.dev2-py3-none-any.whl` built in `work/m2-dist/` and verified via `scripts/verify_wheel.py`:
+  - 5/5 verification records passed (`create-venv`, `install`, `import-location`, `tests`, `doctor-probe`).
+  - Result: `installed_package_verification: PASS`.
+- Milestone 1 contract manifest binding check: 18/18 bound files verified with zero drift (`M1-bound files OK`).
+- Milestone 1 evidence guard tests: 8/8 tests pass.
+
+## Milestone gates still open
+
+| Milestone | Status | Remaining gate |
+|---|---|---|
+| 1 | Complete | Current reference, pinned fresh-userspace startup, contracts and scope-bound limitations |
+| 2 | Complete | Bounded Yosys elaboration/coverage, pad/frame validation, full CLI validation, provenance tracking, and mapped netlist checks |
+| 3 | Open | Extract synthesis/P&R/assembly, validated structured connectivity, tested unused pads, unified implementation constraints and S8 adapter/hooks |
+| 4 | Open | Strict verification/report adapters, complete timing coverage, SDF annotation and separate qualification/signoff reporting |
+| 5 | Open | Freeze engine/profile and run S8, counter and multi-file PWM acceptance plus deliberate defect fixtures |
+| 6 | Open | Clean-install wheel qualification and private v0.1 release; migrate active S8 only after regression comparison |
+
+The next implementation sequence is Milestone 3: synthesis script generation and OpenROAD P&R integration.
+The old flow and PDK remain preserved. The raw extraction FAIL and unresolved manual items from Milestone 1 are
+never waived by this checkpoint.
