@@ -403,14 +403,16 @@ class ExecutionSummary:
     cancelled: bool
 
 
-def _validate_stages(stages: Sequence[StageSpec]) -> tuple[StageSpec, ...]:
+def _validate_stages(stages: Sequence[StageSpec], known_ids: set[str] | None = None) -> tuple[StageSpec, ...]:
     if not stages:
         raise ValueError("stage graph must not be empty")
+    if known_ids is None:
+        known_ids = set()
     ids: set[str] = set()
     for stage in stages:
         if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]*", stage.id) or stage.id in (".", ".."):
             raise ValueError(f"invalid stage id: {stage.id!r}")
-        if stage.id in ids:
+        if stage.id in ids or stage.id in known_ids:
             raise ValueError(f"duplicate stage: {stage.id}")
         ids.add(stage.id)
         if len(stage.dependencies) != len(set(stage.dependencies)):
@@ -439,9 +441,10 @@ def _validate_stages(stages: Sequence[StageSpec]) -> tuple[StageSpec, ...]:
             raise ValueError("validators must refer to required outputs")
     pending = list(stages)
     ordered: list[StageSpec] = []
-    done: set[str] = set()
+    done: set[str] = set(known_ids)
+    all_ids = ids | known_ids
     for stage in pending:
-        if set(stage.dependencies) - ids:
+        if set(stage.dependencies) - all_ids:
             raise ValueError(f"unknown dependency for {stage.id}")
     while pending:
         ready = [stage for stage in pending if set(stage.dependencies) <= done]
@@ -457,19 +460,20 @@ def _validate_stages(stages: Sequence[StageSpec]) -> tuple[StageSpec, ...]:
 def execute_stages(
     run_dir: Path | str, stages: Sequence[StageSpec],
     cancellation: threading.Event | None = None,
+    existing_stages: Sequence[StageResult] = (),
 ) -> ExecutionSummary:
     """Run a DAG sequentially; failures block descendants, not independent work.
 
     This only reports execution/artifact validity. Successful commands alone do
     not establish a PASS check. Technology adapters must add positive checks.
     """
-    ordered = _validate_stages(stages)
+    by_id: dict[str, StageResult] = {s.id: s for s in existing_stages}
+    ordered = _validate_stages(stages, known_ids=set(by_id))
     directory = Path(run_dir).resolve(strict=True)
     stage_root = directory / "stages"
-    stage_root.mkdir(exist_ok=False)
+    stage_root.mkdir(exist_ok=True)
     results: list[StageResult] = []
     commands: list[CommandResult] = []
-    by_id: dict[str, StageResult] = {}
     cancelled = False
     for stage in ordered:
         if cancelled or (cancellation is not None and cancellation.is_set()):
@@ -589,8 +593,9 @@ def execute_stages(
                                                      failed_ancestors=ancestors)
         results.append(result)
         by_id[stage.id] = result
+        all_exec = list(existing_stages) + results
         atomic_write_json(directory / "execution.json", {
-            "stages": [item.to_dict() if hasattr(item, "to_dict") else asdict(item) for item in results],
+            "stages": [item.to_dict() if hasattr(item, "to_dict") else asdict(item) for item in all_exec],
             "cancelled": cancelled, "complete": len(results) == len(ordered) and not cancelled,
         })
     return ExecutionSummary(tuple(results), tuple(commands), cancelled)

@@ -51,6 +51,23 @@ outputs = [
 [pads]
 mapping = "pads.toml"
 
+[physical]
+route_attempts = 6
+density = "uniform"
+slew_margin = 10.0
+cap_margin = 5.0
+clock_buffer_distance_um = 200.0
+detailed_route_iterations = 40
+buffer_inputs = true
+synthesis_timeout_seconds = 900.0
+pnr_timeout_seconds = 3600.0
+
+[hooks]
+# S8's SCK = NOT(CLK OR idle) gate crashes TritonCTS when it sees the clock
+# directly.  The engine isolates non-flip-flop clock-net input pins around CTS,
+# then relies on the project's s8.sck_gate structural check.
+cts_clock_gate_isolation = true
+
 [build]
 root = "builds"
 seed = 42

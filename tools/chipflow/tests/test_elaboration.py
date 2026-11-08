@@ -11,7 +11,9 @@ from chipflow.cli import snapshot_project
 from chipflow.config import ConfigError, load_project
 from chipflow.runner.execution import (
     execute_stages,
+    atomic_write_json,
     sha256_file,
+    StageSpec,
 )
 from chipflow.runner.results import CheckStatus, StageStatus
 from chipflow.stages.elaboration import elaboration_stage
@@ -93,13 +95,23 @@ class ElaborationStageTests(unittest.TestCase):
         (self.proj_dir / "pads.toml").write_text("qualification = 'NOT RUN'\n", encoding="utf-8")
         (self.proj_dir / "chip.toml").write_text(PROJECT_TEMPLATE, encoding="utf-8")
 
+    def _snapshot_with_synthetic_doctor(self, project, run_dir):
+        snapshot_project(project, run_dir)
+        atomic_write_json(run_dir / "doctor/doctor.json", {
+            "exit_code": 0,
+            "kind": "synthetic-doctor-for-adapter-unit-tests",
+        })
+
     def test_unsafe_include_name_rejected_before_execution(self):
         bad_inc = self.proj_dir / "inc" / "bad name with space.vh"
         bad_inc.write_text("// bad\n", encoding="utf-8")
         project = load_project(self.proj_dir / "chip.toml")
         toolchain = make_dummy_toolchain(self.proj_dir)
+        run_dir = self.proj_dir / "builds/run1"
+        run_dir.mkdir(parents=True)
+        self._snapshot_with_synthetic_doctor(project, run_dir)
         with self.assertRaises(ConfigError) as ctx:
-            elaboration_stage(project, toolchain, self.proj_dir / "builds/run1")
+            elaboration_stage(project, toolchain, run_dir)
         self.assertIn("include path has unsupported characters", str(ctx.exception))
 
     def test_negative_and_string_parameters_rejected(self):
@@ -124,7 +136,7 @@ class ElaborationStageTests(unittest.TestCase):
         toolchain = make_dummy_toolchain(self.proj_dir)
         run_dir = self.proj_dir / "builds/run1"
         run_dir.mkdir(parents=True)
-        snapshot_project(project, run_dir)
+        self._snapshot_with_synthetic_doctor(project, run_dir)
 
         spec = elaboration_stage(project, toolchain, run_dir)
         stage_dir = run_dir / "stages/elaboration"
@@ -139,12 +151,86 @@ class ElaborationStageTests(unittest.TestCase):
         self.assertIn("work/src/0000_top.v", ys_content)
         self.assertIn("-chparam PARAM1 4", ys_content)
 
+    def test_include_staging_uses_only_snapshot_after_live_tree_changes(self):
+        inc_dir = self.proj_dir / "inc"
+        removed_live = inc_dir / "removed.vh"
+        removed_live.write_text("// original removed header\n", encoding="utf-8")
+        project = load_project(self.proj_dir / "chip.toml")
+        toolchain = make_dummy_toolchain(self.proj_dir)
+        run_dir = self.proj_dir / "builds/snapshot-only"
+        run_dir.mkdir(parents=True)
+        self._snapshot_with_synthetic_doctor(project, run_dir)
+
+        (inc_dir / "header.vh").write_text("// changed live bytes\n", encoding="utf-8")
+        removed_live.unlink()
+        # A newly added unsupported name must not affect the earlier snapshot.
+        (inc_dir / "new live header.vh").write_text("// not an input\n", encoding="utf-8")
+        spec = elaboration_stage(project, toolchain, run_dir)
+        stage_dir = run_dir / "stages/elaboration"
+        stage_dir.mkdir(parents=True)
+        spec.prepare(stage_dir)
+
+        staged_inc = stage_dir / "work/inc/0000"
+        self.assertEqual(sorted(p.name for p in staged_inc.iterdir()), ["header.vh", "removed.vh"])
+        self.assertEqual((staged_inc / "header.vh").read_text(encoding="utf-8"), "// header\n")
+        self.assertEqual((staged_inc / "removed.vh").read_text(encoding="utf-8"), "// original removed header\n")
+        path_map = json.loads((stage_dir / "path-map.json").read_text(encoding="utf-8"))
+        for row in path_map:
+            self.assertEqual(sha256_file(stage_dir / row["staged"]), row["sha256"])
+
+    def test_missing_or_corrupt_evidence_blocks_execution_and_dependents(self):
+        project = load_project(self.proj_dir / "chip.toml")
+        toolchain = make_dummy_toolchain(self.proj_dir)
+        cases = (
+            ("missing-manifest", "input-manifest.json", None),
+            ("corrupt-manifest", "input-manifest.json", "not json"),
+            ("incomplete-manifest", "input-manifest.json", "[]"),
+            ("missing-configuration", "resolved-project.json", None),
+            ("missing-doctor", "doctor/doctor.json", None),
+            ("corrupt-doctor", "doctor/doctor.json", "not json"),
+            ("failed-doctor", "doctor/doctor.json", '{"exit_code": 2}'),
+            ("missing-source", "inputs/project/top.v", None),
+            ("changed-source", "inputs/project/top.v", "// corrupt source\n"),
+            ("missing-include", "inputs/project/inc/header.vh", None),
+            ("changed-include", "inputs/project/inc/header.vh", "// corrupt header\n"),
+        )
+        for name, relative, replacement in cases:
+            with self.subTest(name=name):
+                run_dir = self.proj_dir / "builds" / name
+                run_dir.mkdir(parents=True)
+                self._snapshot_with_synthetic_doctor(project, run_dir)
+                spec = elaboration_stage(project, toolchain, run_dir)
+                target = run_dir / relative
+                if replacement is None:
+                    target.unlink()
+                else:
+                    target.write_text(replacement, encoding="utf-8")
+                command_marker = run_dir / "command-ran"
+                fake_spec = dataclasses.replace(spec, command=(
+                    sys.executable, "-c",
+                    f"from pathlib import Path; Path({str(command_marker)!r}).touch()",
+                ))
+                consumer = StageSpec("consumer", (sys.executable, "-c", "pass"), dependencies=("elaboration",))
+                summary = execute_stages(run_dir, (fake_spec, consumer))
+                elab, downstream = summary.stages
+                self.assertEqual((elab.status, elab.failure_kind), (StageStatus.FAILED, "infrastructure"))
+                self.assertIn("prepare failed", elab.error)
+                self.assertEqual(downstream.status, StageStatus.BLOCKED)
+                self.assertIn("elaboration", downstream.failed_ancestors)
+                self.assertFalse(command_marker.exists())
+
+    def test_missing_snapshot_manifest_is_refused_when_constructing_adapter(self):
+        project = load_project(self.proj_dir / "chip.toml")
+        toolchain = make_dummy_toolchain(self.proj_dir)
+        with self.assertRaises(FileNotFoundError):
+            elaboration_stage(project, toolchain, self.proj_dir / "builds/unsnapshotted")
+
     def test_faked_yosys_error_log_gives_configuration_failure(self):
         project = load_project(self.proj_dir / "chip.toml")
         toolchain = make_dummy_toolchain(self.proj_dir)
         run_dir = self.proj_dir / "builds/run1"
         run_dir.mkdir(parents=True)
-        snapshot_project(project, run_dir)
+        self._snapshot_with_synthetic_doctor(project, run_dir)
 
         fake_script = (
             "from pathlib import Path; "
@@ -168,7 +254,7 @@ class ElaborationStageTests(unittest.TestCase):
         toolchain = make_dummy_toolchain(self.proj_dir)
         run_dir = self.proj_dir / "builds/run1"
         run_dir.mkdir(parents=True)
-        snapshot_project(project, run_dir)
+        self._snapshot_with_synthetic_doctor(project, run_dir)
 
         fake_script = "import sys; sys.exit(139)"  # SIGSEGV exit
         spec = elaboration_stage(project, toolchain, run_dir)
@@ -183,7 +269,7 @@ class ElaborationStageTests(unittest.TestCase):
         toolchain = make_dummy_toolchain(self.proj_dir)
         run_dir = self.proj_dir / "builds/run1"
         run_dir.mkdir(parents=True)
-        snapshot_project(project, run_dir)
+        self._snapshot_with_synthetic_doctor(project, run_dir)
 
         fake_script = (
             "from pathlib import Path; "
@@ -203,7 +289,7 @@ class ElaborationStageTests(unittest.TestCase):
         toolchain = make_dummy_toolchain(self.proj_dir)
         run_dir = self.proj_dir / "builds/run1"
         run_dir.mkdir(parents=True)
-        snapshot_project(project, run_dir)
+        self._snapshot_with_synthetic_doctor(project, run_dir)
 
         # Write valid outputs but deps.txt mentions an unmapped file
         fake_script = (
@@ -226,7 +312,7 @@ class ElaborationStageTests(unittest.TestCase):
         project = load_project(self.proj_dir / "chip.toml")
         run_dir = self.proj_dir / "builds" / run_name
         run_dir.mkdir(parents=True)
-        snapshot_project(project, run_dir)
+        self._snapshot_with_synthetic_doctor(project, run_dir)
         fake_script = (
             "from pathlib import Path; import json; "
             "Path('elab.log').write_text('ok\\n'); "

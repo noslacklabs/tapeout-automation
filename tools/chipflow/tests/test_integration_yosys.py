@@ -11,7 +11,7 @@ from chipflow.config import load_project
 from chipflow.runner.execution import execute_stages
 from chipflow.runner.results import CheckStatus, StageStatus
 from chipflow.stages.elaboration import elaboration_stage
-from chipflow.toolchain import load_toolchain
+from chipflow.toolchain import doctor, load_toolchain
 
 
 CHIP_TOML_TEMPLATE = '''schema_version = 1
@@ -97,6 +97,8 @@ class IntegrationYosysTests(unittest.TestCase):
         run_dir = self.proj_dir / "builds/run1"
         run_dir.mkdir(parents=True)
         snapshot_project(project, run_dir)
+        environment = doctor(self.toolchain, run_dir / "doctor")
+        self.assertEqual(environment["exit_code"], 0, environment)
 
         spec = elaboration_stage(project, self.toolchain, run_dir)
         summary = execute_stages(run_dir, [spec])

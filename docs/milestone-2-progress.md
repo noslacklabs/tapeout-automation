@@ -3,6 +3,8 @@
 Date: 2026-11-08
 Operator: gemini-3.8-flash (Antigravity harness)
 
+Current closeout: **0.1.0.dev4**, 8 November 2026. The original implementation and first verification notes below are historical. Final findings, changes and evidence are recorded in the [verification report](milestone-2-verification.md#final-closeout-8-november-2026).
+
 ## Baseline (Verified 2026-11-08)
 
 | Check | Result |
@@ -41,7 +43,7 @@ Operator: gemini-3.8-flash (Antigravity harness)
 
 ## Verification (Claude, 2026-11-08)
 
-Not complete yet. The tests, the S8 exit codes, the negative runs and the wheel all reproduce. But real-Yosys probes found two false PASSes:
+The initial verification did not accept completion. Tests, S8 exit codes, negative runs and the wheel reproduced, but real-Yosys probes found two false PASSes:
 
 - a clock wired straight to an output passes `elab.clock_usage`;
 - `elab.dependencies` accepts an undeclared file that shares a basename with a declared one.
@@ -54,5 +56,19 @@ Later the same day, findings 1–5 were fixed with regression tests and the cont
 - S8: validate exits 0, build exits 2.
 - A rebuilt wheel is in `work/m2-dist-fixed/`.
 
-Findings 6–9 are still open. They are listed in the report.
+Findings 6–9 remained open after that first fix pass. They are resolved by the final closeout below.
+
+## Final closeout (Codex, 2026-11-08)
+
+- Replaced live pad/include fallbacks with declared-manifest snapshot consumption and hash verification. Missing/corrupt snapshot, manifest, configuration or doctor evidence stops execution with infrastructure exit 2.
+- Required unique project checks for derived outputs; reserved minimum/release/internal IDs are rejected.
+- Recorded unknown power-pad geometry as `null` and hashed qualified pad plans into configuration evidence/results. Removed invented profile reason claims and kit values.
+- Classified unexpected CLI exceptions as infrastructure; unresolved NOT RUN configuration gates now block implementation.
+- Added actual overlapping CLI validation, separate root/slot unknown-key coverage, snapshot mutation regressions and real freshly mapped netlist-checker integration.
+- Final source tests: WSL **111/111 pass**; Windows **101 pass, 10 expected real-tool skips** with UTF-8 mode disabled.
+- Fresh S8 validate exits 0; build preflight exits its expected 2. Both negative fixtures detect their intended configuration defects.
+- Milestone 1 guards **8/8** on Windows and WSL; **18/18** bound hashes and the pinned wheel remain unchanged.
+- Built the distinct dev4 wheel into `work/m2-dist-dev4/`. The intermediate dev3 artifact is superseded. The verifier now strips inherited source Python paths so offline installation and import-location checks exercise the wheel itself.
+- Final installed-wheel verification: **5/5 records PASS**, including **111/111 tests** and the fresh real environment probe (`work/installed-wheel-e501e757c3/verification.json`). **Milestone 2 complete; no remaining review findings.**
+- Retained final evidence: `work/m2-closeout-20261108T100510Z/`. The verification report lists the changed files and maps each finding to its fix/test. Physical-flow adapters remain Milestone 3 work.
 

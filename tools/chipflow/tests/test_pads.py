@@ -131,6 +131,11 @@ class PadTests(unittest.TestCase):
         self.assertEqual(plan["pads"][0]["cell"], "OPAD04")
         self.assertEqual(plan["pads"][12]["slot"], 13)
         self.assertEqual(plan["pads"][12]["cell"], "PVDD01")
+        for pad in plan["pads"][12:]:
+            self.assertEqual(pad["kind"], "power")
+            self.assertIn(pad["side"], {"left", "right"})
+            self.assertGreater(pad["x_um"], 0.0)
+            self.assertGreater(pad["y_um"], 0.0)
 
     def test_duplicate_slot_missing_slot_and_slot_13_fail(self):
         # Missing slot 12, duplicate slot 1
@@ -215,7 +220,7 @@ class PadTests(unittest.TestCase):
         p_file.write_text(unused_pad, encoding="utf-8")
         rows = {r.id: r for r in validate_pads(load_pad_map(p_file), self.profile)}
         self.assertEqual(rows["pads.unused"].status, CheckStatus.FAIL)
-        self.assertIn("no qualified unused-slot policy in profile 0.1.0", rows["pads.unused"].message)
+        self.assertIn("no qualified unused-slot policy 'tie_low'", rows["pads.unused"].message)
 
     def test_frame_mismatch_and_unknown_key(self):
         # Frame mismatch
@@ -225,12 +230,19 @@ class PadTests(unittest.TestCase):
         rows = {r.id: r for r in validate_pads(load_pad_map(p_file), self.profile)}
         self.assertEqual(rows["pads.frame"].status, CheckStatus.FAIL)
 
-        # Unknown key raises PadError
-        bad_key = S8_PADS_TOML + "\nunknown_key = 123\n"
+        # Before the first table header this is genuinely a top-level key.
+        bad_key = "unknown_key = 123\n" + S8_PADS_TOML
         p_file2 = self.root / "pads_key.toml"
         p_file2.write_text(bad_key, encoding="utf-8")
-        with self.assertRaises(PadError):
+        with self.assertRaisesRegex(PadError, "unknown keys in pad map: unknown_key"):
             load_pad_map(p_file2)
+
+    def test_unknown_slot_key_is_rejected(self):
+        # After the final [[slot]], this belongs to that slot rather than the root.
+        path = self.root / "pads_slot_key.toml"
+        path.write_text(S8_PADS_TOML + "\nunknown_key = 123\n", encoding="utf-8")
+        with self.assertRaisesRegex(PadError, "unknown keys in active slot"):
+            load_pad_map(path)
 
     def test_known_cell_in_unqualified_slot_gives_not_run(self):
         # Swap slots 1 and 2: OPAD04 placed in slot 2, IPAD2D placed in slot 1

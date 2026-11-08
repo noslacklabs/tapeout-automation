@@ -181,7 +181,30 @@ def validate_pads(
     # 6. pads.unused (D3)
     unused_slots = [s for s in pad_config.slots if s.unused is not None]
     if unused_slots:
-        rows.append(PadCheckRow("pads.unused", CheckStatus.FAIL, "no qualified unused-slot policy in profile 0.1.0"))
+        policies = {p.id: p for p in profile.unused_slot_policies}
+        unused_errors: list[str] = []
+        used_policies: list[str] = []
+        sig_slot_by_num = {s.slot: s for s in profile.signal_slots}
+        for s in unused_slots:
+            policy = policies.get(s.unused)
+            if policy is None:
+                unused_errors.append(f"slot {s.slot}: no qualified unused-slot policy {s.unused!r} in profile {profile.profile_version}")
+                continue
+            shipped = sig_slot_by_num[s.slot].shipped_cell
+            if shipped not in policy.allowed_cells:
+                unused_errors.append(
+                    f"slot {s.slot}: policy {policy.id!r} does not allow shipped cell {shipped!r}"
+                )
+                continue
+            used_policies.append(f"{s.slot}:{policy.id}")
+        if unused_errors:
+            rows.append(PadCheckRow("pads.unused", CheckStatus.FAIL, "; ".join(unused_errors)))
+        else:
+            rows.append(PadCheckRow(
+                "pads.unused",
+                CheckStatus.PASS,
+                f"qualified unused-slot policies applied: {', '.join(used_policies)}",
+            ))
     else:
         rows.append(PadCheckRow("pads.unused", CheckStatus.PASS, "no unused slots"))
 
@@ -310,8 +333,12 @@ def build_pad_plan(pad_config: PadConfig, profile: ProcessProfile) -> dict[str, 
         pads_list.append({
             "slot": p.slot,
             "kind": "power",
-            "side": "power",
-            "offset_um": 0.0,
+            "side": p.side,
+            "offset_um": None,
+            "x_um": p.x_um,
+            "y_um": p.y_um,
+            "rotation": p.rotation,
+            "mirror": p.mirror,
             "cell": p.cell,
             "net": p.net,
         })

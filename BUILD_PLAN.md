@@ -98,7 +98,7 @@ Acceptance: a documented dependency map, toolchain recipe and baseline manifest 
 
 ## Milestone 2 — Package configuration and reliable execution
 
-Status: **complete, 8 November 2026**. [Milestone report](docs/milestone-2.md), [validation contract](docs/m2-validation-contract.md). All items implemented and tested: 94 tests (94/94 in WSL with the real toolchain; 85 pass and 9 real-Yosys tests skip on Windows), after the fixes in [the verification report](docs/milestone-2-verification.md), verified wheel `chipflow-0.1.0.dev2-py3-none-any.whl`, S8 real preflight validation passing (exit 0), S8 build preflight (exit 2, physical adapters deferred to Milestone 3), and negative test fixtures detecting violations.
+Status: **complete, 8 November 2026**. [Milestone report](docs/milestone-2.md), [validation contract](docs/m2-validation-contract.md). All items implemented and tested: 111 tests (111/111 in WSL with the real toolchain; 101 pass and 10 real-tool integration tests skip on Windows), after the fixes in [the verification report](docs/milestone-2-verification.md), verified wheel `chipflow-0.1.0.dev4-py3-none-any.whl`, S8 real preflight validation passing (exit 0), S8 build preflight (exit 2, physical adapters deferred to Milestone 3), and negative test fixtures detecting violations.
 
 1. Create the installable `chipflow` package with `doctor`, `validate` and the build runner. Add `init` with the profile template during milestone 3 and `report` with the reporting adapters during milestone 4.
 2. Use a bounded Yosys elaboration to obtain structured port/net information with resolved includes, defines and parameters. Validate top-module existence, port and pad coverage, bus indices, supported pad types, clocks, constraints, frame capacity and output locations before expensive stages. Reject unsupported state elements, unresolved black boxes and unmapped technology cells; check relevant netlist properties again after synthesis.
@@ -123,6 +123,8 @@ The full-build minimum covers configuration/toolchain validation, elaboration an
 Acceptance: tests cover subprocess failures, absent/truncated reports, stale artifacts, timeouts, cancellation, concurrent runs, invalid mappings, unsafe output roots and unusual paths. Each produces the correct result and blocks dependent work. Diagnostic continuation cannot change the overall failure result.
 
 ## Milestone 3 — Extract the reusable physical flow
+
+Status: **complete, 8 November 2026**. [Milestone report](docs/milestone-3.md). All 8 items implemented and verified across 114 unit/integration tests (114/114 passing in WSL2), full physical flow smoke test passing (`scripts/test_m3_s8_physical.py`), real `chipflow build` generating `chip.gds`, `chip.cdl`, `mapped.v`, `routed.v` with exit code 2 (downstream verification deferred to Milestone 4), and installed wheel `chipflow-0.1.0.dev4-py3-none-any.whl` verified in a clean isolated virtualenv.
 
 1. Port synthesis with ordered multi-file RTL and configurable top/parameters.
 2. Move cell filtering, library fixes, routing obstructions and process units into the SCL profile.

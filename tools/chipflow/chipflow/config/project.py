@@ -10,7 +10,7 @@ import tomllib
 from typing import Any
 
 from chipflow import PROFILE_VERSION, SCHEMA_VERSION
-from chipflow.runner.results import MINIMUM_REQUIRED_CHECKS
+from chipflow.runner.results import MINIMUM_REQUIRED_CHECKS, RELEASE_REQUIRED_CHECKS
 
 
 class ConfigError(ValueError):
@@ -125,6 +125,24 @@ class Resources:
 
 
 @dataclass(frozen=True)
+class PhysicalOptions:
+    route_attempts: int = 6
+    density: str = "uniform"
+    slew_margin: float = 10.0
+    cap_margin: float = 5.0
+    clock_buffer_distance_um: float = 200.0
+    detailed_route_iterations: int = 40
+    buffer_inputs: bool = True
+    synthesis_timeout_seconds: float = 900.0
+    pnr_timeout_seconds: float = 3600.0
+
+
+@dataclass(frozen=True)
+class ProjectHooks:
+    cts_clock_gate_isolation: bool = False
+
+
+@dataclass(frozen=True)
 class Verification:
     required_checks: tuple[str, ...]
     optional_checks: tuple[str, ...]
@@ -158,6 +176,8 @@ class ProjectConfig:
     resources: Resources
     verification: Verification
     dependencies: tuple[Path, ...]
+    physical: PhysicalOptions = PhysicalOptions()
+    hooks: ProjectHooks = ProjectHooks()
     remaining_checks: tuple[str, ...] = (
         "RTL elaboration and supported state/clock structure",
         "port, timing and pad-map coverage against elaborated RTL",
@@ -208,8 +228,9 @@ def load_project(path: str | Path) -> ProjectConfig:
     except (OSError, tomllib.TOMLDecodeError) as exc:
         raise ConfigError(f"cannot read project {path}: {exc}") from exc
     root = path.parent
-    sections = {"schema_version", "project", "technology", "clock", "reset", "io", "pads", "build", "verification"}
-    raw = _table(raw, "chip", sections, sections)
+    allowed_sections = {"schema_version", "project", "technology", "clock", "reset", "io", "pads", "build", "verification", "physical", "hooks"}
+    required_sections = {"schema_version", "project", "technology", "clock", "reset", "io", "pads", "build", "verification"}
+    raw = _table(raw, "chip", allowed_sections, required_sections)
     if type(raw["schema_version"]) is not int or raw["schema_version"] != SCHEMA_VERSION:
         raise ConfigError(f"schema_version must be {SCHEMA_VERSION}")
 
@@ -261,6 +282,7 @@ def load_project(path: str | Path) -> ProjectConfig:
         raise ConfigError("clock.derived_outputs must be an array of tables")
     derived_outputs_list = []
     seen_derived_ports = set()
+    seen_derived_checks = set()
     for i, entry in enumerate(derived_outputs_raw):
         key = f"clock.derived_outputs[{i}]"
         entry_table = _table(entry, key, {"port", "check"}, {"port", "check"})
@@ -269,6 +291,11 @@ def load_project(path: str | Path) -> ProjectConfig:
             raise ConfigError(f"clock.derived_outputs: duplicate port {d_port}")
         seen_derived_ports.add(d_port)
         d_check = _string(entry_table["check"], f"{key}.check", re.compile(r"[a-z][a-z0-9_.-]*\Z"))
+        if d_check in RELEASE_REQUIRED_CHECKS or d_check in {"snapshot", "implementation"} or d_check.startswith(("elab.", "config.", "pads.", "netlist.")):
+            raise ConfigError(f"{key}.check must be a separate project check, not reserved check {d_check!r}")
+        if d_check in seen_derived_checks:
+            raise ConfigError(f"clock.derived_outputs: duplicate check {d_check!r}")
+        seen_derived_checks.add(d_check)
         derived_outputs_list.append(DerivedOutput(d_port, d_check))
     derived_outputs = tuple(derived_outputs_list)
     clock = Clock(_string(clock_raw["port"], "clock.port", _IDENTIFIER), period, edges, transition, uncertainty, derived_outputs)
@@ -323,6 +350,57 @@ def load_project(path: str | Path) -> ProjectConfig:
     manual = _strings(verification_raw.get("manual_items", []), "verification.manual_items")
     data = tuple(_path(v, "verification.data", root) for v in _strings(verification_raw.get("data", []), "verification.data"))
 
+    physical_defaults = {
+        "route_attempts": 6,
+        "density": "uniform",
+        "slew_margin": 10.0,
+        "cap_margin": 5.0,
+        "clock_buffer_distance_um": 200.0,
+        "detailed_route_iterations": 40,
+        "buffer_inputs": True,
+        "synthesis_timeout_seconds": 900.0,
+        "pnr_timeout_seconds": 3600.0,
+    }
+    physical_raw = _table(raw.get("physical", {}), "physical", set(physical_defaults))
+    attempts = physical_raw.get("route_attempts", physical_defaults["route_attempts"])
+    if type(attempts) is not int or not 1 <= attempts <= 20:
+        raise ConfigError("physical.route_attempts must be an integer from 1 to 20")
+    density = physical_raw.get("density", physical_defaults["density"])
+    if density not in {"uniform", "low", "high"}:
+        raise ConfigError("physical.density must be uniform, low or high")
+    detailed_iterations = physical_raw.get("detailed_route_iterations", physical_defaults["detailed_route_iterations"])
+    if type(detailed_iterations) is not int or not 1 <= detailed_iterations <= 500:
+        raise ConfigError("physical.detailed_route_iterations must be an integer from 1 to 500")
+    buffer_inputs = physical_raw.get("buffer_inputs", physical_defaults["buffer_inputs"])
+    if type(buffer_inputs) is not bool:
+        raise ConfigError("physical.buffer_inputs must be a boolean")
+    physical = PhysicalOptions(
+        route_attempts=attempts,
+        density=density,
+        slew_margin=_number(physical_raw.get("slew_margin", physical_defaults["slew_margin"]), "physical.slew_margin"),
+        cap_margin=_number(physical_raw.get("cap_margin", physical_defaults["cap_margin"]), "physical.cap_margin"),
+        clock_buffer_distance_um=_number(
+            physical_raw.get("clock_buffer_distance_um", physical_defaults["clock_buffer_distance_um"]),
+            "physical.clock_buffer_distance_um", positive=True,
+        ),
+        detailed_route_iterations=detailed_iterations,
+        buffer_inputs=buffer_inputs,
+        synthesis_timeout_seconds=_number(
+            physical_raw.get("synthesis_timeout_seconds", physical_defaults["synthesis_timeout_seconds"]),
+            "physical.synthesis_timeout_seconds", positive=True,
+        ),
+        pnr_timeout_seconds=_number(
+            physical_raw.get("pnr_timeout_seconds", physical_defaults["pnr_timeout_seconds"]),
+            "physical.pnr_timeout_seconds", positive=True,
+        ),
+    )
+
+    hooks_raw = _table(raw.get("hooks", {}), "hooks", {"cts_clock_gate_isolation"})
+    cts_hook = hooks_raw.get("cts_clock_gate_isolation", False)
+    if type(cts_hook) is not bool:
+        raise ConfigError("hooks.cts_clock_gate_isolation must be a boolean")
+    hooks = ProjectHooks(cts_clock_gate_isolation=cts_hook)
+
     dependency_list = [path, *sources, *extras, pads, *data]
     for include in includes:
         for candidate in sorted(include.rglob("*")):
@@ -338,4 +416,4 @@ def load_project(path: str | Path) -> ProjectConfig:
         if build_root.is_relative_to(include) or include.is_relative_to(build_root):
             raise ConfigError("build.root overlaps an include directory")
 
-    return ProjectConfig(path, root, SCHEMA_VERSION, name, top, sources, includes, defines, dict(parameters), extras, technology["id"], technology["frame"], PROFILE_VERSION, top_cell, "development", technology["development_identifiers"], clock, reset, IOConstraints(corners, inputs, outputs), pads, build_root, resources, Verification(required, optional, manual, data), dependencies)
+    return ProjectConfig(path, root, SCHEMA_VERSION, name, top, sources, includes, defines, dict(parameters), extras, technology["id"], technology["frame"], PROFILE_VERSION, top_cell, "development", technology["development_identifiers"], clock, reset, IOConstraints(corners, inputs, outputs), pads, build_root, resources, Verification(required, optional, manual, data), dependencies, physical, hooks)

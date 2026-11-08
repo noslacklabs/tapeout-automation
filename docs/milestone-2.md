@@ -4,6 +4,8 @@
 
 Milestone 2 delivers complete project configuration parsing, process profile definitions for SCL C1D 1.2 µm, stage execution with diagnostic continuation, bounded RTL elaboration via Yosys, comprehensive semantic and pad qualification validation, mapped netlist checking, and full CLI preflight workflows.
 
+Closeout version: **0.1.0.dev4** (8 November 2026). All verification findings are resolved; current results and retained evidence are in [the verification report](milestone-2-verification.md#final-closeout-8-november-2026).
+
 All code is implemented in standard Python (Python 3.11+) with zero external dependencies, running cross-platform on Windows and WSL2 Linux.
 
 ---
@@ -11,7 +13,7 @@ All code is implemented in standard Python (Python 3.11+) with zero external dep
 ## 2. Capabilities Delivered
 
 ### Project & Pad Configuration (G4, G5)
-- **`chipflow/config/project.py`**: Strict schema-1 TOML loader parsing clock constraints, synchronous active-high resets, derived clock outputs (`[clock.derived_outputs]`), I/O delays, output loads, and toolchain configurations.
+- **`chipflow/config/project.py`**: Strict schema-1 TOML loader parsing clock constraints, synchronous resets, derived clock outputs (`[clock.derived_outputs]`), I/O delays, output loads, and toolchain configurations.
 - **`chipflow/config/pads.py`**: Strict pad-map loader for `pads.toml` assigning the 12 peripheral frame slots to top-level ports and standard pad cells with appropriate buffer drivers.
 - **`chipflow/technologies/scl_c1d/profile-0.1.0.toml`**: Frame specification for the 2×2 mm frame, capturing die dimensions (2000 µm × 2000 µm), 12 peripheral signal slots, 4 fixed power pads (PVDD01/VDD on 13 and 15, PVSS01/VSS on 14 and 16), allowed pad cells (`IPAD30`, `IPAD3D`, `IPAD2D`, `OPAD04`), allowed drivers (`INVR04`, `none`), and DROP/FORCE standard cell exclusion rules.
 
@@ -25,11 +27,11 @@ All code is implemented in standard Python (Python 3.11+) with zero external dep
 - Flags clock net branching into combinational logic with exact source line citations (e.g. `rtl/s8.v:183`), while honoring declared derived outputs.
 
 ### Semantic Validation & Pad Planning (G4, G5)
-- **`chipflow/validation.py`**: Validates clock period/transitions, reset polarity, I/O coverage, and performs 10 distinct pad checks (`pads.schema`, `pads.frame`, `pads.slot_coverage`, `pads.cell`, `pads.driver`, `pads.unused`, `pads.qualification`, `pads.direction`, `pads.port_coverage`, `pads.capacity`).
-- Writes `validation.json` and builds `pad-plan.json` containing physical slot locations, orientations, pad cells, and fixed power pad positions.
+- **`chipflow/config/project.py`** validates numeric clock constraints and supported reset declarations. **`chipflow/validation.py`** checks clock/reset port existence, direction and width, I/O coverage, and 10 pad checks (`pads.schema`, `pads.frame`, `pads.slot_coverage`, `pads.cell`, `pads.driver`, `pads.unused`, `pads.qualification`, `pads.direction`, `pads.port_coverage`, `pads.capacity`).
+- Reads the hash-verified snapshot pad map, writes `validation.json`, and emits a hashed `pad-plan.json` only when all pad checks pass. Signal pads carry qualified side/offset data; the four power pads carry cell/net identities and explicitly unknown (`null`) geometry for Milestone 3.
 
 ### Mapped Netlist Checking (G8)
-- **`chipflow/stages/netlist_checks.py`**: Verifies post-synthesis gate-level netlists to ensure no unmapped `$` cells remain, sequential clock pins connect to the clock net, all cells belong to the technology profile allowlist, excluded DROP/FORCE cells are absent, and constants are driven strictly by `VDDCON` and `VSSCON` tie cells rather than literal logic 0/1 ties.
+- **`chipflow/stages/netlist_checks.py`**: Checks mapped primitives, sequential clocks, constant ties and caller-supplied cell allowlists. Synthetic tests and a freshly mapped real probe exercise it; removing DROP/FORCE cells from the allowlist detects their presence. The raw-library environment probe contains excluded cells and is correctly rejected by the strict profile check. Integration with chip synthesis belongs to Milestone 3.
 
 ### CLI Commands (G7)
 - **`chipflow validate`**: Runs full validation (`toolchain` -> `elaboration` -> `configuration`). Exits with **0** when all pass; exits with **2** when checks fail; exits with **130** on interruption.
@@ -57,16 +59,18 @@ CHIPFLOW_TEST_TOOLCHAIN="$PWD/../../toolchains/local.wsl.toml" /home/sushant/.ve
 ### Building and Verifying the Wheel
 ```bash
 # Build wheel
-mkdir -p work/m2-dist
-PYTHONPATH="$PWD/work/package-build" /home/sushant/.venvs/presubmit-check/bin/python -m pip wheel --no-deps --no-build-isolation --no-index -w work/m2-dist tools/chipflow
+mkdir -p work/m2-dist-dev4
+PYTHONPATH="$PWD/work/package-build" /home/sushant/.venvs/presubmit-check/bin/python -m pip wheel --no-deps --no-build-isolation --no-index -w work/m2-dist-dev4 tools/chipflow
 
 # Verify wheel
-/home/sushant/.venvs/presubmit-check/bin/python scripts/verify_wheel.py --workspace . --wheel work/m2-dist/chipflow-0.1.0.dev2-py3-none-any.whl
+/home/sushant/.venvs/presubmit-check/bin/python scripts/verify_wheel.py --workspace . --wheel work/m2-dist-dev4/chipflow-0.1.0.dev4-py3-none-any.whl
 ```
 
 ---
 
 ## 4. Evidence Runs
+
+The original implementation runs below are retained for history. Final dev4 runs are `projects/s8/builds/run-20261108T100553.914641Z-5968b18008a4` (validate, exit 0) and `run-20261108T100556.730460Z-9bba6f8c992c` (build, expected exit 2). The complete final suite and negative-run records are in `work/m2-closeout-20261108T100510Z/`.
 
 1. **S8 Full Validation (Pass):**
    - Run directory: `projects/s8/builds/run-20261108T073506.325648Z-86dd80335af2`

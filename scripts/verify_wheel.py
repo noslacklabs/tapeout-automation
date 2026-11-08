@@ -5,6 +5,7 @@ import argparse
 from datetime import datetime, timezone
 import hashlib
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -25,10 +26,15 @@ def main() -> int:
     directory.mkdir(parents=True)
     venv = directory / 'venv'
     records = []
+    # Source-checkout paths can make pip mistake source metadata for an
+    # installed wheel. Keep the installed-package check independent of them.
+    environment = os.environ.copy()
+    environment.pop('PYTHONPATH', None)
+    environment.pop('PYTHONHOME', None)
     def run(name: str, argv: list[str]) -> int:
         with (directory / (name + '.log')).open('wb') as output:
             p = subprocess.run(argv, cwd=directory, stdin=subprocess.DEVNULL, stdout=output,
-                               stderr=subprocess.STDOUT, check=False, timeout=120)
+                               stderr=subprocess.STDOUT, check=False, timeout=120, env=environment)
         records.append(dict(name=name, argv=argv, returncode=p.returncode, log=name + '.log'))
         return p.returncode
     code = run('create-venv', [sys.executable, '-m', 'venv', str(venv)])

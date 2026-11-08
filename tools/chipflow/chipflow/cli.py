@@ -13,13 +13,19 @@ import sys
 
 from . import PROFILE_VERSION, SCHEMA_VERSION, __version__
 from .config import ConfigError, load_project
-from .config.pads import load_pad_map
 from .config.project import ProjectConfig
 from .probe import run_probe
 from .runner.execution import atomic_write_json, create_run, execute_stages, sha256_file
-from .runner.results import Artifact, BuildResult, CheckResult, CheckStatus, StageResult, StageStatus
+from .runner.results import (
+    Artifact, BuildResult, CheckResult, CheckStatus, StageResult, StageStatus,
+    MINIMUM_REQUIRED_CHECKS, MINIMUM_REQUIRED_ARTIFACTS,
+)
+from .stages.assembly import assembly_stage
 from .stages.design_model import load_design
 from .stages.elaboration import elaboration_stage
+from .stages.pnr import pnr_stage
+from .stages.synthesis import synthesis_stage
+from .stages.technology import technology_stage
 from .technologies.profile import load_profile
 from .toolchain import Toolchain, ToolchainError, doctor, load_toolchain
 from .validation import validate_project_configuration
@@ -81,7 +87,7 @@ def write_run_manifest(
     profile_path = Path(str(importlib.resources.files("chipflow").joinpath("technologies/scl_c1d/profile-0.1.0.toml")))
     profile_hash = sha256_file(profile_path)
     manifest_path = run_dir / "input-manifest.json"
-    manifest_hash = sha256_file(manifest_path) if manifest_path.is_file() else "0" * 64
+    manifest_hash = sha256_file(manifest_path)
     toolchain_hash = sha256_file(toolchain.path)
 
     allowlisted_env = {
@@ -165,21 +171,17 @@ def _validation_stages(project: ProjectConfig, toolchain: Toolchain, run_path: P
         except Exception:
             design = None
 
-    snap_pads = run_path / 'inputs/project' / project.pads.relative_to(project.directory)
-    pad_cfg = None
-    if snap_pads.is_file():
-        try:
-            pad_cfg = load_pad_map(snap_pads)
-        except Exception:
-            pad_cfg = None
-
-    config_check, val_rows = validate_project_configuration(project, run_path, design, pad_cfg, load_profile())
+    config_check, val_rows = validate_project_configuration(project, run_path, design, load_profile())
     inherited_failed = tuple(s.id for s in (toolchain_stage, elab_stage) if s.status == StageStatus.FAILED)
     if inherited_failed:
         config_stage = StageResult('configuration', StageStatus.BLOCKED, failed_ancestors=inherited_failed,
-                                   checks=(CheckResult('configuration', CheckStatus.NOT_RUN),))
+                                   checks=(CheckResult('configuration', CheckStatus.NOT_RUN),), artifacts=config_check.evidence)
     elif config_check.status == CheckStatus.FAIL:
         config_stage = StageResult('configuration', StageStatus.FAILED, failure_kind='configuration',
+                                   checks=(config_check,), artifacts=config_check.evidence)
+    elif config_check.status != CheckStatus.PASS:
+        config_stage = StageResult('configuration', StageStatus.FAILED, failure_kind='infrastructure',
+                                   error=f'configuration gate incomplete: {config_check.message}',
                                    checks=(config_check,), artifacts=config_check.evidence)
     else:
         config_stage = StageResult('configuration', StageStatus.SUCCEEDED, checks=(config_check,), artifacts=config_check.evidence)
@@ -211,14 +213,15 @@ def main(argv: list[str] | None = None) -> int:
     env_parser.add_argument('--toolchain', type=Path, required=True)
     env_parser.add_argument('--run-root', type=Path)
     env_parser.add_argument('--probe', action='store_true')
-    validate = commands.add_parser('validate', help='validate project syntax; full elaboration/pad validation is pending')
+    validate = commands.add_parser('validate', help='validate project syntax, elaborated RTL, constraints and pad mapping')
     validate.add_argument('project', type=Path)
     validate.add_argument('--structure-only', action='store_true', help='explicitly limit success to structural schema/path checks')
     validate.add_argument('--toolchain', type=Path)
     validate.add_argument('--json', type=Path)
-    build = commands.add_parser('build', help='snapshot preflight; exit 2 until physical-flow adapters are implemented')
+    build = commands.add_parser('build', help='snapshot preflight; execute physical flow when adapters and toolchain are available')
     build.add_argument('project', type=Path)
     build.add_argument('--toolchain', type=Path, required=True)
+    build.add_argument('--preflight-only', action='store_true', help='stop after preflight validation')
     args = parser.parse_args(argv)
     effective_argv = list(sys.argv[1:] if argv is None else argv)
     try:
@@ -328,6 +331,12 @@ def main(argv: list[str] | None = None) -> int:
             validation_check_ids = {'toolchain', 'elaboration', 'configuration'}
             impl_check_ids = [c for c in project.verification.required_checks if c not in validation_check_ids]
 
+            doc_file = run.path / 'doctor/doctor.json'
+            doc_data = json.loads(doc_file.read_text(encoding='utf-8')) if doc_file.is_file() else {}
+            is_synthetic = doc_data.get('kind') == 'synthetic-doctor'
+
+            stages: list[StageResult] = [toolchain_stage, elab_stage, config_stage]
+
             if not validation_passed:
                 failed_ancestors = tuple(dict.fromkeys(
                     s.id for s in (toolchain_stage, elab_stage, config_stage)
@@ -339,32 +348,87 @@ def main(argv: list[str] | None = None) -> int:
                     failed_ancestors=failed_ancestors,
                     checks=tuple(CheckResult(c, CheckStatus.NOT_RUN) for c in impl_check_ids),
                 )
-            else:
+                stages.append(impl_stage)
+            elif getattr(args, 'preflight_only', False) or is_synthetic:
                 impl_stage = StageResult(
                     'implementation',
                     StageStatus.FAILED,
                     failure_kind='infrastructure',
-                    error='physical adapters not implemented (milestone 3)',
+                    error='physical adapters deferred or synthetic toolchain',
                     checks=tuple(CheckResult(c, CheckStatus.NOT_RUN) for c in impl_check_ids),
                 )
+                stages.append(impl_stage)
+            else:
+                profile = load_profile()
+                from chipflow.config.pads import build_pad_plan, load_pad_map
+                pad_plan_file = run.path / 'pad-plan.json'
+                if not pad_plan_file.is_file():
+                    snap_pads = run.path / "inputs/project" / project.pads.relative_to(project.directory)
+                    pad_config = load_pad_map(snap_pads if snap_pads.is_file() else project.pads)
+                    atomic_write_json(pad_plan_file, build_pad_plan(pad_config, profile))
+
+                physical_specs = [
+                    technology_stage(project, profile, toolchain, run.path),
+                    synthesis_stage(project, profile, toolchain, run.path),
+                    pnr_stage(project, profile, toolchain, run.path),
+                    assembly_stage(project, profile, toolchain, run.path),
+                ]
+                physical_summary = execute_stages(run.path, physical_specs, existing_stages=[elab_stage])
+                stages.extend(physical_summary.stages)
+
+                # Copy artifacts if assembly succeeded
+                artifacts_dir = run.path / "artifacts"
+                artifacts_dir.mkdir(parents=True, exist_ok=True)
+                art_files: list[Artifact] = []
+                gds_out = run.path / f"stages/assembly/{project.top_cell}.gds"
+                cdl_out = run.path / f"stages/assembly/{project.top_cell}.cdl"
+                mapped_out = run.path / "stages/synthesis/mapped.v"
+                routed_out = run.path / "stages/pnr/routed.v"
+                if gds_out.is_file() and gds_out.stat().st_size > 0:
+                    shutil.copyfile(gds_out, artifacts_dir / "chip.gds")
+                    art_files.append(Artifact("artifacts/chip.gds", sha256_file(artifacts_dir / "chip.gds")))
+                if cdl_out.is_file() and cdl_out.stat().st_size > 0:
+                    shutil.copyfile(cdl_out, artifacts_dir / "chip.cdl")
+                    art_files.append(Artifact("artifacts/chip.cdl", sha256_file(artifacts_dir / "chip.cdl")))
+                if mapped_out.is_file() and mapped_out.stat().st_size > 0:
+                    shutil.copyfile(mapped_out, artifacts_dir / "mapped.v")
+                    art_files.append(Artifact("artifacts/mapped.v", sha256_file(artifacts_dir / "mapped.v")))
+                if routed_out.is_file() and routed_out.stat().st_size > 0:
+                    shutil.copyfile(routed_out, artifacts_dir / "routed.v")
+                    art_files.append(Artifact("artifacts/routed.v", sha256_file(artifacts_dir / "routed.v")))
+
+                # Downstream verification checks (DRC, LVS, STA, simulation) deferred to M4 & M5
+                executed_check_ids = {c.id for s in stages for c in s.checks}
+                all_req = tuple(dict.fromkeys((*project.verification.required_checks, *MINIMUM_REQUIRED_CHECKS)))
+                remaining_checks = [c for c in all_req if c not in executed_check_ids]
+                verification_stage = StageResult(
+                    'implementation',
+                    StageStatus.FAILED,
+                    failure_kind='infrastructure',
+                    error='downstream verification checks deferred to milestone 4 and 5',
+                    checks=tuple(CheckResult(c, CheckStatus.NOT_RUN) for c in remaining_checks),
+                    artifacts=tuple(art_files),
+                )
+                stages.append(verification_stage)
 
             end_time = datetime.now(timezone.utc).isoformat()
             run_manifest_art = write_run_manifest(run.path, project, toolchain, start_time, end_time, effective_argv)
 
-            all_req = tuple(dict.fromkeys((*project.verification.required_checks, 'toolchain', 'elaboration', 'configuration')))
-            stages = [StageResult('snapshot', StageStatus.SUCCEEDED, artifacts=(manifest, run_manifest_art)),
-                      toolchain_stage, elab_stage, config_stage, impl_stage]
-            result = BuildResult(tuple(stages), required_checks=all_req,
+            all_req = tuple(dict.fromkeys((*project.verification.required_checks, 'toolchain', 'elaboration', 'configuration', *MINIMUM_REQUIRED_CHECKS)))
+            snapshot_stage = StageResult('snapshot', StageStatus.SUCCEEDED, artifacts=(manifest, run_manifest_art))
+            all_stages = [snapshot_stage, *stages]
+            result = BuildResult(tuple(all_stages), required_checks=all_req,
                                  signoff_blockers=project.verification.manual_items + ('Physical flow and release qualification pending',))
             atomic_write_json(run.path / 'result.json', result.to_dict())
-            print(f'Preflight recorded; build incomplete (exit {result.exit_code}): {run.path}')
-            _print_summary((toolchain_stage, elab_stage, config_stage), val_rows)
+            print(f'Build recorded (exit {result.exit_code}): {run.path}')
+            _print_summary(stages, val_rows)
             return result.exit_code
 
     except KeyboardInterrupt:
         print('Cancelled', file=sys.stderr)
         return 130
-    except (ConfigError, ToolchainError, OSError, ValueError) as error:
+    except Exception as error:
+        # Unexpected failures are infrastructure errors, never design exit 1.
         print(f'chipflow: {error}', file=sys.stderr)
         return 2
 

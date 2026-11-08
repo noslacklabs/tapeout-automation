@@ -4,7 +4,11 @@ Independent check of the milestone 2 handback (Gemini 3.8 Flash, 8 November 2026
 
 ## Verdict
 
-**Not done yet.** Most of the work is real and reproduces: the tests, the S8 validate and build exit codes, the negative runs, the wheel, and the untouched milestone 1 evidence. But two core validation rules can give a **false PASS** (findings 1 and 2), and two CLI reporting paths are wrong (findings 3 and 4). The contract doc also misdescribes the profile and leaves out parts that decision D5 requires. `BUILD_PLAN.md`, `README.md`, `docs/implementation-status.md` and `docs/supported-configurations.md` all say milestone 2 is complete. That claim should be withdrawn until findings 1–4 are fixed and tested.
+**Milestone 2 is complete at 0.1.0.dev4.** Findings 1–5 were fixed in the first pass; the remaining findings and test gaps are resolved and verified in the [final closeout](#final-closeout-8-november-2026). Earlier results below are retained as the audit history.
+
+### Initial verdict (before the fixes)
+
+**Not done yet at that point.** Most work reproduced, but findings 1 and 2 allowed false PASS results, findings 3 and 4 broke CLI reporting, and the contract documentation was incomplete. Completion required fixing and testing those paths.
 
 ## What reproduced
 
@@ -127,11 +131,45 @@ The §7 integration-test gap is closed too: latch, init value, tristate, gated c
   - print `configuration: NOT RUN` when that stage is BLOCKED.
 - A fresh wheel from the fixed code is `work/m2-dist-fixed/chipflow-0.1.0.dev2-py3-none-any.whl` (`b1cca620…`). `verify_wheel.py` exits 0, and its record is in `work/installed-wheel-25158cecfb`. Gemini's `work/m2-dist` wheel (`1a885ef7…`) predates the fixes and was left in place. The two wheels share a version string, so bump to `0.1.0.dev3` before treating either as a release candidate.
 
-**Still open:** findings 6, 7, 8 (check-ID aliasing), 9 (live include enumeration, pad-plan power offsets and hashing, the CLI exception net, profile reason strings), and the remaining test gaps (sequential "concurrent" CLI test, top-level pad key test, netlist checker on a real probe netlist). None of them gives a false PASS on current inputs.
+**Open after the first fix pass, now addressed in final closeout:** findings 6, 7, 8 (check-ID aliasing), 9 (live include enumeration, pad-plan power offsets and hashing, the CLI exception net, profile reason strings), and the remaining test gaps (sequential "concurrent" CLI test, top-level pad key test, netlist checker on a real probe netlist).
 
 ## My evidence and changes
 
 - Real-Yosys rule probe: `work/m2-verify/probe_m2.py`, output in `work/m2-verify/run-20261108T080204Z/results.json`. `run-20261108T080144Z` is my first attempt, which stopped on a fixture mistake of mine.
 - CLI probe: `work/m2-verify/cli_probe.sh`, output in `work/m2-verify/cli-20261108T080328Z/`.
 - New S8 runs: `projects/s8/builds/run-20261108T080329.643999Z-a690cd1ec0a8` (validate, 0), `run-20261108T080333.218773Z-42e9639916e6` (build, 2) and `run-20261108T080405.800767Z-83c8f6bb9841` (validate run with the `docs/milestone-2.md` command, 0).
-- No package code, test, status doc or bound file was changed. This file is new, and a pointer to it was added to `docs/milestone-2-progress.md`.
+- The initial audit changed only this report and its progress-log pointer. The subsequent implementation changes are recorded in the fix and closeout sections.
+
+## Final closeout (8 November 2026)
+
+Final package version: **0.1.0.dev4**. This closes the remaining findings within Milestone 2's configuration, elaboration and runner scope. Physical-flow adapters, chip-level synthesis qualification and signoff remain later milestones.
+
+| Finding or gap | Final change and regression evidence |
+|---|---|
+| 6: live pad-map fallback | Configuration loads only the declared snapshot entry and verifies its SHA-256 before and after parsing. Changed/deleted live pads cannot change the result. Missing or altered snapshot evidence raises an infrastructure error; a malformed snapshotted schema remains an attributed `pads.schema` FAIL even if the live file is repaired. `test_snapshot_integrity.py`. |
+| 7: invented hashes and version evidence | Missing manifests and resolved configuration now raise instead of receiving zero hashes. Elaboration requires a successful, parseable `doctor/doctor.json`; no substitute toolchain path is emitted. Missing/corrupt evidence prevents the command from running and blocks dependents. `test_elaboration.py`, `test_snapshot_integrity.py`. |
+| 8: derived-output check aliasing | Each derived output requires a distinct project check. Minimum/release IDs, internal row IDs and duplicate derived check IDs are rejected. Explicitly listing that valid project check in `required_checks` remains supported. `test_validation.py`. |
+| 9: live include enumeration | Source/include membership comes from the complete declared input manifest. Staging survives changed/deleted live headers, ignores files added afterward and verifies every staged snapshot copy. Manifest rows with omissions, duplicates or escaped paths are rejected. `runner/snapshot.py`, `test_elaboration.py`, `test_snapshot_integrity.py`. |
+| 9: pad-plan geometry and provenance | A plan is emitted only when all pad checks PASS. Power-pad side and offset are explicitly `null`; cell/net identities remain available. The plan's hash appears in configuration evidence and `result.json`. `test_pads.py`, `test_snapshot_integrity.py`. |
+| 9: exception classification | Unexpected CLI exceptions return exit 2 and retain an incomplete run result naming the error. They cannot become design exit 1. `test_snapshot_integrity.py`. |
+| 9: profile descriptions | Exclusion reasons now cite legacy synthesis DROP/FORCE policy and P01/P02 only, without invented defect claims or kit values. |
+| Actual concurrency | Two validations rendezvous after creating their snapshots, execute concurrently and retain independent run markers, results, hashes and snapshots. `test_toolchain_cli.py`. |
+| Pad unknown-key coverage | Separate tests reject root-level and slot-level unknown keys. `test_pads.py`. |
+| Real mapped-netlist checker | A freshly synthesized probe passes library-membership, primitive, clock and tie checks. Deliberately altered real clock/tie connectivity fails the intended rows. Applying the strict profile allowlist detects excluded cells in the raw-library environment probe; this is an expected detected defect, not chip synthesis qualification. `test_integration_netlist.py`; retained current-probe results in `mapped-netlist-checks.json`. |
+| Additional gate review | A configuration check that is NOT RUN now gives a FAILED/infrastructure stage and blocks implementation while preserving its NOT RUN status. An unqualified-pad build regression covers this path. `test_snapshot_integrity.py`. |
+| Wheel verification isolation | `scripts/verify_wheel.py` removes inherited `PYTHONPATH`/`PYTHONHOME` from subprocesses. The first wheel check exposed source metadata causing pip to skip installation; the final check performs a real offline install and proves imports come from the new venv. |
+
+Final retained evidence directory: `work/m2-closeout-20261108T100510Z/`.
+
+- Windows Python 3.13: **111 tests run, 101 pass, 10 real-tool tests skip** with printed reasons. UTF-8 mode was explicitly disabled and `PYTHONUTF8`/`CHIPFLOW_TEST_TOOLCHAIN` removed. `windows-tests.log` and `windows-tests.json`.
+- WSL Python 3.12.3 with the configured real toolchain: **111/111 pass**. `wsl-tests.log` and `wsl-tests.json`.
+- S8 validate: exit **0**, `projects/s8/builds/run-20261108T100553.914641Z-5968b18008a4`.
+- S8 build preflight: expected exit **2**, `projects/s8/builds/run-20261108T100556.730460Z-9bba6f8c992c`. Toolchain, elaboration and configuration PASS; physical implementation remains unimplemented.
+- Fresh negative fixtures positively detect missing S8 derived-output declaration and the counter's unqualified unused-pad policy; both exit **2** for the expected reason. `s8-no-derived.log`, `counter-unused.log`.
+- Milestone 1 guards: **8/8 pass on Windows and WSL**. All **18 bound files match**; pinned `dist/` wheel remains `10bb95eb…`. `windows-m1-guards.log`, `m1-guards.log`, `m1-preservation.json`.
+- Candidate wheel: `work/m2-dist-dev4/chipflow-0.1.0.dev4-py3-none-any.whl`, SHA-256 `1c82271175805c7540133f7ecd5276c21c524f240cd792a7cfd0bc1becf1f69e`. All 24 packaged source/resource files match the final checkout (`wheel-source-match.json`). Earlier dev2 and intermediate dev3 artifacts are superseded and retained for history.
+- Installed dev4 verification: **5/5 records PASS**, with **111/111 installed-package tests**, confirmed import location and a fresh real synthesis/geometry probe. Record: `work/installed-wheel-e501e757c3/verification.json`; closeout summary: `qualification.json`. This reuses existing EDA dependencies through the verifier's explicit `.pth`; clean EDA installation remains Milestone 6 work. The earlier source-path-contaminated attempt is retained in the records, followed by the successful isolated verification.
+
+**No findings remain open from this Milestone 2 review.** The raw-library probe's strict profile exclusion FAIL is intentionally detected and recorded, not waived. Chip implementation and full signoff qualification are outside this milestone.
+
+Changed package files: `chipflow/__init__.py`, `cli.py`, `config/project.py`, `config/pads.py`, `runner/snapshot.py` (new), `stages/elaboration.py`, `validation.py`, `technologies/scl_c1d/profile-0.1.0.toml`, and `pyproject.toml`. Changed tests: `test_elaboration.py`, `test_integration_yosys.py`, `test_pads.py`, `test_validation.py`, `test_toolchain_cli.py`; new tests: `test_snapshot_integrity.py`, `test_integration_netlist.py`. The wheel-verification script and current milestone/status/installation documentation were also updated. No Milestone 1-bound file or PDK file was modified.

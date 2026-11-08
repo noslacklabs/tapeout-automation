@@ -1,6 +1,6 @@
 # Milestone 2 validation contract
 
-This document extends `project-format.md`, `stage-contracts.md` and `result-contract.md`, which stay bound to milestone 1 and are not edited. Where they conflict with it, this document wins for chipflow 0.1.0.dev2 and later. It describes the code as it stands, including its limits.
+This document extends `project-format.md`, `stage-contracts.md` and `result-contract.md`, which stay bound to milestone 1 and are not edited. Where they conflict with it, this document wins for the Milestone 2 closeout version, chipflow 0.1.0.dev4. It describes the implemented behavior and its limits.
 
 ## 1. What changed from milestone 1
 
@@ -24,6 +24,8 @@ Milestone 1 said full validation always exits nonzero. That no longer holds. `ch
 - **design**: a genuine design FAIL, exit 1. Milestone 2 produces none.
 
 Exit precedence is 130, then 2, then 1, then 0. A stage with `failed_ancestors` but no FAIL check anywhere in the build is inconsistent provenance, and gives exit 2.
+
+An unexpected Python exception at the CLI boundary also returns 2. If a run has started, its `result.json` records the exception, `complete = false` and exit 2; existing diagnostic evidence is retained. Keyboard interruption returns 130.
 
 ## 3. Stage adapter hook
 
@@ -51,15 +53,15 @@ derived_outputs = [{ port = "sck", check = "s8.sck_gate" }]
 ```
 
 - `port` names a whole port, which must also have an `io.outputs` constraint. `check` matches `[a-z][a-z0-9_.-]*`, and is added to the required checks so that a build can't exit 0 until a hook supplies that check.
+- Every declared port and every derived-output check ID must be unique. Each check must be a separate project check: profile-minimum and release check IDs, `snapshot`, `implementation`, and the internal prefixes `elab.`, `config.`, `pads.` and `netlist.` are reserved. The same project check may also appear explicitly in `verification.required_checks`; it is required once.
 - Without the key, any use of the clock other than a `$dff` CLK pin fails `elab.clock_usage`. That includes the clock reaching an output with no cell in between, as with `assign out = clk;`.
 - With the key, the forward combinational cone from the clock's non-CLK users must not reach any `$dff` pin. It must reach exactly the bits of the declared ports: every one of them, and nothing else. A declaration that the cone doesn't reach fails as stale.
-- Known gap: a `check` ID may currently reuse a profile-minimum ID such as `drc`, and then no separate check is required.
 
 `project.parameters` must be nonnegative integers, because Yosys 0.33 can't take a negative or string `-chparam`. Define names and values are limited to `[A-Za-z0-9_]`, and include-tree file names to `[A-Za-z0-9_./+-]`. Inputs that break these rules are refused before Yosys runs (§6).
 
 ## 5. Pad map (`pads.toml`)
 
-Top-level keys are `schema_version = 1`, `frame` and `profile_version`, plus a `[[slot]]` array. Unknown keys are rejected at every level. The map is read from the run's snapshot.
+Top-level keys are `schema_version = 1`, `frame` and `profile_version`, plus a `[[slot]]` array. Unknown keys are rejected at every level. The map is read only from the run's declared snapshot and checked against its manifest hash before and after parsing. A snapshot with invalid TOML or pad schema gives `pads.schema` FAIL. A missing snapshot, invalid manifest or hash mismatch is an infrastructure error; validation never retries the live pad map.
 
 | Slot form | Keys |
 |---|---|
@@ -86,18 +88,20 @@ The profile is loaded from package resources, and its SHA-256 is recorded in `ru
   | IPAD30 | input | — | 4 |
   | IPAD3D | input | — | 6 |
 
-- **`[[excluded_cell]]`** has `{cell, workaround, reason}`: the 13 DROP cells (P01) and 25 FORCE cells (P02) from `flow/synth.sh`. The mapped-netlist checker uses them only through the allowlist its caller passes in. No stage calls it until milestone 3.
+- **`[[excluded_cell]]`** has `{cell, workaround, reason}`: the 13 DROP cells (P01) and 25 FORCE cells (P02) from `flow/synth.sh`. Reasons identify the corresponding legacy synthesis policy, without inventing physical explanations or copying kit values. The mapped-netlist checker uses them only through the allowlist its caller passes in. No stage calls it until milestone 3.
 
 ## 7. Elaboration (`yosys.elaboration` adapter, version 0.1.0)
 
 **Inputs refused before Yosys runs.** The rules in §4 raise `ConfigError` in `elaboration_stage()`. The CLI writes `<run>/elaboration-rejected.json` containing the message, then records a FAILED/configuration stage whose FAIL check cites that file. After that, configuration is BLOCKED and the run still writes `validation.json` and `run-manifest.json`.
 
-**`prepare`.** It verifies the Yosys executable's SHA-256 and copies the run snapshot, never the live project:
+**Snapshot selection.** Source and include-file membership comes from `input-manifest.json`. The manifest must cover exactly the declared project dependencies, without duplicate originals, unexpected paths, invalid hashes or snapshot paths outside the expected `inputs/project/…` locations. Include names are checked from that list. No live include directory is enumerated: changes, deletions and additions after snapshotting cannot change the staged input set.
+
+**`prepare`.** It verifies the Yosys executable's SHA-256 and copies the run snapshot:
 
 - sources go to `work/src/NNNN_<name>`;
 - each include tree goes to `work/inc/NNNN/`.
 
-Each copy is re-hashed against `input-manifest.json`. It then writes `path-map.json` (original, snapshot and staged path, with SHA-256), `elab.ys` and `stage-input.json`.
+The manifest is checked again before staging. Each snapshot file and each staged copy is checked against its manifest SHA-256. Preparation requires the real `resolved-project.json` hash and a valid, successful `doctor/doctor.json` version-evidence record. Missing evidence fails preparation as infrastructure and blocks dependent work; no placeholder hash or alternative evidence path is substituted. Preparation then writes `path-map.json` (original, snapshot and staged path, with SHA-256), `elab.ys` and `stage-input.json`.
 
 **Fixed script.** Changing it requires a new adapter version.
 
@@ -143,7 +147,9 @@ If Yosys fails and `elab.log` has an `ERROR:` line, the result is a configuratio
 
 ## 8. Configuration check
 
-The rows are written to `<run>/validation.json`, which the `configuration` check cites. The check is FAIL if any row fails, NOT RUN if any row is NOT RUN, and PASS otherwise. Rows that need the design are NOT RUN when there is no `elab.json`.
+The rows are written to `<run>/validation.json`, which the `configuration` check cites. Its input hashes identify `resolved-project.json`, `input-manifest.json`, the snapshot pad map and the loaded profile. The check is FAIL if any row fails, NOT RUN if any row is NOT RUN, and PASS otherwise. Rows that need the design are NOT RUN when there is no usable elaborated design.
+
+An upstream gate failure makes the configuration stage BLOCKED, while retaining its diagnostic artifacts. Otherwise a configuration FAIL makes the stage FAILED/configuration. A NOT RUN configuration check keeps that status and its evidence, but makes the stage FAILED/infrastructure because the gate is incomplete. Both cases block implementation and return exit 2; only a PASS check makes the configuration stage SUCCEEDED.
 
 | Row | Rule |
 |---|---|
@@ -160,7 +166,7 @@ The rows are written to `<run>/validation.json`, which the `configuration` check
 | `pads.port_coverage` | Every port bit is mapped exactly once; no unknown ports or out-of-range bits |
 | `pads.capacity` | The design's port bits fit in 12 signal slots |
 
-If the schema, frame and slot coverage rows pass, `<run>/pad-plan.json` holds 16 entries for milestone 3: the 12 signal slots with side, offset, port, direction, cell and driver, and the 4 power pads. The power pads' `offset_um` of 0.0 is a placeholder, not a position. The plan isn't yet hashed into `result.json`.
+Only when every pad check is PASS does `<run>/pad-plan.json` hold 16 entries for milestone 3: the 12 signal slots with side, offset, port, direction, cell and driver, and the 4 power pads with their identities and nets. The profile does not specify power-pad geometry, so their `side` and `offset_um` are JSON `null`. The plan's SHA-256 is included in the configuration evidence and stage artifacts recorded in `result.json`. Pad-plan creation or write errors propagate as infrastructure errors.
 
 ## 9. Run evidence
 
@@ -174,6 +180,6 @@ Each run directory contains:
 | `toolchain.toml`, `resolved-toolchain.json`, `doctor/doctor.json` | The toolchain and its doctor results |
 | `run-manifest.json` | chipflow, schema and profile versions; profile SHA-256; argv; start and end times (UTC); platform; Python; toolchain and input-manifest SHA-256; seed, threads and timeout; environment overrides passed to tools (none so far); and a snapshot of `LANG`, `LC_ALL`, `PATH`, `PYTHONUTF8`, `PYTHONIOENCODING` and `TMPDIR` |
 | `execution.json`, `stages/elaboration/…` | `command.json`, logs, `stage-input.json`, `path-map.json`, `elab.ys`, `deps.txt`, `elab.json`, `elab.log` and `design.json` |
-| `validation.json`, `pad-plan.json`, `result.json` | Configuration rows, the pad plan and the overall result; plus `elaboration-rejected.json` when an input is refused before Yosys |
+| `validation.json`, `pad-plan.json`, `result.json` | Configuration rows, the pad plan when all pad checks pass, and the overall result; plus `elaboration-rejected.json` when an input is refused before Yosys |
 
-Remaining provenance gaps are listed in `docs/milestone-2-verification.md`. One example is the pad-map fallback to the live file when the snapshot copy won't load.
+Required evidence must exist and pass its checks at the point of consumption. Missing manifests or resolved configuration files never receive all-zero hashes, and missing doctor or snapshot evidence has no fallback. The verification report records the closeout checks and their evidence.

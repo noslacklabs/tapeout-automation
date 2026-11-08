@@ -6,10 +6,11 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
-from chipflow.config.pads import PadCheckRow, PadConfig, build_pad_plan, load_pad_map, validate_pads
+from chipflow.config.pads import PadError, build_pad_plan, load_pad_map, validate_pads
 from chipflow.config.project import ProjectConfig
 from chipflow.runner.execution import atomic_write_json, sha256_file
 from chipflow.runner.results import Artifact, CheckResult, CheckStatus
+from chipflow.runner.snapshot import load_snapshot_manifest, verified_snapshot_file
 from chipflow.stages.design_model import Design
 from chipflow.technologies.profile import ProcessProfile
 
@@ -61,11 +62,21 @@ def validate_project_configuration(
     project: ProjectConfig,
     run_dir: Path,
     design: Design | None,
-    pad_config: PadConfig | None,
     profile: ProcessProfile,
 ) -> tuple[CheckResult, tuple[ValidationRow, ...]]:
     """Validate project configuration against elaborated design and pad profile."""
+    conf_hash = sha256_file(run_dir / "resolved-project.json")
+    manifest = load_snapshot_manifest(run_dir, project)
+    pad_row = manifest[project.pads]
+    snap_pads = verified_snapshot_file(run_dir, pad_row)
+    input_hashes = {
+        "configuration": conf_hash,
+        "input_manifest": sha256_file(run_dir / "input-manifest.json"),
+        "pad_map": pad_row["sha256"],
+        "profile": profile.sha256,
+    }
     rows: list[ValidationRow] = []
+    evidence: list[Artifact] = []
 
     # 1. config.clock
     if design is None or not design.top_present:
@@ -147,28 +158,24 @@ def validate_project_configuration(
             rows.append(ValidationRow("config.io_coverage", CheckStatus.PASS, "all input and output port bits covered with timing constraints"))
 
     # 4. Pad checks
-    if pad_config is None:
-        try:
-            pad_config = load_pad_map(project.pads)
-        except Exception as exc:
-            rows.append(ValidationRow("pads.schema", CheckStatus.FAIL, f"failed to load pad map: {exc}"))
+    pad_config = None
+    try:
+        pad_config = load_pad_map(snap_pads)
+    except PadError as exc:
+        rows.append(ValidationRow("pads.schema", CheckStatus.FAIL, f"failed to load pad map: {exc}"))
+    # Detect a change during parsing too. I/O/hash failures are infrastructure.
+    verified_snapshot_file(run_dir, pad_row)
 
     if pad_config is not None:
         pad_rows = validate_pads(pad_config, profile, design)
         for pr in pad_rows:
             rows.append(ValidationRow(pr.id, pr.status, pr.message))
 
-        # Build and write pad-plan.json if basic pad checks pass
-        has_basic_pad_fail = any(
-            pr.status == CheckStatus.FAIL and pr.id in ("pads.schema", "pads.frame", "pads.slot_coverage")
-            for pr in pad_rows
-        )
-        if not has_basic_pad_fail:
-            try:
-                pad_plan = build_pad_plan(pad_config, profile)
-                atomic_write_json(run_dir / "pad-plan.json", pad_plan)
-            except Exception:
-                pass
+        if all(pr.status == CheckStatus.PASS for pr in pad_rows):
+            pad_plan = build_pad_plan(pad_config, profile)
+            plan_file = run_dir / "pad-plan.json"
+            atomic_write_json(plan_file, pad_plan)
+            evidence.append(Artifact("pad-plan.json", sha256_file(plan_file)))
 
     # Write validation.json
     validation_data = {
@@ -179,9 +186,7 @@ def validate_project_configuration(
     atomic_write_json(val_file, validation_data)
     val_rel = val_file.relative_to(run_dir).as_posix()
     val_artifact = Artifact(val_rel, sha256_file(val_file))
-
-    conf_file = run_dir / "resolved-project.json"
-    conf_hash = sha256_file(conf_file) if conf_file.is_file() else "0" * 64
+    evidence.insert(0, val_artifact)
 
     has_fail = any(r.status == CheckStatus.FAIL for r in rows)
     has_not_run = any(r.status == CheckStatus.NOT_RUN for r in rows)
@@ -192,8 +197,8 @@ def validate_project_configuration(
             "configuration",
             CheckStatus.FAIL,
             message=first_fail.message,
-            evidence=(val_artifact,),
-            input_hashes={"configuration": conf_hash},
+            evidence=tuple(evidence),
+            input_hashes=input_hashes,
         )
     elif has_not_run:
         first_not_run = next(r for r in rows if r.status == CheckStatus.NOT_RUN)
@@ -201,16 +206,16 @@ def validate_project_configuration(
             "configuration",
             CheckStatus.NOT_RUN,
             message=first_not_run.message,
-            evidence=(val_artifact,),
-            input_hashes={"configuration": conf_hash},
+            evidence=tuple(evidence),
+            input_hashes=input_hashes,
         )
     else:
         check = CheckResult(
             "configuration",
             CheckStatus.PASS,
             message="configuration validation passed",
-            evidence=(val_artifact,),
-            input_hashes={"configuration": conf_hash},
+            evidence=tuple(evidence),
+            input_hashes=input_hashes,
         )
 
     return check, tuple(rows)

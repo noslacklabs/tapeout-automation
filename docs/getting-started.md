@@ -34,7 +34,7 @@ The source package is installable with `python -m pip install ./tools/chipflow`.
 For offline installation of the built wheel, use:
 
 ```bash
-python -m pip install --no-index --no-deps work/m2-dist/chipflow-0.1.0.dev2-py3-none-any.whl
+python -m pip install --no-index --no-deps work/m2-dist-dev4/chipflow-0.1.0.dev4-py3-none-any.whl
 chipflow --help
 ```
 
@@ -45,7 +45,7 @@ installs the wheel offline, confirms imports come from that venv, runs the
 synthetic tests and exercises the environment gate:
 
 ```bash
-/home/sushant/.venvs/presubmit-check/bin/python scripts/verify_wheel.py --workspace "$PWD" --wheel work/m2-dist/chipflow-0.1.0.dev2-py3-none-any.whl
+/home/sushant/.venvs/presubmit-check/bin/python scripts/verify_wheel.py --workspace "$PWD" --wheel work/m2-dist-dev4/chipflow-0.1.0.dev4-py3-none-any.whl
 ```
 
 Project commands currently have these boundaries:
@@ -67,7 +67,7 @@ it reports the implementation stage as FAILED with an infrastructure notice (phy
 deferred to milestone 3), records all physical checks as NOT RUN, and exits 2.
 `init` and the chip reporting adapters arrive in milestones 3 and 4 respectively.
 
-Unit tests require no kit and run on Windows or Linux (94 tests; the 9 real-Yosys tests skip unless `CHIPFLOW_TEST_TOOLCHAIN` names a toolchain file). Run them from `tools/chipflow`:
+Unit tests require no kit and run on Windows or Linux (111 tests; the 10 real-tool integration tests skip unless `CHIPFLOW_TEST_TOOLCHAIN` names a toolchain file). Run them from `tools/chipflow`:
 
 ```bash
 # Windows

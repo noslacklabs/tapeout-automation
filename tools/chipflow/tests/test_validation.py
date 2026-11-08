@@ -4,9 +4,10 @@ from pathlib import Path
 import tempfile
 import unittest
 
+from chipflow.cli import snapshot_project
 from chipflow.config import ConfigError, load_project
 from chipflow.config.pads import PadConfig, PadSlotConfig
-from chipflow.runner.results import CheckStatus
+from chipflow.runner.results import CheckStatus, RELEASE_REQUIRED_CHECKS
 from chipflow.stages.design_model import Design, PortInfo
 from chipflow.technologies.profile import load_profile
 from chipflow.validation import validate_project_configuration
@@ -144,37 +145,75 @@ class ValidationTests(unittest.TestCase):
         run_dir = self.root / "run"
         run_dir.mkdir()
         cfg = load_project(self.chip_file)
+        snapshot_project(cfg, run_dir)
 
         # 1. Missing clock in design
         design = make_design({"rst": ("input", 1, 0, False), "data_in": ("input", 1, 0, False), "data_out": ("output", 1, 0, False)})
-        res, rows = validate_project_configuration(cfg, run_dir, design, None, self.profile)
+        res, rows = validate_project_configuration(cfg, run_dir, design, self.profile)
         self.assertEqual(res.status, CheckStatus.FAIL)
         row_map = {r.id: r for r in rows}
         self.assertEqual(row_map["config.clock"].status, CheckStatus.FAIL)
 
         # 2. Clock is output
         design = make_design({"clk": ("output", 1, 0, False), "rst": ("input", 1, 0, False), "data_in": ("input", 1, 0, False), "data_out": ("output", 1, 0, False)})
-        res, rows = validate_project_configuration(cfg, run_dir, design, None, self.profile)
+        res, rows = validate_project_configuration(cfg, run_dir, design, self.profile)
         self.assertEqual(res.status, CheckStatus.FAIL)
         row_map = {r.id: r for r in rows}
         self.assertEqual(row_map["config.clock"].status, CheckStatus.FAIL)
 
         # 3. Clock is multibit
         design = make_design({"clk": ("input", 2, 0, False), "rst": ("input", 1, 0, False), "data_in": ("input", 1, 0, False), "data_out": ("output", 1, 0, False)})
-        res, rows = validate_project_configuration(cfg, run_dir, design, None, self.profile)
+        res, rows = validate_project_configuration(cfg, run_dir, design, self.profile)
         row_map = {r.id: r for r in rows}
         self.assertEqual(row_map["config.clock"].status, CheckStatus.FAIL)
 
         # 4. Reset is multibit
         design = make_design({"clk": ("input", 1, 0, False), "rst": ("input", 2, 0, False), "data_in": ("input", 1, 0, False), "data_out": ("output", 1, 0, False)})
-        res, rows = validate_project_configuration(cfg, run_dir, design, None, self.profile)
+        res, rows = validate_project_configuration(cfg, run_dir, design, self.profile)
         row_map = {r.id: r for r in rows}
         self.assertEqual(row_map["config.reset"].status, CheckStatus.FAIL)
+
+    def test_derived_outputs_require_separate_nonreserved_checks(self) -> None:
+        reserved = (*RELEASE_REQUIRED_CHECKS, "snapshot", "implementation", "elab.clock_usage",
+                    "config.clock", "pads.schema", "netlist.sequential_clock")
+        for check in reserved:
+            with self.subTest(check=check):
+                text = PROJECT_BASE.replace(
+                    "transition_ns = 2.5",
+                    f'transition_ns = 2.5\nderived_outputs = [{{ port = "data_out", check = "{check}" }}]'
+                )
+                self.chip_file.write_text(text, encoding="utf-8")
+                with self.assertRaisesRegex(ConfigError, "separate project check"):
+                    load_project(self.chip_file)
+
+    def test_derived_outputs_cannot_share_one_check(self) -> None:
+        text = PROJECT_BASE.replace(
+            "transition_ns = 2.5",
+            'transition_ns = 2.5\nderived_outputs = [{ port = "data_out", check = "my.gate" }, '
+            '{ port = "clock_out", check = "my.gate" }]'
+        ).replace(
+            '{ port = "data_out", min_ns = 1.0, max_ns = 5.0, load_pf = 10.0 }',
+            '{ port = "data_out", min_ns = 1.0, max_ns = 5.0, load_pf = 10.0 },\n'
+            '    { port = "clock_out", min_ns = 1.0, max_ns = 5.0, load_pf = 10.0 }'
+        )
+        self.chip_file.write_text(text, encoding="utf-8")
+        with self.assertRaisesRegex(ConfigError, "duplicate check 'my.gate'"):
+            load_project(self.chip_file)
+
+    def test_derived_check_may_also_be_explicitly_required(self) -> None:
+        text = PROJECT_BASE.replace(
+            "transition_ns = 2.5",
+            'transition_ns = 2.5\nderived_outputs = [{ port = "data_out", check = "my.gate" }]'
+        ).replace('required_checks = ["behavior"]', 'required_checks = ["behavior", "my.gate"]')
+        self.chip_file.write_text(text, encoding="utf-8")
+        cfg = load_project(self.chip_file)
+        self.assertEqual(cfg.verification.required_checks.count("my.gate"), 1)
 
     def test_io_coverage_validation(self) -> None:
         run_dir = self.root / "run"
         run_dir.mkdir()
         cfg = load_project(self.chip_file)
+        snapshot_project(cfg, run_dir)
 
         # Design with extra unconstrained input
         design = make_design({
@@ -184,7 +223,7 @@ class ValidationTests(unittest.TestCase):
             "extra_in": ("input", 1, 0, False),
             "data_out": ("output", 1, 0, False),
         })
-        res, rows = validate_project_configuration(cfg, run_dir, design, None, self.profile)
+        res, rows = validate_project_configuration(cfg, run_dir, design, self.profile)
         row_map = {r.id: r for r in rows}
         self.assertEqual(row_map["config.io_coverage"].status, CheckStatus.FAIL)
         self.assertIn("extra_in", row_map["config.io_coverage"].message)
@@ -196,7 +235,7 @@ class ValidationTests(unittest.TestCase):
             "data_in": ("input", 1, 0, False),
             "data_out": ("output", 2, 0, False),
         })
-        res, rows = validate_project_configuration(cfg, run_dir, design, None, self.profile)
+        res, rows = validate_project_configuration(cfg, run_dir, design, self.profile)
         row_map = {r.id: r for r in rows}
         self.assertEqual(row_map["config.io_coverage"].status, CheckStatus.FAIL)
         self.assertIn("missing bit index", row_map["config.io_coverage"].message)
@@ -244,8 +283,9 @@ class ValidationTests(unittest.TestCase):
         )
         self.chip_file.write_text(full_project, encoding="utf-8")
         cfg = load_project(self.chip_file)
+        snapshot_project(cfg, run_dir)
 
-        res, rows = validate_project_configuration(cfg, run_dir, design, None, self.profile)
+        res, rows = validate_project_configuration(cfg, run_dir, design, self.profile)
         self.assertEqual(res.status, CheckStatus.PASS)
         self.assertTrue((run_dir / "validation.json").is_file())
         self.assertTrue((run_dir / "pad-plan.json").is_file())
@@ -281,6 +321,7 @@ class ValidationTests(unittest.TestCase):
         )
         self.chip_file.write_text(full_project, encoding="utf-8")
         cfg = load_project(self.chip_file)
+        snapshot_project(cfg, run_dir)
         ports = {
             "clk": ("input", 1, 0, False),
             "rst": ("input", 1, 0, False),
@@ -296,7 +337,7 @@ class ValidationTests(unittest.TestCase):
             "p12": ("input", 1, 0, False),
         }
         design = make_design(ports)
-        res, rows = validate_project_configuration(cfg, run_dir, design, None, self.profile)
+        res, rows = validate_project_configuration(cfg, run_dir, design, self.profile)
         row_map = {r.id: r for r in rows}
         self.assertEqual(row_map["pads.qualification"].status, CheckStatus.NOT_RUN)
         self.assertEqual(res.status, CheckStatus.NOT_RUN)

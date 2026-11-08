@@ -9,8 +9,8 @@
 | Isolated runner, argument arrays, logs/hashes, timeout, cancellation, failure blocking and concurrent runs | Tested on Windows Python 3.13.5 and installed wheel on WSL2 Ubuntu 24.04 |
 | WSL Ubuntu 24.04 x86-64 configured reference environment | Version/hash checks, real Yosys elaboration, and tiny synthesis/geometry probe pass |
 | Full preflight validation CLI (`chipflow validate`) | Implemented; exits 0 on valid S8 project, exits 2 on semantic/pad/elaboration violations |
-| Post-synthesis mapped netlist verification | Library checker (`chipflow.stages.netlist_checks`) tested on synthetic netlists; no stage calls it until milestone 3, and DROP/FORCE exclusions apply only through the caller's allowlist |
-| Installed wheel with package resources and paths containing spaces and U+00B5 | `chipflow-0.1.0.dev2-py3-none-any.whl` verified via `verify_wheel.py` with 5/5 passing records |
+| Post-synthesis mapped netlist verification | Library checker tested on synthetic netlists and a freshly mapped real probe, including detected clock/tie defects and strict DROP/FORCE rejection. Chip synthesis integration is Milestone 3; exclusions apply through the caller's allowlist |
+| Installed wheel with package resources and paths containing spaces and U+00B5 | `work/m2-dist-dev4/chipflow-0.1.0.dev4-py3-none-any.whl`; closeout evidence in `docs/milestone-2-verification.md` |
 | Fresh Ubuntu userspace from pinned binary runtime | PASS; offline wheel install, private PID/mount namespaces, no host store/home/venv reuse and real SCL synthesis/geometry probe |
 | Clean WSL release installation / independent source rebuild | NOT RUN / not claimed |
 | SCL C1D 2 mm reference chip implementation | S8 preflight validation PASS; physical implementation adapters pending Milestone 3 |

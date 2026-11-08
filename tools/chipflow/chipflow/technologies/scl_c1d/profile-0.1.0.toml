@@ -6,8 +6,18 @@ frame_top_cell = "frame2mmx2mm"
 die_um = 2000.0
 dbu_um = 0.001
 grid_um = 0.005
-unused_slot_policies = []
 qualification_evidence = "reference/milestone1/acceptance.json"
+
+# The shipped frame carries AIPAD00/IPAD00 input structures in every signal
+# window.  Leaving one in place is a deliberate "no core connection" choice, not
+# an unspecified floating CMOS input: AIPAD00 has no core output, and IPAD00 is
+# a resistor to OUT1.  This policy is limited to those shipped cells and cites
+# the frame-level LVS baseline; full targeted LVS remains a later milestone.
+[[unused_slot_policy]]
+id = "shipped-input-pad-open"
+evidence = "reference/milestone1/acceptance.json"
+allowed_cells = ["AIPAD00", "IPAD00"]
+description = "Keep the frame's shipped input pad with its core side open."
 
 [[signal_slot]]
 slot = 1
@@ -85,21 +95,95 @@ shipped_cell = "IPAD00"
 slot = 13
 cell = "PVDD01"
 net = "VDD"
+side = "left"
+offset_um = 851.2
+x_um = 304.9
+y_um = 851.2
+rotation = 270
+mirror = true
 
 [[power_pad]]
 slot = 14
 cell = "PVSS01"
 net = "VSS"
+side = "left"
+offset_um = 1201.2
+x_um = 304.9
+y_um = 1201.2
+rotation = 270
+mirror = true
 
 [[power_pad]]
 slot = 15
 cell = "PVDD01"
 net = "VDD"
+side = "right"
+offset_um = 1201.2
+x_um = 1695.1
+y_um = 1201.2
+rotation = 270
+mirror = false
 
 [[power_pad]]
 slot = 16
 cell = "PVSS01"
 net = "VSS"
+side = "right"
+offset_um = 851.2
+x_um = 1695.1
+y_um = 851.2
+rotation = 270
+mirror = false
+
+[frame_geometry]
+free_lo_um = 304.9
+free_hi_um = 1695.1
+block_lo_um = 361.2
+block_hi_um = 1638.0
+row_count = 13
+row_pitch_um = 96.6
+row_height_um = 48.7
+ring_width_um = 20.0
+ring_gap_um = 2.5
+zone_um = 10.0
+track_x_offset_um = 2.1
+track_y_offset_um = 1.25
+pin_size_um = 2.5
+inner_ring_lo_um = 214.2
+inner_ring_hi_um = 1785.8
+outer_ring_hi_um = 48.7
+vdd_probe_um = [235.034, 1323.041]
+vss_probe_um = [17.122, 1323.041]
+
+[technology_geometry]
+site = "CORE"
+site_width_um = 4.2
+site_height_um = 48.7
+metal1_pitch_um = 4.2
+metal2_pitch_um = 4.2
+metal1_width_um = 2.4
+metal2_width_um = 2.5
+via = "VIA12"
+via_metal1 = [-1.25, -1.25, 1.25, 1.25]
+via_cut = [-0.75, -0.75, 0.75, 0.75]
+via_metal2 = [-1.25, -1.25, 1.25, 1.25]
+gds_metal1 = [8, 0]
+gds_metal2 = [10, 0]
+gds_via1 = [9, 0]
+gds_pin_metal1 = [8, 7]
+gds_pin_metal2 = [10, 7]
+gds_window = [11, 0]
+core_gds_offsets_um = { MX201B = 5.2 }
+
+[synthesis]
+tie_high_cell = "VDDCON"
+tie_high_pin = "TIEHI"
+tie_low_cell = "VSSCON"
+tie_low_pin = "TIELO"
+buffer_cell = "DELBUF"
+clock_buffer_cell = "CDRI01"
+abc_driving_cell = "INVR01"
+abc_load_pf = 0.2
 
 [pad_cell.OPAD04]
 direction = "output"
@@ -109,6 +193,13 @@ drivers = ["INVR04"]
 qualified_slots = [1, 3, 5, 7, 9, 11]
 inverting = true
 limitations = ["SCL-C1D-PAD-001"]
+cdl_pins = ["VSS", "PAD", "IN1", "VDD"]
+power_pins = ["VDD", "VSS"]
+terminal_x_um = [189.5, 193.65]
+core_pin_capacitance_pf = 0.9937
+pad_pin_capacitance_pf = 0.0
+max_core_load_pf = 0.0
+max_pad_load_pf = 49.6
 
 [pad_cell.IPAD2D]
 direction = "input"
@@ -117,6 +208,13 @@ pad_pin = "IN1"
 drivers = []
 qualified_slots = [2, 8, 10, 12]
 limitations = []
+cdl_pins = ["VSS", "IN1", "VDD", "OUT1"]
+power_pins = ["VDD", "VSS"]
+terminal_x_um = [210.85, 213.35]
+core_pin_capacitance_pf = 0.0
+pad_pin_capacitance_pf = 3.299
+max_core_load_pf = 2.17
+max_pad_load_pf = 0.0
 
 [pad_cell.IPAD30]
 direction = "input"
@@ -125,6 +223,13 @@ pad_pin = "IN1"
 drivers = []
 qualified_slots = [4]
 limitations = ["SCL-C1D-MODEL-001"]
+cdl_pins = ["VSS", "IN1", "VDD", "OUT1"]
+power_pins = ["VDD", "VSS"]
+terminal_x_um = [219.25, 221.75]
+core_pin_capacitance_pf = 0.0
+pad_pin_capacitance_pf = 3.37
+max_core_load_pf = 0.806
+max_pad_load_pf = 0.0
 
 [pad_cell.IPAD3D]
 direction = "input"
@@ -133,199 +238,206 @@ pad_pin = "IN1"
 drivers = []
 qualified_slots = [6]
 limitations = []
+cdl_pins = ["VSS", "IN1", "VDD", "OUT1"]
+power_pins = ["VDD", "VSS"]
+terminal_x_um = [219.25, 221.75]
+core_pin_capacitance_pf = 0.0
+pad_pin_capacitance_pf = 3.445
+max_core_load_pf = 0.806
+max_pad_load_pf = 0.0
 
 # Excluded cells from synthesis working copies (P01: dropped cells; P02: via-over-poly cells)
 [[excluded_cell]]
 cell = "DFCL11"
 workaround = "P01"
-reason = "Async flip-flop"
+reason = "Excluded by legacy synthesis DROP policy (P01)"
 
 [[excluded_cell]]
 cell = "DFPC11"
 workaround = "P01"
-reason = "Async flip-flop"
+reason = "Excluded by legacy synthesis DROP policy (P01)"
 
 [[excluded_cell]]
 cell = "DFPR11"
 workaround = "P01"
-reason = "Async flip-flop"
+reason = "Excluded by legacy synthesis DROP policy (P01)"
 
 [[excluded_cell]]
 cell = "LTPR11"
 workaround = "P01"
-reason = "Latch with preset"
+reason = "Excluded by legacy synthesis DROP policy (P01)"
 
 [[excluded_cell]]
 cell = "NOR201"
 workaround = "P01"
-reason = "Dropped cell"
+reason = "Excluded by legacy synthesis DROP policy (P01)"
 
 [[excluded_cell]]
 cell = "MX4122"
 workaround = "P01"
-reason = "Dropped cell"
+reason = "Excluded by legacy synthesis DROP policy (P01)"
 
 [[excluded_cell]]
 cell = "DEC24H"
 workaround = "P01"
-reason = "Dropped cell"
+reason = "Excluded by legacy synthesis DROP policy (P01)"
 
 [[excluded_cell]]
 cell = "DEC24L"
 workaround = "P01"
-reason = "Dropped cell"
+reason = "Excluded by legacy synthesis DROP policy (P01)"
 
 [[excluded_cell]]
 cell = "PDDR02"
 workaround = "P01"
-reason = "Dropped cell"
+reason = "Excluded by legacy synthesis DROP policy (P01)"
 
 [[excluded_cell]]
 cell = "PDDR04"
 workaround = "P01"
-reason = "Dropped cell"
+reason = "Excluded by legacy synthesis DROP policy (P01)"
 
 [[excluded_cell]]
 cell = "TBUF01"
 workaround = "P01"
-reason = "Tri-state buffer"
+reason = "Excluded by legacy synthesis DROP policy (P01)"
 
 [[excluded_cell]]
 cell = "TINV01"
 workaround = "P01"
-reason = "Tri-state inverter"
+reason = "Excluded by legacy synthesis DROP policy (P01)"
 
 [[excluded_cell]]
 cell = "MX2101"
 workaround = "P01"
-reason = "High data-pin capacitance (0.66 pF)"
+reason = "Excluded by legacy synthesis DROP policy (P01)"
 
 [[excluded_cell]]
 cell = "ADNR01"
 workaround = "P02"
-reason = "Via over poly defect"
+reason = "Excluded by legacy synthesis FORCE policy (P02)"
 
 [[excluded_cell]]
 cell = "ADOR16"
 workaround = "P02"
-reason = "Via over poly defect"
+reason = "Excluded by legacy synthesis FORCE policy (P02)"
 
 [[excluded_cell]]
 cell = "AND301"
 workaround = "P02"
-reason = "Via over poly defect"
+reason = "Excluded by legacy synthesis FORCE policy (P02)"
 
 [[excluded_cell]]
 cell = "AND401"
 workaround = "P02"
-reason = "Via over poly defect"
+reason = "Excluded by legacy synthesis FORCE policy (P02)"
 
 [[excluded_cell]]
 cell = "AND501"
 workaround = "P02"
-reason = "Via over poly defect"
+reason = "Excluded by legacy synthesis FORCE policy (P02)"
 
 [[excluded_cell]]
 cell = "AND601"
 workaround = "P02"
-reason = "Via over poly defect"
+reason = "Excluded by legacy synthesis FORCE policy (P02)"
 
 [[excluded_cell]]
 cell = "AND701"
 workaround = "P02"
-reason = "Via over poly defect"
+reason = "Excluded by legacy synthesis FORCE policy (P02)"
 
 [[excluded_cell]]
 cell = "AND801"
 workaround = "P02"
-reason = "Via over poly defect"
+reason = "Excluded by legacy synthesis FORCE policy (P02)"
 
 [[excluded_cell]]
 cell = "INVR06"
 workaround = "P02"
-reason = "Via over poly defect"
+reason = "Excluded by legacy synthesis FORCE policy (P02)"
 
 [[excluded_cell]]
 cell = "LTCH11"
 workaround = "P02"
-reason = "Via over poly defect"
+reason = "Excluded by legacy synthesis FORCE policy (P02)"
 
 [[excluded_cell]]
 cell = "LTCL11"
 workaround = "P02"
-reason = "Via over poly defect"
+reason = "Excluded by legacy synthesis FORCE policy (P02)"
 
 [[excluded_cell]]
 cell = "LTPC11"
 workaround = "P02"
-reason = "Via over poly defect"
+reason = "Excluded by legacy synthesis FORCE policy (P02)"
 
 [[excluded_cell]]
 cell = "NND701"
 workaround = "P02"
-reason = "Via over poly defect"
+reason = "Excluded by legacy synthesis FORCE policy (P02)"
 
 [[excluded_cell]]
 cell = "NOR200"
 workaround = "P02"
-reason = "Via over poly defect"
+reason = "Excluded by legacy synthesis FORCE policy (P02)"
 
 [[excluded_cell]]
 cell = "NOR300"
 workaround = "P02"
-reason = "Via over poly defect"
+reason = "Excluded by legacy synthesis FORCE policy (P02)"
 
 [[excluded_cell]]
 cell = "NOR401"
 workaround = "P02"
-reason = "Via over poly defect"
+reason = "Excluded by legacy synthesis FORCE policy (P02)"
 
 [[excluded_cell]]
 cell = "NOR501"
 workaround = "P02"
-reason = "Via over poly defect"
+reason = "Excluded by legacy synthesis FORCE policy (P02)"
 
 [[excluded_cell]]
 cell = "NOR701"
 workaround = "P02"
-reason = "Via over poly defect"
+reason = "Excluded by legacy synthesis FORCE policy (P02)"
 
 [[excluded_cell]]
 cell = "NOR801"
 workaround = "P02"
-reason = "Via over poly defect"
+reason = "Excluded by legacy synthesis FORCE policy (P02)"
 
 [[excluded_cell]]
 cell = "OR3101"
 workaround = "P02"
-reason = "Via over poly defect"
+reason = "Excluded by legacy synthesis FORCE policy (P02)"
 
 [[excluded_cell]]
 cell = "OR4101"
 workaround = "P02"
-reason = "Via over poly defect"
+reason = "Excluded by legacy synthesis FORCE policy (P02)"
 
 [[excluded_cell]]
 cell = "OR5101"
 workaround = "P02"
-reason = "Via over poly defect"
+reason = "Excluded by legacy synthesis FORCE policy (P02)"
 
 [[excluded_cell]]
 cell = "OR8101"
 workaround = "P02"
-reason = "Via over poly defect"
+reason = "Excluded by legacy synthesis FORCE policy (P02)"
 
 [[excluded_cell]]
 cell = "ORND01"
 workaround = "P02"
-reason = "Via over poly defect"
+reason = "Excluded by legacy synthesis FORCE policy (P02)"
 
 [[excluded_cell]]
 cell = "XNR201"
 workaround = "P02"
-reason = "Via over poly defect"
+reason = "Excluded by legacy synthesis FORCE policy (P02)"
 
 [[excluded_cell]]
 cell = "XOR201"
 workaround = "P02"
-reason = "Via over poly defect"
+reason = "Excluded by legacy synthesis FORCE policy (P02)"

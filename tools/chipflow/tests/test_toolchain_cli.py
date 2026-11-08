@@ -1,12 +1,14 @@
 from __future__ import annotations
 
 from contextlib import redirect_stderr, redirect_stdout
+from concurrent.futures import ThreadPoolExecutor
 import io
 import json
 from pathlib import Path
 import platform
 import sys
 import tempfile
+from threading import Barrier
 import unittest
 from unittest.mock import patch
 
@@ -315,17 +317,39 @@ required_checks = ["s8.behavior"]
     def test_concurrent_validations_distinct_run_directories(self):
         project = self._setup_valid_s8_project(self.root / 'concurrent_proj')
         local = toolchain_file(self.root)
-        fake_doctor = self._fake_passing_doctor
         fake_elab = self._fake_passing_elaboration()
+        rendezvous = Barrier(2, timeout=15)
 
-        with patch('chipflow.cli.doctor', side_effect=fake_doctor), patch('chipflow.cli.elaboration_stage', side_effect=fake_elab), redirect_stdout(io.StringIO()):
-            code1 = main(['validate', str(project), '--toolchain', str(local)])
-            code2 = main(['validate', str(project), '--toolchain', str(local)])
-        self.assertEqual(code1, 0)
-        self.assertEqual(code2, 0)
+        def overlapping_doctor(toolchain, output):
+            # Neither validation can proceed until both have created and snapped
+            # their own active run. Sequential calls would break this barrier.
+            rendezvous.wait()
+            report = self._fake_passing_doctor(toolchain, output)
+            report['run'] = output.parent.name
+            atomic_write_json(output / 'doctor.json', report)
+            return report
+
+        with patch('chipflow.cli.doctor', side_effect=overlapping_doctor), patch('chipflow.cli.elaboration_stage', side_effect=fake_elab), redirect_stdout(io.StringIO()):
+            with ThreadPoolExecutor(max_workers=2) as pool:
+                futures = [pool.submit(main, ['validate', str(project), '--toolchain', str(local)]) for _ in range(2)]
+                codes = [future.result(timeout=30) for future in futures]
+        self.assertEqual(codes, [0, 0])
         runs = list((project.parent / 'builds').iterdir())
         self.assertEqual(len(runs), 2)
         self.assertNotEqual(runs[0], runs[1])
+        for run in runs:
+            with self.subTest(run=run.name):
+                result = json.loads((run / 'result.json').read_text(encoding='utf-8'))
+                self.assertTrue(result['complete'])
+                self.assertEqual(result['exit_code'], 0)
+                doctor_report = json.loads((run / 'doctor/doctor.json').read_text(encoding='utf-8'))
+                self.assertEqual(doctor_report['run'], run.name)
+                for stage in result['stages']:
+                    for artifact in stage['artifacts']:
+                        self.assertEqual(sha256_file(run / artifact['path']), artifact['sha256'])
+                snapshot = json.loads((run / 'input-manifest.json').read_text(encoding='utf-8'))
+                for row in snapshot:
+                    self.assertEqual(sha256_file(run / row['snapshot']), row['sha256'])
 
     def test_build_valid_configuration_reports_pass_and_not_run_exits_2(self):
         project = self._setup_valid_s8_project(self.root / 'build_proj')

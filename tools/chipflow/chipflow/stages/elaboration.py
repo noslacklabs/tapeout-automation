@@ -19,6 +19,7 @@ from chipflow.runner.execution import (
     sha256_file,
 )
 from chipflow.runner.results import CheckResult, CheckStatus
+from chipflow.runner.snapshot import load_snapshot_manifest, verified_snapshot_file
 from chipflow.stages.design_model import (
     check_design,
     load_design,
@@ -60,14 +61,15 @@ def elaboration_stage(
         if dv and not re.fullmatch(r"[A-Za-z0-9_]+", dv):
             raise ConfigError(f"define value has unsupported characters: {dv!r}")
 
-    # 3. Include-tree paths outside [A-Za-z0-9_./+-]
+    # 3. Include-tree names come only from the run's declared snapshot.
+    snapshot_by_orig = load_snapshot_manifest(run_path, project)
+    include_files = {}
     for inc_dir in project.include_dirs:
-        if inc_dir.is_dir():
-            for f in inc_dir.rglob("*"):
-                if f.is_file():
-                    rel = f.relative_to(inc_dir).as_posix()
-                    if not re.fullmatch(r"[A-Za-z0-9_./+-]+", rel):
-                        raise ConfigError(f"include path has unsupported characters: {rel!r} in {f}")
+        include_files[inc_dir] = sorted(f for f in snapshot_by_orig if f.is_relative_to(inc_dir))
+        for f in include_files[inc_dir]:
+            rel = f.relative_to(inc_dir).as_posix()
+            if not re.fullmatch(r"[A-Za-z0-9_./+-]+", rel):
+                raise ConfigError(f"include path has unsupported characters: {rel!r} in {f}")
 
     try:
         yosys_tool = toolchain.tool("yosys")
@@ -78,11 +80,13 @@ def elaboration_stage(
         # Re-verify yosys executable
         verify_file(yosys_tool.executable, yosys_tool.sha256)
 
-        manifest_file = run_path / "input-manifest.json"
-        if not manifest_file.is_file():
-            raise RuntimeError(f"missing input manifest: {manifest_file}")
-        manifest_data = json.loads(manifest_file.read_text(encoding="utf-8"))
-        snapshot_by_orig = {row["original"]: row for row in manifest_data}
+        if load_snapshot_manifest(run_path, project) != snapshot_by_orig:
+            raise RuntimeError("input manifest changed before elaboration")
+        conf_hash = sha256_file(run_path / "resolved-project.json")
+        doc_json = run_path / "doctor/doctor.json"
+        doctor_data = json.loads(doc_json.read_text(encoding="utf-8"))
+        if not isinstance(doctor_data, dict) or doctor_data.get("exit_code") != 0:
+            raise RuntimeError("elaboration requires successful doctor version evidence")
 
         path_map_rows: list[dict[str, str]] = []
         staged_inputs: list[dict[str, Any]] = []
@@ -90,13 +94,8 @@ def elaboration_stage(
         # 1. Stage sources
         staged_sources: list[str] = []
         for idx, src_path in enumerate(project.sources):
-            orig_str = str(src_path.resolve())
-            if orig_str not in snapshot_by_orig:
-                orig_str = str(src_path)
-            if orig_str not in snapshot_by_orig:
-                raise RuntimeError(f"source {src_path} not found in snapshot manifest")
-            snap_row = snapshot_by_orig[orig_str]
-            snap_file = run_path / snap_row["snapshot"]
+            snap_row = snapshot_by_orig[src_path]
+            snap_file = verified_snapshot_file(run_path, snap_row)
             expected_hash = snap_row["sha256"]
 
             safe_name = re.sub(r"[^A-Za-z0-9_.-]", "_", src_path.name)
@@ -127,39 +126,33 @@ def elaboration_stage(
         for inc_idx, inc_dir in enumerate(project.include_dirs):
             staged_inc_dir_rel = f"work/inc/{inc_idx:04d}"
             staged_inc_flags.append(f"-I {staged_inc_dir_rel}")
-            if inc_dir.is_dir():
-                for f in sorted(inc_dir.rglob("*")):
-                    if f.is_file():
-                        orig_str = str(f.resolve())
-                        if orig_str not in snapshot_by_orig:
-                            orig_str = str(f)
-                        if orig_str not in snapshot_by_orig:
-                            raise RuntimeError(f"include file {f} not in snapshot manifest")
-                        snap_row = snapshot_by_orig[orig_str]
-                        snap_file = run_path / snap_row["snapshot"]
-                        expected_hash = snap_row["sha256"]
+            (stage_dir / staged_inc_dir_rel).mkdir(parents=True, exist_ok=True)
+            for f in include_files[inc_dir]:
+                snap_row = snapshot_by_orig[f]
+                snap_file = verified_snapshot_file(run_path, snap_row)
+                expected_hash = snap_row["sha256"]
 
-                        rel = f.relative_to(inc_dir)
-                        dest = stage_dir / staged_inc_dir_rel / rel
-                        dest.parent.mkdir(parents=True, exist_ok=True)
-                        shutil.copyfile(snap_file, dest)
-                        staged_hash = sha256_file(dest)
-                        if staged_hash != expected_hash:
-                            raise RuntimeError(f"staged copy hash mismatch for {f}")
+                rel = f.relative_to(inc_dir)
+                dest = stage_dir / staged_inc_dir_rel / rel
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(snap_file, dest)
+                staged_hash = sha256_file(dest)
+                if staged_hash != expected_hash:
+                    raise RuntimeError(f"staged copy hash mismatch for {f}")
 
-                        staged_rel = f"{staged_inc_dir_rel}/{rel.as_posix()}"
-                        path_map_rows.append({
-                            "original": str(f),
-                            "snapshot": snap_row["snapshot"],
-                            "staged": staged_rel,
-                            "sha256": staged_hash,
-                        })
-                        staged_inputs.append({
-                            "id": f"inc_{inc_idx}_{rel.as_posix()}",
-                            "path": str(dest.relative_to(stage_dir)),
-                            "sha256": staged_hash,
-                            "bytes": dest.stat().st_size,
-                        })
+                staged_rel = f"{staged_inc_dir_rel}/{rel.as_posix()}"
+                path_map_rows.append({
+                    "original": str(f),
+                    "snapshot": snap_row["snapshot"],
+                    "staged": staged_rel,
+                    "sha256": staged_hash,
+                })
+                staged_inputs.append({
+                    "id": f"inc_{inc_idx}_{rel.as_posix()}",
+                    "path": str(dest.relative_to(stage_dir)),
+                    "sha256": staged_hash,
+                    "bytes": dest.stat().st_size,
+                })
 
         # Write path-map.json
         atomic_write_json(stage_dir / "path-map.json", path_map_rows)
@@ -191,13 +184,6 @@ def elaboration_stage(
         ])
         (stage_dir / "elab.ys").write_text(script_content, encoding="utf-8")
 
-        # Version evidence
-        doc_json = run_path / "doctor/doctor.json"
-        ver_evidence = "doctor/doctor.json" if doc_json.is_file() else "toolchain.toml"
-
-        conf_file = run_path / "resolved-project.json"
-        conf_hash = sha256_file(conf_file) if conf_file.is_file() else "0" * 64
-
         envelope = StageEnvelope(
             stage_id="elaboration",
             adapter={"id": "yosys.elaboration", "version": "0.1.0"},
@@ -205,7 +191,7 @@ def elaboration_stage(
             tools=({
                 "id": "yosys",
                 "executable_sha256": yosys_tool.sha256,
-                "version_evidence": ver_evidence,
+                "version_evidence": "doctor/doctor.json",
             },),
             configuration_sha256=conf_hash,
             seed=project.resources.seed,
@@ -241,7 +227,7 @@ def elaboration_stage(
 
     def assess(stage_dir: Path, cmd: CommandResult, artifacts: tuple[Artifact, ...]) -> Assessment:
         conf_file = run_path / "resolved-project.json"
-        conf_hash = sha256_file(conf_file) if conf_file.is_file() else "0" * 64
+        conf_hash = sha256_file(conf_file)
 
         # Read path-map.json for reverse lookup. Keys are exact staged paths only:
         # a basename key would let an undeclared file with the same name pass.
