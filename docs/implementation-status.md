@@ -3,6 +3,15 @@
 **Milestones 1, 2, and 3 are complete. Milestone 4 remains future work.** The private v0.1 release
 and reusable verification qualification remain future work.
 
+`chipflow` is the reusable automation engine; SCL C1D 1.2 µm on the 2×2 mm frame
+is its current technology profile. S8, a bit-serial 8-bit CPU, is the reference
+project and the only design exercised through the physical flow so far. Other
+supported designs supply their own RTL, configuration, constraints, pad mapping
+and tests without shared-engine edits. This is reuse across designs within the
+profile; other foundries and die sizes are outside the first-release boundary.
+The [supported configurations](supported-configurations.md) distinguish that
+scope from the still-pending multi-project physical acceptance.
+
 ## Milestone 1 completion
 
 An immutable engineering snapshot of current S8 RTL has now been built and

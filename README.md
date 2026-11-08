@@ -1,9 +1,6 @@
 # Tapeout Automation (private)
 
-`chipflow` is a private, provenance-first automation engine for digital standard-cell designs on the SCL C1D 1.2 µm, 2×2 mm frame. It validates project configuration and RTL, runs synthesis and physical implementation, and retains inputs, logs, artifact hashes and structured results for each run.
-
-![SCL C1D 1.2 µm 2x2 mm Assembled Die](docs/images/layout-die.png)
-*Figure 1: Full assembled die layout on the SCL C1D 1.2 µm 2×2 mm frame (OS0000.gds), featuring 16 peripheral pad sites and central standard-cell core.*
+`chipflow` is a private, generic, provenance-first chip automation engine. It takes a chip project—RTL, `chip.toml`, `pads.toml` and constraints—and produces a reproducible build, physical artifacts and an evidence manifest retaining inputs, logs, hashes and structured results. Supported designs use the shared engine without chip-specific engine edits. The first supported technology profile is **SCL C1D 1.2 µm on the 2×2 mm frame**; S8 is the reference project used to exercise it.
 
 ---
 
@@ -36,9 +33,19 @@ Milestone 3 verification records **114/114 tests passing in WSL2**, a passing S8
 
 ---
 
+## Scope and supported targets
+
+The current scope is reusable across **designs within one supported technology profile**: synchronous, single-clock digital standard-cell designs on SCL C1D 1.2 µm, initially the 2×2 mm frame. The project interface supports ordered RTL files, contiguous one-dimensional packed buses, synchronous resets, explicit clock and I/O constraints, and pad/driver choices from the tested profile allowlist. WSL Ubuntu 24.04 on x86-64 with pinned tools is the reference environment; other Linux environments need separate installation qualification.
+
+Other foundries and die sizes, arbitrary analog design, embedded memory macros, multiple clock domains, internal generated/gated clocks, asynchronous-reset flops, latches and bidirectional I/O are outside the first-release boundary. S8's externally gated SCK output is a project-specific exception with dedicated checks. Users supply and verify their circuit design; `chipflow` automates implementation and checks.
+
+S8 is the only project exercised through the physical flow so far. Broader S8/counter/PWM acceptance remains Milestone 5 work. See [supported configurations](docs/supported-configurations.md) and the [first-release boundary](BUILD_PLAN.md#objective-and-first-release-boundary).
+
+---
+
 ## End-to-end automation architecture
 
-The `chipflow` engine coordinates immutable run scheduling, deterministic tool invocations, and strict stage contracts from RTL to assembled layout.
+The reusable engine coordinates immutable runs, deterministic tool invocations and strict stage contracts. Project inputs describe the chip; the technology profile supplies process and frame rules; the separate toolchain configuration supplies pinned tools and PDK locations.
 
 ```mermaid
 flowchart TD
@@ -46,7 +53,8 @@ flowchart TD
         RTL["RTL Sources<br/><code>*.v</code>"]
         CFG["Project Config<br/><code>chip.toml</code>"]
         PADS["Pad Mapping<br/><code>pads.toml</code>"]
-        PDK["SCL C1D 1.2 µm PDK<br/>(LEF, LIB, GDS, CDL)"]
+        CONSTRAINTS["Clock & I/O Constraints<br/>in <code>chip.toml</code>"]
+        PDK["Technology Profile & PDK<br/>(LEF, LIB, GDS, CDL)"]
         TC["Pinned Toolchain<br/><code>toolchain.toml</code>"]
     end
 
@@ -54,22 +62,22 @@ flowchart TD
         VAL_TC["Toolchain & PDK<br/>Fingerprint Verification"]
         VAL_SYNTAX["Project Syntax &<br/>Schema-1 Check"]
         ELAB["Bounded Yosys<br/>Elaboration"]
-        PAD_QUAL["10-Rule Pad<br/>Qualification Gate"]
+        PAD_QUAL["Profile Pad<br/>Qualification Gate"]
     end
 
     subgraph PhysicalFlow ["3. Physical Implementation Pipeline (M3)"]
-        TECH["Technology Staging<br/>& Cell Allowlist (24 cells)"]
+        TECH["Technology Staging<br/>& Profile Cell Allowlist"]
         WRAP["Core Wrapper & SDC<br/>Constraint Generation"]
-        SYNTH["Synthesis (Yosys 0.33)<br/>& Clock Gate Verification"]
+        SYNTH["Synthesis &<br/>Mapped Connectivity Checks"]
         FLOORPLAN["Floorplan Generation<br/>& Driver Cell Placement"]
         PNR["OpenROAD Placement,<br/>CTS & Detailed Routing"]
         ROUT_VERIFY["Wire-to-Cell Overlap &<br/>Routing Cleanliness Check"]
-        ASM["Top Assembly (2×2 mm Frame)<br/>& Pad Substitution"]
+        ASM["Profile Frame Assembly<br/>& Pad Substitution"]
         CDL["Hierarchical CDL<br/>Netlist Generation"]
         PWR_PROBE["KLayout Metal-Only<br/>Power Connectivity Probe"]
     end
 
-    subgraph Outputs ["4. Release Artifacts & Evidence Manifest"]
+    subgraph Outputs ["4. Physical Artifacts & Evidence Manifest"]
         GDS["artifacts/chip.gds"]
         CDL_OUT["artifacts/chip.cdl"]
         MAP_V["artifacts/mapped.v"]
@@ -77,7 +85,7 @@ flowchart TD
         RESULT["builds/<run-id>/result.json<br/>(Stage Outcomes & Hashes)"]
     end
 
-    RTL & CFG & PADS --> VAL_SYNTAX
+    RTL & CFG & PADS & CONSTRAINTS --> VAL_SYNTAX
     TC & PDK --> VAL_TC
     VAL_TC & VAL_SYNTAX --> ELAB
     ELAB --> PAD_QUAL
@@ -90,49 +98,51 @@ flowchart TD
 
 ---
 
-## Physical architecture and die frame
+## Supported technology profile: SCL C1D 1.2 µm
 
-The SCL C1D 1.2 µm frame provides a fixed 2000 µm × 2000 µm boundary with 16 peripheral pad sites (12 configurable signal pads and 4 dedicated power pads: 2× `PVDD01`, 2× `PVSS01`). Standard cells are organized in horizontal rows (height 48.7 µm, site pitch 4.2 µm) with M1 power rails and M2 top/bottom power distribution rings.
+The current SCL profile provides a fixed 2000 µm × 2000 µm boundary with 16 peripheral pad sites (12 configurable signal pads and 4 dedicated power pads: 2× `PVDD01`, 2× `PVSS01`). Its standard-cell allowlist contains 24 cells. Standard cells are organized in horizontal rows (height 48.7 µm, site pitch 4.2 µm) with M1 power rails and M2 top/bottom power distribution rings. These are technology-profile properties, rather than requirements of every chip automation engine.
+
+The pad-frame schematic below follows the [checked-in profile](tools/chipflow/chipflow/technologies/scl_c1d/profile-0.1.0.toml). Signal cell choices and port assignments come from each project's `pads.toml`; S8's SCK gate and CTS hook belong to its project configuration.
 
 ```mermaid
 flowchart TB
     subgraph Die ["SCL C1D 1.2 µm Die (2000 µm × 2000 µm Frame)"]
         direction TB
-        subgraph NorthPads ["North Pads (Slots 1 - 4)"]
+        subgraph NorthPads ["North Signal Pads (Slots 7 - 10)"]
             direction LR
-            N1["Pad 1<br/>Signal (IPAD3D)"] ~~~ N2["Pad 2<br/>VDD (PVDD01)"] ~~~ N3["Pad 3<br/>Signal (OPAD04)"] ~~~ N4["Pad 4<br/>Signal (OPAD04)"]
+            N10["Pad 10<br/>Signal"] ~~~ N9["Pad 9<br/>Signal"] ~~~ N8["Pad 8<br/>Signal"] ~~~ N7["Pad 7<br/>Signal"]
         end
 
         subgraph CoreArea ["Standard Cell Core & Routing Channels"]
             direction TB
             PWR_TOP["M2 Top Power Ring (VDD / VSS)"]
             ROW_N["Standard Cell Row N (M1 VDD / VSS Rails)"]
-            LOGIC["Core Logic Gates (24 SCL Standard Cells) + INVR04 Drivers"]
-            CTS_NET["Balanced Clock Tree (DELBUF Buffers & SCK Gate)"]
+            LOGIC["Core Logic (24-Cell SCL Allowlist) + INVR04 Drivers"]
+            CTS_NET["Clock Tree (DELBUF Buffers)"]
             ROW_1["Standard Cell Row 1 (M1 VDD / VSS Rails)"]
             PWR_BOT["M2 Bottom Power Ring (VDD / VSS)"]
             PWR_TOP --- ROW_N --- LOGIC --- CTS_NET --- ROW_1 --- PWR_BOT
         end
 
-        subgraph WestPads ["West Pads (Slots 13 - 16)"]
+        subgraph WestPads ["West Pads (Slots 11 - 14)"]
             direction TB
-            W16["Pad 16: Signal"]
-            W15["Pad 15: VSS (PVSS01)"]
-            W14["Pad 14: Signal"]
-            W13["Pad 13: Signal"]
+            W11["Pad 11: Signal"]
+            W14["Pad 14: VSS (PVSS01)"]
+            W13["Pad 13: VDD (PVDD01)"]
+            W12["Pad 12: Signal"]
         end
 
-        subgraph EastPads ["East Pads (Slots 5 - 8)"]
+        subgraph EastPads ["East Pads (Slots 5, 6, 15, 16)"]
             direction TB
+            E6["Pad 6: Signal"]
+            E15["Pad 15: VDD (PVDD01)"]
+            E16["Pad 16: VSS (PVSS01)"]
             E5["Pad 5: Signal"]
-            E6["Pad 6: VDD (PVDD01)"]
-            E7["Pad 7: Signal"]
-            E8["Pad 8: Signal"]
         end
 
-        subgraph SouthPads ["South Pads (Slots 9 - 12)"]
+        subgraph SouthPads ["South Signal Pads (Slots 1 - 4)"]
             direction LR
-            S12["Pad 12<br/>Signal"] ~~~ S11["Pad 11<br/>VSS (PVSS01)"] ~~~ S10["Pad 10<br/>Signal"] ~~~ S9["Pad 9<br/>Signal"]
+            S1["Pad 1<br/>Signal"] ~~~ S2["Pad 2<br/>Signal"] ~~~ S3["Pad 3<br/>Signal"] ~~~ S4["Pad 4<br/>Signal"]
         end
     end
 
@@ -142,26 +152,9 @@ flowchart TB
     CoreArea --- SouthPads
 ```
 
-### Visual layout and physical evidence
+### Physical flow execution and retry loop
 
-| 2×2 mm Pad Frame Layout | Core Floorplan & Cell Rows |
-|:---:|:---:|
-| ![SCL C1D 2x2mm Pad Frame](docs/images/frame-light.png) | ![Core Floorplan](docs/images/floorplan-light.png) |
-| *Fixed 2×2 mm perimeter frame with 16 pad slots* | *Standard cell placement rows and horizontal channels* |
-
-| Clock Tree Distribution | Routing Density & Congestion |
-|:---:|:---:|
-| ![Clock Tree Synthesis](docs/images/clock-tree-light.png) | ![Routing Density](docs/images/routing-density-light.png) |
-| *Balanced clock tree with clock-gate isolation hook* | *Global and detailed route congestion map* |
-
-![Core Routing and Standard Cell Detail](docs/images/layout-zoom.png)
-*Figure 2: Magnified view of core logic rows, standard-cell boundary alignment, and dual-layer routing (M1/M2).*
-
----
-
-## Physical flow execution and retry loop
-
-The physical flow implements automated retries during detailed routing (`TritonRoute`) by incrementally tuning global route layer adjustments (`0.04 × attempt`) to eliminate router DRC violations before layout assembly.
+The physical flow implements automated retries during detailed routing (`TritonRoute`) by incrementally tuning global route layer adjustments (`0.04 × attempt`) to eliminate router DRC violations before layout assembly. The CTS isolation/reconnection steps below apply when the project enables that hook, as S8 does.
 
 ```mermaid
 flowchart TD
@@ -186,9 +179,33 @@ flowchart TD
 
     WIRE_CHECK --> ASM["Top-Level GDS Assembly<br/>Instantiate 2×2 mm frame, core & pad cells"]
     ASM --> CDL_GEN["Generate CDL Schematic<br/>Hierarchical pin and transistor network"]
-    CDL_GEN --> PWR_CHECK["KLayout Metal Power Probe<br/>92-point VDD/VSS continuity check"]
+    CDL_GEN --> PWR_CHECK["KLayout Metal Power Probe<br/>Profile-derived VDD/VSS continuity points"]
     PWR_CHECK --> EMIT(["Emit Physical Artifacts<br/>Copy to artifacts/"])
 ```
+
+---
+
+## Worked example: S8 reference chip
+
+S8 is a bit-serial 8-bit CPU and the reference project in [projects/s8](projects/s8). It is the only design run through the physical flow so far. Its RTL, pad map, constraints and enabled hooks exercise the shared engine on the SCL C1D profile; they do not define the engine's identity. All images in `docs/images/` are S8 outputs and illustrate this example, rather than qualification of other designs or technologies.
+
+![S8 reference chip assembled die on the SCL C1D frame](docs/images/layout-die.png)
+*Figure 1: S8 reference chip, assembled die on the SCL C1D 1.2 µm 2×2 mm frame (OS0000.gds), with 16 peripheral pad sites and the standard-cell core.*
+
+### Visual layout and physical evidence
+
+| S8: 2×2 mm Pad Frame Layout | S8: Core Floorplan & Cell Rows |
+|:---:|:---:|
+| ![S8 pad frame on SCL C1D](docs/images/frame-light.png) | ![S8 core floorplan](docs/images/floorplan-light.png) |
+| *S8 output: fixed SCL C1D perimeter frame with 16 pad slots* | *S8 output: standard-cell placement rows and horizontal channels* |
+
+| S8: Clock Tree Distribution | S8: Routing Density & Congestion |
+|:---:|:---:|
+| ![S8 clock tree](docs/images/clock-tree-light.png) | ![S8 routing density](docs/images/routing-density-light.png) |
+| *S8 output: clock tree with the project's clock-gate isolation hook* | *S8 output: global and detailed route congestion map* |
+
+![S8 core routing and standard-cell detail](docs/images/layout-zoom.png)
+*Figure 2: S8 reference chip, magnified core logic rows, standard-cell boundary alignment and dual-layer routing (M1/M2).*
 
 ---
 
@@ -196,7 +213,9 @@ flowchart TD
 
 Use **Python 3.11 or newer**. Run EDA commands in **WSL Ubuntu 24.04, x86-64**, with the pinned tools and PDK inputs configured in `toolchains/local.wsl.toml`. That file contains machine-specific paths and hashes; use the [toolchain recipe](toolchains/README.md) and [pinned runtime reconstruction](toolchains/milestone1/README.md) for environment details. Installing the Python package alone does not install the EDA tools or PDK.
 
-From the repository root, using the Python environment configured for those tools:
+### Run the reference example
+
+From the repository root, using the Python environment configured for those tools, run S8:
 
 ```bash
 python -m pip install ./tools/chipflow
@@ -225,6 +244,27 @@ artifacts/routed.v
 ```
 
 The current full build **exits 2 even when physical implementation succeeds**, because required downstream verification checks remain `NOT RUN`. Inspect `result.json` for individual stage and check outcomes. Exit 0 from validation covers preflight only; it does not certify a chip. See the [result contract](docs/result-contract.md) for exit-code and evidence rules.
+
+### Bring your own chip
+
+Create a project directory for a design within the supported SCL C1D profile and supply:
+
+- **RTL:** ordered `.v`/`.sv` sources, a top module, and any declared includes, defines and parameters.
+- **`chip.toml`:** project and technology selection, clock/reset declarations, build settings, verification requirements and declared test/data dependencies.
+- **`pads.toml`:** an explicit mapping for every profile signal slot, with allowed pad/driver choices or a supported unused-slot policy.
+- **Constraints:** reviewed clock and min/max I/O timing, output loads and min/typ/max corners in the typed `chip.toml` fields. The engine generates stage-specific constraints from these values.
+
+Follow the [project format](docs/project-format.md) and [current validation contract](docs/m2-validation-contract.md). Supply design-specific tests and dependencies as well; S8's CPU/RAM checks and electrical assumptions are specific to S8. The project-format example records the Milestone 1 structural contract and is not a physically qualified template.
+
+For a project you create at `projects/my-chip`, use the existing commands:
+
+```bash
+chipflow validate projects/my-chip/chip.toml --structure-only
+chipflow validate projects/my-chip/chip.toml --toolchain toolchains/local.wsl.toml
+chipflow build projects/my-chip/chip.toml --toolchain toolchains/local.wsl.toml
+```
+
+No shared-engine edits are required for a supported chip. New projects retain the same verification limits and nonzero full-build result described above; counter/PWM physical acceptance is still pending.
 
 ---
 

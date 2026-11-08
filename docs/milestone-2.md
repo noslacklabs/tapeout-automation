@@ -2,7 +2,9 @@
 
 ## 1. Overview
 
-Milestone 2 delivers complete project configuration parsing, process profile definitions for SCL C1D 1.2 µm, stage execution with diagnostic continuation, bounded RTL elaboration via Yosys, comprehensive semantic and pad qualification validation, mapped netlist checking, and full CLI preflight workflows.
+Milestone 2 delivers the reusable engine's project configuration parsing, stage execution with diagnostic continuation, bounded RTL elaboration via Yosys, semantic and pad qualification validation, mapped netlist checking, and CLI preflight workflows. Its first technology profile is SCL C1D 1.2 µm on the 2×2 mm frame; the frame and pad rules belong to that profile. S8 is the reference chip project used for the real-design evidence below, rather than the engine itself.
+
+This report records the Milestone 2 checkpoint, including its then-pending physical adapters. For the subsequent S8 physical run and current implementation state, see [Milestone 3](milestone-3.md) and [implementation status](implementation-status.md). Broader S8/counter/PWM physical acceptance remains Milestone 5 work.
 
 Closeout version: **0.1.0.dev4** (8 November 2026). All verification findings are resolved; current results and retained evidence are in [the verification report](milestone-2-verification.md#final-closeout-8-november-2026).
 

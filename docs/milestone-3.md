@@ -2,12 +2,14 @@
 
 ## 1. Overview
 
-Milestone 3 delivers the reusable physical flow engine for digital standard-cell designs on SCL C1D 1.2 µm. The engine abstracts physical synthesis, floorplanning, placement, clock tree synthesis (CTS), detailed routing with retries, top-level layout assembly, CDL schematic generation, and layout power connectivity checking.
+Milestone 3 delivers the reusable physical flow engine, with SCL C1D 1.2 µm on the 2×2 mm frame as its first supported technology profile. The engine coordinates physical synthesis, floorplanning, placement, clock tree synthesis (CTS), detailed routing with retries, top-level layout assembly, CDL schematic generation, and layout power connectivity checking. Process-specific cells, geometry and frame rules belong to the profile; chip-specific RTL, configuration, constraints, pad mapping and tests belong to each project.
 
 All project-specific names, fixed pad positions, and absolute paths are eliminated from the shared engine. The reference chip S8 builds cleanly through the generic engine without hard-coded design assumptions.
 
+S8 is a bit-serial 8-bit CPU and the only design exercised through the physical flow so far. All images below are S8 outputs on the SCL profile. The architecture diagram describes that supported profile's flow; it does not establish support for other foundries or die sizes. Broader S8/counter/PWM physical acceptance remains Milestone 5 work, and successful physical implementation still leaves the full build at exit 2 with downstream verification `NOT RUN` and `signoff_ready` false.
+
 ![S8 Top Level Die Layout](images/layout-die.png)
-*Figure 1: Top-level assembled die layout (OS0000.gds) in the SCL C1D 2×2 mm pad frame.*
+*Figure 1: S8 reference chip, assembled die (OS0000.gds) on the SCL C1D 2×2 mm pad frame.*
 
 ---
 
@@ -85,8 +87,8 @@ flowchart TD
 
 | Floorplan & Core Rows | Pad Frame & Peripheral Terminals |
 |:---:|:---:|
-| ![Floorplan](images/floorplan-light.png) | ![Pad Frame](images/frame-light.png) |
-| *Standard cell placement rows and horizontal channels* | *Peripheral frame boundary with 16 pad slots* |
+| ![S8 floorplan](images/floorplan-light.png) | ![S8 pad frame](images/frame-light.png) |
+| *S8 output: standard-cell placement rows and horizontal channels* | *S8 output: SCL C1D frame boundary with 16 pad slots* |
 
 ### Place and Route (`stages/pnr.py`, `stages/wire_overlap.py`)
 - Executes OpenROAD placement and CTS with density targets, slew/cap margins, and input buffering (`DELBUF`).
@@ -96,8 +98,8 @@ flowchart TD
 
 | Clock Tree Synthesis (CTS) | Routing Congestion & Density |
 |:---:|:---:|
-| ![Clock Tree](images/clock-tree-light.png) | ![Routing Density](images/routing-density-light.png) |
-| *Balanced clock tree with buffer insertion* | *Track routing density and metal utilization* |
+| ![S8 clock tree](images/clock-tree-light.png) | ![S8 routing density](images/routing-density-light.png) |
+| *S8 output: clock tree with buffer insertion* | *S8 output: track routing density and metal utilization* |
 
 ### Assembly, CDL & Power Connectivity (`stages/assembly.py`)
 - Assembles top-level GDS (`<TOP>.gds`, e.g. `OS0000.gds`) by instantiating the 2×2 mm frame, core block, power rings (M1/M2), and pad routing wires.
@@ -107,8 +109,8 @@ flowchart TD
 
 | Assembled Core Zoom | Physical Layer Breakdown |
 |:---:|:---:|
-| ![Core Zoom](images/layout-zoom.png) | ![Layer Breakdown](images/layout-layers.png) |
-| *Dual-layer routing (M1/M2) connecting standard cell rows* | *Layer stack: Contact, Metal 1, Via 1, Metal 2* |
+| ![S8 core zoom](images/layout-zoom.png) | ![S8 layer breakdown](images/layout-layers.png) |
+| *S8 output: dual-layer routing (M1/M2) connecting standard-cell rows* | *S8 output: Contact, Metal 1, Via 1, Metal 2 layer stack* |
 
 ### CLI Integration (`cli.py`)
 - `chipflow build` runs preflight validation (`toolchain` -> `elaboration` -> `configuration`), then executes physical stages (`technology` -> `synthesis` -> `pnr` -> `assembly`).

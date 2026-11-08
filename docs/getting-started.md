@@ -1,5 +1,13 @@
 # Getting started with the foundation
 
+`chipflow` separates three things: the generic engine coordinates runs, tools and
+evidence; the SCL C1D 1.2 µm technology profile defines the currently supported
+2×2 mm frame, cells and pad rules; each chip project supplies RTL, configuration,
+constraints, pad mapping and tests. S8, a bit-serial 8-bit CPU, is the reference
+example and the only project exercised through the physical flow so far. Other
+supported designs use the same engine; other foundries and die sizes remain
+outside the current scope. See [supported configurations](supported-configurations.md).
+
 Run EDA commands in WSL Ubuntu 24.04 on x86-64. The current local installation is
 described by `toolchains/local.wsl.toml`. It contains exact paths and hashes and
 is deliberately separate from chip projects. [The environment recipe](../toolchains/README.md)
@@ -14,7 +22,8 @@ installation remains a separate gate.
 
 ## Toolchain and project workflow
 
-The engine exposes three primary CLI commands matching the progressive verification gates:
+The engine exposes three primary CLI commands matching the progressive verification gates.
+The project commands in this diagram run the S8 reference example:
 
 ```mermaid
 flowchart TD
@@ -29,8 +38,8 @@ flowchart TD
     BUILD -->|Executes synthesis, OpenROAD PnR, top assembly & power probe| ARTIFACTS["Emits 4 Canonical Artifacts:<br/>• artifacts/chip.gds<br/>• artifacts/chip.cdl<br/>• artifacts/mapped.v<br/>• artifacts/routed.v"]
 ```
 
-![SCL C1D Layout Layers](images/layout-layers.png)
-*Figure: Standard cell rows, contact, via, M1 and M2 layers produced during physical implementation.*
+![S8 reference chip layout layers on SCL C1D](images/layout-layers.png)
+*Figure: S8 reference chip output on SCL C1D: standard-cell rows, contact, via, M1 and M2 layers.*
 
 ---
 
@@ -81,6 +90,13 @@ synthetic tests and exercises the environment gate:
 ---
 
 ## Project commands and execution boundaries
+
+For your own chip, supply ordered RTL sources, `chip.toml`, `pads.toml`, clock and
+I/O constraints in `chip.toml`, and declared tests/data dependencies. Follow the
+[project format](project-format.md) and [current validation contract](m2-validation-contract.md);
+the project-format example is a Milestone 1 structural example, not a physically
+qualified template. Replace `path/to/chip.toml` below with your project file.
+Supported projects use the shared engine without editing it.
 
 Project commands have the following execution boundaries:
 
