@@ -25,7 +25,7 @@ Milestone 5 work.
 | SCL C1D 2 mm reference chip implementation | S8 preflight and physical implementation PASS in Milestone 3; four canonical artifacts produced. Full build exits 2 because downstream verification remains NOT RUN |
 | Complete unused pads, alternative drivers, wrapper/CDL alias handling | Current profile includes the bounded `shipped-input-pad-open` unused-slot policy for AIPAD00/IPAD00 with frame-level evidence; full targeted LVS remains later work. Qualified drivers only; broader project acceptance remains pending |
 | Current S8 reference / counter and multi-file PWM acceptance | S8 physical flow exercised; generic three-project physical qualification NOT RUN (Milestone 5) |
-| Full DRC/LVS/STA/functional/SDF adapters and signoff | NOT RUN in the reusable engine; verification adapters remain Milestone 4 work, broader acceptance Milestone 5, and clean-install/private v0.1 qualification Milestone 6. `signoff_ready` remains false |
+| Full DRC/LVS/STA/functional/SDF adapters and signoff | NOT RUN in the reusable engine; verification adapters remain Milestone 4 work, broader acceptance Milestone 5, and clean-install/v0.1 qualification Milestone 6. `signoff_ready` remains false |
 
 The intended release scope remains synchronous single-clock digital standard-cell
 designs on the 2 mm SCL C1D frame. Unsupported clock/reset structures, buses or

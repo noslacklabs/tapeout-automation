@@ -1,6 +1,6 @@
 # Implementation checkpoint — 8 November 2026
 
-**Milestones 1, 2, and 3 are complete. Milestone 4 remains future work.** The private v0.1 release
+**Milestones 1, 2, and 3 are complete. Milestone 4 remains future work.** The v0.1 release
 and reusable verification qualification remain future work.
 
 `chipflow` is the reusable automation engine; SCL C1D 1.2 µm on the 2×2 mm frame
@@ -97,7 +97,7 @@ Milestone 2 ("Package configuration and reliable execution") is complete and ver
 | 3 | Complete | Extract synthesis/P&R/assembly, validated structured connectivity, tested unused pads, unified implementation constraints and S8 adapter/hooks |
 | 4 | Open | Strict verification/report adapters, complete timing coverage, SDF annotation and separate qualification/signoff reporting |
 | 5 | Open | Freeze engine/profile and run S8, counter and multi-file PWM acceptance plus deliberate defect fixtures |
-| 6 | Open | Clean-install wheel qualification and private v0.1 release; migrate active S8 only after regression comparison |
+| 6 | Open | Clean-install wheel qualification and v0.1 release; migrate active S8 only after regression comparison |
 
 ## Milestone 3 completion
 

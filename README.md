@@ -1,6 +1,6 @@
-# Tapeout Automation (private)
+# Tapeout Automation
 
-`chipflow` is a private, generic, provenance-first chip automation engine. It takes a chip project—RTL, `chip.toml`, `pads.toml` and constraints—and produces a reproducible build, physical artifacts and an evidence manifest retaining inputs, logs, hashes and structured results. Supported designs use the shared engine without chip-specific engine edits. The first supported technology profile is **SCL C1D 1.2 µm on the 2×2 mm frame**; S8 is the reference project used to exercise it.
+`chipflow` is a generic, provenance-first chip automation engine. It takes a chip project—RTL, `chip.toml`, `pads.toml` and constraints—and produces a reproducible build, physical artifacts and an evidence manifest retaining inputs, logs, hashes and structured results. Supported designs use the shared engine without chip-specific engine edits. The first supported technology profile is **SCL C1D 1.2 µm on the 2×2 mm frame**; S8 is the reference project used to exercise it.
 
 ---
 
@@ -29,7 +29,7 @@ flowchart LR
 Milestone 3 verification records **114/114 tests passing in WSL2**, a passing S8 physical flow smoke run, a real CLI build producing the physical artifacts, and wheel verification in an isolated virtual environment. See the [Milestone 3 report](docs/milestone-3.md) and [implementation status](docs/implementation-status.md).
 
 > [!WARNING]
-> **Build completion is not yet signoff qualification.** DRC/LVS, timing and simulation verification adapters remain Milestone 4 work; broader S8/counter/PWM acceptance is Milestone 5, and clean-install qualification and the private v0.1 release are Milestone 6. The known raw parasitic extraction failure and unresolved manual items remain open; `signoff_ready` remains false.
+> **Build completion is not yet signoff qualification.** DRC/LVS, timing and simulation verification adapters remain Milestone 4 work; broader S8/counter/PWM acceptance is Milestone 5, and clean-install qualification and the v0.1 release are Milestone 6. The known raw parasitic extraction failure and unresolved manual items remain open; `signoff_ready` remains false.
 
 ---
 
@@ -293,4 +293,4 @@ CHIPFLOW_TEST_TOOLCHAIN="$PWD/../../toolchains/local.wsl.toml" python -m unittes
 - [Project format](docs/project-format.md), [validation contract](docs/m2-validation-contract.md), [stage contracts](docs/stage-contracts.md) and [result contract](docs/result-contract.md)
 - [Reference limitations](reference/milestone1/limitations.json)
 
-This repository remains private. The source project and PDK are preserved; publication, uploads and source-project migration are outside the current workflow.
+This repository is public. Confidential PDK data remains external, and machine-specific toolchain configuration and generated runs remain local, excluded from version control. The source project and PDK are preserved; source-project migration remains outside the current workflow.
