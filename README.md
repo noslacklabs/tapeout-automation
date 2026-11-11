@@ -6,7 +6,7 @@
 
 ## Current status and roadmap
 
-As of **8 November 2026**, Milestones **1, 2 and 3** of [BUILD_PLAN.md](BUILD_PLAN.md) are complete. The current development package is **0.1.0.dev4**.
+As of **9 November 2026**, Milestones **1, 2 and the documented S8 physical-flow scope of 3** pass their acceptance gates. The current development package is **0.1.0.dev5**; the [verification closeout](docs/milestone-3-verification.md) records all five findings resolved.
 
 ```mermaid
 flowchart LR
@@ -26,10 +26,16 @@ flowchart LR
 - **Milestone 2 — Configuration and execution:** Strict schema-1 project and pad map loaders, bounded Yosys elaboration and clock cone analysis, 10 pad qualification checks, mapped netlist checking, isolated execution and provenance tracking. Full `chipflow validate` returns 0 on clean preflight.
 - **Milestone 3 — Reusable physical flow:** Technology staging, synthesis, wrapper and constraint generation, OpenROAD placement/CTS/routing, GDS assembly, CDL generation and metal-only power connectivity checks. The S8 build produces all four canonical physical artifacts.
 
-Milestone 3 verification records **114/114 tests passing in WSL2**, a passing S8 physical flow smoke run, a real CLI build producing the physical artifacts, and wheel verification in an isolated virtual environment. See the [Milestone 3 report](docs/milestone-3.md) and [implementation status](docs/implementation-status.md).
+Milestone 3 closeout verifies **138/138 Linux tests**, 126 Windows tests with 12 explicit skips, installed-wheel checks, full installed-package S8 and changed-constraint builds, baseline layout/schematic equivalence, and negative regression cases. See the [verification report](docs/milestone-3-verification.md) and [implementation status](docs/implementation-status.md).
+
+The [S8 downstream run](docs/s8-downstream-verification.md) completes DRC/LVS,
+500 functional tests, 36 routed RAM cases, four intended timing negatives and
+formal/clock/model checks. Its design status is **FAIL (exit 1)**: full-chip input
+hold timing fails under the declared board assumptions, and raw extraction
+remains unvalidated. Pad slew/model limitations also remain open.
 
 > [!WARNING]
-> **Build completion is not yet signoff qualification.** DRC/LVS, timing and simulation verification adapters remain Milestone 4 work; broader S8/counter/PWM acceptance is Milestone 5, and clean-install qualification and the v0.1 release are Milestone 6. The known raw parasitic extraction failure and unresolved manual items remain open; `signoff_ready` remains false.
+> **Build completion is not yet signoff qualification.** Milestone 4 is in progress: the build now runs DRC, LVS and presubmission checks ([progress](docs/milestone-4.md)), while timing, simulation and report adapters remain open; broader S8/counter/PWM acceptance is Milestone 5, and clean-install qualification and the v0.1 release are Milestone 6. The known raw parasitic extraction failure and unresolved manual items remain open; `signoff_ready` remains false.
 
 ---
 

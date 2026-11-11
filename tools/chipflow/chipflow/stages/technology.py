@@ -57,6 +57,9 @@ OUTPUT_LIBS = (
     "pads_typ.lib", "pads_min.lib", "pads_max.lib",
 )
 
+TECH_OUTPUTS = ("tech.lef", "cells.lef", "tech-summary.json", *OUTPUT_LIBS,
+                *(destination for _, destination in INPUT_COPIES))
+
 
 def _close(observed: float | None, expected: float) -> bool:
     if observed is None:
@@ -319,7 +322,7 @@ def technology_stage(
             threads=project.resources.threads,
             outputs=tuple(
                 {"id": name, "path": name, "validator": "technology-v1"}
-                for name in ("tech.lef", "cells.lef", "tech-summary.json", *OUTPUT_LIBS)
+                for name in TECH_OUTPUTS
             ),
         )
 
@@ -495,8 +498,8 @@ def technology_stage(
             str(sys.executable), "-I", "tech_prep.py", "tech-input.json",
         ),
         timeout_s=float(max(project.resources.timeout_seconds, 600.0)),
-        required_outputs=("tech.lef", "cells.lef", "tech-summary.json", *OUTPUT_LIBS),
-        validators={name: validate_nonempty for name in ("tech.lef", "cells.lef", "tech-summary.json", *OUTPUT_LIBS)},
+        required_outputs=TECH_OUTPUTS,
+        validators={name: validate_nonempty for name in TECH_OUTPUTS},
         prepare=prepare,
         assess=assess,
     )

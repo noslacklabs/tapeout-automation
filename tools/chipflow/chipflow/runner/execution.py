@@ -33,6 +33,16 @@ def sha256_file(path: Path | str) -> str:
     return digest.hexdigest()
 
 
+def verify_artifact(run_dir: Path, artifact: Artifact) -> None:
+    """Reject missing, changed or escaping artifacts before consumption."""
+    path = Path(artifact.path)
+    target = (run_dir / path).resolve()
+    if path.is_absolute() or PureWindowsPath(artifact.path).drive or not target.is_relative_to(run_dir.resolve()):
+        raise ValueError(f"producer artifact escapes run: {artifact.path}")
+    if not target.is_file() or sha256_file(target) != artifact.sha256:
+        raise ValueError(f"producer artifact hash mismatch: {artifact.path}")
+
+
 def atomic_write_json(path: Path | str, data: Any) -> None:
     """Write in the destination directory, flush, then atomically replace."""
     destination = Path(path)
@@ -394,6 +404,11 @@ class StageSpec:
     prepare: Callable[[Path], Any] | None = None
     assess: Callable[[Path, CommandResult, tuple[Artifact, ...]], Assessment] | None = None
     diagnostic_inputs: tuple[str, ...] = ()
+    # Nonzero exits by which this tool reports a completed design verdict (a
+    # checker's "rule failed", a test runner's "test failed"). Outputs are still
+    # validated and the assessment must then contain a FAIL check; any other
+    # nonzero exit remains an execution failure.
+    design_returncodes: tuple[int, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -439,6 +454,10 @@ def _validate_stages(stages: Sequence[StageSpec], known_ids: set[str] | None = N
                 raise ValueError(f"unsafe stage output: {output!r}")
         if set(stage.validators) - set(stage.required_outputs):
             raise ValueError("validators must refer to required outputs")
+        if any(type(code) is not int or code == 0 for code in stage.design_returncodes):
+            raise ValueError(f"design_returncodes must be nonzero integers for {stage.id}")
+        if stage.design_returncodes and stage.assess is None:
+            raise ValueError(f"design_returncodes need an assessment for {stage.id}")
     pending = list(stages)
     ordered: list[StageSpec] = []
     done: set[str] = set(known_ids)
@@ -500,8 +519,11 @@ def execute_stages(
                 stage_dir = stage_root / stage.id
                 stage_dir.mkdir(exist_ok=False)
                 prepare_failed = False
-                if stage.prepare is not None:
-                    try:
+                try:
+                    for dependency in stage.dependencies:
+                        for artifact in by_id[dependency].artifacts:
+                            verify_artifact(directory, artifact)
+                    if stage.prepare is not None:
                         envelope = stage.prepare(stage_dir)
                         if hasattr(envelope, "write"):
                             envelope.write(stage_dir / "stage-input.json")
@@ -509,10 +531,10 @@ def execute_stages(
                             atomic_write_json(stage_dir / "stage-input.json", envelope)
                         else:
                             raise TypeError("prepare must return a stage envelope")
-                    except Exception as exc:
-                        prepare_failed = True
-                        result = StageResult(stage.id, StageStatus.FAILED, error=f"prepare failed: {exc}",
-                                             failure_kind="infrastructure", failed_ancestors=ancestors)
+                except Exception as exc:
+                    prepare_failed = True
+                    result = StageResult(stage.id, StageStatus.FAILED, error=f"prepare failed: {exc}",
+                                         failure_kind="infrastructure", failed_ancestors=ancestors)
                 if not prepare_failed:
                     command = run_command(stage.command, stage_dir, stage.timeout_s, stage.env, cancellation)
                     commands.append(command)
@@ -523,7 +545,8 @@ def execute_stages(
                     elif command.timed_out:
                         result = StageResult(stage.id, StageStatus.FAILED, error="command timed out",
                                              failure_kind="infrastructure", failed_ancestors=ancestors)
-                    elif not command.succeeded:
+                    elif not command.succeeded and not (
+                            command.returncode in stage.design_returncodes and not command.error):
                         if stage.assess is not None:
                             try:
                                 assessment = stage.assess(stage_dir, command, ())
@@ -567,7 +590,13 @@ def execute_stages(
                                     assessment = stage.assess(stage_dir, command, tuple(artifacts))
                                     all_artifacts = tuple(artifacts) + tuple(assessment.extra_artifacts)
                                     has_fail = any(c.status == CheckStatus.FAIL for c in assessment.checks)
-                                    if assessment.failure_kind == "infrastructure":
+                                    if not command.succeeded and not has_fail and assessment.failure_kind != "infrastructure":
+                                        # The tool reported a failure the adapter could not attribute.
+                                        result = StageResult(stage.id, StageStatus.FAILED, checks=assessment.checks,
+                                                             artifacts=all_artifacts,
+                                                             error=f"command exited {command.returncode} without a positively detected FAIL check",
+                                                             failure_kind="infrastructure", failed_ancestors=ancestors)
+                                    elif assessment.failure_kind == "infrastructure":
                                         # The adapter says its evidence is unusable; never downgrade that.
                                         result = StageResult(stage.id, StageStatus.FAILED, checks=assessment.checks,
                                                              artifacts=all_artifacts, error="assessment reported an infrastructure failure",

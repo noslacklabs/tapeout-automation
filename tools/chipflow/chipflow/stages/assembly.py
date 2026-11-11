@@ -4,12 +4,8 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-import re
-import shutil
 import sys
 from typing import Any
-
-import klayout.db as db
 
 from chipflow.config.project import ProjectConfig
 from chipflow.runner.execution import (
@@ -17,11 +13,11 @@ from chipflow.runner.execution import (
     Assessment,
     CommandResult,
     StageSpec,
-    atomic_write_json,
     sha256_file,
 )
 from chipflow.runner.results import CheckResult, CheckStatus
 from chipflow.stages.envelope import StageEnvelope
+from chipflow.stages.staging import copy_verified_dependency
 from chipflow.technologies.profile import ProcessProfile
 from chipflow.toolchain import Toolchain, verify_file
 
@@ -38,6 +34,10 @@ import sys
 from pathlib import Path
 
 import klayout.db as db
+import subprocess
+from chipflow.stages.def_model import read_def
+from chipflow.stages.cdl import generate_cdl
+from chipflow.stages.library_model import parse_cdl
 
 config = json.loads(Path("assembly_config.json").read_text(encoding="utf-8"))
 top_cell = config["top_cell"]
@@ -51,106 +51,24 @@ def dbu(v):
     assert n % GRID == 0, f"off grid: {v}"
     return n
 
-# ---------------------------------------------------------------- Parse DEF
-txt = Path("routed.def").read_text(encoding="utf-8", errors="ignore")
-comp = re.search(r"\\nCOMPONENTS\\s+\\d+\\s*;(.*?)END COMPONENTS", txt, re.S).group(1)
-insts = []
-for st in comp.split(";"):
-    m = re.search(r"-\\s+(\\S+)\\s+(\\S+).*?\\+\\s+(?:PLACED|FIXED|LOCKED)\\s+\\(\\s*(-?\\d+)\\s+(-?\\d+)\\s*\\)\\s+(\\S+)", st, re.S)
-    if m:
-        assert m.group(5) == "N", (m.group(1), m.group(5))
-        insts.append((m.group(2), int(m.group(3)), int(m.group(4)), m.group(1)))
-
-WIDTH = {"metal1": 2400, "metal2": 2500}
+# ---------------------------------------------------------------- Parse and reconcile routed inputs
+routed = read_def("routed.def", require_pins=True)
+insts = [(c.master, c.x, c.y, c.name) for c in routed.components]
 VIA = {"VIA12": ((-1250, -1250, 1250, 1250), (-750, -750, 750, 750), (-1250, -1250, 1250, 1250))}
 wires = {"metal1": [], "metal2": []}
-vias = []
-netsec = re.search(r"\\nNETS\\s+\\d+\\s*;(.*?)END NETS", txt, re.S).group(1)
-tok = netsec.replace("(", " ( ").replace(")", " ) ").split()
-i = 0
-route = False
-layer = None
-cx = cy = None
-prev = False
-prev_ext = None
-while i < len(tok):
-    t = tok[i]
-    if t in (";", "-"):
-        route = prev = False
-        i += 2 if t == "-" else 1
-        continue
-    if t == "+":
-        kw = tok[i + 1]
-        route = kw in ("ROUTED", "FIXED", "COVER")
-        if route:
-            layer = tok[i + 2]
-            prev = False
-            i += 3
-            continue
-        i += 2
-        route = False
-        continue
-    if t == "NEW":
-        route = True
-        layer = tok[i + 1]
-        prev = False
-        i += 2
-        continue
-    if not route or t == "TAPER":
-        i += 1
-        continue
-    if t == "(":
-        j = i + 1
-        while tok[j] != ")":
-            j += 1
-        x, y = tok[i + 1], tok[i + 2]
-        ext = int(tok[i + 3]) if j - i > 3 else None
-        nx = cx if x == "*" else int(x)
-        ny = cy if y == "*" else int(y)
-        if prev:
-            h = WIDTH[layer] // 2
-            e0 = h if prev_ext is None else prev_ext
-            e1 = h if ext is None else ext
-            if nx == cx:
-                lo, hi = (cy, ny) if cy <= ny else (ny, cy)
-                elo, ehi = (e0, e1) if cy <= ny else (e1, e0)
-                wires[layer].append(db.Box(cx - h, lo - elo, cx + h, hi + ehi))
-            else:
-                lo, hi = (cx, nx) if cx <= nx else (nx, cx)
-                elo, ehi = (e0, e1) if cx <= nx else (e1, e0)
-                wires[layer].append(db.Box(lo - elo, cy - h, hi + ehi, cy + h))
-        cx, cy = nx, ny
-        prev = True
-        prev_ext = ext
-        i = j + 1
-        continue
-    if t == "RECT":
-        j = i + 1
-        while tok[j] != ")" or tok[j + 1] == "(":
-            j += 1
-        a, b, c, d = [int(v) for v in tok[i + 2:j] if v not in "()"]
-        wires[layer].append(db.Box(cx + a, cy + b, cx + c, cy + d))
-        i = j + 1
-        continue
-    assert t in VIA, f"unknown via {t}"
-    vias.append((t, cx, cy))
-    layer = "metal2" if layer == "metal1" else "metal1"
-    prev = True
-    prev_ext = None
-    i += 1
-
-pins_sec = re.search(r"\\nPINS\\s+\\d+\\s*;(.*?)END PINS", txt, re.S).group(1)
-pin_shapes = []
-for st in pins_sec.split(";"):
-    m = re.search(r"\\+\\s+LAYER\\s+(\\S+)\\s+\\(\\s*(-?\\d+)\\s+(-?\\d+)\\s*\\)\\s+\\(\\s*(-?\\d+)\\s+(-?\\d+)\\s*\\).*?\\+\\s+(?:PLACED|FIXED|COVER)\\s+\\(\\s*(-?\\d+)\\s+(-?\\d+)\\s*\\)\\s+(\\S+)", st, re.S)
-    if m:
-        la = m.group(1)
-        a, b, c, d, x, y = [int(m.group(k)) for k in range(2, 8)]
-        assert m.group(8) in ("N", "S", "E", "W", "FN", "FS", "FE", "FW"), m.group(8)
-        if m.group(8) in ("N", "FN", "S", "FS"):
-            pin_shapes.append((la, db.Box(x + min(a, -c), y + min(b, -d), x + max(c, -a), y + max(d, -b))))
-        else:
-            pin_shapes.append((la, db.Box(x + min(b, -d), y + min(a, -c), x + max(d, -b), y + max(c, -a))))
+for wire in routed.wires:
+    wires[wire.layer].append(db.Box(*wire.box))
+vias = [(v.name, v.x, v.y) for v in routed.vias]
+pin_shapes = [(p.layer, db.Box(*p.box)) for p in routed.pins]
+with open("routed-json.log", "w", encoding="utf-8") as log:
+    converted = subprocess.run([config["yosys_executable"], "-Q", "-T", "-s", "routed-json.ys"],
+                               stdin=subprocess.DEVNULL, stdout=log, stderr=subprocess.STDOUT)
+if converted.returncode:
+    raise RuntimeError("routed Verilog conversion failed; see routed-json.log")
+cdl_text, cdl_inventory = generate_cdl(
+    json.loads(Path("routed.json").read_text(encoding="utf-8")), routed, top_cell,
+    fp["pads"], config["power_pads"], parse_cdl("core.cdl"), parse_cdl("io_pad.cdl"),
+    config["pad_models"])
 
 # ---------------------------------------------------------------- Layout assembly
 ly = db.Layout()
@@ -366,82 +284,8 @@ Path("assemble.json").write_text(json.dumps(stats, indent=2), encoding="utf-8")
 print(f"cells {len(insts)} fillers {n_fill} routed vias {len(vias)} row width {logic/U:.0f} of {budget/U:.0f} um, fill {100*logic/budget:.1f}%")
 
 # ---------------------------------------------------------------- CDL generation
-def subckts(path):
-    text = open(path, errors="ignore").read().replace("\\r", "")
-    res = {}
-    for sm in re.finditer(r"^\\.subckt\\s+(\\S+)([^\\n]*)\\n(.*?)^\\.ends[^\\n]*\\n", text, re.I | re.M | re.S):
-        res[sm.group(1)] = (sm.group(2).split(), sm.group(0))
-    return res
-
-core_subckts = subckts("core.cdl")
-pad_subckts = subckts("io_pad.cdl")
-
-v_text = open("routed.v").read()
-v_text = re.sub(r"/\\*.*?\\*/", "", v_text, flags=re.S)
-names = {}
-
-def clean(n):
-    n = n.strip().lstrip("\\\\").strip()
-    if n not in names:
-        s = re.sub(r"\\W", "_", n)
-        s = s.strip("_") or "n"
-        while s in names.values():
-            s += "_x"
-        names[n] = s
-    return names[n]
-
-body = v_text[v_text.index(";", v_text.index("module")) + 2:]
-cdl_insts = []
-for cm in re.finditer(r"^\\s*(\\w+)\\s+(\\\\\\S+\\s|\\w+)\\s*\\((.*?)\\)\\s*;", body, re.M | re.S):
-    cell, inst, conns = cm.group(1), cm.group(2).strip(), cm.group(3)
-    if cell in ("module", "input", "output", "wire"):
-        continue
-    con = {}
-    for c in re.finditer(r"\\.(\\w+)\\s*\\(\\s*(\\\\?[^\\s()]*(?:\\s*\\[\\d+\\])?)\\s*\\)", conns):
-        con[c.group(1)] = re.sub(r"\\s+", "", c.group(2))
-    cdl_insts.append((cell, inst, con))
-
-used_masters = sorted({c for c, _, _ in cdl_insts})
-OUTPUT_PINS = {"OUT1", "Q", "QB", "OUTB"}
-cdl_lines = [f"* Written by chipflow assembly stage for {top_cell}. PRIVATE.", ""]
-ports = [f"PAD{p['pad']}" for p in fp["pads"]] + ["VDD", "VSS"]
-cdl_lines.append(f".SUBCKT {top_cell} {' '.join(ports)}")
-
-for k, (cell, inst, con) in enumerate(cdl_insts):
-    pins, _ = core_subckts[cell]
-    nets = []
-    for pn in pins:
-        if pn in ("VDD", "VSS"):
-            nets.append(pn)
-        elif pn in con and con[pn]:
-            nets.append(clean(con[pn]))
-        else:
-            assert pn in OUTPUT_PINS, (cell, inst, pn, con)
-            nets.append(f"nc_{k}_{pn}")
-    cdl_lines.append(f"X{k} {' '.join(nets)} {cell}")
-
-for p in fp["pads"]:
-    pins, _ = pad_subckts[p["cell"]]
-    outside, inside = ("PAD", "IN1") if p["dir"] == "out" else ("IN1", "OUT1")
-    corenet = clean(p["core_port"])
-    m_pins = {"VDD": "VDD", "VSS": "VSS", outside: f"PAD{p['pad']}", inside: corenet}
-    cdl_lines.append(f"XPAD{p['pad']} {' '.join(m_pins[q] for q in pins)} {p['cell']}")
-
-for k in (13, 15):
-    cdl_lines.append(f"XP{k} VDD VSS PVDD01")
-for k in (14, 16):
-    cdl_lines.append(f"XP{k} VSS VDD PVSS01")
-
-cdl_lines.append(f".ENDS {top_cell}\\n")
-for c in used_masters:
-    cdl_lines.append(core_subckts[c][1])
-for c in sorted({p["cell"] for p in fp["pads"]} | {"PVDD01", "PVSS01"}):
-    cdl_lines.append(pad_subckts[c][1])
-for c in ("RNW", "RPP", "RNP", "RNDIFF", "RPDIFF"):
-    if c in pad_subckts:
-        cdl_lines.append(pad_subckts[c][1])
-
-Path(f"{top_cell}.cdl").write_text("\\n".join(cdl_lines) + "\\n", encoding="utf-8")
+Path(f"{top_cell}.cdl").write_text(cdl_text, encoding="utf-8")
+Path("cdl-inventory.json").write_text(json.dumps(cdl_inventory, indent=2), encoding="utf-8")
 
 # ---------------------------------------------------------------- Metal-only power connectivity
 ly_check = db.Layout()
@@ -525,43 +369,46 @@ def assembly_stage(
     top_cell = project.top_cell
 
     def prepare(stage_dir: Path) -> StageEnvelope:
-        tech_stage = run_path / "stages/technology"
-        pnr_stage_dir = run_path / "stages/pnr"
-
-        # Copy verified dependencies
-        shutil.copyfile(tech_stage / "work/frame.gds", stage_dir / "frame.gds")
-        shutil.copyfile(tech_stage / "work/io_pad.gds", stage_dir / "io_pad.gds")
-        shutil.copyfile(tech_stage / "work/core.gds", stage_dir / "core.gds")
-        shutil.copyfile(tech_stage / "work/core.cdl", stage_dir / "core.cdl")
-        shutil.copyfile(tech_stage / "work/io_pad.cdl", stage_dir / "io_pad.cdl")
-        shutil.copyfile(tech_stage / "cells.lef", stage_dir / "cells.lef")
-        shutil.copyfile(pnr_stage_dir / "floorplan.json", stage_dir / "floorplan.json")
-        shutil.copyfile(pnr_stage_dir / "routed.def", stage_dir / "routed.def")
-        shutil.copyfile(pnr_stage_dir / "routed.v", stage_dir / "routed.v")
-
+        yosys_tool = toolchain.tool("yosys")
+        verify_file(yosys_tool.executable, yosys_tool.sha256)
+        inputs = []
+        for source, destination in (
+            ("work/frame.gds", "frame.gds"), ("work/io_pad.gds", "io_pad.gds"),
+            ("work/core.gds", "core.gds"), ("work/core.cdl", "core.cdl"),
+            ("work/io_pad.cdl", "io_pad.cdl"), ("cells.lef", "cells.lef"),
+            ("core_typ.lib", "core_typ.lib"),
+        ):
+            inputs.append(copy_verified_dependency(run_path, stage_dir, "technology", source, destination))
+        for name in ("floorplan.json", "routed.def", "routed.v"):
+            inputs.append(copy_verified_dependency(run_path, stage_dir, "pnr", name, name))
+        (stage_dir / "routed-json.ys").write_text(
+            f"read_liberty -lib core_typ.lib\nread_verilog routed.v\n"
+            f"hierarchy -check -top {project.top}_core\nwrite_json routed.json\n",
+            encoding="utf-8")
         assembly_config = {
-            "top_cell": top_cell,
-            "frame_top_cell": profile.frame_top_cell,
+            "top_cell": top_cell, "frame_top_cell": profile.frame_top_cell,
+            "yosys_executable": str(yosys_tool.executable),
+            "power_pads": [{"slot": p.slot, "cell": p.cell} for p in profile.power_pads],
+            "pad_models": {name: {"core_pin": p.core_pin, "pad_pin": p.pad_pin}
+                           for name, p in profile.pad_cells.items()},
         }
         (stage_dir / "assembly_config.json").write_text(json.dumps(assembly_config, indent=2), encoding="utf-8")
         (stage_dir / "assembly_runner.py").write_text(ASSEMBLY_RUNNER_SCRIPT, encoding="utf-8")
 
         config_hash = sha256_file(run_path / "resolved-project.json")
-        envelope_inputs = [
-            {"id": name, "path": name, "sha256": sha256_file(stage_dir / name), "bytes": (stage_dir / name).stat().st_size}
-            for name in ("routed.def", "routed.v", "floorplan.json", "frame.gds", "core.gds", "core.cdl", "io_pad.gds", "io_pad.cdl", "cells.lef")
-        ]
+        envelope_inputs = inputs
         return StageEnvelope(
             stage_id="assembly",
             adapter={"id": "chipflow.assembly", "version": "0.1.0"},
             inputs=tuple(envelope_inputs),
-            tools=(),
+            tools=({"id": "yosys", "executable_sha256": yosys_tool.sha256,
+                    "version_evidence": "doctor/doctor.json"},),
             configuration_sha256=config_hash,
             seed=project.resources.seed,
             threads=project.resources.threads,
             outputs=tuple(
                 {"id": name, "path": name, "validator": "assembly-v1"}
-                for name in (f"{top_cell}.gds", f"{top_cell}.cdl", "assemble.json", "power_connect.json")
+                for name in (f"{top_cell}.gds", f"{top_cell}.cdl", "assemble.json", "power_connect.json", "routed.json", "cdl-inventory.json")
             ),
         )
 
@@ -625,8 +472,8 @@ def assembly_stage(
         command=(sys.executable, "-I", "assembly_runner.py"),
         dependencies=("technology", "pnr"),
         timeout_s=float(max(project.resources.timeout_seconds, 1200.0)),
-        required_outputs=(f"{top_cell}.gds", f"{top_cell}.cdl", "assemble.json", "power_connect.json"),
-        validators={name: _validate_nonempty for name in (f"{top_cell}.gds", f"{top_cell}.cdl", "assemble.json", "power_connect.json")},
+        required_outputs=(f"{top_cell}.gds", f"{top_cell}.cdl", "assemble.json", "power_connect.json", "routed.json", "cdl-inventory.json"),
+        validators={name: _validate_nonempty for name in (f"{top_cell}.gds", f"{top_cell}.cdl", "assemble.json", "power_connect.json", "routed.json", "cdl-inventory.json")},
         prepare=prepare,
         assess=assess,
     )

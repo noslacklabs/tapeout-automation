@@ -185,6 +185,19 @@ clock_buffer_cell = "CDRI01"
 abc_driving_cell = "INVR01"
 abc_load_pf = 0.2
 
+# How the pinned KLayout decks and the presubmission checker are driven.  The
+# decks themselves stay in the external kit and are fingerprinted by the local
+# toolchain.  The shipped DRC deck selects hierarchical processing with one
+# bare mode line; the flat run replaces exactly that line in a recorded copy.
+[physical_verification]
+drc_report_variable = "report1"
+drc_hierarchical_line = "deep"
+drc_flat_line = "flat"
+lvs_schematic_variable = "schematic1"
+lvs_netlist_variable = "target_netlist1"
+lvs_report_variable = "report"
+presubmit_die_mm = 2
+
 [pad_cell.OPAD04]
 direction = "output"
 core_pin = "IN1"

@@ -1,6 +1,7 @@
-# Implementation checkpoint — 8 November 2026
+# Implementation checkpoint — 9 November 2026
 
-**Milestones 1, 2, and 3 are complete. Milestone 4 remains future work.** The v0.1 release
+**Milestones 1, 2 and the documented S8 physical-flow scope of 3 are complete. Milestone 4 is in progress: its DRC, LVS and
+presubmission adapters are done ([progress](milestone-4.md), 10 November 2026); timing, simulation and reporting are open.** The v0.1 release
 and reusable verification qualification remain future work.
 
 `chipflow` is the reusable automation engine; SCL C1D 1.2 µm on the 2×2 mm frame
@@ -94,17 +95,36 @@ Milestone 2 ("Package configuration and reliable execution") is complete and ver
 |---|---|---|
 | 1 | Complete | Current reference, pinned fresh-userspace startup, contracts and scope-bound limitations |
 | 2 | Complete | Bounded Yosys elaboration/coverage, pad/frame validation, full CLI validation, provenance tracking, and mapped netlist checks |
-| 3 | Complete | Extract synthesis/P&R/assembly, validated structured connectivity, tested unused pads, unified implementation constraints and S8 adapter/hooks |
-| 4 | Open | Strict verification/report adapters, complete timing coverage, SDF annotation and separate qualification/signoff reporting |
+| 3 | Complete: S8 physical scope | Five findings closed at 0.1.0.dev5; 138 Linux tests, installed S8/constraint-variant builds and baseline geometry/connectivity comparisons pass |
+| 4 | In progress | Item 2 of 7 done: DRC, flat DRC, LVS and presubmission adapters run in `chipflow build`. Parasitic, timing, simulation and report adapters remain open; project-specific S8 downstream execution is complete with input hold/extraction FAIL |
 | 5 | Open | Freeze engine/profile and run S8, counter and multi-file PWM acceptance plus deliberate defect fixtures |
 | 6 | Open | Clean-install wheel qualification and v0.1 release; migrate active S8 only after regression comparison |
 
-## Milestone 3 completion
+## Milestone 3 verification
 
-Milestone 3 ("Extract the reusable physical flow") is complete and verified at 0.1.0.dev4. See [Milestone 3 report](milestone-3.md).
+Milestone 3 ("Extract the reusable physical flow") passes its documented S8 acceptance at 0.1.0.dev5. All five [independent verification findings](milestone-3-verification.md) are closed. Reusable downstream adapters and broader multi-chip acceptance remain milestones 4 and 5.
 - **Physical flow**: Technology staging, Yosys synthesis to 24 allowlisted cells, core wrapper generation, OpenROAD placement and CTS with gated clock isolation, detailed routing with retries, top-level layout assembly, CDL netlist generation, and 92-point power connectivity check.
-- **Verification**: 114/114 tests passing in WSL2, S8 physical flow smoke run passing across all 5 stages, real `chipflow build` generating `artifacts/chip.{gds,cdl}` and `artifacts/{mapped,routed}.v`, and wheel verified in clean isolated virtualenv.
+- **Verification**: 138/138 Linux tests; 126 Windows tests pass with 12 explicit skips. The installed wheel passes its harness and full S8/changed-constraint physical builds. S8 polygon geometry, all 361 schematic instances and complete connectivity/library models match M1; malformed DEF is rejected before GDS emission.
 
-The next implementation sequence is Milestone 4: strict verification/report adapters (DRC/LVS, timing, simulation).
+Milestone 4 continues with parasitic extraction checks and chip STA, then simulation adapters and reporting.
+Its [progress report](milestone-4.md) records the finished DRC/LVS/presubmission adapters: 168/168 Linux tests,
+a real S8 build matching the reference figures and 13/13 real-tool defect probes. A full build still exits 2.
 The old flow and PDK remain preserved. The raw extraction FAIL and unresolved manual items from Milestone 1 are
 never waived by this checkpoint.
+
+## S8 downstream execution
+
+The [downstream report](s8-downstream-verification.md) records a fresh
+project-specific run against the installed-wheel S8 physical artifacts.
+Hierarchical/flat DRC, LVS, 11 layout controls, all 500 functional tests,
+36 routed RAM cases, four intended RAM timing negatives, 72 pad DC cases,
+clock tracing, routed equivalence and seven CPU proof tasks pass.
+
+The final design status is **exit 1** with complete execution evidence. Full-chip
+hold timing fails on seven input-path/corner reports (worst −2.02 ns), despite
+positive register hold margins. Those I/O margins exactly match the immutable
+reference. Raw extraction remains FAIL at 0.1374 pF versus the unvalidated
+26.915 pF diagnostic estimate. Eighteen pad slew violations and model/manual
+qualification items remain explicit blockers. Functional/SDF passes do not
+override static timing failures. Of the generic Milestone 4 adapters, only DRC, LVS and
+presubmission exist so far; timing and simulation still run only through this project-specific runner.

@@ -73,18 +73,20 @@ The source package is installable with `python -m pip install ./tools/chipflow`.
 For offline installation of the built wheel, use:
 
 ```bash
-python -m pip install --no-index --no-deps work/m2-dist-dev4/chipflow-0.1.0.dev4-py3-none-any.whl
+python -m pip install --no-index --no-deps work/m3-final-20261108/wheel-dist/chipflow-0.1.0.dev5-py3-none-any.whl
 chipflow --help
 ```
 
 That interpreter must already have the pinned EDA Python dependencies for the
-geometry probe. Packaging has no mandatory third-party Python dependency for
-schema or runner use. The wheel verification script creates a local venv,
+geometry probe and physical build. The optional `physical` extra declares KLayout
+0.30.12 and gdstk 1.0.2; EDA executables and the PDK still come from the pinned
+toolchain configuration. Packaging has no mandatory third-party Python dependency
+for help, configuration or runner use. The wheel verification script creates a local venv,
 installs the wheel offline, confirms imports come from that venv, runs the
 synthetic tests and exercises the environment gate:
 
 ```bash
-/home/sushant/.venvs/presubmit-check/bin/python scripts/verify_wheel.py --workspace "$PWD" --wheel work/m2-dist-dev4/chipflow-0.1.0.dev4-py3-none-any.whl
+/home/sushant/.venvs/presubmit-check/bin/python scripts/verify_wheel.py --workspace "$PWD" --wheel work/m3-final-20261108/wheel-dist/chipflow-0.1.0.dev5-py3-none-any.whl
 ```
 
 ---
@@ -134,7 +136,7 @@ See [result-contract.md](result-contract.md) for full exit-code and evidence rul
 
 ## Unit and integration tests
 
-Unit tests require no kit and run on Windows or Linux (114 tests; real-tool integration tests skip unless `CHIPFLOW_TEST_TOOLCHAIN` names a toolchain file). Run them from `tools/chipflow`:
+The suite contains 138 tests, including malformed DEF, alias/constant/model preservation, producer-identity and constraint-consumption regressions. Real-tool tests skip unless `CHIPFLOW_TEST_TOOLCHAIN` names a toolchain file, and the geometry test skips if KLayout is unavailable. Help and nonphysical tests work without EDA packages. Run from `tools/chipflow`:
 
 ```bash
 # Windows

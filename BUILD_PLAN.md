@@ -124,7 +124,7 @@ Acceptance: tests cover subprocess failures, absent/truncated reports, stale art
 
 ## Milestone 3 — Extract the reusable physical flow
 
-Status: **complete, 8 November 2026**. [Milestone report](docs/milestone-3.md). All 8 items implemented and verified across 114 unit/integration tests (114/114 passing in WSL2), full physical flow smoke test passing (`scripts/test_m3_s8_physical.py`), real `chipflow build` generating `chip.gds`, `chip.cdl`, `mapped.v`, `routed.v` with exit code 2 (downstream verification deferred to Milestone 4), and installed wheel `chipflow-0.1.0.dev4-py3-none-any.whl` verified in a clean isolated virtualenv.
+Status: **complete for the documented S8 physical-flow scope, 8 November 2026**. [Independent closeout](docs/milestone-3-verification.md) verifies all five findings fixed at 0.1.0.dev5: 138/138 Linux tests, 126 Windows tests with 12 explicit skips, installed-wheel checks and full installed-package S8/changed-constraint physical builds. Baseline layout and schematic connectivity/models match. Full builds correctly exit 2 with downstream verification pending milestones 4 and 5.
 
 1. Port synthesis with ordered multi-file RTL and configurable top/parameters.
 2. Move cell filtering, library fixes, routing obstructions and process units into the SCL profile.
@@ -140,6 +140,12 @@ Stage dependency outline: validate/snapshot → technology preparation and synth
 Acceptance at this milestone: S8 reaches synthesis, P&R and assembly through the new engine with its inputs and special rules in `projects/s8/`; structural inventories and geometry invariants are checked against the baseline. Full DRC/LVS, timing and functional regression acceptance follows milestones 4 and 5, when their adapters exist. Require identical GDS bytes only where deterministic output has been established. The shared engine contains no S8 port names, smoke-test expectations or absolute project paths.
 
 ## Milestone 4 — Generalize verification and reporting
+
+Status: **in progress**. Item 2 is implemented and verified, 10 November 2026; items 1 and 3–7 are open
+([progress report](docs/milestone-4.md)). The [project-specific S8 downstream execution](docs/s8-downstream-verification.md)
+has completed against the repaired Milestone 3 artifacts. DRC/LVS and functional
+checks pass; full-chip input hold timing and raw extraction remain FAIL. This
+execution does not implement the generic adapters below or qualify signoff.
 
 1. Consume the shared resolved constraints in final STA and remove hard-coded 10 MHz and RAM assumptions from common reports. Require a timing-coverage check: every retained sequential clock pin belongs to the declared clock, every expected path group and min/max I/O constraint is accounted for, and exceptions resolve to intended nonempty objects. Missing clock propagation, unexplained unconstrained endpoints, missing corners or report sections cannot pass. Check setup/hold and modeled slew, capacitance, fanout and pulse-width limits; unresolved pad-limit interpretations stay explicit blockers.
 2. Run DRC/LVS and the existing pre-submission checker through adapters with structured results tied to the exact inputs, decks and output artifacts. DRC needs successful execution, a valid expected report structure and evidence that the expected rule categories ran. LVS needs a nonempty comparison containing the expected top circuit and complete matching coverage. Validate the checker's exit code and tool-error metadata as well as its result rows. Empty categories, empty comparisons and zero expected tests are not clean results.

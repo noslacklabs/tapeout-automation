@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import importlib.util
 from pathlib import Path
 import tempfile
 import unittest
@@ -89,6 +90,7 @@ class PhysicalFlowTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "no measured terminal range"):
             build_floorplan(pad_plan, self.profile, terminals, self.lef_file)
 
+    @unittest.skipUnless(importlib.util.find_spec("klayout"), "KLayout Python bindings not installed")
     def test_wire_overlap_checker_clean(self):
         import klayout.db as db
         # Synthetic clean routed DEF

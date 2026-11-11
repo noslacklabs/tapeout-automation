@@ -1,5 +1,7 @@
 # Milestone 3: Extract the Reusable Physical Flow
 
+**Verification closeout, 8 November 2026:** all five independent findings are fixed at 0.1.0.dev5. The expanded suite and installed-package physical builds pass; see the [closeout report](milestone-3-verification.md). The implementation account below is retained as the original 0.1.0.dev4 handback.
+
 ## 1. Overview
 
 Milestone 3 delivers the reusable physical flow engine, with SCL C1D 1.2 µm on the 2×2 mm frame as its first supported technology profile. The engine coordinates physical synthesis, floorplanning, placement, clock tree synthesis (CTS), detailed routing with retries, top-level layout assembly, CDL schematic generation, and layout power connectivity checking. Process-specific cells, geometry and frame rules belong to the profile; chip-specific RTL, configuration, constraints, pad mapping and tests belong to each project.
@@ -127,7 +129,7 @@ flowchart TD
 
 ### Full Test Suite (WSL2 Ubuntu 24.04)
 - **114 / 114 tests passing** with `CHIPFLOW_TEST_TOOLCHAIN` active.
-- Pure-Python tests passing on Windows and Linux without dependencies.
+- Dependency-free Windows execution does not reproduce: CLI import requires KLayout and the suite reports 7 errors. See independent verification finding 5.
 
 ### Physical Flow S8 Smoke Test
 ```bash

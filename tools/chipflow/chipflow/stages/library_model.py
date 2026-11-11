@@ -156,6 +156,7 @@ class CdlSubckt:
     name: str
     pins: tuple[str, ...]
     body: str
+    definition: str = ""
 
 
 _CDL_START = re.compile(r"(?im)^\s*\.(?:subckt|SUBCKT)\s+([A-Za-z_][A-Za-z0-9_$]*)([^\n]*)$")
@@ -180,7 +181,8 @@ def parse_cdl(path) -> Mapping[str, CdlSubckt]:
             raise LibraryParseError(f"duplicate CDL subcircuit: {name}")
         header_tokens = start.group(2).split()
         pins = tuple(token for token in header_tokens if "=" not in token)
-        result[name] = CdlSubckt(name=name, pins=pins, body=text[start.end():end.start()])
+        result[name] = CdlSubckt(name=name, pins=pins, body=text[start.end():end.start()],
+                                 definition=text[start.start():end.end()])
         pos = end.end()
     if not result:
         raise LibraryParseError(f"no CDL subcircuits in {path}")

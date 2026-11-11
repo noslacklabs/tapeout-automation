@@ -22,8 +22,11 @@ from .runner.results import (
 )
 from .stages.assembly import assembly_stage
 from .stages.design_model import load_design
+from .stages.drc import drc_stage
 from .stages.elaboration import elaboration_stage
+from .stages.lvs import lvs_stage
 from .stages.pnr import pnr_stage
+from .stages.presubmit import presubmit_stage
 from .stages.synthesis import synthesis_stage
 from .stages.technology import technology_stage
 from .technologies.profile import load_profile
@@ -372,8 +375,17 @@ def main(argv: list[str] | None = None) -> int:
                     synthesis_stage(project, profile, toolchain, run.path),
                     pnr_stage(project, profile, toolchain, run.path),
                     assembly_stage(project, profile, toolchain, run.path),
+                    drc_stage(project, profile, toolchain, run.path),
+                    drc_stage(project, profile, toolchain, run.path, flat=True),
+                    lvs_stage(project, profile, toolchain, run.path),
+                    presubmit_stage(project, profile, toolchain, run.path),
                 ]
-                physical_summary = execute_stages(run.path, physical_specs, existing_stages=[elab_stage])
+                physical_summary = execute_stages(run.path, physical_specs, existing_stages=[elab_stage, config_stage])
+                if physical_summary.cancelled:
+                    cancelled = BuildResult((*stages, *physical_summary.stages), cancelled=True)
+                    atomic_write_json(run.path / 'result.json', cancelled.to_dict())
+                    print(f'Build cancelled: {run.path}')
+                    return 130
                 stages.extend(physical_summary.stages)
 
                 # Copy artifacts if assembly succeeded
@@ -397,7 +409,8 @@ def main(argv: list[str] | None = None) -> int:
                     shutil.copyfile(routed_out, artifacts_dir / "routed.v")
                     art_files.append(Artifact("artifacts/routed.v", sha256_file(artifacts_dir / "routed.v")))
 
-                # Downstream verification checks (DRC, LVS, STA, simulation) deferred to M4 & M5
+                # Parasitic, timing and simulation adapters are not implemented yet; their
+                # required checks stay NOT RUN and keep the build result nonzero.
                 executed_check_ids = {c.id for s in stages for c in s.checks}
                 all_req = tuple(dict.fromkeys((*project.verification.required_checks, *MINIMUM_REQUIRED_CHECKS)))
                 remaining_checks = [c for c in all_req if c not in executed_check_ids]
@@ -405,7 +418,7 @@ def main(argv: list[str] | None = None) -> int:
                     'implementation',
                     StageStatus.FAILED,
                     failure_kind='infrastructure',
-                    error='downstream verification checks deferred to milestone 4 and 5',
+                    error='parasitic, timing and simulation adapters are not implemented yet',
                     checks=tuple(CheckResult(c, CheckStatus.NOT_RUN) for c in remaining_checks),
                     artifacts=tuple(art_files),
                 )

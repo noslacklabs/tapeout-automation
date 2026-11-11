@@ -13,16 +13,15 @@ import sys
 repo_root = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(repo_root / "tools/chipflow"))
 
-from chipflow.cli import snapshot_project
+from chipflow.cli import snapshot_project, _validation_stages
 from chipflow.config import load_project
 from chipflow.runner.execution import atomic_write_json, execute_stages
 from chipflow.stages.assembly import assembly_stage
-from chipflow.stages.elaboration import elaboration_stage
 from chipflow.stages.pnr import pnr_stage
 from chipflow.stages.synthesis import synthesis_stage
 from chipflow.stages.technology import technology_stage
 from chipflow.technologies.profile import load_profile
-from chipflow.toolchain import doctor, load_toolchain
+from chipflow.toolchain import load_toolchain
 
 
 def main() -> int:
@@ -43,17 +42,16 @@ def main() -> int:
     snapshot_project(project, run_dir)
     shutil.copyfile(toolchain.path, run_dir / "toolchain.toml")
     atomic_write_json(run_dir / "resolved-toolchain.json", toolchain.to_dict())
-    from chipflow.config.pads import build_pad_plan, load_pad_map
-    atomic_write_json(run_dir / "pad-plan.json", build_pad_plan(load_pad_map(project.pads), profile))
-
-    doctor_report = doctor(toolchain, run_dir / "doctor")
-    print(f"Doctor exit code: {doctor_report['exit_code']}")
-    if doctor_report["exit_code"] != 0:
-        print("Doctor failed!")
+    gates = _validation_stages(project, toolchain, run_dir, "Physical smoke")
+    if gates is None:
+        return 130
+    toolchain_result, elaboration_result, configuration_result, _ = gates
+    preflight = (toolchain_result, elaboration_result, configuration_result)
+    if any(stage.status.value != "succeeded" for stage in preflight):
+        print("Preflight failed; physical stages blocked.")
         return 2
 
     specs = [
-        elaboration_stage(project, toolchain, run_dir),
         technology_stage(project, profile, toolchain, run_dir),
         synthesis_stage(project, profile, toolchain, run_dir),
         pnr_stage(project, profile, toolchain, run_dir),
@@ -61,7 +59,7 @@ def main() -> int:
     ]
 
     print("Executing stages: elaboration, technology, synthesis, pnr, assembly...")
-    summary = execute_stages(run_dir, specs)
+    summary = execute_stages(run_dir, specs, existing_stages=[elaboration_result, configuration_result])
 
     for stage in summary.stages:
         print(f"\n--- STAGE {stage.id}: {stage.status.value} (failure_kind={stage.failure_kind}) ---")

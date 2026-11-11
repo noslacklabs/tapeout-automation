@@ -7,6 +7,7 @@ import hashlib
 import importlib.resources
 import math
 from pathlib import Path
+import re
 import tomllib
 from typing import Any, Mapping, Sequence
 
@@ -127,6 +128,18 @@ class SynthesisProfile:
 
 
 @dataclass(frozen=True)
+class PhysicalVerificationProfile:
+    """How the pinned DRC/LVS decks and the presubmission checker are driven."""
+    drc_report_variable: str
+    drc_hierarchical_line: str
+    drc_flat_line: str
+    lvs_schematic_variable: str
+    lvs_netlist_variable: str
+    lvs_report_variable: str
+    presubmit_die_mm: int
+
+
+@dataclass(frozen=True)
 class ProcessProfile:
     path: str
     sha256: str
@@ -147,6 +160,7 @@ class ProcessProfile:
     frame_geometry: FrameGeometry | None = None
     technology_geometry: TechnologyGeometry | None = None
     synthesis: SynthesisProfile | None = None
+    physical_verification: PhysicalVerificationProfile | None = None
 
     def excluded_for(self, workaround: str) -> tuple[str, ...]:
         return tuple(c.cell for c in self.excluded_cells if c.workaround == workaround)
@@ -235,7 +249,7 @@ def load_profile(path: Path | str | None = None) -> ProcessProfile:
         "schema_version", "profile", "profile_version", "frame", "frame_top_cell",
         "die_um", "dbu_um", "grid_um", "unused_slot_policy", "qualification_evidence",
         "signal_slot", "power_pad", "pad_cell", "excluded_cell",
-        "frame_geometry", "technology_geometry", "synthesis",
+        "frame_geometry", "technology_geometry", "synthesis", "physical_verification",
     }
     unknown = raw.keys() - top_keys
     if unknown:
@@ -489,6 +503,22 @@ def load_profile(path: Path | str | None = None) -> ProcessProfile:
             abc_load_pf=_number(s["abc_load_pf"], "synthesis.abc_load_pf", minimum=0.0),
         )
 
+    physical_verification = None
+    if "physical_verification" in raw:
+        keys = {"drc_report_variable", "drc_hierarchical_line", "drc_flat_line", "lvs_schematic_variable",
+                "lvs_netlist_variable", "lvs_report_variable", "presubmit_die_mm"}
+        v = _table(raw["physical_verification"], "physical_verification", keys, keys)
+        names = {}
+        for key in sorted(keys - {"presubmit_die_mm"}):
+            names[key] = _string(v[key], f"physical_verification.{key}")
+            if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*", names[key]):
+                raise ProfileError(f"physical_verification.{key} must be a plain identifier")
+        if names["drc_hierarchical_line"] == names["drc_flat_line"]:
+            raise ProfileError("physical_verification DRC hierarchical and flat mode lines must differ")
+        physical_verification = PhysicalVerificationProfile(
+            presubmit_die_mm=_integer(v["presubmit_die_mm"], "physical_verification.presubmit_die_mm", 1, 5),
+            **names)
+
     return ProcessProfile(
         path=path_str,
         sha256=sha256,
@@ -509,4 +539,5 @@ def load_profile(path: Path | str | None = None) -> ProcessProfile:
         frame_geometry=frame_geometry,
         technology_geometry=technology_geometry,
         synthesis=synthesis,
+        physical_verification=physical_verification,
     )

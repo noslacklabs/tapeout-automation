@@ -2,12 +2,10 @@
 
 from __future__ import annotations
 
-import json
 from pathlib import Path
-import re
 from typing import Any
 
-import klayout.db as db
+from chipflow.stages.def_model import read_def
 
 WIDTH = {"metal1": 2400, "metal2": 2500}
 GDS_OFFSET = {"MX201B": 5200}
@@ -22,26 +20,16 @@ def check_wire_vs_cells(
 
     Returns dict(nets=int, cells=int, problems=list[dict]).
     """
+    import klayout.db as db
+    routed = read_def(def_path)
     lib = db.Layout()
     lib.read(str(core_gds_path))
+    if abs(lib.dbu - 0.001) > 1e-12:
+        raise ValueError("core GDS DBU does not match routed DEF")
     m1_layer = lib.layer(8, 0)
     m2_layer = lib.layer(10, 0)
     via_layer = lib.layer(9, 0)
-
-    txt = Path(def_path).read_text(encoding="utf-8", errors="ignore")
-    comp_match = re.search(r"\nCOMPONENTS\s+\d+\s*;(.*?)END COMPONENTS", txt, re.S)
-    if not comp_match:
-        raise ValueError(f"no COMPONENTS section in DEF: {def_path}")
-
-    inst: dict[str, tuple[str, int, int]] = {}
-    for st in comp_match.group(1).split(";"):
-        m = re.search(
-            r"-\s+(\S+)\s+(\S+).*?\+\s+(?:PLACED|FIXED|LOCKED)\s+\(\s*(-?\d+)\s+(-?\d+)\s*\)",
-            st,
-            re.S,
-        )
-        if m:
-            inst[m.group(1)] = (m.group(2), int(m.group(3)), int(m.group(4)))
+    inst = {c.name: (c.master, c.x, c.y) for c in routed.components}
 
     pin_rects: dict[str, dict[str, list[db.Box]]] = {}
     cur = pn = la = None
@@ -91,79 +79,19 @@ def check_wire_vs_cells(
         cell_cache[master] = (m1, m2, pins)
         return cell_cache[master]
 
-    nets_idx = txt.find("\nNETS ")
-    end_nets_idx = txt.find("END NETS")
-    if nets_idx < 0 or end_nets_idx < 0:
-        raise ValueError(f"no NETS section in DEF: {def_path}")
-    sec = txt[nets_idx:end_nets_idx]
-
     problems: list[dict[str, Any]] = []
-    nets_checked = 0
-    all_m1: dict[str, db.Region] = {}
-    all_m2: dict[str, db.Region] = {}
-    netpins: dict[str, list[tuple[str, str]]] = {}
-
-    for st in re.split(r"\n\s*-\s+", sec)[1:]:
-        name = st.split(None, 1)[0]
-        nets_checked += 1
-        netpins[name] = re.findall(r"\(\s*(\S+)\s+(\S+)\s*\)", st.split("+")[0])
-        tok = st.replace("(", " ( ").replace(")", " ) ").split()
-        w: dict[str, db.Region] = {"metal1": db.Region(), "metal2": db.Region()}
-        lay: str | None = None
-        px = py = None
-        pe: int | None = None
-        i = 0
-        while i < len(tok):
-            t = tok[i]
-            if t in ("ROUTED", "NEW", "FIXED", "COVER"):
-                lay = tok[i + 1]
-                px = None
-                i += 2
-                continue
-            if lay is None:
-                i += 1
-                continue
-            if t == "(":
-                j = i + 1
-                while j < len(tok) and tok[j] != ")":
-                    j += 1
-                x_str, y_str = tok[i + 1], tok[i + 2]
-                ext = int(tok[i + 3]) if j - i > 3 else None
-                nx = px if x_str == "*" else int(x_str)
-                ny = py if y_str == "*" else int(y_str)
-                if px is not None and nx is not None and ny is not None and py is not None:
-                    h = WIDTH[lay] // 2
-                    e0 = h if pe is None else pe
-                    e1 = h if ext is None else ext
-                    if nx == px:
-                        a, b = (py, ny) if py <= ny else (ny, py)
-                        ea, eb = (e0, e1) if py <= ny else (e1, e0)
-                        w[lay].insert(db.Box(px - h, a - ea, px + h, b + eb))
-                    else:
-                        a, b = (px, nx) if px <= nx else (nx, px)
-                        ea, eb = (e0, e1) if px <= nx else (e1, e0)
-                        w[lay].insert(db.Box(a - ea, py - h, b + eb, py + h))
-                px, py, pe = nx, ny, ext
-                i = j + 1
-                continue
-            if t == "RECT":
-                j = i + 1
-                while j < len(tok) and (tok[j] != ")" or (j + 1 < len(tok) and tok[j + 1] == "(")):
-                    j += 1
-                rect_vals = [int(v) for v in tok[i + 2:j] if v not in "()"]
-                if len(rect_vals) == 4 and px is not None and py is not None:
-                    ra, rb, rc, rd = rect_vals
-                    w[lay].insert(db.Box(px + ra, py + rb, px + rc, py + rd))
-                i = j + 1
-                continue
-            if t == "VIA12" and px is not None and py is not None:
-                w["metal1"].insert(db.Box(px - 1250, py - 1250, px + 1250, py + 1250))
-                w["metal2"].insert(db.Box(px - 1250, py - 1250, px + 1250, py + 1250))
-                lay = "metal2" if lay == "metal1" else "metal1"
-                pe = None
-            i += 1
-        all_m1[name] = w["metal1"].merged()
-        all_m2[name] = w["metal2"].merged()
+    nets_checked = len(routed.nets)
+    all_m1 = {n.name: db.Region() for n in routed.nets}
+    all_m2 = {n.name: db.Region() for n in routed.nets}
+    netpins = {n.name: list(n.connections) for n in routed.nets}
+    for wire in routed.wires:
+        (all_m1 if wire.layer == "metal1" else all_m2)[wire.net].insert(db.Box(*wire.box))
+    for via in routed.vias:
+        box = db.Box(via.x - 1250, via.y - 1250, via.x + 1250, via.y + 1250)
+        all_m1[via.net].insert(box)
+        all_m2[via.net].insert(box)
+    all_m1 = {name: region.merged() for name, region in all_m1.items()}
+    all_m2 = {name: region.merged() for name, region in all_m2.items()}
 
     # Allowed metal: pins of the same net
     allowed: dict[str, tuple[db.Region, db.Region]] = {}

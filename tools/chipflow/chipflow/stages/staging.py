@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import json
 from pathlib import Path, PureWindowsPath
 import re
 import shutil
@@ -143,21 +144,53 @@ def copy_verified_dependency(
     destination: str,
 ) -> dict[str, Any]:
     """Copy one declared dependency artifact and return its input row."""
-    source = run_path / "stages" / dependency / name
+    return copy_verified_artifact(run_path, stage_dir, dependency,
+                                  str(Path("stages") / dependency / name), destination)
+
+
+def copy_verified_artifact(run_path: Path, stage_dir: Path, dependency: str,
+                           relative: str, destination: str) -> dict[str, Any]:
+    """Copy any recorded producer artifact, including run-level pad plans."""
+    source = run_path / relative
     if not source.is_file():
-        raise RuntimeError(f"missing dependency artifact: {dependency}/{name}")
-    expected = sha256_file(source)
+        raise RuntimeError(f"missing dependency artifact: {dependency}/{relative}")
+    expected = verified_producer_hash(run_path, dependency, relative)
+    if sha256_file(source) != expected:
+        raise RuntimeError(f"producer artifact hash mismatch: {dependency}/{relative}")
     target = stage_dir / destination
+    if not target.resolve().is_relative_to(stage_dir.resolve()):
+        raise RuntimeError(f"dependency destination escapes stage: {destination}")
     target.parent.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(source, target)
     if sha256_file(target) != expected:
-        raise RuntimeError(f"dependency copy hash mismatch: {dependency}/{name}")
+        raise RuntimeError(f"dependency copy hash mismatch: {dependency}/{relative}")
     return {
-        "id": f"{dependency}.{name}",
+        "id": f"{dependency}.{relative}",
         "path": destination,
         "sha256": expected,
         "bytes": target.stat().st_size,
     }
+
+
+def verified_producer_hash(run_path: Path, dependency: str, relative: str) -> str:
+    """Find artifact identity in the completed producer's execution evidence."""
+    from chipflow.runner.execution import verify_artifact
+    from chipflow.runner.results import Artifact
+
+    try:
+        data = json.loads((run_path / "execution.json").read_text(encoding="utf-8"))
+        producers = [s for s in data["stages"] if s["id"] == dependency]
+        if len(producers) != 1 or producers[0]["status"] != "succeeded":
+            raise ValueError("producer did not succeed")
+        hashes = {a["sha256"] for a in producers[0]["artifacts"]
+                  if a["path"].replace("\\", "/") == relative.replace("\\", "/")}
+        if len(hashes) != 1:
+            raise ValueError("missing or ambiguous producer artifact")
+        expected = hashes.pop()
+        verify_artifact(run_path, Artifact(relative, expected))
+        return expected
+    except (OSError, KeyError, TypeError, ValueError) as error:
+        raise RuntimeError(f"unverified producer artifact {dependency}/{relative}: {error}") from error
 
 
 def assert_snapshot_unchanged(
